@@ -90,6 +90,7 @@
 		display: grid;
 		width: 60%;
 		margin-inline: auto;
+        margin-bottom: 100px;
 		gap: 30px;
 		grid-template-areas:
 			'header header'
