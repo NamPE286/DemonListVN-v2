@@ -1,11 +1,11 @@
-<script>
-    var menuExpanded = false
-    const currentSite = 'list'
-    function showHighlight(s){
+<script lang='ts'>
+    var menuExpanded:boolean = false
+    var currentSite:string = 'list'
+    function showHighlight(s:string){
         if(s == currentSite) return 'barItem'
         return 'hide'
     }
-    function showTitle(s){
+    function showTitle(s:string){
         if(s == currentSite) return ''
         return 'hideText'
     }
@@ -47,7 +47,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M11 17h2v-6h-2Zm1-8q.425 0 .713-.288Q13 8.425 13 8t-.287-.713Q12.425 7 12 7t-.712.287Q11 7.575 11 8t.288.712Q11.575 9 12 9Zm0 13q-2.075 0-3.9-.788-1.825-.787-3.175-2.137-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175 1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138 1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175-1.35 1.35-3.175 2.137Q14.075 22 12 22Zm0-2q3.35 0 5.675-2.325Q20 15.35 20 12q0-3.35-2.325-5.675Q15.35 4 12 4 8.65 4 6.325 6.325 4 8.65 4 12q0 3.35 2.325 5.675Q8.65 20 12 20Zm0-8Z"/></svg>
             <p id='title1'>Info</p>
         </div>
-        <p class={showTitle('info')} id='iconTitle'>Info</p>
+        <p class={showTitle('about')} id='iconTitle'>About</p>
     </a>
     <div class='bottomPad'></div>
 </div>
@@ -68,6 +68,7 @@
         padding-top: 8px;
         z-index: 1;
         transition: all 0.3s ease-out;
+        box-sizing: border-box;
         .sidebarIconWrapper{
             color: white;
             text-decoration: none;
@@ -100,6 +101,7 @@
         }
     }
     .sidebar1{
+        overflow-x:hidden; 
         background-color: #202020;
         border-radius: 16px;
         position: fixed;
@@ -112,25 +114,26 @@
         padding-inline: 14px;
         padding-top: 8px;
         z-index: 1;
+        box-shadow: 0 0 15px black;
         transition: all 0.3s ease-out;
+        overflow-x: hidden;
         #iconTitle{
-            opacity: 0;
             font-size: 12px;
             margin-top: 0;
             margin-bottom: 0;
+            visibility: hidden;
         }
-
         .barItem{
             background-color: #2e2e2e;
         }
         #sidebarIcon{
-            padding-inline: 10px;
+            padding-inline: 16px;
             border-radius: 16px;
             display: flex;
             align-items: center;
             text-decoration: none;
             color: white;
-            transition: 0.3s;
+            transition: background-color 0.3s;
             p{
                 margin-left: 12px;
                 font-size: 16px;
@@ -140,7 +143,7 @@
         }
         #sidebarIcon:hover{
             background-color: #2e2e2e;
-            transition: 0.3s;
+            transition: background-color 0.3s;
         }
         hr{
             margin-top: auto;
@@ -166,15 +169,25 @@
     .menuIconWrapper:active:hover{
         background-color: gray;
     }
+    .sidebarIconWrapper:hover{
+        #sidebarIcon{
+            background-color: #2e2e2e;
+        }
+        #iconTitle{
+            opacity: 1;
+        }
+    }
     .hide{
         background-color: transparent;
         padding-inline: 10px;
         padding-top: 6px;
         padding-bottom: 3px;
         border-radius: 16px;
+        transition: background-color 0.3s;
     }
     .hideText{
         opacity: 0;
+        transition: opacity 0.3s;
     }
     .topBar{
         height: 50px;
