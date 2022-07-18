@@ -12,12 +12,14 @@
     }
 </script>
 <div class='topBar'>
-    {#if toggleMenu}
-    <a href='#!' on:click={() => toggleMenu = !toggleMenu}><svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M3 18v-2h18v2Zm0-5v-2h18v2Zm0-5V6h18v2Z"/></svg></a>
-    {/if}
-    {#if !toggleMenu}
-    <a href='#!' on:click={() => toggleMenu = !toggleMenu}><svg id='menuIcon' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M3 18v-2h13v2Zm16.6-1-5-5 5-5L21 8.4 17.4 12l3.6 3.6ZM3 13v-2h10v2Zm0-5V6h13v2Z"/></svg></a>
-    {/if}
+    <div class="menuIconWrapper">
+        {#if toggleMenu}
+        <a href='#!' on:click={() => toggleMenu = !toggleMenu}><svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M3 18v-2h18v2Zm0-5v-2h18v2Zm0-5V6h18v2Z"/></svg></a>
+        {/if}
+        {#if !toggleMenu}
+        <a href='#!' on:click={() => toggleMenu = !toggleMenu}><svg id='menuIcon' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M3 18v-2h13v2Zm16.6-1-5-5 5-5L21 8.4 17.4 12l3.6 3.6ZM3 13v-2h10v2Zm0-5V6h13v2Z"/></svg></a>
+        {/if}
+    </div>
     <p id='title'>Demon List VN</p>
     <a class='submitBtn' href='#!'>
         <p>Submit</p>
@@ -153,7 +155,19 @@
             height: 10px;
         }
     }
-
+    .menuIconWrapper{
+        margin-left: 12px;
+        padding: 4px;
+        padding-inline: 8px;
+        border-radius: 50%;
+        transition: 0.15s;
+    }
+    .menuIconWrapper:hover{
+        background-color: #2e2e2e;
+    }
+    .menuIconWrapper:active:hover{
+        background-color: gray;
+    }
     .hide{
         background-color: transparent;
         padding-inline: 10px;
@@ -171,7 +185,6 @@
         display: flex;
         align-items: center;
         #menuIcon{
-            margin-left: 20px;
             margin-top: 3px;
         }
         #title{
