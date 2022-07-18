@@ -1,12 +1,13 @@
 <script>
-	import Header from "../components/Header.svelte";
-	import Levels from "../components/Levels.svelte";
-	import LevelCard from "../components/LevelCard.svelte";
-
-	let title = "Feature List";
-	let desc = "Levels created and beaten by Vietnamese";
+  import Topbar from '../components/Topbar.svelte'
 </script>
 
-<Header {title} description={desc} />
-<hr />
-<Levels />
+<main>
+  <Topbar />
+</main>
+
+<style>
+  main {
+      margin: 10px 0;
+    }
+</style>

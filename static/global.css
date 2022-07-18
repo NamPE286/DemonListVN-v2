@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
 body {
 	top: 0;
 	margin: 0;
@@ -9,7 +7,7 @@ body {
 	height: auto;
 	min-height: 100vh;
 
-	font-family: "Roboto", monospace;
+	font-family: "Roboto Flex", monospace;
 	font-size: 16px;
 	color: #fff;
 }
