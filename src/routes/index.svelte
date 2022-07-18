@@ -108,7 +108,7 @@
         width: 300px;
         height: calc(100% - 73px);
         box-sizing: border-box;
-        padding-inline: 25px;
+        padding-inline: 14px;
         padding-top: 8px;
         z-index: 1;
         transition: all 0.3s ease-out;
@@ -208,6 +208,14 @@
         }
         svg{
             filter: invert(1);
+        }
+    }
+    @media screen and (max-width: 750px){
+        .sidebar{
+            .sidebarIconWrapper{
+                display: none;
+            }
+            width: 0;
         }
     }
 </style>
