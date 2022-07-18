@@ -150,9 +150,9 @@
             transition: background-color 0.3s;
             p{
                 margin-left: 12px;
-                font-size: 16px;
-                margin-top: 12px;
-                margin-bottom: 12px;
+                font-size: 14px;
+                margin-top: 14px;
+                margin-bottom: 14px;
             }   
         }
         #sidebarIcon:hover{
