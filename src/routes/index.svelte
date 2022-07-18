@@ -217,5 +217,8 @@
             }
             width: 0;
         }
+        #title{
+            display: none;
+        }
     }
 </style>
