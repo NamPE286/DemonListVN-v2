@@ -159,17 +159,17 @@
             height: 10px;
         }
     }
-    #menuIconWrapper{
+    .menuIconWrapper{
         margin-left: 12px;
         padding: 4px;
         padding-inline: 8px;
         border-radius: 50%;
         transition: 0.15s;
     }
-    #menuIconWrapper:hover{
+    .menuIconWrapper:hover{
         background-color: #2e2e2e;
     }
-    #menuIconWrapper:active:hover{
+    .menuIconWrapper:active:hover{
         background-color: gray;
     }
     .hide{
