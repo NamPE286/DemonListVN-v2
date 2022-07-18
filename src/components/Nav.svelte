@@ -119,7 +119,7 @@
         padding-inline: 14px;
         padding-top: 8px;
         z-index: 1;
-        box-shadow: 0 0 15px black;
+        box-shadow: 0 0 15px rgb(9, 9, 9);
         transition: all 0.3s ease-out;
         overflow-x: hidden;
         #iconTitle{
