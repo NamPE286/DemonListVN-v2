@@ -23,5 +23,8 @@
 		"svelte-preprocess": "^4.10.7",
 		"vite": "^3.0.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"typescript": "^4.7.4"
+	}
 }
