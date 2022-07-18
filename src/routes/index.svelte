@@ -2,12 +2,10 @@
     var menuExpanded = false
     const currentSite = 'list'
     function showHighlight(s){
-        const u = 'list'
         if(s == currentSite) return 'barItem'
         return 'hide'
     }
     function showTitle(s){
-        const u = 'list'
         if(s == currentSite) return ''
         return 'hideText'
     }
