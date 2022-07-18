@@ -16,7 +16,7 @@
     }
 </script>
 <div class='topBar'>
-    <div id="menuIconWrapper">
+    <div class="menuIconWrapper">
         <a href='#!' on:click={toggleMenu}>
             {#if !menuExpanded}
             <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M3 18v-2h18v2Zm0-5v-2h18v2Zm0-5V6h18v2Z"/></svg>
