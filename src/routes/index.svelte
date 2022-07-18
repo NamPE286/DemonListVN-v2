@@ -1,24 +1,24 @@
 <script>
-    var menuExpanded = true
+    var menuExpanded = false
+    const currentSite = 'list'
     function showHighlight(s){
         const u = 'list'
-        if(s == u) return 'barItem'
+        if(s == currentSite) return 'barItem'
         return 'hide'
     }
     function showTitle(s){
         const u = 'list'
-        if(s == u) return ''
+        if(s == currentSite) return ''
         return 'hideText'
     }
-
     function toggleMenu() {
         menuExpanded = !menuExpanded
     }
 </script>
 <div class='topBar'>
-    <div class="menuIconWrapper">
+    <div id="menuIconWrapper">
         <a href='#!' on:click={toggleMenu}>
-            {#if menuExpanded}
+            {#if !menuExpanded}
             <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M3 18v-2h18v2Zm0-5v-2h18v2Zm0-5V6h18v2Z"/></svg>
             {:else}
             <svg id='menuIcon' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M3 18v-2h13v2Zm16.6-1-5-5 5-5L21 8.4 17.4 12l3.6 3.6ZM3 13v-2h10v2Zm0-5V6h13v2Z"/></svg>
@@ -32,7 +32,7 @@
         <p>Submit</p>
     </a>
 </div>
-<div class={menuExpanded ? 'sidebar' : 'sidebar1'} id='sidebarDiv'>
+<div class={menuExpanded ? 'sidebar1' : 'sidebar'} id='sidebarDiv'>
     <a href='#!' class='sidebarIconWrapper'>
         <div class={showHighlight('list')} id='sidebarIcon'>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M8 17q.425 0 .713-.288Q9 16.425 9 16t-.287-.713Q8.425 15 8 15t-.713.287Q7 15.575 7 16t.287.712Q7.575 17 8 17Zm0-4q.425 0 .713-.288Q9 12.425 9 12t-.287-.713Q8.425 11 8 11t-.713.287Q7 11.575 7 12t.287.712Q7.575 13 8 13Zm0-4q.425 0 .713-.288Q9 8.425 9 8t-.287-.713Q8.425 7 8 7t-.713.287Q7 7.575 7 8t.287.712Q7.575 9 8 9Zm3 8h6v-2h-6Zm0-4h6v-2h-6Zm0-4h6V7h-6ZM5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h14q.825 0 1.413.587Q21 4.175 21 5v14q0 .825-.587 1.413Q19.825 21 19 21Zm0-2h14V5H5v14ZM5 5v14V5Z"/></svg>
@@ -62,7 +62,6 @@
     svg {
       filter: invert(1);
     }
-
     .sidebar{
         border-radius: 16px;
         position: fixed;
@@ -97,7 +96,7 @@
             background-color: #2e2e2e;
             padding-inline: 10px;
             padding-top: 6px;
-            padding-bottom: 3px;
+            padding-bottom: 2px;
             border-radius: 16px;
         }
         p{
@@ -151,8 +150,8 @@
         }
         hr{
             margin-top: auto;
-            width: 90%;
-            border-color: #707070;
+            width: calc(100% - 10px);
+            border-color: #525252;
             margin-bottom: 24px;
         }
         .bottomPad{
@@ -160,17 +159,17 @@
             height: 10px;
         }
     }
-    .menuIconWrapper{
+    #menuIconWrapper{
         margin-left: 12px;
         padding: 4px;
         padding-inline: 8px;
         border-radius: 50%;
         transition: 0.15s;
     }
-    .menuIconWrapper:hover{
+    #menuIconWrapper:hover{
         background-color: #2e2e2e;
     }
-    .menuIconWrapper:active:hover{
+    #menuIconWrapper:active:hover{
         background-color: gray;
     }
     .hide{
