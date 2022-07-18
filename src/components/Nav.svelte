@@ -1,6 +1,14 @@
 <script lang='ts'>
+    import { onMount } from 'svelte'
+
     var menuExpanded:boolean = false
     var currentSite:string = 'list'
+    var ifOntop:boolean = true
+    onMount(() => {
+        window.addEventListener('scroll', () => {
+            ifOntop = window.scrollY == 0
+        })
+    })
     function showHighlight(s:string){
         if(s == currentSite) return 'barItem'
         return 'hide'
@@ -12,8 +20,9 @@
     function toggleMenu() {
         menuExpanded = !menuExpanded
     }
+    
 </script>
-<div class='topBar'>
+<div class={ifOntop ? 'topBar' : 'topBar1'}>
     <a href='#!' class="menuIconWrapper" on:click={toggleMenu}>
         {#if !menuExpanded}
         <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M3 18v-2h18v2Zm0-5v-2h18v2Zm0-5V6h18v2Z"/></svg>
@@ -59,7 +68,7 @@
     }
     .topSpacer{
         width: 100%;
-        height: 100px;
+        height: 130px;
     }
     .sidebar{
         border-radius: 16px;
@@ -72,7 +81,7 @@
         box-sizing: border-box;
         padding-top: 8px;
         z-index: 1;
-        transition: all 0.3s ease-out;
+        transition: all 0.2s ease-out;
         box-sizing: border-box;
         .sidebarIconWrapper{
             color: white;
@@ -120,7 +129,7 @@
         padding-top: 8px;
         z-index: 1;
         box-shadow: 0 0 15px rgb(9, 9, 9);
-        transition: all 0.3s ease-out;
+        transition: all 0.2s ease-out;
         overflow-x: hidden;
         #iconTitle{
             font-size: 12px;
@@ -141,9 +150,9 @@
             transition: background-color 0.3s;
             p{
                 margin-left: 12px;
-                font-size: 16px;
-                margin-top: 12px;
-                margin-bottom: 12px;
+                font-size: 14px;
+                margin-top: 14px;
+                margin-bottom: 14px;
             }   
         }
         #sidebarIcon:hover{
@@ -162,14 +171,14 @@
         }
     }
     .menuIconWrapper{
-        margin-left: 12px;
+        margin-left: 20px;
         padding: 4px;
         padding-inline: 8px;
         border-radius: 50%;
         transition: 0.15s;
     }
     .menuIconWrapper:hover{
-        background-color: #2e2e2e;
+        background-color: #424242;
     }
     .menuIconWrapper:active:hover{
         background-color: gray;
@@ -194,14 +203,59 @@
         opacity: 0;
         transition: opacity 0.3s;
     }
-    .topBar{
+    .topBar1{
         position: fixed;
+        top:0;
+        left: 0;
+        background-color: #272727;
         width: 100%;
-        height: 50px;
+        height: 60px;
         box-sizing: border-box;
         z-index: 2;
         display: flex;
         align-items: center;
+        transition: background-color 0.3s;
+        #menuIcon{
+            margin-top: 3px;
+        }
+        #title{
+            margin-left: 25px;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .submitBtn{
+            background-color: #005FF9;
+            padding-inline: 24px;
+            border-radius: 16px;
+            margin-left: auto;
+            margin-right: 26px;
+            text-decoration: none;
+            color: white;
+            transition: 0.15s;
+            p{
+                margin-top: 8px;
+                margin-bottom: 8px;
+            }
+        }
+        .submitBtn:active:hover{
+            background-color: #003996;
+            transition: 0.15s;
+        }
+    }
+
+    .topBar{
+        position: fixed;
+        top:0;
+        left: 0;
+        background-color: #141414;
+        width: 100%;
+        height: 60px;
+        box-sizing: border-box;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        transition: background-color 0.3s;
         #menuIcon{
             margin-top: 3px;
         }

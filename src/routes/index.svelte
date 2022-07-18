@@ -1,16 +1,17 @@
-<script>
+<script lang='ts'>
 	import Nav from '../components/Nav.svelte';
+    var list:number = 0
+    var listOption:number = 0
 </script>
-
 <Nav />
 <div class='listSwitcherWrapper'>
     <div class='listSwitcher'>
-        <div class='listSwitcherItem'>
+        <a class='listSwitcherItem' id={list == 0 ? 'highlight' : ''} on:click={() => {list = 0}} href='#!'>
             <a href='#!'>Featured List</a>
-        </div>
-        <div class='listSwitcherItem'>
+        </a>
+        <a class='listSwitcherItem' id={list == 1 ? 'highlight' : ''} on:click={() => {list = 1}} href='#!'>
             <a href='#!'>Demon List</a>
-        </div>
+        </a>
     </div>
 </div>
 <div class="pageContent">
@@ -22,9 +23,9 @@
 	</div>
 	<div class="listSelector">
 		<ul>
-			<li><a href="#!">Levels Listing</a></li>
-			<li><a href="#!">Legacy</a></li>
-			<li><a href="#!">Top Player</a></li>
+			<li><a href="#!" id={listOption == 0 ? 'highlight1' : ''} on:click={() => {listOption = 0}}>Levels Listing</a></li>
+			<li><a href="#!" id={listOption == 1 ? 'highlight1' : ''} on:click={() => {listOption = 1}}>Legacy</a></li>
+			<li><a href="#!" id={listOption == 2 ? 'highlight1' : ''} on:click={() => {listOption = 2}}>Top Player</a></li>
 		</ul>
 	</div>
 	<hr />
@@ -89,6 +90,7 @@
 		display: grid;
 		width: 60%;
 		margin-inline: auto;
+        margin-bottom: 100px;
 		gap: 30px;
 		grid-template-areas:
 			'header header'
@@ -134,6 +136,8 @@
 		li {
             float:left;
             list-style-type: none;
+            margin-left: 5px;
+            margin-right: 5px;
 			a {
                 display: block;
                 padding-left: 30px;
@@ -210,6 +214,12 @@
 			}
 		}
 	}
+    #highlight{
+        background-color: #3b3b3b;
+    }
+    #highlight1{
+        background-color: #353535;
+    }
 	@media screen and (max-width: 750px) {
 		.pageContent {
 			width: 90%;
