@@ -2,6 +2,7 @@
 	export let link;
 	export let func;
 	export let title;
+        export let expanded;
 
 	if (func == undefined) {
 		func = () => {};
@@ -10,11 +11,13 @@
 	if (title == undefined) {
 		title = "";
 	}
+
 </script>
 
-<div class="wrapper">
+<div class="wrapper" class:expanded>
 	<a href={link == undefined ? "#!" : link} class="button" on:click={func}>
 		<slot />
+                <p class="sideTitle">{title}</p>
 	</a>
 	<small>{title}</small>
 </div>
@@ -25,6 +28,7 @@
 		align-items: center;
 		flex-direction: column;
 		transition: background 0.3s ease-out;
+                width: min-content;
 	}
 
 	.button {
@@ -33,9 +37,14 @@
 
 		border-radius: 16px;
 		padding: 6px;
+                margin: 0 10px;
 		width: 80%;
 		transition: background 0.3s ease-out;
 	}
+
+        .sideTitle {
+          display: none;
+          }
 
 	small {
 		visibility: hidden;
@@ -51,4 +60,24 @@
 		visibility: visible;
 		color: #fff;
 	}
+
+        .expanded {
+            width: 100%;
+          }
+
+        .expanded small {
+          display: none;
+        }
+
+        .expanded .button {
+          width: 80%;
+          justify-content: initial;
+          align-items: center;
+          gap: 20px;
+          }
+
+
+        .expanded .sideTitle {
+          display: block;
+          }
 </style>
