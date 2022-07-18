@@ -11,8 +11,16 @@
 <style>
 	div {
 		font-size: 20px;
-		border-radius: 20px;
+		border-radius: 40px;
 		background: #333;
-		padding: 1em;
+		padding: 0.5em 3em;
+		width: 830px;
+		min-height: 300px;
+
+		line-height: 20px;
+
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
 	}
 </style>

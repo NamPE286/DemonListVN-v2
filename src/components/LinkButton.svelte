@@ -5,13 +5,13 @@
 	export let func;
 
 	if (link == undefined) {
-		link = '#';
-	} else if (!link.startsWith('https://')) {
+		link = "#";
+	} else if (!link.startsWith("https://")) {
 		link = `https://$(link)`;
 	}
 
 	if (alt == undefined) {
-		alt = '';
+		alt = "";
 	}
 </script>
 

@@ -1,11 +1,44 @@
 <script>
-	import LevelCard from './LevelCard.svelte';
+	import LevelCard from "./LevelCard.svelte";
+
+	let levels = [
+		{
+			top: 1,
+			title: "The Moon Below",
+			creator: "Onvil",
+			points: 1000
+		},
+		{
+			top: 2,
+			title: "Springtime",
+			creator: "IDK",
+			points: 1000
+		},
+		{
+			top: 3,
+			title: "Wintertime",
+			creator: "IDK",
+			points: 1000
+		},
+		{
+			top: 4,
+			title: "phantasmagoria",
+			creator: "whit",
+			points: 1000
+		},
+		{
+			top: 5,
+			title: "sound journey",
+			creator: "TheFakeLogik",
+			points: 1000
+		}
+	];
 </script>
 
 <div>
-	<LevelCard top="1" title="The Moon" creator="Onvil" points="1000" />
-	<LevelCard top="2" title="Summertime" creator="VN" points="1000" />
-	<LevelCard top="2" title="Summertime" creator="VN" points="1000" />
+	{#each levels as level}
+		<LevelCard {...level} />
+	{/each}
 </div>
 
 <style>

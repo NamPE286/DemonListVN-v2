@@ -1,7 +1,6 @@
 <script>
 	//
-	import Menu from './LinkButton.svelte';
-	import Button from './SidebarButton.svelte';
+	import Menu from "./LinkButton.svelte";
 
 	let expanded = false;
 
@@ -13,14 +12,12 @@
 <nav class:expanded>
 	<div class="top">
 		<Menu image="/closed_menu.svg" func={toggleSidebar} />
-                <a href="#">
-                  <div class="button">
-                    <img src="/list.svg">
-                    <div>
-                      List
-                    </div>
-                  </div>
-                </a>
+		<a href="#">
+			<div class="button">
+				<img src="/list.svg" />
+				<div>List</div>
+			</div>
+		</a>
 	</div>
 	<div class="bottom">
 		<p>Settings</p>
@@ -34,33 +31,33 @@
 		flex-direction: column;
 		justify-content: space-between;
 		width: 60px;
+		max-height: 98vh;
 		overflow: hidden;
 		transition: ease-out 200ms;
 
-                gap: 10px;
+		gap: 10px;
 
-                margin: 5px;
+		margin: 5px;
 	}
 
 	.expanded {
 		width: 200px;
 	}
 
-        .button {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            margin: 0 5px;
-            gap: 10px;
-	    transition: ease-out 200ms;
+	.button {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin: 0 5px;
+		gap: 10px;
+		transition: ease-out 200ms;
 
-            border-radius: 10px;
-          }
+		border-radius: 10px;
+	}
 
-        .button:hover {
-            background: #202020;
-          }
-
+	.button:hover {
+		background: #202020;
+	}
 
 	.button > div {
 		transition: opacity 200ms ease-out, visibility 0ms 200ms;
