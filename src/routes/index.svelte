@@ -73,6 +73,10 @@
             filter: invert(1);
         }
         hr{
+            margin-top: auto;
+            width: 90%;
+            border-color: #707070;
+            margin-bottom: 24px;
             opacity: 0;
         }
         #title1{
@@ -106,7 +110,10 @@
         z-index: 1;
         transition: all 0.3s ease-out;
         #iconTitle{
-            display: none;
+            opacity: 0;
+            font-size: 12px;
+            margin-top: 8px;
+            margin-bottom: 8px;
         }
         svg{
             filter: invert(1);
@@ -119,7 +126,6 @@
             padding-inline: 10px;
             padding-top: 0px;
             padding-bottom: 0px;
-            margin-bottom: 26px;
             border-radius: 16px;
             display: flex;
             align-items: center;
