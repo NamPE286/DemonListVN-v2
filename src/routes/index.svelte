@@ -56,11 +56,9 @@
         padding-top: 8px;
         z-index: 1;
         transition: all 0.3s ease-out;
-        #iconTitle{
+        .sidebarIconWrapper{
             color: white;
             text-decoration: none;
-        }
-        .sidebarIconWrapper{
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -162,10 +160,13 @@
         align-items: center;
         #menuIcon{
             margin-left: 20px;
+            margin-top: 3px;
         }
         #title{
             margin-left: 25px;
             font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 0;
         }
         .submitBtn{
             background-color: #005FF9;
