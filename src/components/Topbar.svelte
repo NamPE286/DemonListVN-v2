@@ -1,69 +1,55 @@
-
 <script>
 </script>
 
 <main>
-  <div class="left">
-    <p class="title">Demon List VN</p>
-  </div>
-  <div class="right">
-    <div class="submit">
-      <h3>Submit</h3>
-    </div>
-  </div>
+	<div class="left">
+		<p class="title">Demon List VN</p>
+	</div>
+	<div class="right">
+		<div class="submit">
+			<h3>Submit</h3>
+		</div>
+	</div>
 </main>
 
-<style lang='scss'>
-  :global(svg) {
-    filter: invert(1);
-    width: 24px;
-    height: 24px;
-    }
+<style lang="scss">
+	:global(svg) {
+		filter: invert(1);
+		width: 24px;
+		height: 24px;
+	}
 
-  .menuButton {
-      display: flex;
-      justify-content: center;
+	main {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 97%;
+		margin: 10px 20px 20px 20px;
+	}
 
-      padding: 5px;
-      border-radius: 50%;
-    }
+	main > div {
+		display: flex;
+		align-items: center;
+		gap: 30px;
+		height: auto;
+	}
 
-  .menuButton:hover {
-      background: #2e2e2e;
+	.title {
+		font-weight: 600;
+	}
 
-    }
+	.submit {
+		padding: 0.75em 1.25em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
-  main {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 97%;
-      margin: 10px 20px 20px 20px;
-    }
+		border-radius: 20px;
 
-  main > div {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      height: auto;
-    }
+		background: #005ff9;
+	}
 
-  .title {
-      font-weight: 600;
-    }
-
-  .submit {
-      padding: 0.75em 1.25em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 20px;
-
-      background: #005ff9;
-    }
-
-  .submit > h3 {
-      margin: 0;
-    }
+	.submit > h3 {
+		margin: 0;
+	}
 </style>
