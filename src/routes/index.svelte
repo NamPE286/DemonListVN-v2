@@ -46,6 +46,7 @@
         </div>
         <p class={showTitle('info')} id='iconTitle'>Info</p>
     </a>
+    <div class='bottomPad'></div>
 </div>
 
 <style lang='scss'>
@@ -105,15 +106,15 @@
         width: 300px;
         height: calc(100% - 73px);
         box-sizing: border-box;
-        padding-inline: 12px;
+        padding-inline: 25px;
         padding-top: 8px;
         z-index: 1;
         transition: all 0.3s ease-out;
         #iconTitle{
             opacity: 0;
             font-size: 12px;
-            margin-top: 8px;
-            margin-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 0;
         }
         svg{
             filter: invert(1);
@@ -124,8 +125,6 @@
         }
         #sidebarIcon{
             padding-inline: 10px;
-            padding-top: 0px;
-            padding-bottom: 0px;
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -135,24 +134,26 @@
             p{
                 margin-left: 12px;
                 font-size: 16px;
+                margin-top: 12px;
+                margin-bottom: 12px;
             }   
         }
         #sidebarIcon:hover{
             background-color: #2e2e2e;
             transition: 0.3s;
         }
-        p{
-            font-size: 12px;
-            margin-top: 12px;
-            margin-bottom: 12px;
+        hr{
+            margin-top: auto;
+            width: 90%;
+            border-color: #707070;
+            margin-bottom: 24px;
+        }
+        .bottomPad{
+            width: 100%;
+            height: 10px;
         }
     }
-    hr{
-        margin-top: auto;
-        width: 90%;
-        border-color: #707070;
-        margin-bottom: 24px;
-    }
+
     .hide{
         background-color: transparent;
         padding-inline: 10px;
