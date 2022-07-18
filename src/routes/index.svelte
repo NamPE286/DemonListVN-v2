@@ -4,14 +4,21 @@
 </script>
 
 <main>
-  <Topbar />
-  <div class="container">
     <Sidebar />
+  <div class="container">
+  <Topbar />
   </div>
 </main>
 
 <style>
   main {
       margin: 10px 0;
+      display: flex;
   }
+
+  .container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
 </style>
