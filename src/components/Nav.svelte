@@ -81,7 +81,7 @@
         box-sizing: border-box;
         padding-top: 8px;
         z-index: 1;
-        transition: all 0.3s ease-out;
+        transition: all 0.2s ease-out;
         box-sizing: border-box;
         .sidebarIconWrapper{
             color: white;
@@ -129,7 +129,7 @@
         padding-top: 8px;
         z-index: 1;
         box-shadow: 0 0 15px rgb(9, 9, 9);
-        transition: all 0.3s ease-out;
+        transition: all 0.2s ease-out;
         overflow-x: hidden;
         #iconTitle{
             font-size: 12px;
