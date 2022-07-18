@@ -26,6 +26,7 @@
         <p>Submit</p>
     </a>
 </div>
+<div class="topSpacer"></div>
 <div class={menuExpanded ? 'sidebar1' : 'sidebar'} id='sidebarDiv'>
     <a href='#!' class='sidebarIconWrapper'>
         <div class={showHighlight('list')} id='sidebarIcon'>
@@ -55,6 +56,10 @@
 <style lang='scss'>
     svg {
       filter: invert(1);
+    }
+    .topSpacer{
+        width: 100%;
+        height: 100px;
     }
     .sidebar{
         border-radius: 16px;
@@ -190,6 +195,8 @@
         transition: opacity 0.3s;
     }
     .topBar{
+        position: fixed;
+        width: 100%;
         height: 50px;
         box-sizing: border-box;
         z-index: 2;
@@ -209,7 +216,7 @@
             padding-inline: 24px;
             border-radius: 16px;
             margin-left: auto;
-            margin-right: 16px;
+            margin-right: 26px;
             text-decoration: none;
             color: white;
             transition: 0.15s;
