@@ -203,10 +203,15 @@
             margin-right: 16px;
             text-decoration: none;
             color: white;
+            transition: 0.15s;
             p{
                 margin-top: 8px;
                 margin-bottom: 8px;
             }
+        }
+        .submitBtn:active:hover{
+            background-color: #003996;
+            transition: 0.15s;
         }
     }
     @media screen and (max-width: 750px){
