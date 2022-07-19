@@ -6,7 +6,9 @@
 <div class="titleWidget">
 	<div class="title">
 		<p class="bigTitle">{title}</p>
+                {#if description != ""}
 		<p class="description">{description}</p>
+                {/if}
 	</div>
 </div>
 
