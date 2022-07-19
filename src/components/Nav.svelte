@@ -98,7 +98,7 @@
 		height: calc(100% - 73px);
 		box-sizing: border-box;
 		padding-top: 8px;
-		z-index: 1;
+		z-index: 2;
 		transition: all 0.2s ease-out;
 		box-sizing: border-box;
 		.sidebarIconWrapper {
@@ -145,7 +145,7 @@
 		box-sizing: border-box;
 		padding-inline: 14px;
 		padding-top: 8px;
-		z-index: 1;
+		z-index: 2;
 		box-shadow: 0 0 15px rgb(9, 9, 9);
 		transition: all 0.2s ease-out;
 		overflow-x: hidden;

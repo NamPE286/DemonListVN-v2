@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Nav from '../components/Nav.svelte';
 	import Title from '../components/Title.svelte';
 	import Levels from '../components/Levels.svelte';
 	var list: number = 0;
@@ -40,8 +39,70 @@
 </div>
 <hr />
 <Levels />
+<div class="listSwitcherWrapper">
+	<div class="listSwitcher">
+		<a
+			class="listSwitcherItem"
+			id={list == 0 ? 'highlight' : ''}
+			on:click={() => {
+				list = 0;
+			}}
+			href="#!"
+		>
+			<a href="#!">Featured List</a>
+		</a>
+		<a
+			class="listSwitcherItem"
+			id={list == 1 ? 'highlight' : ''}
+			on:click={() => {
+				list = 1;
+			}}
+			href="#!"
+		>
+			<a href="#!">Demon List</a>
+		</a>
+	</div>
+</div>
 
 <style lang="scss">
+	.listSwitcherWrapper {
+		width: 100%;
+		left: 0;
+		right: 0;
+		z-index: 1;
+		position: fixed;
+		bottom: 0;
+		margin-bottom: 15px;
+		.listSwitcher {
+			height: 50px;
+			width: fit-content;
+			margin-inline: auto;
+			background-color: #202020;
+			box-shadow: 0 0 30px rgb(7, 7, 7);
+			border-radius: 50px;
+			a {
+				color: white;
+				text-decoration: none;
+			}
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			.listSwitcherItem {
+				margin-inline: 8px;
+				padding-left: 15px;
+				padding-right: 15px;
+				height: calc(100% - 15px);
+				border-radius: 50px;
+				display: flex;
+				align-items: center;
+				transition: background-color 0.3s;
+			}
+			.listSwitcherItem:hover {
+				transition: background-color 0.3s;
+				background-color: #3b3b3b;
+			}
+		}
+	}
 	.listSelector {
 		grid-area: sel;
 		margin-left: auto;
@@ -82,6 +143,9 @@
 		margin: 0;
 		border-color: rgb(71, 71, 71);
 		margin-top: 20px;
+	}
+	#highlight {
+		background-color: #3b3b3b;
 	}
 	#highlight1 {
 		background-color: #353535;
