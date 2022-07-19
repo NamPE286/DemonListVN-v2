@@ -7,14 +7,4 @@
 <slot />
 
 <style lang="scss">
-	@media screen and (max-width: 750px) {
-		.pageContent {
-			width: 90%;
-			grid-template-areas:
-				'header'
-				'sel'
-				'line'
-				'widget';
-		}
-	}
 </style>
