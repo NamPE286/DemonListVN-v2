@@ -76,4 +76,12 @@
 			}
 		}
 	}
+	@media screen and (max-width: 750px){
+		.levelWidget{
+			height: 260px;
+			img{
+				height: 160px;
+			}
+		}
+	}
 </style>

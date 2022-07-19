@@ -23,7 +23,7 @@
 		align-items: center;
 		margin-bottom: -10px;
 		.title {
-			margin-left: 80px;
+			margin-inline: 80px;
 			font-weight: 500;
 		}
 		.description {
@@ -42,9 +42,6 @@
 			.title {
 				margin-left: 30px;
 			}
-		}
-		.description {
-			width: 70%;
 		}
 	}
 </style>
