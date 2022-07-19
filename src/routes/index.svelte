@@ -1,5 +1,6 @@
 <script lang='ts'>
 	import Nav from '../components/Nav.svelte';
+	import Title from '../components/Title.svelte';
     var list:number = 0
     var listOption:number = 0
 </script>
@@ -15,12 +16,7 @@
     </div>
 </div>
 <div class="pageContent">
-	<div class="titleWidget">
-		<div class="title">
-			<p class="bigTitle">Featured List</p>
-			<p class="description">Levels created and beaten by Vietnamese</p>
-		</div>
-	</div>
+        <Title title="Featured List" description="Levels created and beaten by Vietnamese" />
 	<div class="listSelector">
 		<ul>
 			<li><a href="#!" id={listOption == 0 ? 'highlight1' : ''} on:click={() => {listOption = 0}}>Levels Listing</a></li>
@@ -97,30 +93,6 @@
 			'sel sel'
 			'line line'
 			'widget widget';
-	}
-	.titleWidget {
-		grid-area: header;
-		width: 100%;
-		height: 300px;
-		background-color: #202020;
-		border-radius: 50px;
-		display: flex;
-		align-items: center;
-        margin-bottom: -10px;
-		.title {
-			margin-left: 80px;
-			font-weight: 500;
-		}
-		.description {
-			font-weight: 200;
-		}
-		p {
-			margin: 0;
-		}
-		.bigTitle {
-			font-size: 50px;
-			margin-bottom: 20px;
-		}
 	}
 	.listSelector {
 		grid-area: sel;
