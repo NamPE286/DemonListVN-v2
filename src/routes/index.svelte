@@ -6,7 +6,12 @@
 </script>
 
 <div class="pageContent">
-	<Title title="Featured List" description="Levels created and beaten by Vietnamese" />
+	{#if list == 0}
+		<Title title="Featured List" description="Levels created and beaten by Vietnamese" />
+	{/if}
+	{#if list == 1}
+		<Title title="Demon List" description="Hardest demons beaten by Vietnamese" />
+	{/if}
 	<div class="listSelector">
 		<ul>
 			<li>

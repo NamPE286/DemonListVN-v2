@@ -6,9 +6,7 @@
 <div class="titleWidget">
 	<div class="title">
 		<p class="bigTitle">{title}</p>
-		{#if description != undefined}
-			<p class="description">{description}</p>
-		{/if}
+		<p class="description">{description}</p>
 	</div>
 </div>
 
