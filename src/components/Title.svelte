@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let title;
-	export let description;
+	export var title:string;
+	export var description:string;
 </script>
 
 <div class="titleWidget">

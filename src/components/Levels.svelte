@@ -1,23 +1,28 @@
-{#each Array(5) as item, index}
-	<a href="#!" class="levelWidget">
-		<img
-			src="https://c4.wallpaperflare.com/wallpaper/455/438/502/twintails-redhead-blue-hair-red-eyes-loli-hd-wallpaper-preview.jpg"
-			alt=""
-		/>
-		<div class="levelInfo">
-			<p class="top">#{index + 1}</p>
-			<div class="info">
-				<p class="levelName">Level name</p>
-				<p class="creator">by Creator</p>
-			</div>
-			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"
-				><path
-					d="M18.708 28.333h2.75v-10h-2.75ZM20 15.167q.625 0 1.042-.417.416-.417.416-1.042t-.416-1.062q-.417-.438-1.042-.438t-1.042.438q-.416.437-.416 1.062t.416 1.042q.417.417 1.042.417Zm0 21.5q-3.458 0-6.479-1.313-3.021-1.312-5.292-3.583t-3.583-5.292Q3.333 23.458 3.333 20t1.313-6.5q1.312-3.042 3.583-5.292t5.292-3.562Q16.542 3.333 20 3.333t6.5 1.313q3.042 1.312 5.292 3.562t3.562 5.292q1.313 3.042 1.313 6.5t-1.313 6.479q-1.312 3.021-3.562 5.292T26.5 35.354q-3.042 1.313-6.5 1.313Z"
-				/></svg
-			>
+<script lang='ts'>
+	export var top:number;
+	export var name:string;
+	export var creator:string;
+	export var point:number;
+</script>
+<a href="#!" class="levelWidget">
+	<img
+		src="https://c4.wallpaperflare.com/wallpaper/455/438/502/twintails-redhead-blue-hair-red-eyes-loli-hd-wallpaper-preview.jpg"
+		alt=""
+	/>
+	<div class="levelInfo">
+		<p class="top">#{top}</p>
+		<div class="info">
+			<p class="levelName">{name}</p>
+			<p class="creator">by {creator} - {point}pt</p>
 		</div>
-	</a>
-{/each}
+		<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"
+			><path
+				d="M18.708 28.333h2.75v-10h-2.75ZM20 15.167q.625 0 1.042-.417.416-.417.416-1.042t-.416-1.062q-.417-.438-1.042-.438t-1.042.438q-.416.437-.416 1.062t.416 1.042q.417.417 1.042.417Zm0 21.5q-3.458 0-6.479-1.313-3.021-1.312-5.292-3.583t-3.583-5.292Q3.333 23.458 3.333 20t1.313-6.5q1.312-3.042 3.583-5.292t5.292-3.562Q16.542 3.333 20 3.333t6.5 1.313q3.042 1.312 5.292 3.562t3.562 5.292q1.313 3.042 1.313 6.5t-1.313 6.479q-1.312 3.021-3.562 5.292T26.5 35.354q-3.042 1.313-6.5 1.313Z"
+			/></svg
+		>
+	</div>
+</a>
+
 
 <style lang="scss">
 	.levelWidget {
