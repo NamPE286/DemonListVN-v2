@@ -5,68 +5,82 @@
 	var listOption: number = 0;
 </script>
 
-<Title title="Featured List" description="Levels created and beaten by Vietnamese" />
-<div class="listSelector">
-	<ul>
-		<li>
+<div class="pageContent">
+	<Title title="Featured List" description="Levels created and beaten by Vietnamese" />
+	<div class="listSelector">
+		<ul>
+			<li>
+				<a
+					href="#!"
+					id={listOption == 0 ? 'highlight1' : ''}
+					on:click={() => {
+						listOption = 0;
+					}}>Levels Listing</a
+				>
+			</li>
+			<li>
+				<a
+					href="#!"
+					id={listOption == 1 ? 'highlight1' : ''}
+					on:click={() => {
+						listOption = 1;
+					}}>Legacy</a
+				>
+			</li>
+			<li>
+				<a
+					href="#!"
+					id={listOption == 2 ? 'highlight1' : ''}
+					on:click={() => {
+						listOption = 2;
+					}}>Top Player</a
+				>
+			</li>
+		</ul>
+	</div>
+	<hr />
+	{#each Array(5) as item, index}
+		<Levels top={index + 1} name="Level name" creator="Creator" point={1000} />
+	{/each}
+	<div class="listSwitcherWrapper">
+		<div class="listSwitcher">
 			<a
-				href="#!"
-				id={listOption == 0 ? 'highlight1' : ''}
+				class="listSwitcherItem"
+				id={list == 0 ? 'highlight' : ''}
 				on:click={() => {
-					listOption = 0;
-				}}>Levels Listing</a
+					list = 0;
+				}}
+				href="#!"
 			>
-		</li>
-		<li>
+				<a href="#!">Featured List</a>
+			</a>
 			<a
-				href="#!"
-				id={listOption == 1 ? 'highlight1' : ''}
+				class="listSwitcherItem"
+				id={list == 1 ? 'highlight' : ''}
 				on:click={() => {
-					listOption = 1;
-				}}>Legacy</a
-			>
-		</li>
-		<li>
-			<a
+					list = 1;
+				}}
 				href="#!"
-				id={listOption == 2 ? 'highlight1' : ''}
-				on:click={() => {
-					listOption = 2;
-				}}>Top Player</a
 			>
-		</li>
-	</ul>
-</div>
-<hr />
-{#each Array(5) as item, index}
-	<Levels top={index + 1} name='Level name' creator='Creator' point={1000}/>
-{/each}
-<div class="listSwitcherWrapper">
-	<div class="listSwitcher">
-		<a
-			class="listSwitcherItem"
-			id={list == 0 ? 'highlight' : ''}
-			on:click={() => {
-				list = 0;
-			}}
-			href="#!"
-		>
-			<a href="#!">Featured List</a>
-		</a>
-		<a
-			class="listSwitcherItem"
-			id={list == 1 ? 'highlight' : ''}
-			on:click={() => {
-				list = 1;
-			}}
-			href="#!"
-		>
-			<a href="#!">Demon List</a>
-		</a>
+				<a href="#!">Demon List</a>
+			</a>
+		</div>
 	</div>
 </div>
 
 <style lang="scss">
+	.pageContent {
+		display: grid;
+		width: 60%;
+		margin-inline: auto;
+		margin-bottom: 100px;
+		gap: 30px;
+		grid-template-areas:
+			'header header'
+			'sel sel'
+			'line line'
+			'widget widget';
+	}
 	.listSwitcherWrapper {
 		width: 100%;
 		left: 0;
@@ -153,6 +167,14 @@
 		background-color: #353535;
 	}
 	@media screen and (max-width: 750px) {
+		.pageContent {
+			width: 90%;
+			grid-template-areas:
+				'header'
+				'sel'
+				'line'
+				'widget';
+		}
 		.listSelector {
 			a {
 				margin-inline: 10px;
