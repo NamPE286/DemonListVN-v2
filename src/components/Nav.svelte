@@ -63,6 +63,9 @@
 </div>
 
 <style lang='scss'>
+    a {
+        text-decoration: none;
+    }
     svg {
       filter: invert(1);
     }
