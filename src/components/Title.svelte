@@ -16,7 +16,7 @@
 	.titleWidget {
 		grid-area: header;
 		width: 100%;
-		height: 300px;
+		min-height: 300px;
 		background-color: #202020;
 		border-radius: 50px;
 		display: flex;
