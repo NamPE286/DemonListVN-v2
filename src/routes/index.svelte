@@ -171,6 +171,11 @@
 	#highlight1 {
 		background-color: #353535;
 	}
+	@media screen and (max-width: 1250px){
+		.pageContent{
+			width: 80%;
+		}
+	}
 	@media screen and (max-width: 750px) {
 		.pageContent {
 			width: 90%;
