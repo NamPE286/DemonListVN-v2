@@ -44,7 +44,7 @@
 		</ul>
 	</div>
 	<hr />
-	{#each Array(5) as item, index}
+	{#each Array(50) as item, index}
 		<Levels top={index + 1} name="Level name" creator="Creator" point={1000} />
 	{/each}
 	<div class="listSwitcherWrapper">
