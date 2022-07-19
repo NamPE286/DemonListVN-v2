@@ -37,4 +37,14 @@
 			margin-bottom: 20px;
 		}
 	}
+	@media screen and (max-width: 750px) {
+		.titleWidget {
+			.title {
+				margin-left: 30px;
+			}
+		}
+		.description {
+			width: 70%;
+		}
+	}
 </style>
