@@ -6,7 +6,7 @@
 </script>
 <a href="#!" class="levelWidget">
 	<img
-		src="https://c4.wallpaperflare.com/wallpaper/455/438/502/twintails-redhead-blue-hair-red-eyes-loli-hd-wallpaper-preview.jpg"
+		src="https://img.youtube.com/vi/iWKu_VLALsM/maxresdefault.jpg"
 		alt=""
 	/>
 	<div class="levelInfo">
@@ -35,7 +35,7 @@
 		text-decoration: none;
 		color: white;
 		img {
-			height: 200px;
+			height: 70%;
 			width: 100%;
 			object-fit: cover;
 			border-radius: 50px 50px 0 0;
