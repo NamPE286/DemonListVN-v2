@@ -58,6 +58,10 @@
 		background-color: black;
 		z-index: 2;
 		opacity: 0.5;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 	}
 	.modalWrapper {
 		z-index: 3;
