@@ -53,8 +53,8 @@
 	.dimBg {
 		position: fixed;
 		margin-top: -135px;
-		height: 120%;
-		width: 100%;
+		height: 200%;
+		width: 200%;
 		background-color: black;
 		z-index: 2;
 		opacity: 0.5;
@@ -89,7 +89,7 @@
 	}
 	.s_title {
 		font-weight: 500;
-		font-size: 50px;
+		font-size: 42px;
 	}
 	.s_margin3 {
 		margin: 32px 0px 24px 0px;
@@ -107,7 +107,6 @@
 		background-color: #2d2d2d;
 		height: 28px;
 		width: 125px;
-		font-size: 14px;
 		border-radius: 14px;
 		font-weight: 350;
 		display: flex;
@@ -132,7 +131,6 @@
 	.s_button2 {
 		height: 36px;
 		width: 96px;
-		font-size: 14px;
 		border-radius: 24px;
 		color: #fff;
 		font-weight: 350;
@@ -151,7 +149,7 @@
 		border: none;
 		color: #fff;
 		font-family: "Roboto Flex", "Roboto", sans-serif;
-		font-size: 18px;
+		font-size: 16px;
 		transition: all 0.25s ease-in-out;
 	}
 	.s_select {
@@ -163,14 +161,13 @@
 		border: none;
 		color: #fff;
 		font-family: "Roboto Flex", "Roboto", sans-serif;
-		font-size: 18px;
-		-moz-appearance: textfield;
+		font-size: 16px;
 		transition: all 0.25s ease-in-out;
 	}
 	.s_input::placeholder {
 		position: relative;
 		font-family: "Roboto Flex", "Roboto", sans-serif;
-		font-size: 18px;
+		font-size: 16px;
 	}
 	.s_input:focus {
 		outline: none;
