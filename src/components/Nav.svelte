@@ -314,6 +314,12 @@
             transition: 0.15s;
         }
     }
+    @media screen and (max-width: 1580px){
+        .dimBg{
+            display: block;
+            opacity: 0.5;
+        }
+    }
     @media screen and (max-width: 750px){
         .sidebar{
             .sidebarIconWrapper{
@@ -323,9 +329,6 @@
         }
         #title{
             display: none;
-        }
-        .dimBg{
-            display: block;
         }
     }
 </style>
