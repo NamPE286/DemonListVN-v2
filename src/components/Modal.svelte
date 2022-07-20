@@ -19,7 +19,7 @@
 		<div class="submitModal s_shadow">
 			<div class="s_flexrow" style="align-items: flex-end;">
 				<p class="s_title s_margin4">Submit</p>
-				<button class="s_button s_margin3">View rules</button>
+				<button class="s_button s_margin3"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M11.667 8.333v-1.5q.687-.291 1.406-.437.719-.146 1.51-.146.542 0 1.063.083.521.084 1.021.209v1.416q-.5-.187-1.011-.281-.51-.094-1.073-.094-.791 0-1.521.198-.729.198-1.395.552Zm0 4.5v-1.5q.687-.291 1.406-.437.719-.146 1.51-.146.542 0 1.063.083.521.084 1.021.209v1.416q-.5-.187-1.011-.281-.51-.094-1.073-.094-.791 0-1.521.188-.729.187-1.395.562Zm0-2.25v-1.5q.687-.291 1.406-.437.719-.146 1.51-.146.542 0 1.063.083.521.084 1.021.209v1.416q-.5-.187-1.011-.281-.51-.094-1.073-.094-.791 0-1.521.198-.729.198-1.395.552ZM5.458 13.25q.959 0 1.865.219t1.802.614V6.021q-.833-.479-1.771-.708-.937-.23-1.896-.23-.729 0-1.468.125-.74.125-1.407.396v8.125q.729-.229 1.438-.354.708-.125 1.437-.125Zm5.417.833q.896-.395 1.802-.614.906-.219 1.844-.219.75 0 1.448.125t1.448.375V5.667q-.709-.292-1.427-.438-.719-.146-1.469-.146-.938 0-1.886.23-.947.229-1.76.708ZM10 16.667q-.979-.792-2.135-1.229Q6.708 15 5.458 15q-.896 0-1.75.26-.854.261-1.646.678-.416.229-.822-.011-.407-.239-.407-.719V5.083q0-.229.115-.416.114-.188.323-.292.979-.521 2.031-.781 1.052-.261 2.156-.261 1.188 0 2.344.302 1.156.303 2.198.907 1.042-.604 2.188-.907 1.145-.302 2.333-.302 1.104 0 2.156.271t2.052.771q.209.104.323.292.115.187.115.416v10.125q0 .48-.407.719-.406.24-.843.011-.792-.438-1.646-.688-.854-.25-1.75-.25-1.25 0-2.396.438-1.146.437-2.125 1.229Zm-4.146-7Z"/></svg><a href='#!'>View rules</a></button>
 			</div>
 			<div class="s_flexcol" style="align-items: center;">
 				<select class="s_select">
@@ -65,6 +65,10 @@
 	button {
 		border: none;
 		color: white;
+		a{
+			text-decoration: none;
+			color: white;
+		}
 	}
 	.submitModal {
 		position: fixed;
@@ -85,7 +89,7 @@
 	}
 	.s_title {
 		font-weight: 500;
-		font-size: 48px;
+		font-size: 50px;
 	}
 	.s_margin3 {
 		margin: 32px 0px 24px 0px;
@@ -102,10 +106,28 @@
 	.s_button {
 		background-color: #2d2d2d;
 		height: 28px;
-		width: 96px;
+		width: 125px;
 		font-size: 14px;
 		border-radius: 14px;
 		font-weight: 350;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: 0.3s;
+		a{
+			margin-left: 10px;
+		}
+		svg{
+			filter: invert(1);
+		}
+	}
+	.s_button:hover{
+		background-color: #424242;
+		transition: 0.3s;
+	}
+	.s_button:active:hover{
+		background-color: #808080;
+		transition: 0.15s;
 	}
 	.s_button2 {
 		height: 36px;
@@ -164,9 +186,15 @@
 	}
 	.s_red {
 		background-color: #f90000;
+		transition: 0.3s;
 	}
 	.s_blue {
 		background-color: #005ff9;
+		transition: 0.3s;
+	}
+	.s_blue:active:hover{
+		background-color: #0040a7;
+		transition: 0.15s;
 	}
 	.s_shadow {
 		box-shadow: 0px 0px 32px #000000;
