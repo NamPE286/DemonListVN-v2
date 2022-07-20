@@ -10,7 +10,7 @@
 		on:click={() => {
 			ifShow = !ifShow;
 		}}
-        in:fade="{{duration: 300}}"
+        in:fade="{{duration: 150}}"
 	/>
 	<div
 		style="display: flex; justify-content: center; align-items: center; transition: all 0.25s ease-in-out;"
