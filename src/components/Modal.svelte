@@ -1,51 +1,67 @@
 <script lang="ts">
-    export var ifShow:boolean;
+    import { fade } from 'svelte/transition';
+	export var ifShow: boolean;
 </script>
+
 {#if ifShow}
-<div class='dimBg' on:click={() => {ifShow = !ifShow}}/>
-<div
-    style="display: flex; justify-content: center; align-items: center; transition: all 0.25s ease-in-out;"
-    class='modalWrapper'
->
-    <div class="submitModal s_shadow">
-        <div class="s_flexrow" style="align-items: flex-end;">
-            <p class="s_title s_margin4">Submit</p>
-            <button class="s_button s_margin3">View rules</button>
-        </div>
-        <div class="s_flexcol" style="align-items: center;">
-            <select class="s_select">
-                <option value="Featured List">Featured List</option>
-                <option value="Demon List">Demon List</option>
-            </select>
-            <input class="s_input" placeholder="Player name" />
-            <input class="s_input" placeholder="Level name" />
-            <input class="s_input" placeholder="Progress" type='number'/>
-            <input class="s_input" placeholder="FPS" type='number'/>
-            <input class="s_input" placeholder="Video link" />
-            <input class="s_input" placeholder="Comment (optional)" />
-        </div>
-        <div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
-            <a href='#!' class="s_button2 s_margin6 s_red" on:click={() => {ifShow = !ifShow}}>Cancel</a>
-            <a href='#!' class="s_button2 s_margin5 s_blue">Submit</a>
-        </div>
-    </div>
+<div out:fade="{{duration: 200}}">
+	<div
+		class="dimBg"
+		on:click={() => {
+			ifShow = !ifShow;
+		}}
+        in:fade="{{duration: 300}}"
+	/>
+	<div
+		style="display: flex; justify-content: center; align-items: center; transition: all 0.25s ease-in-out;"
+		class="modalWrapper"
+	>
+		<div class="submitModal s_shadow">
+			<div class="s_flexrow" style="align-items: flex-end;">
+				<p class="s_title s_margin4">Submit</p>
+				<button class="s_button s_margin3">View rules</button>
+			</div>
+			<div class="s_flexcol" style="align-items: center;">
+				<select class="s_select">
+					<option value="Featured List">Featured List</option>
+					<option value="Demon List">Demon List</option>
+				</select>
+				<input class="s_input" placeholder="Player name" />
+				<input class="s_input" placeholder="Level name" />
+				<input class="s_input" placeholder="Progress" type="number" />
+				<input class="s_input" placeholder="FPS" type="number" />
+				<input class="s_input" placeholder="Video link" />
+				<input class="s_input" placeholder="Comment (optional)" />
+			</div>
+			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
+				<a
+					href="#!"
+					class="s_button2 s_margin6 s_red"
+					on:click={() => {
+						ifShow = !ifShow;
+					}}>Cancel</a
+				>
+				<a href="#!" class="s_button2 s_margin5 s_blue">Submit</a>
+			</div>
+		</div>
+	</div>
+
 </div>
 {/if}
 
-
 <style lang="scss">
-    .dimBg{
-        position: fixed;
-        margin-top: -135px;
-        height: 120%;
-        width: 100%;
-        background-color: black;
-        z-index: 2;
-        opacity: 0.5;
-    }
-    .modalWrapper{
-        z-index: 3;
-    }
+	.dimBg {
+		position: fixed;
+		margin-top: -135px;
+		height: 120%;
+		width: 100%;
+		background-color: black;
+		z-index: 2;
+		opacity: 0.5;
+	}
+	.modalWrapper {
+		z-index: 3;
+	}
 	button {
 		border: none;
 		color: white;
@@ -98,11 +114,11 @@
 		border-radius: 24px;
 		color: #fff;
 		font-weight: 350;
-        text-decoration: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: 400;
+		text-decoration: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-weight: 400;
 	}
 	.s_input {
 		background-color: #2d2d2d;
@@ -114,9 +130,9 @@
 		color: #fff;
 		font-family: "Roboto Flex", "Roboto", sans-serif;
 		font-size: 18px;
-        transition: all 0.25s ease-in-out;
+		transition: all 0.25s ease-in-out;
 	}
-    .s_select {
+	.s_select {
 		background-color: #2d2d2d;
 		width: calc(100% - 96px);
 		border-radius: 10px;
@@ -126,8 +142,8 @@
 		color: #fff;
 		font-family: "Roboto Flex", "Roboto", sans-serif;
 		font-size: 18px;
-        -moz-appearance: textfield;
-        transition: all 0.25s ease-in-out;
+		-moz-appearance: textfield;
+		transition: all 0.25s ease-in-out;
 	}
 	.s_input::placeholder {
 		position: relative;
@@ -155,26 +171,26 @@
 	.s_shadow {
 		box-shadow: 0px 0px 32px #000000;
 	}
-    @media screen and (max-width: 1250px){
-        .submitModal{
-            width: 65%;
-        }
-    }
-    @media screen and (max-width: 750px){
-        .submitModal{
-            width: 95%;
-        }
-        .s_input{
-            width: calc(100% - 66px);
-        }
-        .s_select{
-            width: calc(100% - 36px);
-        }
-        .s_margin4 {
-            margin: 32px 16px 16px 22px;
-        }
-        .s_margin5 {
-            margin: 16px 22px 24px 0px;
-        }
-    }
+	@media screen and (max-width: 1250px) {
+		.submitModal {
+			width: 65%;
+		}
+	}
+	@media screen and (max-width: 750px) {
+		.submitModal {
+			width: 95%;
+		}
+		.s_input {
+			width: calc(100% - 66px);
+		}
+		.s_select {
+			width: calc(100% - 36px);
+		}
+		.s_margin4 {
+			margin: 32px 16px 16px 22px;
+		}
+		.s_margin5 {
+			margin: 16px 22px 24px 0px;
+		}
+	}
 </style>

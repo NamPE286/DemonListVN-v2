@@ -1,4 +1,5 @@
 <script lang='ts'>
+    import { fade } from 'svelte/transition';
     import { onMount } from 'svelte'
     import Modal from './Modal.svelte';
     var menuExpanded:boolean = false
@@ -40,7 +41,7 @@
 </div>
 <div class="topSpacer"></div>
 {#if menuExpanded}
-    <div class='dimBg' on:click={() => {menuExpanded = false}}/>
+    <div class='dimBg' on:click={() => {menuExpanded = false}} in:fade="{{duration: 200}}" out:fade="{{duration: 200}}" />
 {/if}
 <div class={menuExpanded ? 'sidebar1' : 'sidebar'} id='sidebarDiv'>
     <a href='#!' class='sidebarIconWrapper'>
@@ -147,7 +148,7 @@
         box-sizing: border-box;
         padding-inline: 14px;
         padding-top: 8px;
-        z-index: 1;
+        z-index: 2;
         box-shadow: 0 0 15px rgb(9, 9, 9);
         transition: all 0.2s ease-out;
         overflow-x: hidden;
