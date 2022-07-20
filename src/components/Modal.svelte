@@ -24,7 +24,7 @@
             <input class="s_input" placeholder="Video link" />
             <input class="s_input" placeholder="Comment (optional)" />
         </div>
-        <div class="s_flexrow" style="justify-content: flex-end;">
+        <div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
             <a href='#!' class="s_button2 s_margin6 s_red" on:click={() => {ifShow = !ifShow}}>Cancel</a>
             <a href='#!' class="s_button2 s_margin5 s_blue">Submit</a>
         </div>
@@ -155,4 +155,26 @@
 	.s_shadow {
 		box-shadow: 0px 0px 32px #000000;
 	}
+    @media screen and (max-width: 1250px){
+        .submitModal{
+            width: 65%;
+        }
+    }
+    @media screen and (max-width: 750px){
+        .submitModal{
+            width: 95%;
+        }
+        .s_input{
+            width: calc(100% - 66px);
+        }
+        .s_select{
+            width: calc(100% - 36px);
+        }
+        .s_margin4 {
+            margin: 32px 16px 16px 22px;
+        }
+        .s_margin5 {
+            margin: 16px 22px 24px 0px;
+        }
+    }
 </style>
