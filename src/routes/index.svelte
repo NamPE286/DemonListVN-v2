@@ -93,6 +93,7 @@
 		z-index: 1;
 		position: fixed;
 		bottom: 0;
+		margin-bottom: 15px;
 		.listSwitcher {
 			height: 50px;
 			width: fit-content;
@@ -100,10 +101,6 @@
 			background-color: #202020;
 			box-shadow: 0 0 30px rgb(7, 7, 7);
 			border-radius: 50px;
-		        margin-bottom: 15px;
-                        position: relative;
-		        bottom: -60px;
-                        transition: all 0.4s ease-out;
 			a {
 				color: white;
 				text-decoration: none;
@@ -127,11 +124,6 @@
 			}
 		}
 	}
-        .listSwitcherWrapper:hover {
-            .listSwitcher {
-                transform: translateY(-60px);
-              }
-          }
 	.listSelector {
 		grid-area: sel;
 		margin-left: auto;

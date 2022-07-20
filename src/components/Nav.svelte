@@ -39,6 +39,9 @@
     </a>
 </div>
 <div class="topSpacer"></div>
+{#if menuExpanded}
+    <div class='dimBg' on:click={() => {menuExpanded = false}}/>
+{/if}
 <div class={menuExpanded ? 'sidebar1' : 'sidebar'} id='sidebarDiv'>
     <a href='#!' class='sidebarIconWrapper'>
         <div class={showHighlight('list')} id='sidebarIcon'>
@@ -64,10 +67,19 @@
     </a>
     <div class='bottomPad'></div>
 </div>
-{#if submitClicked !== false}
-<Modal />
-{/if}
+<Modal bind:ifShow={submitClicked}/>
 <style lang='scss'>
+    .dimBg{
+        position: fixed;
+        margin-top: -135px;
+        height: 120%;
+        width: 100%;
+        background-color: black;
+        z-index: 1;
+        opacity: 0.5;
+        transition: all 0.3s;
+        display: none;
+    }
     a {
         text-decoration: none;
     }
@@ -301,6 +313,9 @@
         }
         #title{
             display: none;
+        }
+        .dimBg{
+            display: block;
         }
     }
 </style>
