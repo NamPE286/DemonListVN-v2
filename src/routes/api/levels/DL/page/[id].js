@@ -22,7 +22,7 @@ export async function GET({params}) {
         .from('dl')
         .select('*')
         .order('top', { ascending: true })
-        .limit(params.id * 50)
+        .range((params.id - 1) * 50, params.id * 50 - 1)
     var d = data
     var res = []
     for(const i in d){
