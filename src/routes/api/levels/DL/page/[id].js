@@ -20,20 +20,11 @@ export async function GET({params}) {
     const supabase = createClient(process.env.API_URL, process.env.API_KEY)
     var { data, error } = await supabase
         .from('dl')
-        .select('*')
-        .order('top', { ascending: true })
+        .select('top, levels(*)')
         .range((params.id - 1) * 50, params.id * 50 - 1)
-    var d = data
-    var res = []
-    for(const i in d){
-        var { data, error } = await supabase
-        .from('levels')
-        .select('*')
-        .eq('id', d[i].id)
-        data[0]['top'] = d[i].top
-        console.log()
-        data[0]['point'] = getPoint(data[0].top)
-        res.push(data[0])
+        .order('top', { ascending: true })
+    for(const i in data){
+        data[i].point = getPoint(data[i].top)
     }
 
     return {
@@ -42,7 +33,7 @@ export async function GET({params}) {
             'access-control-allow-origin': '*'
         },
         body: {
-            data:res
+            data:data
         }
     };
 }
