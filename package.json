@@ -27,6 +27,7 @@
 	"dependencies": {
 		"@rollup/plugin-replace": "^4.0.0",
 		"@supabase/supabase-js": "^1.35.4",
+		"autocorrect": "^1.2.0",
 		"create-svelte": "^2.0.0-next.149",
 		"crypto-js": "^4.1.1",
 		"dotenv": "^16.0.1",
