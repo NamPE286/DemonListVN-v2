@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import 'dotenv/config'
 
-export async function GET() {
+export async function GET({params}) {
     function roundNumber(num, scale) {
         if (!("" + num).includes("e")) {
             return +(Math.round(parseInt(num + "e+" + scale)) + "e-" + scale);
@@ -21,6 +21,8 @@ export async function GET() {
     var { data, error } = await supabase
         .from('dl')
         .select('*')
+        .order('top', { ascending: true })
+        .limit(params.id * 50)
     var d = data
     var res = []
     for(const i in d){
@@ -29,7 +31,8 @@ export async function GET() {
         .select('*')
         .eq('id', d[i].id)
         data[0]['top'] = d[i].top
-        data[0]['point'] = getPoint(d[i].top)
+        console.log()
+        data[0]['point'] = getPoint(data[0].top)
         res.push(data[0])
     }
 
