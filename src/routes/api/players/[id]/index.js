@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import AES from 'crypto-js/aes'
-import enc from 'crypto-js/enc-utf8'
+import 'dotenv/config'
 
 export async function GET({params}) {
     const supabase = createClient(process.env.API_URL, process.env.API_KEY)

@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import { page } from '$app/stores';
+import 'dotenv/config'
 
 export async function GET() {
     const supabase = createClient(process.env.API_URL, process.env.API_KEY)
