@@ -10,6 +10,7 @@ export async function GET({params}) {
         .eq('id', params.id)
     var a = AES.encrypt(data[0].email, data[0].password).toString()
     data[0].email = a
+    delete data[0].password
     //var b = AES.decrypt(a, 'a')
     //console.log(enc.stringify(b))
     return {
