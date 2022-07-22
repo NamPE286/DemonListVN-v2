@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import 'dotenv/config'
 
-export async function GET({params}) {
+export async function GET({ params }) {
     function roundNumber(num, scale) {
         if (!("" + num).includes("e")) {
             return +(Math.round(parseInt(num + "e+" + scale)) + "e-" + scale);
@@ -23,7 +23,7 @@ export async function GET({params}) {
         .select('*')
         .order('dlTop', { ascending: true })
         .range((params.id - 1) * 50, params.id * 50 - 1)
-    for(const i in data){
+    for (const i in data) {
         data[i].point = getPoint(data[i].top);
     }
     console.log(error)
@@ -32,8 +32,7 @@ export async function GET({params}) {
         headers: {
             'access-control-allow-origin': '*'
         },
-        body: {
-            data:data
-        }
+        body: data
+
     };
 }

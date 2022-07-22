@@ -17,8 +17,7 @@ export async function GET({params}) {
         headers: {
             'access-control-allow-origin': '*'
         },
-        body: {
-            data:data
-        }
+        body: data
+        
     };
 }
