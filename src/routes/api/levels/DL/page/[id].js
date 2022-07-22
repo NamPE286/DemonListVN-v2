@@ -23,13 +23,7 @@ export async function GET({ params }) {
         .select('*')
         .order('dlTop', { ascending: true })
         .range((params.id - 1) * 200, params.id * 200 - 1)
-    for (const i in data) {
-        if (data[i].dlTop == null) {
-            //delete from i to end
-            data.splice(parseInt(i), data.length - parseInt(i))
-            break
-        }
-    }
+        .not("dlTop", 'is', null)
     console.log(error)
     return {
         status: 200,

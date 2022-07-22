@@ -8,13 +8,7 @@ export async function GET({params}) {
         .select('*')
         .order('flTop', { ascending: true })
         .range((params.id - 1) * 200, params.id * 200 - 1)
-        for(const i in data){
-            if(data[i].flTop == null) {
-                //delete from i to end
-                data.splice(parseInt(i), data.length - parseInt(i))
-                break
-            }
-        }
+        .not("flTop", 'is', null)
     console.log(error)
     return {
         status: 200,
