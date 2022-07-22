@@ -1,8 +1,16 @@
 <script lang="ts">
 	import Title from '../components/Title.svelte';
 	import Levels from '../components/Levels.svelte';
-	var list: number = 0;
-	var listOption: number = 0;
+	var list = 0;
+	var listOption = 0;
+	var flLevels = []
+	var dlLevels = []
+	fetch('https://demon-list-vn-v2.vercel.app/api/levels/FL/page/1')
+		.then(response => response.json())
+		.then(data => flLevels = data);
+	fetch('https://demon-list-vn-v2.vercel.app/api/levels/DL/page/1')
+		.then(response => response.json())
+		.then(data => dlLevels = data);
 </script>
 
 <div class="pageContent">
@@ -44,9 +52,16 @@
 		</ul>
 	</div>
 	<hr />
-	{#each Array(50) as item, index}
-		<Levels top={index + 1} name="Level name" creator="Creator" point={1000} />
-	{/each}
+	{#if list == 0}
+		{#each flLevels as item, index}
+			<Levels top={item.flTop} name={item.name} creator={item.creator} point={item.flPt} videoID={item.videoID}/>
+		{/each}
+	{/if}
+	{#if list == 1}
+		{#each dlLevels as item, index}
+			<Levels top={item.dlTop} name={item.name} creator={item.creator} point={item.dlPt} videoID={item.videoID}/>
+		{/each}
+	{/if}
 	<div class="listSwitcherWrapper">
 		<div class="listSwitcher">
 			<a
@@ -85,6 +100,7 @@
 			'sel sel'
 			'line line'
 			'widget widget';
+		grid-auto-columns: 1fr;
 	}
 	.listSwitcherWrapper {
 		width: 100%;
@@ -171,12 +187,12 @@
 	#highlight1 {
 		background-color: #353535;
 	}
-	@media screen and (max-width: 1250px){
+	@media screen and (max-width: 1450px){
 		.pageContent{
 			width: 80%;
 		}
 	}
-	@media screen and (max-width: 750px) {
+	@media screen and (max-width: 1100px) {
 		.pageContent {
 			width: 90%;
 			grid-template-areas:

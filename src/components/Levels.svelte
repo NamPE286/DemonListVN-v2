@@ -1,14 +1,13 @@
-<script lang='ts'>
-	export var top:number;
-	export var name:string;
-	export var creator:string;
-	export var point:number;
+<script lang="ts">
+	export var top: number;
+	export var name: string;
+	export var creator: string;
+	export var point: number;
+	export var videoID: string;
 </script>
+
 <a href="#!" class="levelWidget">
-	<img
-		src="https://img.youtube.com/vi/iWKu_VLALsM/maxresdefault.jpg"
-		alt=""
-	/>
+	<img src={`https://img.youtube.com/vi/${videoID}/maxresdefault.jpg`} alt="" />
 	<div class="levelInfo">
 		<p class="top">#{top}</p>
 		<div class="info">
@@ -23,7 +22,6 @@
 	</div>
 </a>
 
-
 <style lang="scss">
 	.levelWidget {
 		display: flex;
@@ -34,6 +32,7 @@
 		background-color: #202020;
 		text-decoration: none;
 		color: white;
+		overflow: hidden;
 		img {
 			height: 70%;
 			width: 100%;
@@ -76,10 +75,24 @@
 			}
 		}
 	}
-	@media screen and (max-width: 750px){
-		.levelWidget{
+	@media screen and (min-width: 1100px) {
+		.levelName {
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+			width: 13vw;
+		}
+		.creator {
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+			width: 13vw;
+		}
+	}
+	@media screen and (max-width: 750px) {
+		.levelWidget {
 			height: 260px;
-			img{
+			img {
 				height: 160px;
 			}
 		}

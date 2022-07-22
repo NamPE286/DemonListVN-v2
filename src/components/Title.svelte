@@ -37,7 +37,7 @@
 			margin-bottom: 20px;
 		}
 	}
-	@media screen and (max-width: 750px) {
+	@media screen and (max-width: 1100px) {
 		.titleWidget {
 			.title {
 				margin-left: 30px;
