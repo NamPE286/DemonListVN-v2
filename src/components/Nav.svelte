@@ -324,7 +324,7 @@
             opacity: 0.5;
         }
     }
-    @media screen and (max-width: 750px){
+    @media screen and (max-width: 1100px){
         .sidebar{
             .sidebarIconWrapper{
                 display: none;
