@@ -7,7 +7,7 @@ export async function GET({params}) {
         .from('players')
         .select('*')
         .order('dlrank', {ascending: false})
-        .range((params.id - 1) * 50, params.id * 50 - 1)
+        .range((params.id - 1) * 200, params.id * 200 - 1)
     for(const i in data){
         if(data[i].dlrank == null) {
             delete data[i]

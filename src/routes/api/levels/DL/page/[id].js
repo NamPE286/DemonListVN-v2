@@ -22,7 +22,7 @@ export async function GET({ params }) {
         .from('levels')
         .select('*')
         .order('dlTop', { ascending: true })
-        .range((params.id - 1) * 50, params.id * 50 - 1)
+        .range((params.id - 1) * 200, params.id * 200 - 1)
     for (const i in data) {
         data[i].point = getPoint(data[i].top);
     }
