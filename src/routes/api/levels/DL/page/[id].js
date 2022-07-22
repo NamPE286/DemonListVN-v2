@@ -19,14 +19,14 @@ export async function GET({params}) {
     }
     const supabase = createClient(process.env.API_URL, process.env.API_KEY)
     var { data, error } = await supabase
-        .from('dl')
-        .select('top, levels(*)')
+        .from('levels')
+        .select('*')
+        .order('dlTop', { ascending: true })
         .range((params.id - 1) * 50, params.id * 50 - 1)
-        .order('top', { ascending: true })
     for(const i in data){
-        data[i].point = getPoint(data[i].top)
+        data[i].point = getPoint(data[i].top);
     }
-
+    console.log(error)
     return {
         status: 200,
         headers: {
