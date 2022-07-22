@@ -20,6 +20,10 @@ export async function GET({ params }) {
                 config: 'english'
             })
         d = JSON.parse(JSON.stringify(data))
+        var set = new Set()
+        for (var i = 0; i < d.length; i++) {
+            set.add(d[i])
+        }
         var { data, error } = await supabase
             .from('levels')
             .select('*')
@@ -27,17 +31,19 @@ export async function GET({ params }) {
                 type: 'websearch',
                 config: 'english'
             })
-        d = d.concat(JSON.parse(JSON.stringify(data)))
-        d = d.filter((item, index) => d.indexOf(item) === index)
+        for (var i = 0; i < data.length; i++) {
+            set.add(data[i])
+        }
+        var list = []
+        for (var item of set) {
+            list.push(item)
+        }
         return {
             status: 200,
             headers: {
                 'access-control-allow-origin': '*'
             },
-            body: {
-                data: d,
-                autoCorrectedWord: id
-            }
+            body: d            
         };
     }
     else {
@@ -50,9 +56,7 @@ export async function GET({ params }) {
             headers: {
                 'access-control-allow-origin': '*'
             },
-            body: {
-                data: data,
-            }
+            body: data,
         };
     }
 

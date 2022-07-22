@@ -6,16 +6,13 @@ export async function GET({params}) {
     const { data, error } = await supabase
         .from('records')
         .select('*')
-        .eq('userID', params.id)
-
+        .eq('userid', params.id)
+    console.log(error)
     return {
         status: 200,
         headers: {
             'access-control-allow-origin': '*'
         },
-        body: {
-            data: data
-        }
+        body: data
     };
-
 }

@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import 'dotenv/config'
 
-export async function GET({params}) {
+export async function GET({ params }) {
     function roundNumber(num, scale) {
         if (!("" + num).includes("e")) {
             return +(Math.round(parseInt(num + "e+" + scale)) + "e-" + scale);
@@ -19,21 +19,18 @@ export async function GET({params}) {
     }
     const supabase = createClient(process.env.API_URL, process.env.API_KEY)
     var { data, error } = await supabase
-        .from('dl')
-        .select('top, levels(*)')
-        .range((params.id - 1) * 50, params.id * 50 - 1)
-        .order('top', { ascending: true })
-    for(const i in data){
-        data[i].point = getPoint(data[i].top)
-    }
-
+        .from('levels')
+        .select('*')
+        .order('dlTop', { ascending: true })
+        .range((params.id - 1) * 200, params.id * 200 - 1)
+        .not("dlTop", 'is', null)
+    console.log(error)
     return {
         status: 200,
         headers: {
             'access-control-allow-origin': '*'
         },
-        body: {
-            data:data
-        }
+        body: data
+
     };
 }
