@@ -24,7 +24,11 @@ export async function GET({ params }) {
         .order('dlTop', { ascending: true })
         .range((params.id - 1) * 200, params.id * 200 - 1)
     for (const i in data) {
-        data[i].point = getPoint(data[i].top);
+        if (data[i].dlTop == null) {
+            //delete from i to end
+            data.splice(parseInt(i), data.length - parseInt(i))
+            break
+        }
     }
     console.log(error)
     return {
