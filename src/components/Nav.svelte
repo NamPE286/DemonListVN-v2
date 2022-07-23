@@ -85,7 +85,7 @@
 			>
 		{/if}
 	</a>
-	<p id="title">Demon List VN</p>
+	<p id="title">{import.meta.env.VITE_API_URL}</p>
     {#if user}
         <a href='#!' class='signOut' on:click={signOut}>Sign out</a>
         <a class="submitBtn" href="#!" on:click={openModal}>
