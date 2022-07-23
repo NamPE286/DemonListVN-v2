@@ -4,40 +4,32 @@
 	import { createClient } from "@supabase/supabase-js";
 	import Modal from "./Modal.svelte";
 	import NameModal from "./NameModal.svelte";
-    const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	async function addUser() {
+		var { data, error } = await supabase.from("players").select("uid, name").eq("uid", user.id);
+		if (data.length == 0) {
+			var { data, error } = await supabase.from("players").insert({
+				uid: user.id,
+				name: "/defaultplayers/",
+				email: user.email
+			});
+			console.log(error);
+		} else {
+			if (data[0].name == "/defaultplayers/") {
+				ifShowNameInput = true;
+			}
+		}
+	}
+	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	var user = supabase.auth.user();
 	supabase.auth.onAuthStateChange((_, session) => {
-        user = session.user
-    })
-    var menuExpanded: boolean = false;
+		user = session.user;
+		addUser();
+	});
+	var menuExpanded: boolean = false;
 	var currentSite: string = "list";
 	var ifOntop: boolean = true;
-    var ifShowNameInput:boolean = false;
-    console.log(user)
-    if(user){
-        async function addUser(){
-            var { data, error } = await supabase
-                .from('players')
-                .select('uid, name')
-                .eq('uid', user.id)
-            if(data.length == 0){
-                var { data, error } = await supabase
-                    .from('players')
-                    .insert({
-                        uid: user.id,
-                        name: "/defaultplayers/",
-                        email: user.email
-                    })
-                console.log(error)
-            }
-            else{
-                if (data[0].name == '/defaultplayers/'){
-                    ifShowNameInput = true
-                }
-            }
-        }
-        addUser()
-    }
+	var ifShowNameInput: boolean = false;
+	console.log(user);
 	onMount(() => {
 		window.addEventListener("scroll", () => {
 			ifOntop = window.scrollY == 0;
@@ -54,9 +46,9 @@
 	function toggleMenu() {
 		menuExpanded = !menuExpanded;
 	}
-    function toggleNameInput(){
-        ifShowNameInput = !ifShowNameInput;
-    }
+	function toggleNameInput() {
+		ifShowNameInput = !ifShowNameInput;
+	}
 	var submitClicked: boolean = false;
 	function openModal() {
 		submitClicked = !submitClicked;
@@ -65,12 +57,12 @@
 		const { user, session, error } = await supabase.auth.signIn({
 			provider: "google"
 		});
-        console.log(error)
+		console.log(error);
 	}
-    async function signOut(){
-        const { error } = await supabase.auth.signOut()
-        window.location.reload()
-    }
+	async function signOut() {
+		const { error } = await supabase.auth.signOut();
+		window.location.reload();
+	}
 </script>
 
 <div class={ifOntop ? "topBar" : "topBar1"}>
@@ -88,17 +80,17 @@
 		{/if}
 	</a>
 	<p id="title">Demon List VN</p>
-    {#if user}
-        <a href='#!' class='signOut' on:click={signOut}>Sign out</a>
-        <a class="submitBtn" href="#!" on:click={openModal}>
-            <p>Submit</p>
-        </a>
-    {/if}
-    {#if !user}
-        <a class="submitBtn" id='signIn' href="#!" on:click={signIn}>
-            <p>Sign In</p>
-        </a>
-    {/if}
+	{#if user}
+		<a href="#!" class="signOut" on:click={signOut}>Sign out</a>
+		<a class="submitBtn" href="#!" on:click={openModal}>
+			<p>Submit</p>
+		</a>
+	{/if}
+	{#if !user}
+		<a class="submitBtn" id="signIn" href="#!" on:click={signIn}>
+			<p>Sign In</p>
+		</a>
+	{/if}
 </div>
 <div class="topSpacer" />
 {#if menuExpanded}
@@ -156,18 +148,18 @@
 </div>
 <Modal bind:ifShow={submitClicked} />
 {#if user}
-    <NameModal bind:ifShow={ifShowNameInput} uid={user.id}/>
+	<NameModal bind:ifShow={ifShowNameInput} uid={user.id} />
 {/if}
 
 <style lang="scss">
-    #signIn{
-        margin-left: auto;
-    }
-    .signOut{
-        color: red;
-        margin-left: auto;
-        margin-right: 25px;
-    }
+	#signIn {
+		margin-left: auto;
+	}
+	.signOut {
+		color: red;
+		margin-left: auto;
+		margin-right: 25px;
+	}
 	.dimBg {
 		position: fixed;
 		margin-top: -135px;
