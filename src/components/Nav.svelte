@@ -25,10 +25,14 @@
 		user = session.user;
 		addUser();
 	});
+	if(user){
+		addUser()
+	}
 	var menuExpanded: boolean = false;
 	var currentSite: string = "list";
 	var ifOntop: boolean = true;
 	var ifShowNameInput: boolean = false;
+	var forceSignIn = false;
 	console.log(user);
 	onMount(() => {
 		window.addEventListener("scroll", () => {
@@ -60,8 +64,8 @@
 		console.log(error);
 	}
 	async function signOut() {
-		const { error } = await supabase.auth.signOut();
 		window.location.reload();
+		const { error } = await supabase.auth.signOut();
 	}
 </script>
 
@@ -80,13 +84,13 @@
 		{/if}
 	</a>
 	<p id="title">Demon List VN</p>
-	{#if user}
+	{#if user && !forceSignIn}
 		<a href="#!" class="signOut" on:click={signOut}>Sign out</a>
 		<a class="submitBtn" href="#!" on:click={openModal}>
 			<p>Submit</p>
 		</a>
 	{/if}
-	{#if !user}
+	{#if !user || forceSignIn}
 		<a class="submitBtn" id="signIn" href="#!" on:click={signIn}>
 			<p>Sign In</p>
 		</a>
