@@ -10,6 +10,7 @@
 	var currentSite: string = "list";
 	var ifOntop: boolean = true;
     var ifShowNameInput:boolean = false;
+    console.log(user)
     if(user){
         async function addUser(){
             var { data, error } = await supabase
@@ -59,10 +60,8 @@
 	}
 	async function signIn() {
 		const { user, session, error } = await supabase.auth.signIn({
-			provider: "facebook"
-		}, {
-            redirectTo: 'https://demon-list-vn-v2.vercel.app/'
-        });
+			provider: "google"
+		});
         console.log(error)
 	}
     async function signOut(){
