@@ -4,13 +4,13 @@
 	import { createClient } from "@supabase/supabase-js";
 	import Modal from "./Modal.svelte";
 	import NameModal from "./NameModal.svelte";
-	async function addUser() {
-		var { data, error } = await supabase.from("players").select("uid, name").eq("uid", user.id);
+	async function addUser(user1) {
+		var { data, error } = await supabase.from("players").select("uid, name").eq("uid", user1.id);
 		if (data.length == 0) {
 			var { data, error } = await supabase.from("players").insert({
 				uid: user.id,
 				name: "/defaultplayers/",
-				email: user.email
+				email: user1.email
 			});
 			console.log(error);
 		} else {
@@ -22,11 +22,10 @@
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	var user = supabase.auth.user();
 	supabase.auth.onAuthStateChange((_, session) => {
-		window.location.reload();
+		user = session.user;
+		addUser(session.user);
+		console.log('ss');
 	});
-	if(user){
-		addUser()
-	}
 	var menuExpanded: boolean = false;
 	var currentSite: string = "list";
 	var ifOntop: boolean = true;
