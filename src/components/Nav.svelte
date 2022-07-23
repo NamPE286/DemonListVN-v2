@@ -22,10 +22,10 @@
                 .eq('uid', user.id)
             if(data.length == 0){
                 var { data, error } = await supabase
-                    .from('/defaultplayers/')
+                    .from('players')
                     .insert({
                         uid: user.id,
-                        name: "Player",
+                        name: "/defaultplayers/",
                         email: user.email
                     })
                 console.log(error)
