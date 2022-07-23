@@ -5,10 +5,10 @@
 	var listOption = 0;
 	var flLevels = []
 	var dlLevels = []
-	fetch('https://demon-list-vn-v2.vercel.app/api/levels/FL/page/1')
+	fetch('https://demon-listv2-api.vercel.app/levels/FL/page/1')
 		.then(response => response.json())
 		.then(data => flLevels = data);
-	fetch('https://demon-list-vn-v2.vercel.app/api/levels/DL/page/1')
+	fetch('https://demon-listv2-api.vercel.app/levels/DL/page/1')
 		.then(response => response.json())
 		.then(data => dlLevels = data);
 </script>
