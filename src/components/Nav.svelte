@@ -5,7 +5,10 @@
 	import Modal from "./Modal.svelte";
 	import NameModal from "./NameModal.svelte";
     const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-	const user = supabase.auth.user();
+	var user = supabase.auth.user();
+	supabase.auth.onAuthStateChange((_, session) => {
+        user = session.user
+    })
     var menuExpanded: boolean = false;
 	var currentSite: string = "list";
 	var ifOntop: boolean = true;
