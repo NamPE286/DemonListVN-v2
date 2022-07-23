@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Title from '../components/Title.svelte';
 	import Levels from '../components/Levels.svelte';
+	import Nav from '../components/Nav.svelte';
+
 	var list = 0;
 	var listOption = 0;
 	var flLevels = []
@@ -13,6 +15,7 @@
 		.then(data => dlLevels = data);
 </script>
 
+<Nav/>
 <div class="pageContent">
 	{#if list == 0}
 		<Title title="Featured List" description="Levels created and beaten by Vietnamese" />
