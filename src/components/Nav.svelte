@@ -22,8 +22,7 @@
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	var user = supabase.auth.user();
 	supabase.auth.onAuthStateChange((_, session) => {
-		user = session.user;
-		addUser();
+		window.location.reload();
 	});
 	if(user){
 		addUser()
