@@ -47,15 +47,6 @@
 					id={listOption == 1 ? 'highlight1' : ''}
 					on:click={() => {
 						listOption = 1;
-					}}>Legacy</a
-				>
-			</li>
-			<li>
-				<a
-					href="#!"
-					id={listOption == 2 ? 'highlight1' : ''}
-					on:click={() => {
-						listOption = 2;
 					}}>Top Player</a
 				>
 			</li>
