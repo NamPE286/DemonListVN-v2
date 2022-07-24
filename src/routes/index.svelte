@@ -110,7 +110,9 @@
 		position: fixed;
 		bottom: 0;
 		margin-bottom: 15px;
+		pointer-events: none;
 		.listSwitcher {
+			pointer-events: auto;
 			height: 50px;
 			width: fit-content;
 			margin-inline: auto;
