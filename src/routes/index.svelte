@@ -54,12 +54,12 @@
 	<hr />
 	{#if list == 0}
 		{#each flLevels as item, index}
-			<Levels top={item.flTop} name={item.name} creator={item.creator} point={item.flPt} videoID={item.videoID}/>
+			<Levels top={item.flTop} name={item.name} creator={item.creator} point={item.flPt} videoID={item.videoID} levelID={item.id}/>
 		{/each}
 	{/if}
 	{#if list == 1}
 		{#each dlLevels as item, index}
-			<Levels top={item.dlTop} name={item.name} creator={item.creator} point={item.dlPt} videoID={item.videoID}/>
+			<Levels top={item.dlTop} name={item.name} creator={item.creator} point={item.dlPt} videoID={item.videoID} levelID={item.id}/>
 		{/each}
 	{/if}
 	<div class="listSwitcherWrapper">

@@ -96,7 +96,7 @@
 			>
 		{/if}
 	</a>
-	<p id="title">Demon List VN</p>
+	<a id="title" href='/'>Demon List VN</a>
 	{#if user && !forceSignIn}
 		<a href="#!" class="signOut" on:click={signOut}>Sign out</a>
 		<a class="submitBtn" href="#!" on:click={openModal}>
@@ -121,7 +121,7 @@
 	/>
 {/if}
 <div class={menuExpanded ? "sidebar1" : "sidebar"} id="sidebarDiv">
-	<a href="#!" class="sidebarIconWrapper">
+	<a href="/" class="sidebarIconWrapper">
 		<div class={showHighlight("list")} id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
@@ -358,6 +358,7 @@
 			font-weight: 600;
 			margin-top: 0;
 			margin-bottom: 0;
+			color: white;
 		}
 		.submitBtn {
 			background-color: #005ff9;
@@ -398,6 +399,7 @@
 			font-weight: 600;
 			margin-top: 0;
 			margin-bottom: 0;
+			color: white;
 		}
 		.submitBtn {
 			background-color: #005ff9;
