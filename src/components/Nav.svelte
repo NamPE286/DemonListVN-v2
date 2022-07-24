@@ -41,7 +41,6 @@
 
 	});
 	var menuExpanded: boolean = false;
-	var currentSite: string = "list";
 	var ifOntop: boolean = true;
 	var ifShowNameInput: boolean = false;
 	var forceSignIn = false;
@@ -50,19 +49,8 @@
 			ifOntop = window.scrollY == 0;
 		});
 	});
-	function showHighlight(s: string) {
-		if (s == currentSite) return "barItem";
-		return "hide";
-	}
-	function showTitle(s: string) {
-		if (s == currentSite) return "";
-		return "hideText";
-	}
 	function toggleMenu() {
 		menuExpanded = !menuExpanded;
-	}
-	function toggleNameInput() {
-		ifShowNameInput = !ifShowNameInput;
 	}
 	var submitClicked: boolean = false;
 	function openModal() {
@@ -119,7 +107,7 @@
 {/if}
 <div class={menuExpanded ? "sidebar1" : "sidebar"} id="sidebarDiv">
 	<a href="/" class="sidebarIconWrapper">
-		<div class={showHighlight("list")} id="sidebarIcon">
+		<div class='hide' id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 					><path
@@ -129,11 +117,11 @@
 			</div>
 			<p id="title1">List</p>
 		</div>
-		<p class={showTitle("list")} id="iconTitle">List</p>
+		<p class='hideText' id="iconTitle">List</p>
 	</a>
 	<hr />
 	<a href="#!" class="sidebarIconWrapper">
-		<div class={showHighlight("settings")} id="sidebarIcon">
+		<div class='hide' id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 					><path
@@ -143,10 +131,10 @@
 			</div>
 			<p id="title1">Settings</p>
 		</div>
-		<p class={showTitle("settings")} id="iconTitle">Settings</p>
+		<p class='hideText' id="iconTitle">Settings</p>
 	</a>
 	<a href="#!" class="sidebarIconWrapper">
-		<div class={showHighlight("info")} id="sidebarIcon">
+		<div class='hide' id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 					><path
@@ -156,7 +144,7 @@
 			</div>
 			<p id="title1">Info</p>
 		</div>
-		<p class={showTitle("about")} id="iconTitle">About</p>
+		<p class='hideText' id="iconTitle">About</p>
 	</a>
 	<div class="bottomPad" />
 </div>
@@ -245,6 +233,7 @@
 	}
 	.sidebarIcon {
 		display: flex;
+		margin-bottom: 2.5px;
 	}
 	.sidebar1 {
 		overflow-x: hidden;
