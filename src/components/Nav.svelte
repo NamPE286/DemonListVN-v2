@@ -108,7 +108,7 @@
 		<p class='hideText' id="iconTitle">List</p>
 	</a>
 	<hr />
-	<a href="#!" class="sidebarIconWrapper">
+	<a href="/settings" class="sidebarIconWrapper">
 		<div class='hide' id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
