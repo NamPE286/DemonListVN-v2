@@ -214,6 +214,9 @@
 		}
 	}
 	@media screen and (max-width: 1100px) {
+		#legacyLabel{
+			grid-column: 1;
+		}
 		.pageContent {
 			width: 90%;
 			grid-template-areas:
