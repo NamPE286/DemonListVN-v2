@@ -7,7 +7,7 @@
 </script>
 
 <a href="#!" class="levelWidget">
-	<img src={`https://img.youtube.com/vi/${videoID}/maxresdefault.jpg`} alt="" />
+	<img src={`https://img.youtube.com/vi/${videoID}/maxresdefault.jpg`} alt="" loading='lazy'/>
 	<div class="levelInfo">
 		<p class="top">#{top}</p>
 		<div class="info">
