@@ -22,23 +22,8 @@
 	var user = supabase.auth.user();
 	supabase.auth.onAuthStateChange((_, session) => {
 		user = session.user;
-		async function checkUser(){
-			var { data, error } = await supabase.from("players").select("uid, name").eq("uid", user.id);
-			if (data.length == 0) {
-				var { data, error } = await supabase.from("players").insert({
-					uid: user.id,
-					name: "/defaultplayers/",
-					email: user.email
-				});
-				ifShowNameInput = true;
-			} else {
-				if (data[0].name == "/defaultplayers/") {
-					ifShowNameInput = true;
-				}
-			}
-		}
-		checkUser()
-
+		addUser(session.user);
+		console.log('ss');
 	});
 	var menuExpanded: boolean = false;
 	var ifOntop: boolean = true;
@@ -55,6 +40,9 @@
 	var submitClicked: boolean = false;
 	function openModal() {
 		submitClicked = !submitClicked;
+	}
+	function sidebarChooser(list) {
+
 	}
 	async function signIn() {
 		const { user, session, error } = await supabase.auth.signIn({
@@ -158,7 +146,8 @@
 		margin-left: auto;
 	}
 	.signOut {
-		color: red;
+		color: #f90000;
+		font-weight: bolder;
 		margin-left: auto;
 		margin-right: 25px;
 	}

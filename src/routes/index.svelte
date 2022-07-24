@@ -121,6 +121,18 @@
 			'widget widget';
 		grid-auto-columns: 1fr;
 	}
+	.pageContent2 {
+		display: grid;
+		width: 60%;
+		margin-inline: auto;
+		margin-bottom: 100px;
+		gap: 30px;
+		grid-template-areas:
+			'header'
+			'sel'
+			'line'
+			'widget';
+	}
 	.listSwitcherWrapper {
 		width: 100%;
 		left: 0;
@@ -212,6 +224,9 @@
 		.pageContent{
 			width: 80%;
 		}
+		.pageContent2 {
+			width: 80%;
+		}
 	}
 	@media screen and (max-width: 1100px) {
 		#legacyLabel{
@@ -224,6 +239,9 @@
 				'sel'
 				'line'
 				'widget';
+		}
+		.pageContent2 {
+			width: 90%;
 		}
 		.listSelector {
 			a {
