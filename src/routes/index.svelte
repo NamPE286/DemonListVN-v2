@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Title from '../components/Title.svelte';
 	import Levels from '../components/Levels.svelte';
+	import Settings from '../components/Settings.svelte';
+	var pages = 1;
 	var list = 0;
 	var listOption = 0;
 	var flLevels = []
@@ -12,7 +14,7 @@
 		.then(response => response.json())
 		.then(data => dlLevels = data);
 </script>
-
+{#if pages == 0}
 <div class="pageContent">
 	{#if list == 0}
 		<Title title="Featured List" description="Levels created and beaten by Vietnamese" />
@@ -87,6 +89,12 @@
 		</div>
 	</div>
 </div>
+{/if}
+{#if pages == 1}
+	<div class="pageContent2">
+		<Settings />
+	</div>
+{/if}
 
 <style lang="scss">
 	.pageContent {
@@ -101,6 +109,18 @@
 			'line line'
 			'widget widget';
 		grid-auto-columns: 1fr;
+	}
+	.pageContent2 {
+		display: grid;
+		width: 60%;
+		margin-inline: auto;
+		margin-bottom: 100px;
+		gap: 30px;
+		grid-template-areas:
+			'header'
+			'sel'
+			'line'
+			'widget';
 	}
 	.listSwitcherWrapper {
 		width: 100%;
@@ -191,6 +211,9 @@
 		.pageContent{
 			width: 80%;
 		}
+		.pageContent2 {
+			width: 80%;
+		}
 	}
 	@media screen and (max-width: 1100px) {
 		.pageContent {
@@ -200,6 +223,9 @@
 				'sel'
 				'line'
 				'widget';
+		}
+		.pageContent2 {
+			width: 90%;
 		}
 		.listSelector {
 			a {

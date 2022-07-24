@@ -23,29 +23,15 @@
 	var user = supabase.auth.user();
 	supabase.auth.onAuthStateChange((_, session) => {
 		user = session.user;
-		async function checkUser(){
-			var { data, error } = await supabase.from("players").select("uid, name").eq("uid", user.id);
-			if (data.length == 0) {
-				var { data, error } = await supabase.from("players").insert({
-					uid: user.id,
-					name: "/defaultplayers/",
-					email: user.email
-				});
-				ifShowNameInput = true;
-			} else {
-				if (data[0].name == "/defaultplayers/") {
-					ifShowNameInput = true;
-				}
-			}
-		}
-		checkUser()
-
+		addUser(session.user);
+		console.log('ss');
 	});
 	var menuExpanded: boolean = false;
 	var currentSite: string = "list";
 	var ifOntop: boolean = true;
 	var ifShowNameInput: boolean = false;
 	var forceSignIn = false;
+	export var pages = 0;
 	console.log(user);
 	onMount(() => {
 		window.addEventListener("scroll", () => {
@@ -69,6 +55,9 @@
 	var submitClicked: boolean = false;
 	function openModal() {
 		submitClicked = !submitClicked;
+	}
+	function sidebarChooser(list) {
+
 	}
 	async function signIn() {
 		const { user, session, error } = await supabase.auth.signIn({
@@ -121,7 +110,7 @@
 	/>
 {/if}
 <div class={menuExpanded ? "sidebar1" : "sidebar"} id="sidebarDiv">
-	<a href="#!" class="sidebarIconWrapper">
+	<a href="#!" class="sidebarIconWrapper" on:click={() => {pages = 0}}>
 		<div class={showHighlight("list")} id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
@@ -135,7 +124,7 @@
 		<p class={showTitle("list")} id="iconTitle">List</p>
 	</a>
 	<hr />
-	<a href="#!" class="sidebarIconWrapper">
+	<a href="#!" class="sidebarIconWrapper" on:click={() => {pages = 1}}>
 		<div class={showHighlight("settings")} id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
@@ -148,8 +137,8 @@
 		</div>
 		<p class={showTitle("settings")} id="iconTitle">Settings</p>
 	</a>
-	<a href="#!" class="sidebarIconWrapper">
-		<div class={showHighlight("info")} id="sidebarIcon">
+	<a href="#!" class="sidebarIconWrapper" on:click={() => {pages = 2}}>
+		<div class={showHighlight("info")} id="sidebarIcon" >
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 					><path
@@ -173,7 +162,8 @@
 		margin-left: auto;
 	}
 	.signOut {
-		color: red;
+		color: #f90000;
+		font-weight: bolder;
 		margin-left: auto;
 		margin-right: 25px;
 	}
