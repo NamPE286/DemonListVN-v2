@@ -1,27 +1,36 @@
 <script>
 	import { page } from "$app/stores";
 	const id = $page.url.searchParams.get("id");
-	const level = null;
-
-	console.log(id);
+	var level = null;
+	var levelAPI = null;
+	fetch(`https://demon-listv2-api.vercel.app/levels/${id}`)
+		.then((response) => response.json())
+		.then((data) => (level = data));
+    fetch(`https://gdbrowser.com/api/level/${id}`)
+		.then((response) => response.json())
+		.then((data) => (levelAPI = data));
+    function getPoint(){
+        if(level.flPt && level.dlPt) return `${level.dlPt}pt (${level.flPt}pt)`
+        return `${level.flPt ? level.flPt : level.dlPt}pt`
+    }
 </script>
 
-{#if !level}
+{#if level && levelAPI}
 	<div class="pageContent">
 		<div class="thumbnailWidget">
-			<img src="https://img.youtube.com/vi/Gs5mRmoLh7g/maxresdefault.jpg" alt="" />
+			<img src={`https://img.youtube.com/vi/${level.videoID}/maxresdefault.jpg`} alt="" />
 			<div class="levelInfo">
 				<p class="top">#1</p>
 				<div class="info">
-					<p class="levelName">Level Name</p>
-					<p class="creator">by Creator - 1000pt</p>
+					<p class="levelName">{level.name}</p>
+					<p class="creator">by {level.creator} - {getPoint()}</p>
 				</div>
 			</div>
 		</div>
 		<iframe
 			width="560"
 			height="315"
-			src="https://www.youtube.com/embed/Gs5mRmoLh7g"
+			src={`https://www.youtube.com/embed/${level.videoID}`}
 			title="YouTube video player"
 			frameborder="0"
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -30,11 +39,15 @@
 		<div class="levelInfo1">
 			<p>
 				<b>Description:</b><br />
-                <span class="desc">
-				This is description This is description This is description This is description This is description
-				This is description This is description This is description This is description
-                </span>
+				<span class="desc">
+					{levelAPI.description}
+				</span>
 			</p>
+            {#if level.dlPt}
+                <p><b>Minimum Progress: </b><span class='desc'>{level.minProgress}%</span></p>
+            {/if}
+            <p><b>Difficulty: </b><span class='desc'>{levelAPI.difficulty}</span></p>
+            <p><b>ID: </b><span class='desc'>{id}</span></p>
 		</div>
 		<div class="additionalInfo">
 			<svg
@@ -50,7 +63,7 @@
 					fill="#fff"
 				/>
 			</svg>
-			<span>1000</span>
+			<span>{levelAPI.downloads}</span>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="31.453"
@@ -64,8 +77,7 @@
 					fill="#fff"
 				/>
 			</svg>
-
-			<span>100</span>
+			<span>{levelAPI.likes}</span>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="27.838"
@@ -79,7 +91,7 @@
 					fill="#fff"
 				/>
 			</svg>
-			<span>3</span>
+			<span>{levelAPI.coins} {levelAPI.coins && !levelAPI.verifiedCoins ? '(N/v)' : ''}</span>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="29.78"
@@ -93,7 +105,7 @@
 					fill="#fff"
 				/>
 			</svg>
-			<span>XL</span>
+			<span>{levelAPI.length}</span>
 		</div>
 	</div>
 {/if}
@@ -173,14 +185,16 @@
 		border-radius: 50px;
 		display: flex;
 		align-items: center;
-        justify-content: center;
+		justify-content: center;
 		span {
 			margin-inline: 12px;
 		}
+        padding-top: 10px;
+        padding-bottom: 10px;
 	}
-    .desc{
-        color: #B8B8B8;
-    }
+	.desc {
+		color: #b8b8b8;
+	}
 	@media screen and (max-width: 1450px) {
 		.pageContent {
 			width: 80%;

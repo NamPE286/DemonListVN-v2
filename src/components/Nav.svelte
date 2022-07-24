@@ -12,7 +12,6 @@
 				name: "/defaultplayers/",
 				email: user1.email
 			});
-			console.log(error);
 		} else {
 			if (data[0].name == "/defaultplayers/") {
 				ifShowNameInput = true;
@@ -46,7 +45,6 @@
 	var ifOntop: boolean = true;
 	var ifShowNameInput: boolean = false;
 	var forceSignIn = false;
-	console.log(user);
 	onMount(() => {
 		window.addEventListener("scroll", () => {
 			ifOntop = window.scrollY == 0;
@@ -74,7 +72,6 @@
 		const { user, session, error } = await supabase.auth.signIn({
 			provider: "google"
 		});
-		console.log(error);
 	}
 	async function signOut() {
 		window.location.reload();
