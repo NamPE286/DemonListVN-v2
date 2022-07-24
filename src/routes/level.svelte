@@ -18,7 +18,7 @@
 {#if level && levelAPI}
 	<div class="pageContent">
 		<div class="thumbnailWidget">
-			<img src={`https://img.youtube.com/vi/${level.videoID}/maxresdefault.jpg`} alt="" />
+			<img src={`https://img.youtube.com/vi/${level.videoID}/mqdefault.jpg`} alt="" />
 			<div class="levelInfo">
 				<p class="top">#{level.dlTop ? level.dlTop : level.flTop}</p>
 				<div class="info">
