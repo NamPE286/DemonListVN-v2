@@ -4,13 +4,23 @@
 	var list = 1;
 	var listOption = 0;
 	var flLevels = []
+	var flLegacy = []
 	var dlLevels = []
+	var dlLegacy = []
 	fetch('https://demon-listv2-api.vercel.app/levels/FL/page/1')
 		.then(response => response.json())
-		.then(data => flLevels = data);
+		.then(data => {
+			flLevels = data
+			flLegacy = flLevels.slice(50, flLevels.length)
+			flLevels = flLevels.slice(0, 50)
+		});
 	fetch('https://demon-listv2-api.vercel.app/levels/DL/page/1')
 		.then(response => response.json())
-		.then(data => dlLevels = data);
+		.then(data => {
+			dlLevels = data
+			dlLegacy = dlLevels.slice(150, dlLevels.length)
+			dlLevels = dlLevels.slice(0, 150)
+		});
 </script>
 <title>List - Demon List VN</title>
 <div class="pageContent">
@@ -56,6 +66,10 @@
 		{#each flLevels as item, index}
 			<Levels top={item.flTop} name={item.name} creator={item.creator} point={item.flPt} videoID={item.videoID} levelID={item.id}/>
 		{/each}
+		<p id='legacyLabel'><span>Legacy List</span></p>
+		{#each flLegacy as item, index}
+			<Levels top={item.flTop} name={item.name} creator={item.creator} point={item.flPt} videoID={item.videoID} levelID={item.id}/>
+		{/each}
 	{/if}
 	{#if list == 1}
 		{#each dlLevels as item, index}
@@ -89,6 +103,20 @@
 </div>
 
 <style lang="scss">
+	#legacyLabel{
+		grid-column: 1 / 3;
+		margin-inline: auto;
+		font-weight: 500;
+		text-align: center; 
+		border-bottom: 1px solid #888888; 
+		line-height: 0.1em;
+		margin: 10px 0 20px;
+		span{
+			background:#141414; 
+			padding:0 10px; 
+			color: #888888;
+		}
+	}
 	.pageContent {
 		display: grid;
 		width: 60%;
