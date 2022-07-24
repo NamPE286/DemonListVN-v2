@@ -1,27 +1,28 @@
 <script lang="ts">
-	import Title from '../components/Title.svelte';
-	import Levels from '../components/Levels.svelte';
+	import Title from "../components/Title.svelte";
+	import Levels from "../components/Levels.svelte";
 	var list = 1;
 	var listOption = 0;
-	var flLevels = []
-	var flLegacy = []
-	var dlLevels = []
-	var dlLegacy = []
-	fetch('https://demon-listv2-api.vercel.app/levels/FL/page/1')
-		.then(response => response.json())
-		.then(data => {
-			flLevels = data
-			flLegacy = flLevels.slice(50, flLevels.length)
-			flLevels = flLevels.slice(0, 50)
+	var flLevels = [];
+	var flLegacy = [];
+	var dlLevels = [];
+	var dlLegacy = [];
+	fetch("https://demon-listv2-api.vercel.app/levels/FL/page/1")
+		.then((response) => response.json())
+		.then((data) => {
+			flLevels = data;
+			flLegacy = flLevels.slice(50, flLevels.length);
+			flLevels = flLevels.slice(0, 50);
 		});
-	fetch('https://demon-listv2-api.vercel.app/levels/DL/page/1')
-		.then(response => response.json())
-		.then(data => {
-			dlLevels = data
-			dlLegacy = dlLevels.slice(150, dlLevels.length)
-			dlLevels = dlLevels.slice(0, 150)
+	fetch("https://demon-listv2-api.vercel.app/levels/DL/page/1")
+		.then((response) => response.json())
+		.then((data) => {
+			dlLevels = data;
+			dlLegacy = dlLevels.slice(150, dlLevels.length);
+			dlLevels = dlLevels.slice(0, 150);
 		});
 </script>
+
 <title>List - Demon List VN</title>
 <div class="pageContent">
 	{#if list == 0}
@@ -35,7 +36,7 @@
 			<li>
 				<a
 					href="#!"
-					id={listOption == 0 ? 'highlight1' : ''}
+					id={listOption == 0 ? "highlight1" : ""}
 					on:click={() => {
 						listOption = 0;
 					}}>Levels Listing</a
@@ -44,7 +45,7 @@
 			<li>
 				<a
 					href="#!"
-					id={listOption == 1 ? 'highlight1' : ''}
+					id={listOption == 1 ? "highlight1" : ""}
 					on:click={() => {
 						listOption = 1;
 					}}>Top Player</a
@@ -55,23 +56,56 @@
 	<hr />
 	{#if list == 0}
 		{#each flLevels as item, index}
-			<Levels top={item.flTop} name={item.name} creator={item.creator} point={item.flPt} videoID={item.videoID} levelID={item.id}/>
+			<Levels
+				top={item.flTop}
+				name={item.name}
+				creator={item.creator}
+				point={item.flPt}
+				videoID={item.videoID}
+				levelID={item.id}
+			/>
 		{/each}
-		<p id='legacyLabel'><span>Legacy List</span></p>
+		<p id="legacyLabel"><span>Legacy List</span></p>
 		{#each flLegacy as item, index}
-			<Levels top={item.flTop} name={item.name} creator={item.creator} point={item.flPt} videoID={item.videoID} levelID={item.id}/>
+			<Levels
+				top={item.flTop}
+				name={item.name}
+				creator={item.creator}
+				point={item.flPt}
+				videoID={item.videoID}
+				levelID={item.id}
+			/>
 		{/each}
 	{/if}
 	{#if list == 1}
 		{#each dlLevels as item, index}
-			<Levels top={item.dlTop} name={item.name} creator={item.creator} point={item.dlPt} videoID={item.videoID} levelID={item.id}/>
+			<Levels
+				top={item.dlTop}
+				name={item.name}
+				creator={item.creator}
+				point={item.dlPt}
+				videoID={item.videoID}
+				levelID={item.id}
+			/>
+		{/each}
+		<p id="legacyLabel"><span>Legacy List</span></p>
+
+		{#each dlLegacy as item, index}
+			<Levels
+				top={item.dlTop}
+				name={item.name}
+				creator={item.creator}
+				point={item.dlPt}
+				videoID={item.videoID}
+				levelID={item.id}
+			/>
 		{/each}
 	{/if}
 	<div class="listSwitcherWrapper">
 		<div class="listSwitcher">
 			<a
 				class="listSwitcherItem"
-				id={list == 1 ? 'highlight' : ''}
+				id={list == 1 ? "highlight" : ""}
 				on:click={() => {
 					list = 1;
 				}}
@@ -81,7 +115,7 @@
 			</a>
 			<a
 				class="listSwitcherItem"
-				id={list == 0 ? 'highlight' : ''}
+				id={list == 0 ? "highlight" : ""}
 				on:click={() => {
 					list = 0;
 				}}
@@ -94,17 +128,17 @@
 </div>
 
 <style lang="scss">
-	#legacyLabel{
+	#legacyLabel {
 		grid-column: 1 / 3;
 		margin-inline: auto;
 		font-weight: 500;
-		text-align: center; 
-		border-bottom: 1px solid #888888; 
+		text-align: center;
+		border-bottom: 1px solid #888888;
 		line-height: 0.1em;
 		margin: 10px 0 20px;
-		span{
-			background:#141414; 
-			padding:0 10px; 
+		span {
+			background: #141414;
+			padding: 0 10px;
 			color: #888888;
 		}
 	}
@@ -115,10 +149,10 @@
 		margin-bottom: 100px;
 		gap: 30px;
 		grid-template-areas:
-			'header header'
-			'sel sel'
-			'line line'
-			'widget widget';
+			"header header"
+			"sel sel"
+			"line line"
+			"widget widget";
 		grid-auto-columns: 1fr;
 	}
 	.pageContent2 {
@@ -128,10 +162,10 @@
 		margin-bottom: 100px;
 		gap: 30px;
 		grid-template-areas:
-			'header'
-			'sel'
-			'line'
-			'widget';
+			"header"
+			"sel"
+			"line"
+			"widget";
 	}
 	.listSwitcherWrapper {
 		width: 100%;
@@ -220,25 +254,22 @@
 	#highlight1 {
 		background-color: #353535;
 	}
-	@media screen and (max-width: 1450px){
-		.pageContent{
-			width: 80%;
-		}
-		.pageContent2 {
+	@media screen and (max-width: 1450px) {
+		.pageContent {
 			width: 80%;
 		}
 	}
 	@media screen and (max-width: 1100px) {
-		#legacyLabel{
+		#legacyLabel {
 			grid-column: 1;
 		}
 		.pageContent {
 			width: 90%;
 			grid-template-areas:
-				'header'
-				'sel'
-				'line'
-				'widget';
+				"header"
+				"sel"
+				"line"
+				"widget";
 		}
 		.pageContent2 {
 			width: 90%;

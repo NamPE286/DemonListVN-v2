@@ -25,6 +25,7 @@
         display: flex;
         flex-direction: row;
         width: 100%;
+        align-items: center;
     }
     .sl_name {
         font-size: 18px;

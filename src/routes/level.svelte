@@ -216,5 +216,13 @@
 		iframe {
 			width: 100%;
 		}
+		.levelInfo{
+			.top{
+				margin-left: 35px;
+			}
+		}
+		.thumbnailWidget{
+			height: 350px;
+		}
 	}
 </style>
