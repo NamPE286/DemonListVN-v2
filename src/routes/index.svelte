@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Title from '../components/Title.svelte';
 	import Levels from '../components/Levels.svelte';
-	var list = 0;
+	var list = 1;
 	var listOption = 0;
 	var flLevels = []
 	var dlLevels = []
@@ -66,16 +66,6 @@
 		<div class="listSwitcher">
 			<a
 				class="listSwitcherItem"
-				id={list == 0 ? 'highlight' : ''}
-				on:click={() => {
-					list = 0;
-				}}
-				href="#!"
-			>
-				<a href="#!">Featured List</a>
-			</a>
-			<a
-				class="listSwitcherItem"
 				id={list == 1 ? 'highlight' : ''}
 				on:click={() => {
 					list = 1;
@@ -83,6 +73,16 @@
 				href="#!"
 			>
 				<a href="#!">Demon List</a>
+			</a>
+			<a
+				class="listSwitcherItem"
+				id={list == 0 ? 'highlight' : ''}
+				on:click={() => {
+					list = 0;
+				}}
+				href="#!"
+			>
+				<a href="#!">Featured List</a>
 			</a>
 		</div>
 	</div>
