@@ -12,7 +12,7 @@
 		.then(response => response.json())
 		.then(data => dlLevels = data);
 </script>
-
+<title>List - Demon List VN</title>
 <div class="pageContent">
 	{#if list == 0}
 		<Title title="Featured List" description="Levels created and beaten by Vietnamese" />

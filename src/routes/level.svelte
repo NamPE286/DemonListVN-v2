@@ -16,6 +16,7 @@
 </script>
 
 {#if level && levelAPI}
+	<title>{level.name}'s Info - Demon List VN</title>
 	<div class="pageContent">
 		<div class="thumbnailWidget">
 			<img src={`https://img.youtube.com/vi/${level.videoID}/mqdefault.jpg`} alt="" />
@@ -115,6 +116,9 @@
 		grid-area: widget1;
 		border-radius: 50px;
 	}
+	svg{
+		transform: scale(0.7)
+	}
 	.pageContent {
 		display: grid;
 		width: 60%;
@@ -187,7 +191,7 @@
 		align-items: center;
 		justify-content: center;
 		span {
-			margin-inline: 12px;
+			margin-inline: 6px;
 		}
         padding-top: 10px;
         padding-bottom: 10px;
