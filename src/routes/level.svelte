@@ -208,10 +208,13 @@
 		.pageContent {
 			width: 90%;
 			grid-template-areas:
-				"header"
-				"sel"
-				"line"
-				"widget";
+			"header"
+			"widget1"
+			"widget"
+			"widget2";
+		}
+		iframe {
+			width: 100%;
 		}
 	}
 </style>
