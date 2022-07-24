@@ -73,16 +73,10 @@
 	}
 	@media screen and (min-width: 1100px) {
 		.levelName {
-			text-overflow: ellipsis;
-			white-space: nowrap;
 			overflow: hidden;
-			width: 13vw;
 		}
 		.creator {
-			text-overflow: ellipsis;
-			white-space: nowrap;
 			overflow: hidden;
-			width: 13vw;
 		}
 	}
 	@media screen and (max-width: 750px) {

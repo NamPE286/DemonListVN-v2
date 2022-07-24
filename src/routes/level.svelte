@@ -10,7 +10,7 @@
 		.then((response) => response.json())
 		.then((data) => (levelAPI = data));
     function getPoint(){
-        if(level.flPt && level.dlPt) return `${level.dlPt}pt (${level.flPt}pt)`
+        if(level.flPt && level.dlPt) return `${level.dlPt}pt (#${level.flTop} ${level.flPt}pt)`
         return `${level.flPt ? level.flPt : level.dlPt}pt`
     }
 </script>
@@ -20,7 +20,7 @@
 		<div class="thumbnailWidget">
 			<img src={`https://img.youtube.com/vi/${level.videoID}/maxresdefault.jpg`} alt="" />
 			<div class="levelInfo">
-				<p class="top">#1</p>
+				<p class="top">#{level.dlTop ? level.dlTop : level.flTop}</p>
 				<div class="info">
 					<p class="levelName">{level.name}</p>
 					<p class="creator">by {level.creator} - {getPoint()}</p>
