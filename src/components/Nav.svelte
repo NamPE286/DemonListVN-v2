@@ -23,8 +23,23 @@
 	var user = supabase.auth.user();
 	supabase.auth.onAuthStateChange((_, session) => {
 		user = session.user;
-		addUser(session.user);
-		console.log('ss');
+		async function checkUser(){
+			var { data, error } = await supabase.from("players").select("uid, name").eq("uid", user.id);
+			if (data.length == 0) {
+				var { data, error } = await supabase.from("players").insert({
+					uid: user.id,
+					name: "/defaultplayers/",
+					email: user.email
+				});
+				ifShowNameInput = true;
+			} else {
+				if (data[0].name == "/defaultplayers/") {
+					ifShowNameInput = true;
+				}
+			}
+		}
+		checkUser()
+
 	});
 	var menuExpanded: boolean = false;
 	var currentSite: string = "list";
