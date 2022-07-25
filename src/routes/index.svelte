@@ -1,20 +1,29 @@
 <script lang="ts">
-	import Title from '../components/Title.svelte';
-	import Levels from '../components/Levels.svelte';
-	import Settings from '../components/Settings.svelte';
-	var pages = 1;
-	var list = 0;
+	import Title from "../components/Title.svelte";
+	import Levels from "../components/Levels.svelte";
+	var list = 1;
 	var listOption = 0;
-	var flLevels = []
-	var dlLevels = []
-	fetch('https://demon-listv2-api.vercel.app/levels/FL/page/1')
-		.then(response => response.json())
-		.then(data => flLevels = data);
-	fetch('https://demon-listv2-api.vercel.app/levels/DL/page/1')
-		.then(response => response.json())
-		.then(data => dlLevels = data);
+	var flLevels = [];
+	var flLegacy = [];
+	var dlLevels = [];
+	var dlLegacy = [];
+	fetch("https://demon-listv2-api.vercel.app/levels/FL/page/1")
+		.then((response) => response.json())
+		.then((data) => {
+			flLevels = data;
+			flLegacy = flLevels.slice(50, flLevels.length);
+			flLevels = flLevels.slice(0, 50);
+		});
+	fetch("https://demon-listv2-api.vercel.app/levels/DL/page/1")
+		.then((response) => response.json())
+		.then((data) => {
+			dlLevels = data;
+			dlLegacy = dlLevels.slice(150, dlLevels.length);
+			dlLevels = dlLevels.slice(0, 150);
+		});
 </script>
-{#if pages == 0}
+
+<title>List - Demon List VN</title>
 <div class="pageContent">
 	{#if list == 0}
 		<Title title="Featured List" description="Levels created and beaten by Vietnamese" />
@@ -27,7 +36,7 @@
 			<li>
 				<a
 					href="#!"
-					id={listOption == 0 ? 'highlight1' : ''}
+					id={listOption == 0 ? "highlight1" : ""}
 					on:click={() => {
 						listOption = 0;
 					}}>Levels Listing</a
@@ -36,18 +45,9 @@
 			<li>
 				<a
 					href="#!"
-					id={listOption == 1 ? 'highlight1' : ''}
+					id={listOption == 1 ? "highlight1" : ""}
 					on:click={() => {
 						listOption = 1;
-					}}>Legacy</a
-				>
-			</li>
-			<li>
-				<a
-					href="#!"
-					id={listOption == 2 ? 'highlight1' : ''}
-					on:click={() => {
-						listOption = 2;
 					}}>Top Player</a
 				>
 			</li>
@@ -56,29 +56,56 @@
 	<hr />
 	{#if list == 0}
 		{#each flLevels as item, index}
-			<Levels top={item.flTop} name={item.name} creator={item.creator} point={item.flPt} videoID={item.videoID}/>
+			<Levels
+				top={item.flTop}
+				name={item.name}
+				creator={item.creator}
+				point={item.flPt}
+				videoID={item.videoID}
+				levelID={item.id}
+			/>
+		{/each}
+		<p id="legacyLabel"><span>Legacy List</span></p>
+		{#each flLegacy as item, index}
+			<Levels
+				top={item.flTop}
+				name={item.name}
+				creator={item.creator}
+				point={item.flPt}
+				videoID={item.videoID}
+				levelID={item.id}
+			/>
 		{/each}
 	{/if}
 	{#if list == 1}
 		{#each dlLevels as item, index}
-			<Levels top={item.dlTop} name={item.name} creator={item.creator} point={item.dlPt} videoID={item.videoID}/>
+			<Levels
+				top={item.dlTop}
+				name={item.name}
+				creator={item.creator}
+				point={item.dlPt}
+				videoID={item.videoID}
+				levelID={item.id}
+			/>
+		{/each}
+		<p id="legacyLabel"><span>Legacy List</span></p>
+
+		{#each dlLegacy as item, index}
+			<Levels
+				top={item.dlTop}
+				name={item.name}
+				creator={item.creator}
+				point={item.dlPt}
+				videoID={item.videoID}
+				levelID={item.id}
+			/>
 		{/each}
 	{/if}
 	<div class="listSwitcherWrapper">
 		<div class="listSwitcher">
 			<a
 				class="listSwitcherItem"
-				id={list == 0 ? 'highlight' : ''}
-				on:click={() => {
-					list = 0;
-				}}
-				href="#!"
-			>
-				<a href="#!">Featured List</a>
-			</a>
-			<a
-				class="listSwitcherItem"
-				id={list == 1 ? 'highlight' : ''}
+				id={list == 1 ? "highlight" : ""}
 				on:click={() => {
 					list = 1;
 				}}
@@ -86,17 +113,35 @@
 			>
 				<a href="#!">Demon List</a>
 			</a>
+			<a
+				class="listSwitcherItem"
+				id={list == 0 ? "highlight" : ""}
+				on:click={() => {
+					list = 0;
+				}}
+				href="#!"
+			>
+				<a href="#!">Featured List</a>
+			</a>
 		</div>
 	</div>
 </div>
-{/if}
-{#if pages == 1}
-	<div class="pageContent2">
-		<Settings />
-	</div>
-{/if}
 
 <style lang="scss">
+	#legacyLabel {
+		grid-column: 1 / 3;
+		margin-inline: auto;
+		font-weight: 500;
+		text-align: center;
+		border-bottom: 1px solid #888888;
+		line-height: 0.1em;
+		margin: 10px 0 20px;
+		span {
+			background: #141414;
+			padding: 0 10px;
+			color: #888888;
+		}
+	}
 	.pageContent {
 		display: grid;
 		width: 60%;
@@ -104,10 +149,10 @@
 		margin-bottom: 100px;
 		gap: 30px;
 		grid-template-areas:
-			'header header'
-			'sel sel'
-			'line line'
-			'widget widget';
+			"header header"
+			"sel sel"
+			"line line"
+			"widget widget";
 		grid-auto-columns: 1fr;
 	}
 	.pageContent2 {
@@ -117,10 +162,10 @@
 		margin-bottom: 100px;
 		gap: 30px;
 		grid-template-areas:
-			'header'
-			'sel'
-			'line'
-			'widget';
+			"header"
+			"sel"
+			"line"
+			"widget";
 	}
 	.listSwitcherWrapper {
 		width: 100%;
@@ -130,7 +175,9 @@
 		position: fixed;
 		bottom: 0;
 		margin-bottom: 15px;
+		pointer-events: none;
 		.listSwitcher {
+			pointer-events: auto;
 			height: 50px;
 			width: fit-content;
 			margin-inline: auto;
@@ -207,22 +254,22 @@
 	#highlight1 {
 		background-color: #353535;
 	}
-	@media screen and (max-width: 1450px){
-		.pageContent{
-			width: 80%;
-		}
-		.pageContent2 {
+	@media screen and (max-width: 1450px) {
+		.pageContent {
 			width: 80%;
 		}
 	}
 	@media screen and (max-width: 1100px) {
+		#legacyLabel {
+			grid-column: 1;
+		}
 		.pageContent {
 			width: 90%;
 			grid-template-areas:
-				'header'
-				'sel'
-				'line'
-				'widget';
+				"header"
+				"sel"
+				"line"
+				"widget";
 		}
 		.pageContent2 {
 			width: 90%;

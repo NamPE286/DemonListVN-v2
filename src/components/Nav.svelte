@@ -12,7 +12,6 @@
 				name: "/defaultplayers/",
 				email: user1.email
 			});
-			console.log(error);
 		} else {
 			if (data[0].name == "/defaultplayers/") {
 				ifShowNameInput = true;
@@ -27,30 +26,16 @@
 		console.log('ss');
 	});
 	var menuExpanded: boolean = false;
-	var currentSite: string = "list";
 	var ifOntop: boolean = true;
 	var ifShowNameInput: boolean = false;
 	var forceSignIn = false;
-	export var pages = 0;
-	console.log(user);
 	onMount(() => {
 		window.addEventListener("scroll", () => {
 			ifOntop = window.scrollY == 0;
 		});
 	});
-	function showHighlight(s: string) {
-		if (s == currentSite) return "barItem";
-		return "hide";
-	}
-	function showTitle(s: string) {
-		if (s == currentSite) return "";
-		return "hideText";
-	}
 	function toggleMenu() {
 		menuExpanded = !menuExpanded;
-	}
-	function toggleNameInput() {
-		ifShowNameInput = !ifShowNameInput;
 	}
 	var submitClicked: boolean = false;
 	function openModal() {
@@ -63,7 +48,6 @@
 		const { user, session, error } = await supabase.auth.signIn({
 			provider: "google"
 		});
-		console.log(error);
 	}
 	async function signOut() {
 		window.location.reload();
@@ -85,7 +69,7 @@
 			>
 		{/if}
 	</a>
-	<p id="title">Demon List VN</p>
+	<a id="title" href='/'>Demon List VN</a>
 	{#if user && !forceSignIn}
 		<a href="#!" class="signOut" on:click={signOut}>Sign out</a>
 		<a class="submitBtn" href="#!" on:click={openModal}>
@@ -110,8 +94,8 @@
 	/>
 {/if}
 <div class={menuExpanded ? "sidebar1" : "sidebar"} id="sidebarDiv">
-	<a href="#!" class="sidebarIconWrapper" on:click={() => {pages = 0}}>
-		<div class={showHighlight("list")} id="sidebarIcon">
+	<a href="/" class="sidebarIconWrapper">
+		<div class='hide' id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 					><path
@@ -121,11 +105,11 @@
 			</div>
 			<p id="title1">List</p>
 		</div>
-		<p class={showTitle("list")} id="iconTitle">List</p>
+		<p class='hideText' id="iconTitle">List</p>
 	</a>
 	<hr />
-	<a href="#!" class="sidebarIconWrapper" on:click={() => {pages = 1}}>
-		<div class={showHighlight("settings")} id="sidebarIcon">
+	<a href="/settings" class="sidebarIconWrapper">
+		<div class='hide' id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 					><path
@@ -135,10 +119,10 @@
 			</div>
 			<p id="title1">Settings</p>
 		</div>
-		<p class={showTitle("settings")} id="iconTitle">Settings</p>
+		<p class='hideText' id="iconTitle">Settings</p>
 	</a>
-	<a href="#!" class="sidebarIconWrapper" on:click={() => {pages = 2}}>
-		<div class={showHighlight("info")} id="sidebarIcon" >
+	<a href="/about" class="sidebarIconWrapper">
+		<div class='hide' id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 					><path
@@ -148,7 +132,7 @@
 			</div>
 			<p id="title1">Info</p>
 		</div>
-		<p class={showTitle("about")} id="iconTitle">About</p>
+		<p class='hideText' id="iconTitle">About</p>
 	</a>
 	<div class="bottomPad" />
 </div>
@@ -238,6 +222,7 @@
 	}
 	.sidebarIcon {
 		display: flex;
+		margin-bottom: 2.5px;
 	}
 	.sidebar1 {
 		overflow-x: hidden;
@@ -348,6 +333,7 @@
 			font-weight: 600;
 			margin-top: 0;
 			margin-bottom: 0;
+			color: white;
 		}
 		.submitBtn {
 			background-color: #005ff9;
@@ -388,6 +374,7 @@
 			font-weight: 600;
 			margin-top: 0;
 			margin-bottom: 0;
+			color: white;
 		}
 		.submitBtn {
 			background-color: #005ff9;
