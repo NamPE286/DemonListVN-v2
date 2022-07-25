@@ -1,5 +1,10 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
+	import { userdata } from '../routes/stores'
+	var user;
+	userdata.subscribe(value => {
+		user = value
+	})
 	export var ifShow: boolean;
 </script>
 
@@ -23,10 +28,10 @@
 			</div>
 			<div class="s_flexcol" style="align-items: center;">
 				<select class="s_select">
-					<option value="Featured List">Featured List</option>
 					<option value="Demon List">Demon List</option>
+					<option value="Featured List">Featured List</option>
 				</select>
-				<input class="s_input" placeholder="Player name" />
+				<input class="s_input" value={user.data.name} readonly={true} />
 				<input class="s_input" placeholder="Level name" />
 				<input class="s_input" placeholder="Progress" type="number" />
 				<input class="s_input" placeholder="FPS" type="number" />
