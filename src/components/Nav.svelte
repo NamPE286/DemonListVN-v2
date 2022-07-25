@@ -147,7 +147,6 @@
 	}
 	.signOut {
 		color: #f90000;
-		font-weight: bolder;
 		margin-left: auto;
 		margin-right: 25px;
 	}

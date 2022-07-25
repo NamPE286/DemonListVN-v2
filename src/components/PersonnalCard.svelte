@@ -14,15 +14,15 @@
 			<div class="c_flexRow">
 				<!-- svelte-ignore empty-block -->
 				{#if staffYT == "#!" || staffYT == ""}{:else}
-					<a href={staffYT}><img class="c_icon" src="../youtube.svg" alt="youtube" /></a>
+					<a href={staffYT} target="_blank"><img class="c_icon" src="../youtube.svg" alt="youtube" /></a>
 				{/if}
 				<!-- svelte-ignore empty-block -->
 				{#if staffFB == "#!" || staffFB == ""}{:else}
-					<a href={staffFB}><img class="c_icon" src="../facebook.svg" alt="facebook" /></a>
+					<a href={staffFB} target="_blank"><img class="c_icon" src="../facebook.svg" alt="facebook" /></a>
 				{/if}
 				<!-- svelte-ignore empty-block -->
 				{#if staffGH == "#!" || staffGH == ""}{:else}
-					<a href={staffGH}><img class="c_icon" src="../github.svg" alt="github" /></a>
+					<a href={staffGH} target="_blank"><img class="c_icon" src="../github.svg" alt="github" /></a>
 				{/if}
 			</div>
 		</div>
