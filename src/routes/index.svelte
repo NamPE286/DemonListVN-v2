@@ -7,6 +7,8 @@
 	var flLegacy = [];
 	var dlLevels = [];
 	var dlLegacy = [];
+	var flPlayer = [];
+	var dlPlayer = [];
 	fetch("https://demon-listv2-api.vercel.app/levels/FL/page/1")
 		.then((response) => response.json())
 		.then((data) => {
@@ -20,6 +22,16 @@
 			dlLevels = data;
 			dlLegacy = dlLevels.slice(150, dlLevels.length);
 			dlLevels = dlLevels.slice(0, 150);
+		});
+	fetch("https://demon-listv2-api.vercel.app/players/FL/page/1")
+		.then((response) => response.json())
+		.then((data) => {
+			flPlayer = data;
+		});
+	fetch("https://demon-listv2-api.vercel.app/players/DL/page/1")
+		.then((response) => response.json())
+		.then((data) => {
+			dlPlayer = data;
 		});
 </script>
 
@@ -54,52 +66,98 @@
 		</ul>
 	</div>
 	<hr />
-	{#if list == 0}
-		{#each flLevels as item, index}
-			<Levels
-				top={item.flTop}
-				name={item.name}
-				creator={item.creator}
-				point={item.flPt}
-				videoID={item.videoID}
-				levelID={item.id}
-			/>
-		{/each}
-		<p id="legacyLabel"><span>Legacy List</span></p>
-		{#each flLegacy as item, index}
-			<Levels
-				top={item.flTop}
-				name={item.name}
-				creator={item.creator}
-				point={item.flPt}
-				videoID={item.videoID}
-				levelID={item.id}
-			/>
-		{/each}
-	{/if}
-	{#if list == 1}
-		{#each dlLevels as item, index}
-			<Levels
-				top={item.dlTop}
-				name={item.name}
-				creator={item.creator}
-				point={item.dlPt}
-				videoID={item.videoID}
-				levelID={item.id}
-			/>
-		{/each}
-		<p id="legacyLabel"><span>Legacy List</span></p>
+	{#if listOption == 0}
+		{#if list == 0}
+			{#each flLevels as item, index}
+				<Levels
+					top={item.flTop}
+					name={item.name}
+					creator={item.creator}
+					point={item.flPt}
+					videoID={item.videoID}
+					levelID={item.id}
+				/>
+			{/each}
+			<p id="legacyLabel"><span>Legacy List</span></p>
+			{#each flLegacy as item, index}
+				<Levels
+					top={item.flTop}
+					name={item.name}
+					creator={item.creator}
+					point={item.flPt}
+					videoID={item.videoID}
+					levelID={item.id}
+				/>
+			{/each}
+		{/if}
+		{#if list == 1}
+			{#each dlLevels as item, index}
+				<Levels
+					top={item.dlTop}
+					name={item.name}
+					creator={item.creator}
+					point={item.dlPt}
+					videoID={item.videoID}
+					levelID={item.id}
+				/>
+			{/each}
+			<p id="legacyLabel"><span>Legacy List</span></p>
 
-		{#each dlLegacy as item, index}
-			<Levels
-				top={item.dlTop}
-				name={item.name}
-				creator={item.creator}
-				point={item.dlPt}
-				videoID={item.videoID}
-				levelID={item.id}
-			/>
-		{/each}
+			{#each dlLegacy as item, index}
+				<Levels
+					top={item.dlTop}
+					name={item.name}
+					creator={item.creator}
+					point={item.dlPt}
+					videoID={item.videoID}
+					levelID={item.id}
+				/>
+			{/each}
+		{/if}
+	{/if}
+	{#if listOption == 1}
+		<div class="playersListWrapper">
+			<div class="playersList">
+				<div class='playerTop'>
+				</div>
+				<div class='playerName'>
+					<p>Player name</p>
+				</div>
+				<div class="playerPt">
+					<p>Total point</p>
+				</div>
+			</div>
+			{#if list == 0}
+				{#each flPlayer as item, index}
+					<div class="playersList" id={index % 2 ? '' : 'highlight2'}>
+						<div class='playerTop'>
+							<p>#{item.flrank}</p>
+						</div>
+						<div class='playerName'>
+							<a href='#!'>{item.name}</a>
+						</div>
+						<div class="playerPt">
+							<p>{item.totalFLpt}</p>
+						</div>
+					</div>
+				{/each}
+			{/if}
+			{#if list == 1}
+				{#each dlPlayer as item, index}
+					<div class="playersList" id={index % 2 ? '' : 'highlight2'}>
+						<div class='playerTop'>
+							<p>#{item.dlrank}</p>
+						</div>
+						<div class='playerName'>
+							<a href='#!'>{item.name}</a>
+						</div>
+						<div class="playerPt">
+							<p>{item.totalDLpt}</p>
+						</div>
+					</div>
+				{/each}
+			{/if}
+		</div>
 	{/if}
 	<div class="listSwitcherWrapper">
 		<div class="listSwitcher">
@@ -128,6 +186,9 @@
 </div>
 
 <style lang="scss">
+	#highlight2{
+		background-color: #202020;
+	}
 	#legacyLabel {
 		grid-column: 1 / 3;
 		margin-inline: auto;
@@ -153,19 +214,43 @@
 			"sel sel"
 			"line line"
 			"widget widget";
-		grid-auto-columns: 1fr;
+			grid-auto-columns: 1fr;
 	}
-	.pageContent2 {
-		display: grid;
-		width: 60%;
-		margin-inline: auto;
-		margin-bottom: 100px;
-		gap: 30px;
-		grid-template-areas:
-			"header"
-			"sel"
-			"line"
-			"widget";
+	.playersListWrapper{
+		grid-area: widget;
+		display: flex;
+		flex-direction: column;
+	}
+	.playersList{
+		height: 40px;
+		display: flex;
+		border-radius: 50px;
+		a{
+			color: white;
+			text-decoration: none;
+		}
+		.playerTop{
+			display: flex;
+			align-items: center;
+			width: 7%;
+			height: 100%;
+			p{
+				margin-left: 20px;
+			}
+		}
+		.playerName{
+			display: flex;
+			align-items: center;
+			width: 73%;
+			height: 100%;
+		}
+		.playerPt{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 20%;
+			height: 100%;
+		}
 	}
 	.listSwitcherWrapper {
 		width: 100%;
@@ -270,9 +355,6 @@
 				"sel"
 				"line"
 				"widget";
-		}
-		.pageContent2 {
-			width: 90%;
 		}
 		.listSelector {
 			a {
