@@ -2,6 +2,7 @@
 	import { fade } from "svelte/transition";
 	import { onMount } from "svelte";
 	import { createClient } from "@supabase/supabase-js";
+	import { userdata } from '../routes/stores'
 	import Modal from "./Modal.svelte";
 	import NameModal from "./NameModal.svelte";
 	async function addUser(user1) {
@@ -19,11 +20,13 @@
 		}
 	}
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-	var user = supabase.auth.user();
+	var user;
+	userdata.subscribe(value => {
+		user = value
+	})
 	supabase.auth.onAuthStateChange((_, session) => {
 		user = session.user;
 		addUser(session.user);
-		console.log('ss');
 	});
 	var menuExpanded: boolean = false;
 	var ifOntop: boolean = true;
