@@ -290,20 +290,6 @@
 		}
 	}
 	@media screen and (max-width: 1100px) {
-		.playersList {
-			.playerTop {
-				width: 15%;
-				p {
-					margin-left: 20px;
-				}
-			}
-			.playerName {
-				width: 50%;
-			}
-			.playerPt {
-				width: 35%;
-			}
-		}
 		.pageContent {
 			width: 90%;
 			grid-template-areas:
