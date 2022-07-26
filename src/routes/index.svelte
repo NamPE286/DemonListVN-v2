@@ -345,6 +345,20 @@
 		}
 	}
 	@media screen and (max-width: 1100px) {
+		.playersList{
+			.playerTop{
+				width: 15%;
+				p{
+					margin-left: 20px;
+				}
+			}
+			.playerName{
+				width: 50%;
+			}
+			.playerPt{
+				width: 35%;
+			}
+		}
 		#legacyLabel {
 			grid-column: 1;
 		}
