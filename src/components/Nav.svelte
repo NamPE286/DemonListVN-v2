@@ -140,7 +140,7 @@
 					/></svg
 				>
 			</div>
-			<p id="title1">Info</p>
+			<p id="title1">About</p>
 		</div>
 		<p class='hideText' id="iconTitle">About</p>
 	</a>
