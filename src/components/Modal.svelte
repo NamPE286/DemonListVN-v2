@@ -4,6 +4,7 @@
 	var user;
 	userdata.subscribe(value => {
 		user = value
+		console.log(value)
 	})
 	export var ifShow: boolean;
 </script>
@@ -31,7 +32,7 @@
 					<option value="Demon List">Demon List</option>
 					<option value="Featured List">Featured List</option>
 				</select>
-				<input class="s_input" value={user.data.name} readonly={true} />
+				<input class="s_input" value={user.data.data.name} readonly={true} />
 				<input class="s_input" placeholder="Level name" />
 				<input class="s_input" placeholder="Progress" type="number" />
 				<input class="s_input" placeholder="FPS" type="number" />
