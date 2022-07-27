@@ -10,7 +10,7 @@
 </script>
 
 {#if ifShow}
-<div out:fade="{{duration: 200}}">
+<div out:fade="{{duration: 200}}" id='abcs'>
 	<div
 		class="dimBg"
 		on:click={() => {
@@ -62,7 +62,7 @@
 		height: 200%;
 		width: 200%;
 		background-color: black;
-		z-index: 2;
+		z-index: 3;
 		opacity: 0.5;
 		top: 0;
 		left: 0;
@@ -86,7 +86,7 @@
 		background-color: #202020;
 		width: 36%;
 		border-radius: 48px;
-		z-index: 2;
+		z-index: 3;
 		transform: translateY(-50%);
 	}
 	.s_flexrow {
