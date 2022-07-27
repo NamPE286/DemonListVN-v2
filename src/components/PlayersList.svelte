@@ -33,7 +33,7 @@
 						<p>#{item.flrank}</p>
 					</div>
 					<div class="playerName">
-						<a href="#!">{item.name}</a>
+						<a href={`/player?id=${item.uid}`}>{item.name}</a>
 					</div>
 					<div class="playerPt">
 						<p>{item.totalFLpt}</p>
@@ -48,7 +48,7 @@
 						<p>#{item.dlrank}</p>
 					</div>
 					<div class="playerName">
-						<a href="#!">{item.name}</a>
+						<a href={`/player?id=${item.uid}`}>{item.name}</a>
 					</div>
 					<div class="playerPt">
 						<p>{item.totalDLpt}</p>
