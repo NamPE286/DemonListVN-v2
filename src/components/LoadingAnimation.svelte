@@ -104,5 +104,6 @@
 		left: 0;
 		right: 0;
 		padding: 5%;
+		margin-top: 100px;
 	}
 </style>
