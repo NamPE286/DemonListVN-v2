@@ -62,7 +62,7 @@
 		}
 		var { data, error} = await supabase.rpc('updateRank')
 		alert('Record added')
-		ifShow = !ifShow;
+		window.location.reload()
 	}
 	function cancel(){
 		a = {

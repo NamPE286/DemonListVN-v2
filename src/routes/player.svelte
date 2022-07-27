@@ -68,16 +68,22 @@
 		alert("Copied tag to clipboard");
 	}
 	async function removeLevel(item, index){
+		if(list == 1){
+			flrec.splice(index, 1);
+			flrec = flrec
+		}
+		else if(list == 0){
+			dlrec.splice(index, 1);
+			dlrec = dlrec
+		}
 		var { data, error } = await supabase
 			.from('records')
 			.delete()
 			.match({ id: item.id })
-		console.log(data, error);
 		if (error) {
 			alert(error.message);
 			return;
 		}
-		alert('Record removed');
 		var { data, error} = await supabase.rpc('updateRank')
 	}
 </script>

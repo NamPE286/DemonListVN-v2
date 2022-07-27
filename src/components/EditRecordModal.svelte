@@ -64,7 +64,7 @@
 		}
 		var { data, error} = await supabase.rpc('updateRank')
 		alert('Successfully updated')
-		ifShow = !ifShow;
+		window.location.reload()
 	}
 	function cancel(){
 		a = {
@@ -106,13 +106,12 @@
 					href="#!"
 					class="s_button2 s_margin6 s_red"
 					on:click={() => {
-						ifShow = !ifShow;
 						cancel()
 					}}>Cancel</a
 				>
 				<a href="#!" class="s_button2 s_margin5 s_blue" on:click={() => {
 					apply()
-				}}>Add</a>
+				}}>Edit</a>
 			</div>
 		</div>
 	</div>
