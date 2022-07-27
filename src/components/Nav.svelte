@@ -22,16 +22,9 @@
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	var user;
 	var uid;
-	userdata.subscribe(value => {
-		user = value
-		try {
-			uid = value.metadata.id;
-		} catch {
-			console.log(value.metadata);
-		}
-	})
 	supabase.auth.onAuthStateChange((_, session) => {
 		user = session.user;
+		uid = user.id
 		addUser(session.user);
 	});
 	var menuExpanded: boolean = false;
@@ -49,9 +42,6 @@
 	var submitClicked: boolean = false;
 	function openModal() {
 		submitClicked = !submitClicked;
-	}
-	function sidebarChooser(list) {
-
 	}
 	async function signIn() {
 		const { user, session, error } = await supabase.auth.signIn({
@@ -79,13 +69,13 @@
 		{/if}
 	</a>
 	<a id="title" href='/'>Demon List VN</a>
-	{#if user && !forceSignIn}
+	{#if uid && !forceSignIn}
 		<a href="#!" class="signOut" on:click={signOut}>Sign out</a>
 		<a class="submitBtn" href="#!" on:click={openModal}>
 			<p>Submit</p>
 		</a>
 	{/if}
-	{#if !user || forceSignIn}
+	{#if !uid || forceSignIn}
 		<a class="submitBtn" id="signIn" href="#!" on:click={signIn}>
 			<p>Sign In</p>
 		</a>
