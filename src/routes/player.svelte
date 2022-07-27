@@ -9,9 +9,9 @@
 	var flrec = [];
 	var dlrec = [];
 	var user;
-	var uid;
 	userdata.subscribe((value) => {
 		user = value;
+		console.log(user.data.data.isAdmin)
 	});
 	var showEditProfileModal = false;
 	fetch(`https://demon-listv2-api.vercel.app/players/${id}`)
@@ -116,7 +116,7 @@
 					</a>
 				</div>
 			</div>
-			{#if id == user.metadata.id}
+			{#if id == user.metadata.id || user.data.data.isAdmin}
 				<a
 					href="#!"
 					class="editProfile"
@@ -207,7 +207,7 @@
 			</div>
 		{/if}
 	</div>
-	{#if id == uid}
+	{#if id == user.metadata.id || user.data.data.isAdmin}
 		<EditProfileModal bind:ifShow={showEditProfileModal} />
 	{/if}
 {:else}
