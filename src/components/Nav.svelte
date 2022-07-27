@@ -117,7 +117,7 @@
 		<p class='hideText' id="iconTitle">List</p>
 	</a>
 	<hr />
-	{#if user}
+	{#if uid}
 	<a href={`/player?id=${uid}`} class="sidebarIconWrapper">
 		<div class='hide' id="sidebarIcon">
 			<div class="sidebarIcon">
