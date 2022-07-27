@@ -1,5 +1,6 @@
 <script>
 	import { page } from "$app/stores";
+	import LoadingAnimation from "../components/LoadingAnimation.svelte";
 	const id = $page.url.searchParams.get("id");
 	var level = null;
 	var levelAPI = null;
@@ -109,6 +110,8 @@
 			<span>{levelAPI.length}</span>
 		</div>
 	</div>
+	{:else}
+	<LoadingAnimation />
 {/if}
 
 <style lang="scss">

@@ -159,7 +159,7 @@
 		height: 120%;
 		width: 100%;
 		background-color: black;
-		z-index: 1;
+		z-index: 2;
 		opacity: 0.5;
 		transition: all 0.3s;
 		display: none;
@@ -323,7 +323,7 @@
 		width: 100%;
 		height: 60px;
 		box-sizing: border-box;
-		z-index: 2;
+		z-index: 3;
 		display: flex;
 		align-items: center;
 		transition: background-color 0.3s;
@@ -364,7 +364,7 @@
 		width: 100%;
 		height: 60px;
 		box-sizing: border-box;
-		z-index: 2;
+		z-index: 3;
 		display: flex;
 		align-items: center;
 		transition: background-color 0.3s;

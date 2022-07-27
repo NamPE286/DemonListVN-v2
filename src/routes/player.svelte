@@ -1,5 +1,6 @@
 <script>
 	import { page } from "$app/stores";
+	import LoadingAnimation from "../components/LoadingAnimation.svelte";
 	const id = $page.url.searchParams.get("id");
 	var player;
 	var list = 1;
@@ -164,6 +165,8 @@
 			</div>
 		{/if}
 	</div>
+	{:else}
+	<LoadingAnimation/>
 {/if}
 
 <style lang="scss">
