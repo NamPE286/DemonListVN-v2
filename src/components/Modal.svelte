@@ -4,7 +4,6 @@
 	var user;
 	userdata.subscribe(value => {
 		user = value
-		console.log(value)
 	})
 	export var ifShow: boolean;
 </script>

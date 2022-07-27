@@ -12,11 +12,6 @@
 	var uid;
 	userdata.subscribe((value) => {
 		user = value;
-		try {
-			uid = value.metadata.id;
-		} catch {
-			console.log(value.metadata);
-		}
 	});
 	var showEditProfileModal = false;
 	fetch(`https://demon-listv2-api.vercel.app/players/${id}`)
@@ -121,7 +116,7 @@
 					</a>
 				</div>
 			</div>
-			{#if id == uid}
+			{#if id == user.metadata.id}
 				<a
 					href="#!"
 					class="editProfile"
