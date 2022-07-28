@@ -10,7 +10,7 @@
 	export var ifShow: boolean;
 	var a = {
 		levelid: null,
-		userid: user.metadata.id,
+		userid: null,
 		videoLink: null,
 		refreshRate: null,
 		progress: null,
@@ -19,6 +19,7 @@
 	}
 	async function submit(){
 		a.timestamp = Date.now()
+		a.userid = user.metadata.id
 		console.log(a)
 		var { data, error } = await supabase
 			.from('submissions')
