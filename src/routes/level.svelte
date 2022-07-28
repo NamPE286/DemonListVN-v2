@@ -1,19 +1,71 @@
 <script>
 	import { page } from "$app/stores";
+	import { userdata } from "./stores";
+	import { createClient } from "@supabase/supabase-js";
 	import LoadingAnimation from "../components/LoadingAnimation.svelte";
+	import AddRecordModal from "../components/AddRecordModal.svelte";
+	import EditRecordModal from "../components/EditRecordModal.svelte";
 	const id = $page.url.searchParams.get("id");
 	var level = null;
+	var records = [];
 	var levelAPI = null;
+	var currentLevel;
+	var player;
+	var user;
+	var lid;
+	user = {
+		data: {
+			data: {
+				id: null,
+				name: null,
+				email: null,
+				avatar: null,
+				facebook: null,
+				youtube: null,
+				discord: null,
+				totalFLpt: null,
+				totalDLpt: null,
+				flrank: null,
+				dlrank: null,
+				uid: null,
+				isAdmin: false
+			},
+			records: []
+		},
+		metadata: {
+			id: null
+		}
+	};
+	userdata.subscribe((value) => {
+		if (value.metadata) user = value;
+	});
+	var showEditProfileModal = false;
+	var showAddRecordModal = false;
+	var showEditRecordModal = false;
+	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	fetch(`https://demon-listv2-api.vercel.app/levels/${id}`)
 		.then((response) => response.json())
-		.then((data) => (level = data));
-    fetch(`https://gdbrowser.com/api/level/${id}`)
+		.then((data) => {
+			level = data.data;
+			if (data.records) records = data.records;
+		});
+	fetch(`https://gdbrowser.com/api/level/${id}`)
 		.then((response) => response.json())
 		.then((data) => (levelAPI = data));
-    function getPoint(){
-        if(level.flPt && level.dlPt) return `${level.dlPt}pt (#${level.flTop} ${level.flPt}pt)`
-        return `${level.flPt ? level.flPt : level.dlPt}pt`
-    }
+	function getPoint() {
+		if (level.flPt && level.dlPt) return `${level.dlPt}pt (#${level.flTop} ${level.flPt}pt)`;
+		return `${level.flPt ? level.flPt : level.dlPt}pt`;
+	}
+	async function removeLevel(item, index) {
+		var { data, error } = await supabase.from("records").delete().match({ id: item.id });
+		if (error) {
+			alert(error.message);
+			return;
+		}
+		records.splice(index, 1);
+		records = records;
+		var { data, error } = await supabase.rpc("updateRank");
+	}
 </script>
 
 {#if level && levelAPI}
@@ -45,11 +97,11 @@
 					{levelAPI.description}
 				</span>
 			</p>
-            {#if level.dlPt}
-                <p><b>Minimum Progress: </b><span class='desc'>{level.minProgress}%</span></p>
-            {/if}
-            <p><b>Difficulty: </b><span class='desc'>{levelAPI.difficulty}</span></p>
-            <p><b>ID: </b><span class='desc'>{id}</span></p>
+			{#if level.dlPt}
+				<p><b>Minimum Progress: </b><span class="desc">{level.minProgress}%</span></p>
+			{/if}
+			<p><b>Difficulty: </b><span class="desc">{levelAPI.difficulty}</span></p>
+			<p><b>ID: </b><span class="desc">{id}</span></p>
 		</div>
 		<div class="additionalInfo">
 			<svg
@@ -93,7 +145,7 @@
 					fill="#fff"
 				/>
 			</svg>
-			<span>{levelAPI.coins} {levelAPI.coins && !levelAPI.verifiedCoins ? '(N/v)' : ''}</span>
+			<span>{levelAPI.coins} {levelAPI.coins && !levelAPI.verifiedCoins ? "(N/v)" : ""}</span>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="29.78"
@@ -109,18 +161,85 @@
 			</svg>
 			<span>{levelAPI.length}</span>
 		</div>
+		<div class="playersListWrapper">
+			<div class="playersList">
+				<div class="playerName">
+					<p>Player name</p>
+				</div>
+				<div class="playerPt">
+					<p>Progress</p>
+				</div>
+			</div>
+			{#each records as item, index}
+				<div class="playersList" id={index % 2 ? "" : "highlight2"}>
+					<div class="playerName">
+						<a href={`/player?id=${item.userid}`}>{item.players.name}</a><a
+							href={item.videoLink}
+							target="_blank"
+							id="videoLink">(Video Link)</a
+						>
+					</div>
+					<div class="playerPt">
+						<p>{item.progress}% ({item.refreshRate}fps)</p>
+						{#if user.data.data.isAdmin}
+							<a
+								href="#!"
+								on:click={() => {
+									showEditRecordModal = !showEditProfileModal;
+									currentLevel = item;
+									player = {
+										data:{
+											uid: item.userid
+										}
+									};
+								}}
+								><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+									><path
+										d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"
+									/></svg
+								></a
+							>
+							<a href="#!" on:click={() => removeLevel(item, index)}
+								><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+									><path
+										d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z"
+									/></svg
+								></a
+							>
+						{/if}
+					</div>
+				</div>
+			{/each}
+		</div>
 	</div>
-	{:else}
+	{#if user.data.data.isAdmin}
+		{#if player}
+			<AddRecordModal bind:ifShow={showAddRecordModal} {player} />
+			{#if currentLevel}
+				<EditRecordModal bind:ifShow={showEditRecordModal} {player} level={currentLevel} />
+			{/if}
+		{/if}
+	{/if}
+{:else}
 	<LoadingAnimation />
 {/if}
 
 <style lang="scss">
+	#highlight2 {
+		background-color: #202020;
+	}
+	#abcs {
+		display: none;
+	}
+	#videoLink {
+		margin-left: 3px;
+	}
 	iframe {
 		grid-area: widget1;
 		border-radius: 50px;
 	}
-	svg{
-		transform: scale(0.7)
+	svg {
+		transform: scale(0.7);
 	}
 	.pageContent {
 		display: grid;
@@ -132,7 +251,8 @@
 			"header header"
 			"widget1 widget"
 			"widget1 widget"
-			"widget1 widget2";
+			"widget1 widget2"
+			"record record";
 		grid-auto-columns: 1fr;
 	}
 	.thumbnailWidget {
@@ -196,12 +316,76 @@
 		span {
 			margin-inline: 6px;
 		}
-        padding-top: 10px;
-        padding-bottom: 10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
 	}
 	.desc {
 		color: #b8b8b8;
 	}
+	.playersListWrapper {
+		grid-area: record;
+		display: flex;
+		flex-direction: column;
+	}
+	.playerName {
+		font-size: 30px;
+		font-weight: 500;
+		margin-bottom: 30px;
+		svg {
+			filter: invert(1);
+			margin-left: -30px;
+		}
+	}
+	.playersList {
+		height: 50px;
+		display: flex;
+		border-radius: 50px;
+		a {
+			color: white;
+			text-decoration: none;
+		}
+		.playerName {
+			display: flex;
+			align-items: center;
+			font-size: 16px;
+			width: 80%;
+			height: 100%;
+			p {
+				margin-left: 40px;
+			}
+			a {
+				margin-left: 40px;
+			}
+		}
+		.playerPt {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 20%;
+			height: 100%;
+			svg {
+				filter: invert(1);
+				margin-left: 15px;
+			}
+		}
+	}
+	.editProfile {
+		background-color: #202020;
+		height: 80px;
+		width: 100%;
+		border-radius: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 30px;
+		color: white;
+		text-decoration: none;
+		svg {
+			filter: invert(1);
+			margin-right: 10px;
+		}
+	}
+
 	@media screen and (max-width: 1450px) {
 		.pageContent {
 			width: 80%;
@@ -211,20 +395,21 @@
 		.pageContent {
 			width: 90%;
 			grid-template-areas:
-			"header"
-			"widget1"
-			"widget"
-			"widget2";
+				"header"
+				"widget1"
+				"widget"
+				"widget2"
+				"record";
 		}
 		iframe {
 			width: 100%;
 		}
-		.levelInfo{
-			.top{
+		.levelInfo {
+			.top {
 				margin-left: 35px;
 			}
 		}
-		.thumbnailWidget{
+		.thumbnailWidget {
 			height: 350px;
 		}
 	}
