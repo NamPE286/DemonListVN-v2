@@ -1,0 +1,91 @@
+<script>
+    import { createClient } from "@supabase/supabase-js";
+    import Title from "../../components/Title.svelte";
+    const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+    var submissions = [];
+    async function getData(){
+        var { data, error } = await supabase
+            .from('submissions')
+            .select('*, levels!inner(name, flTop), players(name)')
+            .not('levels.flTop', 'is', null)
+        submissions = data
+        console.log(data, error)
+    }
+    getData()
+    async function reject(item, index){
+        var { data, error } = await supabase
+			.from('submissions')
+			.delete()
+			.match({ id: item.id })
+        submissions.splice(index, 1)
+        submissions = submissions
+    }
+    async function accept(item, index){
+        delete item.id
+        var { data, error } = await supabase
+			.from('records')
+			.insert(item)
+        var { data, error } = await supabase
+			.from('submissions')
+			.delete()
+			.match({ id: item.id })
+        submissions.splice(index, 1)
+        submissions = submissions
+    }
+</script>
+<div class="pageContent">
+    <Title title="Submit Checker" description={`Total submissions: ${submissions.length.toString()}`} />
+    {#each submissions as item, index}
+        <div class='submit'>
+            <p><b id='title'>{item.levels.name}</b><br>
+                Player name: {item.players.name}<br>
+                Comment: {item.comment}<br>
+                Video Link: <a href={item.videoLink}>{item.videoLink}</a>
+            </p>
+            <button id='bla' on:click={() => reject(item, index)}>Reject</button>
+            <button on:click={() => accept(item, index)}>Accept</button>
+        </div>
+    {/each}
+</div>
+
+
+<style lang='scss'>
+    #title{
+        font-size: 25px;
+    }
+    #bla{
+        margin-left: 50px;
+    }
+	.pageContent {
+		display: grid;
+		width: 60%;
+		margin-inline: auto;
+		margin-bottom: 100px;
+		gap: 30px;
+		grid-template-areas:
+			"header"
+			"widget";
+		grid-auto-columns: 1fr;
+	}
+    .submit{
+        grid-area: widget;
+        height: 160px;
+        width: 100%;
+        background-color: #202020;
+        border-radius: 50px;
+        p{
+            margin-left: 50px;
+            font-size: 16px;
+        }
+    }
+    @media screen and (max-width: 1450px) {
+		.pageContent {
+			width: 80%;
+		}
+	}
+	@media screen and (max-width: 1100px) {
+		.pageContent {
+			width: 90%;
+		}
+	}
+</style>
