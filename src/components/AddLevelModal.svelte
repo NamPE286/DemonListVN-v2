@@ -9,28 +9,19 @@
 		user1 = JSON.parse(JSON.stringify(value))
 	})
 	export var ifShow: boolean;
-	export var level: any;
+	var level = {
+		id: null,
+		name: null,
+		creator: null,
+		videoID: null,
+		minProgress: null,
+		flTop: null,
+		dlTop: null,
+	}
 	var prevFL = JSON.parse(JSON.stringify(level.flTop))
 	var prevDL = JSON.parse(JSON.stringify(level.dlTop))
-	var deleteLv = ''
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function apply(){
-		if(deleteLv == 'yes'){
-			var { data, error } = await supabase
-				.from('levels')
-				.delete()
-				.match({id: level.id})
-			if(error){
-				console.log(error)
-				alert("An error occured")
-				return
-			}
-			var { data, error } = await supabase
-				.rpc('updateRank')
-			alert('Level Deleted')
-			window.location.replace('/')
-			return
-		}
 		if(level.flTop == ""){
 			level.flTop = null
 		}
@@ -47,8 +38,7 @@
 		}
 		var { data, error } = await supabase
 			.from('levels')
-			.update(level)
-			.match({id: level.id})
+			.insert(level)
 		if(error){
 			console.log(error)
 			alert("An error occured")
@@ -89,7 +79,6 @@
 				<input class="s_input" placeholder="Minimum Progress" bind:value={level.minProgress} />
 				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop}/>
 				<input class="s_input" placeholder="Demon List Top (leave blank for null)" bind:value={level.dlTop} />
-				<input class="s_input" placeholder="Delete level? (type yes to proceed, if not leave this blank)" bind:value={deleteLv} />
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<a

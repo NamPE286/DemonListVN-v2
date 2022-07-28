@@ -2,12 +2,15 @@
 	import Title from "../components/Title.svelte";
 	import Levels from "../components/Levels.svelte";
 	import PlayersList from "../components/PlayersList.svelte";
+	import AddLevelModal from "../components/AddLevelModal.svelte";
+	import { userdata } from "../routes/stores";
 	var list = 1;
 	var listOption = 0;
 	var flLevels = [];
 	var flLegacy = [];
 	var dlLevels = [];
 	var dlLegacy = [];
+	var showAddLevelModal = false;
 	fetch("https://demon-listv2-api.vercel.app/levels/FL/page/1")
 		.then((response) => response.json())
 		.then((data) => {
@@ -22,6 +25,10 @@
 			dlLegacy = dlLevels.slice(150, dlLevels.length);
 			dlLevels = dlLevels.slice(0, 150);
 		});
+	var user;
+	userdata.subscribe(value => {
+		user = value;
+	});
 </script>
 
 <title>List - Demon List VN</title>
@@ -40,6 +47,7 @@
 					id={listOption == 0 ? "highlight1" : ""}
 					on:click={() => {
 						listOption = 0;
+						user = user
 					}}>Levels Listing</a
 				>
 			</li>
@@ -53,6 +61,14 @@
 				>
 			</li>
 		</ul>
+		{#if user.data.data.isAdmin}
+			<a href='#!' id='noDec' on:click={() => showAddLevelModal = !showAddLevelModal}>
+				<div class="AddLvBtn">
+					<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M18.625 31.667V21.375H8.333v-2.75h10.292V8.333h2.75v10.292h10.292v2.75H21.375v10.292Z"/></svg>
+					<span>Add Level</span>
+				</div>
+			</a>
+		{/if}
 	</div>
 	<hr />
 	{#if listOption == 0}
@@ -104,7 +120,7 @@
 			{/each}
 		{/if}
 	{/if}
-	<PlayersList bind:list={list} bind:listOption={listOption}/>
+	<PlayersList bind:list bind:listOption />
 	<div class="listSwitcherWrapper">
 		<div class="listSwitcher">
 			<a
@@ -130,8 +146,28 @@
 		</div>
 	</div>
 </div>
-
+{#if user}
+	{#if user.data.data.isAdmin}
+		<AddLevelModal bind:ifShow={showAddLevelModal} />
+	{/if}
+{/if}
 <style lang="scss">
+	#noDec{
+		text-decoration: none;
+	}
+	.AddLvBtn{
+		background-color: #353535;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 20px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		color: white;
+		svg{
+			filter: invert(1);
+		}
+	}
 	#legacyLabel {
 		grid-column: 1 / 3;
 		margin-inline: auto;
@@ -157,7 +193,7 @@
 			"sel sel"
 			"line line"
 			"widget widget";
-			grid-auto-columns: 1fr;
+		grid-auto-columns: 1fr;
 	}
 	.listSwitcherWrapper {
 		width: 100%;

@@ -5,7 +5,11 @@ const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE
 var dat = supabase.auth.user()
 var dat1 = {
     metadata: {},
-    data: {}
+    data: {
+        data:{
+            isAdmin: false
+        }
+    }
 }
 dat1.metadata = dat
 if(dat){
