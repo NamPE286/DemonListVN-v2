@@ -1,11 +1,58 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
 	import { userdata } from '../routes/stores'
+	import { createClient } from "@supabase/supabase-js";
+	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	var user;
 	userdata.subscribe(value => {
 		user = value
 	})
 	export var ifShow: boolean;
+	var a = {
+		levelid: null,
+		userid: user.metadata.id,
+		videoLink: null,
+		refreshRate: null,
+		progress: null,
+		timestamp: null,
+		comment: ''
+	}
+	async function submit(){
+		a.timestamp = Date.now()
+		console.log(a)
+		var { data, error } = await supabase
+			.from('submissions')
+			.insert(a)
+		console.log(data, error)
+		if(error){
+			console.log(error)
+			alert('An error occured')
+			return
+		}
+		a = {
+			levelid: null,
+			userid: user.metadata.id,
+			videoLink: null,
+			refreshRate: null,
+			progress: null,
+			timestamp: null,
+			comment: ''
+		}
+		alert('Level submitted')
+		ifShow = false
+	}
+	function cancel(){
+		a = {
+			levelid: null,
+			userid: user.metadata.id,
+			videoLink: null,
+			refreshRate: null,
+			progress: null,
+			timestamp: null,
+			comment: ''
+		}
+		ifShow = false
+	}
 </script>
 
 {#if ifShow}
@@ -32,21 +79,21 @@
 					<option value="Featured List">Featured List</option>
 				</select>
 				<input class="s_input" value={user.data.data.name} readonly={true} />
-				<input class="s_input" placeholder="Level name" />
-				<input class="s_input" placeholder="Progress" type="number" />
-				<input class="s_input" placeholder="FPS" type="number" />
-				<input class="s_input" placeholder="Video link" />
-				<input class="s_input" placeholder="Comment (optional)" />
+				<input class="s_input" placeholder="Level ID" type="number" bind:value={a.levelid}/>
+				<input class="s_input" placeholder="Progress" type="number" bind:value={a.progress}/>
+				<input class="s_input" placeholder="FPS" type="number" bind:value={a.refreshRate} />
+				<input class="s_input" placeholder="Video link" bind:value={a.videoLink} />
+				<input class="s_input" placeholder="Comment (optional)" bind:value={a.comment} />
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<a
 					href="#!"
 					class="s_button2 s_margin6 s_red"
 					on:click={() => {
-						ifShow = !ifShow;
+						cancel()
 					}}>Cancel</a
 				>
-				<a href="#!" class="s_button2 s_margin5 s_blue">Submit</a>
+				<a href="#!" class="s_button2 s_margin5 s_blue" on:click={submit}>Submit</a>
 			</div>
 		</div>
 	</div>
