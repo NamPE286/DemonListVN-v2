@@ -4,6 +4,7 @@
 </script>
 
 <div class="pageContent">
+	<title>About - Demon List VN</title>
 	<Title
 		title="About"
 		description="A list of people who maintain Demon List VN as well as the website developers"
