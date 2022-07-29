@@ -8,8 +8,8 @@
             .from('submissions')
             .select('*, levels!inner(name, flTop), players(name)')
             .not('levels.flTop', 'is', null)
+            .order('timestamp', {ascending: false})
         submissions = data
-        console.log(data, error)
     }
     getData()
     async function reject(item, index){
@@ -68,7 +68,6 @@
 		grid-auto-columns: 1fr;
 	}
     .submit{
-        grid-area: widget;
         height: 160px;
         width: 100%;
         background-color: #202020;

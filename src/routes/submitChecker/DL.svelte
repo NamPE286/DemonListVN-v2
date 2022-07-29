@@ -8,6 +8,7 @@
             .from('submissions')
             .select('*, levels!inner(name, dlTop), players(name)')
             .not('levels.dlTop', 'is', null)
+            .order('timestamp', {ascending: false})
         submissions = data
         console.log(data, error)
     }
@@ -73,7 +74,6 @@
 		grid-auto-columns: 1fr;
 	}
     .submit{
-        grid-area: widget;
         height: 160px;
         width: 100%;
         background-color: #202020;
