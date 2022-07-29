@@ -56,7 +56,7 @@
 	}
 </script>
 
-{#if ifShow}
+{#if ifShow && user}
 <div out:fade="{{duration: 200}}" id='abcs'>
 	<div
 		class="dimBg"
