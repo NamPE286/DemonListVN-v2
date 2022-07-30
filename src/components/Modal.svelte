@@ -27,7 +27,7 @@
 		console.log(data, error)
 		if(error){
 			console.log(error)
-			alert('An error occured')
+			alert('An error occured\n' + '(' + error.message + ')')
 			return
 		}
 		a = {
