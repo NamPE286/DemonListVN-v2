@@ -18,14 +18,15 @@
 		comment: ''
 	}
 	async function submit(){
+		a.timestamp = Date.now()
+		a.userid = user.metadata.id
 		for(const i in a){
+			console.log(i)
 			if(a[i] == null){
 				alert('Please fill in all fields')
 				return
 			}
 		}
-		a.timestamp = Date.now()
-		a.userid = user.metadata.id
 		console.log(a)
 		var { data, error } = await supabase
 			.from('submissions')
