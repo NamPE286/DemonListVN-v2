@@ -18,6 +18,12 @@
 		comment: ''
 	}
 	async function submit(){
+		for(const i in a){
+			if(a[i] == null){
+				alert('Please fill in all fields')
+				return
+			}
+		}
 		a.timestamp = Date.now()
 		a.userid = user.metadata.id
 		console.log(a)
