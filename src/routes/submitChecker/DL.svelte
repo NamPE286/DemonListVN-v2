@@ -43,7 +43,7 @@
     <Title title="Submit Checker" description={`Total submissions: ${submissions.length.toString()}`} />
     {#each submissions as item, index}
         <div class='submit'>
-            <p><b id='title'>{item.levels.name}</b><br>
+            <p><b id='title'>{item.levels.name}</b> ({item.progress}%) ({item.refreshRate}hz) (ID:{item.levelid})<br>
                 Player name: {item.players.name}<br>
                 Comment: {item.comment}<br>
                 Video Link: <a href={item.videoLink}>{item.videoLink}</a>
