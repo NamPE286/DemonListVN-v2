@@ -10,18 +10,19 @@
             .not('levels.dlTop', 'is', null)
             .order('timestamp', {ascending: false})
         submissions = data
-        console.log(data, error)
     }
     getData()
     async function reject(item, index){
+        submissions.splice(index, 1)
+        submissions = submissions
         var { data, error } = await supabase
 			.from('submissions')
 			.delete()
 			.match({ id: item.id })
-        submissions.splice(index, 1)
-        submissions = submissions
     }
     async function accept(item, index){
+        submissions.splice(index, 1)
+        submissions = submissions
         var { data, error } = await supabase
 			.from('submissions')
 			.delete()
@@ -35,8 +36,6 @@
 			.from('records')
 			.insert(item)
         console.log(data, error)
-        submissions.splice(index, 1)
-        submissions = submissions
     }
 </script>
 <div class="pageContent">

@@ -11,28 +11,32 @@
             .eq('progress', 100)
             .order('timestamp', {ascending: false})
         submissions = data
-        console.log(data)
     }
     getData()
     async function reject(item, index){
+        submissions.splice(index, 1)
+        submissions = submissions
         var { data, error } = await supabase
 			.from('submissions')
 			.delete()
 			.match({ id: item.id })
-        submissions.splice(index, 1)
-        submissions = submissions
     }
     async function accept(item, index){
+        submissions.splice(index, 1)
+        submissions = submissions
+        var { data, error } = await supabase
+			.from('submissions')
+			.delete()
+			.match({ id: item.id })
+        console.log(data, error)
         delete item.id
+        delete item.comment
+        delete item.players
+        delete item.levels
         var { data, error } = await supabase
 			.from('records')
 			.insert(item)
-        var { data, error } = await supabase
-			.from('submissions')
-			.delete()
-			.match({ id: item.id })
-        submissions.splice(index, 1)
-        submissions = submissions
+        console.log(data, error)
     }
 </script>
 <div class="pageContent">
