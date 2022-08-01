@@ -52,6 +52,28 @@
 		window.location.reload();
 		const { error } = await supabase.auth.signOut();
 	}
+
+	var searchValue = ''
+	var tOut = []
+	var searchRes = []
+	var isTyping = false
+	function typingAction(){
+		isTyping = true
+		for (var i=0; i < tOut.length; i++) {
+			clearTimeout(tOut[i]);
+		}
+		tOut = []
+		tOut.push(setTimeout(()=>{
+			console.log('stopped typing')
+			if(searchValue.length) fetch(`https://demon-listv2-api.vercel.app/search/${searchValue}`)
+				.then((response) => response.json())
+				.then((data) => {
+					searchRes = data
+					console.log(searchRes)
+					isTyping = false
+				});
+		},600));
+	}
 </script>
 
 <div class={ifOntop ? "topBar" : "topBar1"}>
@@ -69,6 +91,20 @@
 		{/if}
 	</a>
 	<a id="title" href='/'>Demon List VN</a>
+	<input class='searchBox' placeholder='Search' bind:value={searchValue} on:input={typingAction} >
+	{#if (searchRes.length && searchValue.length) && !isTyping}
+		<div class="searchRes">
+			{#each searchRes as item, index}
+				<a href={`/level?id=${item.id}`} on:click={() => searchValue = ''}><br><b>{item.name}</b> by {item.creator}</a><br>
+			{/each}<br>
+		</div>
+	{/if}
+	{#if (!searchRes.length && searchValue.length) && !isTyping}
+		<div class="searchRes">
+				<a href='#!' on:click={() => searchValue = ''}><br><b>No result</a><br>
+			<br>
+		</div>
+	{/if}
 	{#if uid && !forceSignIn}
 		<a href="#!" class="signOut" on:click={signOut}>Sign out</a>
 		<a class="submitBtn" href="#!" on:click={openModal}>
@@ -403,6 +439,32 @@
 			transition: 0.15s;
 		}
 	}
+	.searchBox{
+		background-color: #2d2d2d;
+		border-color: transparent;
+		border-radius: 8px;
+		height: 55%;
+		margin-left: auto;
+		width: 400px;
+		box-sizing: border-box;
+		padding-inline: 15px;
+		color: white;
+	}
+	.searchRes{
+		position: fixed;
+		left: calc(50% - 207.5px);
+		top: 60px;
+		background-color: #2d2d2d;
+		width: 400px;
+		border-radius: 8px;
+		box-sizing: border-box;
+		padding-inline: 15px;
+		a{
+			color: white;
+			text-decoration: none;
+			width: 100%;
+		}
+	}
 	@media screen and (max-width: 1580px) {
 		.dimBg {
 			display: block;
@@ -417,6 +479,12 @@
 			width: 0;
 		}
 		#title {
+			display: none;
+		}
+		.searchBox{
+			display: none;
+		}
+		.searchRes{
 			display: none;
 		}
 	}
