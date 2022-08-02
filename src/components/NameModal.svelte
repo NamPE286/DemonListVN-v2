@@ -5,6 +5,10 @@
 	export var uid:string
 	var newname:string = ''
 	async function updateName(){
+		if(newname.length == 0){
+			alert('Please enter a name')
+			return
+		}
 		const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 		const { data, error } = await supabase
 			.from('players')
