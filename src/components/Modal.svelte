@@ -50,6 +50,7 @@
 		ifShow = false
 	}
 	function cancel(){
+		ifShow = !ifShow
 		a = {
 			levelid: null,
 			userid: user.metadata.id,
@@ -59,7 +60,6 @@
 			timestamp: null,
 			comment: ''
 		}
-		ifShow = false
 	}
 </script>
 
