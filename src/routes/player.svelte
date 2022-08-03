@@ -59,14 +59,21 @@
 		}
 		var { data, error} = await supabase.rpc('updateRank')
 	}
+	function getID(){
+		try{
+			return getID()
+		}
+		catch{
+			return null
+		}
+	}
 </script>
 
-<head>
-	<title>{player.data.name}'s Info - Demon List VN</title>
-	<meta name="description" content="{player.data.name}'s Info" />
-</head>
-
 {#if player}
+	<head>
+		<title>{player.data.name}'s Info - Demon List VN</title>
+		<meta name="description" content="{player.data.name}'s Info" />
+	</head>
 	<div class="pageContent">
 		<div class="playerInfoWidgetWrapper">
 			<div class="playerInfoWidget">
@@ -141,7 +148,7 @@
 					</a>
 				</div>
 			</div>
-			{#if id == $userdata.metadata.id}
+			{#if id == getID()}
 				<a
 					href="#!"
 					class="editProfile"
@@ -288,7 +295,7 @@
 			</div>
 		{/if}
 	</div>
-	{#if id == $userdata.metadata.id}
+	{#if id == getID()}
 		<EditProfileModal bind:ifShow={showEditProfileModal} />
 	{/if}
 	{#if $userdata.data.data.isAdmin}
