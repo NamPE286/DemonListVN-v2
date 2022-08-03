@@ -12,6 +12,7 @@
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function apply(){
 		const a = {
+			name: user.data.data.name,
 			avatar: user.data.data.avatar,
 			youtube: user.data.data.youtube,
 			facebook: user.data.data.facebook,
@@ -21,6 +22,7 @@
 			.from('players')
 			.update(a)
 			.match({ uid: user.metadata.id })
+			console.log(data, error)
 	}
 	function cancel(){
 		user = JSON.parse(JSON.stringify(user1))

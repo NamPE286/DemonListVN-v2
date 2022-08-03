@@ -13,33 +13,6 @@
 	var flrec = [];
 	var dlrec = [];
 	var currentLevel;
-	var user;
-	user = {
-		data: {
-			data: {
-				id: null,
-				name: null,
-				email: null,
-				avatar: null,
-				facebook: null,
-				youtube: null,
-				discord: null,
-				totalFLpt: null,
-				totalDLpt: null,
-				flrank: null,
-				dlrank: null,
-				uid: null,
-				isAdmin: false
-			},
-			records: []
-		},
-		metadata: {
-			id: null
-		}
-	};
-	userdata.subscribe((value) => {
-		if(value.metadata) user = value;
-	});
 	var showEditProfileModal = false;
 	var showAddRecordModal = false;
 	var showEditRecordModal = false;
@@ -164,7 +137,7 @@
 					</a>
 				</div>
 			</div>
-			{#if id == user.metadata.id}
+			{#if id == $userdata.metadata.id}
 				<a
 					href="#!"
 					class="editProfile"
@@ -207,7 +180,7 @@
 				<div class="playersList">
 					<div class="playerName">
 						<p>Level name</p>
-						{#if user.data.data.isAdmin}
+						{#if $userdata.data.data.isAdmin}
 							<a href="#!" on:click={() => (showAddRecordModal = !showAddRecordModal)}
 								><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 									><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z" /></svg
@@ -230,7 +203,7 @@
 						</div>
 						<div class="playerPt">
 							<p>{item.dlPt} <br id="abcs" />({item.progress}%)</p>
-							{#if user.data.data.isAdmin}
+							{#if $userdata.data.data.isAdmin}
 								<a
 									href="#!"
 									on:click={() => {
@@ -261,7 +234,7 @@
 				<div class="playersList">
 					<div class="playerName">
 						<p>Level name</p>
-						{#if user.data.data.isAdmin}
+						{#if $userdata.data.data.isAdmin}
 							<a href="#!" on:click={() => (showAddRecordModal = !showAddRecordModal)}
 								><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 									><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z" /></svg
@@ -284,7 +257,7 @@
 						</div>
 						<div class="playerPt">
 							<p>{item.flPt}</p>
-							{#if user.data.data.isAdmin}
+							{#if $userdata.data.data.isAdmin}
 								<a
 									href="#!"
 									on:click={() => {
@@ -311,10 +284,10 @@
 			</div>
 		{/if}
 	</div>
-	{#if id == user.metadata.id}
+	{#if id == $userdata.metadata.id}
 		<EditProfileModal bind:ifShow={showEditProfileModal} />
 	{/if}
-	{#if user.data.data.isAdmin}
+	{#if $userdata.data.data.isAdmin}
 		<AddRecordModal bind:ifShow={showAddRecordModal} bind:player />
 		{#if currentLevel}
 			<EditRecordModal bind:ifShow={showEditRecordModal} bind:player level={currentLevel} />

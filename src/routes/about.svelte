@@ -2,9 +2,11 @@
 	import Title from "../components/Title.svelte";
 	import CardVisit from "../components/PersonnalCard.svelte";
 </script>
-
-<div class="pageContent">
+<head>
 	<title>About - Demon List VN</title>
+	<meta name='description' content='A list of people who maintain Demon List VN as well as the website developers' />
+</head>
+<div class="pageContent">
 	<Title
 		title="About"
 		description="A list of people who maintain Demon List VN as well as the website developers"

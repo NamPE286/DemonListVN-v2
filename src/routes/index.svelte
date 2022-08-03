@@ -25,19 +25,17 @@
 			dlLegacy = dlLevels.slice(150, dlLevels.length);
 			dlLevels = dlLevels.slice(0, 150);
 		});
-	var user;
-	userdata.subscribe(value => {
-		user = value;
-	});
 </script>
-
-<title>List - Demon List VN</title>
+<head>
+	<title>List - Demon List VN</title>
+	<meta name='description' content='Welcome to Demon List VN, this is where we keep track of the hardest demons created, verified and beaten by Vietnamese and hardest demon beaten by Vietnamese!'>
+</head>
 <div class="pageContent">
 	{#if list == 0}
 		<Title title="Featured List" description="Levels created and beaten by Vietnamese" />
 	{/if}
 	{#if list == 1}
-		<Title title="Demon List" description="Hardest demons beaten by Vietnamese" />
+		<Title title="Demon List" description="Hardest demons beaten by Vietnamese"/>
 	{/if}
 	<div class="listSelector">
 		<ul>
@@ -47,7 +45,7 @@
 					id={listOption == 0 ? "highlight1" : ""}
 					on:click={() => {
 						listOption = 0;
-						user = user
+						$userdata = $userdata
 					}}>Levels Listing</a
 				>
 			</li>
@@ -61,7 +59,7 @@
 				>
 			</li>
 		</ul>
-		{#if user.data.data.isAdmin}
+		{#if $userdata.data.data.isAdmin}
 			<a href='#!' id='noDec' on:click={() => showAddLevelModal = !showAddLevelModal}>
 				<div class="AddLvBtn">
 					<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M18.625 31.667V21.375H8.333v-2.75h10.292V8.333h2.75v10.292h10.292v2.75H21.375v10.292Z"/></svg>
@@ -146,8 +144,8 @@
 		</div>
 	</div>
 </div>
-{#if user}
-	{#if user.data.data.isAdmin}
+{#if $userdata}
+	{#if $userdata.data.data.isAdmin}
 		<AddLevelModal bind:ifShow={showAddLevelModal} />
 	{/if}
 {/if}

@@ -2,10 +2,6 @@
 	import { createClient } from "@supabase/supabase-js";
 	import Title from "../components/Title.svelte";
 	import { userdata } from "./stores";
-	var user;
-	userdata.subscribe((value) => {
-		user = value;
-	});
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	var players = [];
 	async function getData() {
@@ -21,7 +17,7 @@
     }
 </script>
 
-{#if user.data.data.isAdmin}
+{#if $userdata.data.data.isAdmin}
 	<div class="pageContent">
 		<Title title="Admin" description="" />
         <div>
