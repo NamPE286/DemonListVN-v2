@@ -2,6 +2,10 @@
 	import Title from "../components/Title.svelte";
 	import Selector from "../components/Selector.svelte";
 </script>
+<head>
+	<title>Settings - Demon List VN</title>
+	<meta name='description' content='View and modify your preferences'>
+</head>
 <div class="pageContent">
     <Title title="Settings" description="View and modify your preferences" />
     <div class="st_option">

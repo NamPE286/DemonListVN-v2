@@ -61,8 +61,12 @@
 	}
 </script>
 
+<head>
+	<title>{player.data.name}'s Info - Demon List VN</title>
+	<meta name="description" content="{player.data.name}'s Info" />
+</head>
+
 {#if player}
-	<title>{player.data.name}'s Info</title>
 	<div class="pageContent">
 		<div class="playerInfoWidgetWrapper">
 			<div class="playerInfoWidget">

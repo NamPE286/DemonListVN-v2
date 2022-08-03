@@ -43,8 +43,12 @@
 	}
 </script>
 
-{#if level && levelAPI}
+<head>
 	<title>{level.name}'s Info - Demon List VN</title>
+	<meta name="description" content="{level.name}'s Info" />
+</head>
+
+{#if level && levelAPI}
 	<div class="pageContent">
 		<div class="thumbnailWidget">
 			<img src={`https://img.youtube.com/vi/${level.videoID}/mqdefault.jpg`} alt="" />

@@ -1,6 +1,10 @@
 <script lang="ts">
 	import Title from "../components/Title.svelte";
 </script>
+<head>
+    <title>Rules - Demon List VN</title>
+    <meta name='description' content='Read the rules'>
+</head>
 <div class="pageContent">
     <Title title="Rules" description="Read the rules" />
     <div class='rule'>
