@@ -1,36 +1,6 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
-	import { userdata } from '../routes/stores'
 	import { createClient } from "@supabase/supabase-js";
-	var user;
-	user = {
-		"data":{
-			"data": {
-				"id": null,
-				"name": null,
-				"email": null,
-				"avatar": null,
-				"facebook": null,
-				"youtube": null,
-				"discord": null,
-				"totalFLpt": null,
-				"totalDLpt": null,
-				"flrank": null,
-				"dlrank": null,
-				"uid": null,
-				"isAdmin": false
-			},
-			"records": []
-		},
-		"metadata":{
-			"uid": null
-		}
-	}
-	var user1;
-	userdata.subscribe(value => {
-		user = value
-		user1 = JSON.parse(JSON.stringify(value))
-	})
 	export var ifShow: boolean;
 	export var player;
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
@@ -95,10 +65,10 @@
 				<p class="s_title s_margin4">Add new record</p>
 			</div>
 			<div class="s_flexcol" style="align-items: center;">
-				<input class="s_input" placeholder="Level ID" bind:value={a.levelid} />
+				<input class="s_input" placeholder="Level ID" bind:value={a.levelid} type="number"/>
 				<input class="s_input" placeholder="Video Link" bind:value={a.videoLink}/>
-				<input class="s_input" placeholder="Refresh rate" bind:value={a.refreshRate} />
-				<input class="s_input" placeholder="Progress" bind:value={a.progress}/>
+				<input class="s_input" placeholder="Refresh rate" bind:value={a.refreshRate} type='number'/>
+				<input class="s_input" placeholder="Progress" bind:value={a.progress} type='number'/>
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<a

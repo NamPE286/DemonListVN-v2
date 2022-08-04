@@ -1,13 +1,6 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
-	import { userdata } from '../routes/stores'
 	import { createClient } from "@supabase/supabase-js";
-	var user;
-	var user1;
-	userdata.subscribe(value => {
-		user = value
-		user1 = JSON.parse(JSON.stringify(value))
-	})
 	export var ifShow: boolean;
 	var level = {
 		id: null,
@@ -73,12 +66,12 @@
 				<p class="s_title s_margin4">Edit level info</p>
 			</div>
 			<div class="s_flexcol" style="align-items: center;">
-				<input class="s_input" placeholder="Level ID" bind:value={level.id} />
+				<input class="s_input" placeholder="Level ID" bind:value={level.id} type="number"/>
 				<input class="s_input" placeholder="Level name" bind:value={level.name} />
 				<input class="s_input" placeholder="Creator" bind:value={level.creator}/>
-				<input class="s_input" placeholder="Minimum Progress" bind:value={level.minProgress} />
-				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop}/>
-				<input class="s_input" placeholder="Demon List Top (leave blank for null)" bind:value={level.dlTop} />
+				<input class="s_input" placeholder="Minimum Progress" bind:value={level.minProgress} type='number'/>
+				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop} type='number'/>
+				<input class="s_input" placeholder="Demon List Top (leave blank for null)" bind:value={level.dlTop} type='number'/>
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<a
