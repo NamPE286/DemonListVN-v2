@@ -34,10 +34,14 @@
 		ifShow = !ifShow;
 		a = level
 	}
+	function update(){
+		a = level
+		return ''
+	}
 </script>
 
 {#if ifShow}
-{a = level}
+{update()}
 <div out:fade="{{duration: 200}}" id='abcs'>
 	<div
 		class="dimBg"
