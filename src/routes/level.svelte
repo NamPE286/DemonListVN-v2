@@ -41,6 +41,11 @@
 		records = records;
 		var { data, error } = await supabase.rpc("updateRank");
 	}
+	function ifMobile(item){
+        if(item.mobile) return "Mobile "
+        return ''
+    }
+
 </script>
 
 {#if level && levelAPI}
@@ -165,7 +170,7 @@
 						>
 					</div>
 					<div class="playerPt">
-						<p>{item.progress}% ({item.refreshRate}fps)</p>
+						<p>{ifMobile(item)}{item.progress}% ({item.refreshRate}fps)</p>
 						{#if $userdata.data.data.isAdmin}
 							<a
 								href="#!"

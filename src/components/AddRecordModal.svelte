@@ -9,6 +9,7 @@
 		userid: null,
 		videoLink: '',
 		refreshRate: null,
+		mobile: false,
 		progress: null,
 		timestamp: null
 	}
@@ -23,6 +24,7 @@
 			userid: null,
 			videoLink: '',
 			refreshRate: null,
+			mobile: false,
 			progress: null,
 			timestamp: null
 		}
@@ -40,6 +42,7 @@
 			userid: null,
 			videoLink: '',
 			refreshRate: null,
+			mobile: false,
 			progress: null,
 			timestamp: null
 		}
@@ -67,6 +70,10 @@
 			<div class="s_flexcol" style="align-items: center;">
 				<input class="s_input" placeholder="Level ID" bind:value={a.levelid} type="number"/>
 				<input class="s_input" placeholder="Video Link" bind:value={a.videoLink}/>
+				<select class="s_select" placeholder='Device' bind:value={a.mobile}>
+					<option value={false}>Desktop</option>
+					<option value={true}>Mobile</option>
+				</select>
 				<input class="s_input" placeholder="Refresh rate" bind:value={a.refreshRate} type='number'/>
 				<input class="s_input" placeholder="Progress" bind:value={a.progress} type='number'/>
 			</div>

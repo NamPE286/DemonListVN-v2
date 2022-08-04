@@ -1,48 +1,11 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
-	import { userdata } from '../routes/stores'
 	import { createClient } from "@supabase/supabase-js";
-	var user;
-	user = {
-		"data":{
-			"data": {
-				"id": null,
-				"name": null,
-				"email": null,
-				"avatar": null,
-				"facebook": null,
-				"youtube": null,
-				"discord": null,
-				"totalFLpt": null,
-				"totalDLpt": null,
-				"flrank": null,
-				"dlrank": null,
-				"uid": null,
-				"isAdmin": false
-			},
-			"records": []
-		},
-		"metadata":{
-			"uid": null
-		}
-	}
-	var user1;
-	userdata.subscribe(value => {
-		user = value
-		user1 = JSON.parse(JSON.stringify(value))
-	})
 	export var ifShow: boolean;
 	export var player;
 	export var level;
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-	var a = {
-		levelid: level.levelid,
-		userid: level.userid,
-		videoLink: level.videoLink,
-		refreshRate: level.refreshRate,
-		progress: level.progress,
-		timestamp: level.timestamp
-	}
+	var a = level
 	async function apply(){
 		a.timestamp = Date.now()
 		a.userid = player.data.uid
@@ -55,6 +18,7 @@
 			userid: level.userid,
 			videoLink: level.videoLink,
 			refreshRate: level.refreshRate,
+			mobile:false,
 			progress: level.progress,
 			timestamp: level.timestamp
 		}
@@ -67,24 +31,18 @@
 		window.location.reload()
 	}
 	function cancel(){
-		a = {
-			levelid: level.levelid,
-			userid: level.userid,
-			videoLink: level.videoLink,
-			refreshRate: level.refreshRate,
-			progress: level.progress,
-			timestamp: level.timestamp
-		}
 		ifShow = !ifShow;
+		a = level
 	}
 </script>
 
 {#if ifShow}
+{a = level}
 <div out:fade="{{duration: 200}}" id='abcs'>
 	<div
 		class="dimBg"
 		on:click={() => {
-			ifShow = !ifShow;
+			cancel()
 		}}
         in:fade="{{duration: 150}}"
 	/>
@@ -98,6 +56,10 @@
 			</div>
 			<div class="s_flexcol" style="align-items: center;">
 				<input class="s_input" placeholder="Video Link" bind:value={a.videoLink}/>
+				<select class="s_select" placeholder='Device' bind:value={a.mobile}>
+					<option value={false}>Desktop</option>
+					<option value={true}>Mobile</option>
+				</select>
 				<input class="s_input" placeholder="Refresh rate" bind:value={a.refreshRate} />
 				<input class="s_input" placeholder="Progress" bind:value={a.progress}/>
 			</div>

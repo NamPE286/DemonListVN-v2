@@ -67,6 +67,14 @@
 			return null
 		}
 	}
+	function ifMobile(item){
+        if(item.mobile) return "Mobile "
+        return ''
+    }
+	function ifMobile1(item){
+        if(item.mobile) return " (Mobile)"
+        return ''
+    }
 </script>
 
 {#if player}
@@ -213,13 +221,13 @@
 							>
 						</div>
 						<div class="playerPt">
-							<p>{item.dlPt} <br id="abcs" />({item.progress}%)</p>
+							<p>{item.dlPt} <br id="abcs" />({ifMobile(item)}{item.progress}%)</p>
 							{#if $userdata.data.data.isAdmin}
 								<a
 									href="#!"
 									on:click={() => {
-										showEditRecordModal = !showEditProfileModal;
 										currentLevel = item;
+										showEditRecordModal = !showEditRecordModal;
 									}}
 									><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 										><path
@@ -267,13 +275,13 @@
 							>
 						</div>
 						<div class="playerPt">
-							<p>{item.flPt}</p>
+							<p>{item.flPt}{ifMobile1(item)}</p>
 							{#if $userdata.data.data.isAdmin}
 								<a
 									href="#!"
 									on:click={() => {
-										showEditRecordModal = !showEditProfileModal;
 										currentLevel = item;
+										showEditRecordModal = !showEditProfileModal;
 									}}
 									><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 										><path
@@ -301,7 +309,7 @@
 	{#if $userdata.data.data.isAdmin}
 		<AddRecordModal bind:ifShow={showAddRecordModal} bind:player />
 		{#if currentLevel}
-			<EditRecordModal bind:ifShow={showEditRecordModal} bind:player level={currentLevel} />
+			<EditRecordModal bind:ifShow={showEditRecordModal} bind:player bind:level={currentLevel} />
 		{/if}
 	{/if}
 {:else}

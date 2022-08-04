@@ -13,6 +13,7 @@
 		userid: null,
 		videoLink: null,
 		refreshRate: null,
+		mobile: false,
 		progress: null,
 		timestamp: null,
 		comment: ''
@@ -42,6 +43,7 @@
 			userid: user.metadata.id,
 			videoLink: null,
 			refreshRate: null,
+			mobile: false,
 			progress: null,
 			timestamp: null,
 			comment: ''
@@ -51,11 +53,13 @@
 	}
 	function cancel(){
 		ifShow = !ifShow
+		console.log(a)
 		a = {
 			levelid: null,
 			userid: user.metadata.id,
 			videoLink: null,
 			refreshRate: null,
+			mobile: false,
 			progress: null,
 			timestamp: null,
 			comment: ''
@@ -89,6 +93,10 @@
 				<input class="s_input" value={user.data.data.name} readonly={true} />
 				<input class="s_input" placeholder="Level ID" type="number" bind:value={a.levelid}/>
 				<input class="s_input" placeholder="Progress" type="number" bind:value={a.progress}/>
+				<select class="s_select" placeholder='Device' bind:value={a.mobile}>
+					<option value={false}>Desktop</option>
+					<option value={true}>Mobile</option>
+				</select>
 				<input class="s_input" placeholder="FPS" type="number" bind:value={a.refreshRate} />
 				<input class="s_input" placeholder="Video link" bind:value={a.videoLink} />
 				<input class="s_input" placeholder="Comment (optional)" bind:value={a.comment} />
