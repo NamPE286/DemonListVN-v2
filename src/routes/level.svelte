@@ -170,7 +170,7 @@
 						>
 					</div>
 					<div class="playerPt">
-						<p>{ifMobile(item)}{item.progress}% ({item.refreshRate}fps)</p>
+						<p id='center'>{ifMobile(item)}{item.progress}% ({item.refreshRate}fps)</p>
 						{#if $userdata.data.data.isAdmin}
 							<a
 								href="#!"
@@ -216,6 +216,9 @@
 {/if}
 
 <style lang="scss">
+	#center{
+		text-align: center;
+	}
 	#highlight2 {
 		background-color: #202020;
 	}

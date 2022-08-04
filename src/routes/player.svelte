@@ -221,7 +221,7 @@
 							>
 						</div>
 						<div class="playerPt">
-							<p>{item.dlPt} <br id="abcs" />({ifMobile(item)}{item.progress}%)</p>
+							<p id='center'>{item.dlPt} <br id="abcs" />({ifMobile(item)}{item.progress}%)</p>
 							{#if $userdata.data.data.isAdmin}
 								<a
 									href="#!"
@@ -275,7 +275,7 @@
 							>
 						</div>
 						<div class="playerPt">
-							<p>{item.flPt}{ifMobile1(item)}</p>
+							<p id='center'>{item.flPt}{ifMobile1(item)}</p>
 							{#if $userdata.data.data.isAdmin}
 								<a
 									href="#!"
@@ -317,6 +317,9 @@
 {/if}
 
 <style lang="scss">
+	#center{
+		text-align: center;
+	}
 	#abcs {
 		display: none;
 	}
