@@ -1,6 +1,7 @@
 <script>
     import { createClient } from "@supabase/supabase-js";
     import Title from "../../components/Title.svelte";
+    import { userdata } from '../stores'
     const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
     var submissions = [];
     async function getData(){
@@ -39,6 +40,7 @@
         console.log(data, error)
     }
 </script>
+{#if $userdata.metadata}
 <div class="pageContent">
     <Title title="Submit Checker" description={`Total submissions: ${submissions.length.toString()}`} />
     {#each submissions as item, index}
@@ -53,7 +55,7 @@
         </div>
     {/each}
 </div>
-
+{/if}
 
 <style lang='scss'>
     #title{
