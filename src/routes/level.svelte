@@ -170,7 +170,7 @@
 						>
 					</div>
 					<div class="playerPt">
-						<p id='center'>{ifMobile(item)}{item.progress}% ({item.refreshRate}fps)</p>
+						<p id='center'>{item.progress}% ({ifMobile(item)}{item.refreshRate}fps)</p>
 						{#if $userdata.data.data.isAdmin}
 							<a
 								href="#!"

@@ -71,10 +71,6 @@
         if(item.mobile) return "Mobile "
         return ''
     }
-	function ifMobile1(item){
-        if(item.mobile) return " (Mobile)"
-        return ''
-    }
 </script>
 
 {#if player}
@@ -214,14 +210,14 @@
 				{#each dlrec as item, index}
 					<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 						<div class="playerName">
-							<a href={`/level?id=${item.levelid}`}>{item.levels.name} ({item.refreshRate}fps)</a><a
+							<a href={`/level?id=${item.levelid}`}>{item.levels.name} ({ifMobile(item)}{item.refreshRate}fps)</a><a
 								href={item.videoLink}
 								target="_blank"
 								id="videoLink">(Video Link)</a
 							>
 						</div>
 						<div class="playerPt">
-							<p id='center'>{item.dlPt} <br id="abcs" />({ifMobile(item)}{item.progress}%)</p>
+							<p id='center'>{item.dlPt} <br id="abcs" />({item.progress}%)</p>
 							{#if $userdata.data.data.isAdmin}
 								<a
 									href="#!"
@@ -268,14 +264,14 @@
 				{#each flrec as item, index}
 					<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 						<div class="playerName">
-							<a href={`/level?id=${item.levelid}`}>{item.levels.name} ({item.refreshRate}fps)</a><a
+							<a href={`/level?id=${item.levelid}`}>{item.levels.name} ({ifMobile(item)}{item.refreshRate}fps)</a><a
 								href={item.videoLink}
 								target="_blank"
 								id="videoLink">(Video Link)</a
 							>
 						</div>
 						<div class="playerPt">
-							<p id='center'>{item.flPt}{ifMobile1(item)}</p>
+							<p id='center'>{item.flPt}</p>
 							{#if $userdata.data.data.isAdmin}
 								<a
 									href="#!"

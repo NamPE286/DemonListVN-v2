@@ -9,6 +9,8 @@
 	async function apply(){
 		a.timestamp = Date.now()
 		a.userid = player.data.uid
+		delete a.levels
+		console.log(a)
 		var { data, error } = await supabase
 			.from('records')
 			.update(a)
