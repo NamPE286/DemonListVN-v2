@@ -37,6 +37,8 @@
 			.from('records')
 			.insert(item)
         console.log(data, error)
+        var { data, error } = await supabase
+            .rpc('updateRank')
     }
 </script>
 {#if $userdata.metadata}
