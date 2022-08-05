@@ -86,6 +86,7 @@
 				<input class="s_input" placeholder="Level ID" bind:value={level.id} />
 				<input class="s_input" placeholder="Level name" bind:value={level.name} />
 				<input class="s_input" placeholder="Creator" bind:value={level.creator}/>
+				<input class="s_input" placeholder="Video ID" bind:value={level.videoID}/>
 				<input class="s_input" placeholder="Minimum Progress" bind:value={level.minProgress} />
 				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop}/>
 				<input class="s_input" placeholder="Demon List Top (leave blank for null)" bind:value={level.dlTop} />
