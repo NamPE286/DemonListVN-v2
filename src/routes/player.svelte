@@ -83,7 +83,7 @@
 	}
 	function getID(){
 		try{
-			return getID()
+			return $userdata.metadata.id
 		}
 		catch{
 			return null
