@@ -219,7 +219,9 @@
 			<select bind:value={sortBy} on:change={fetchRecords}>
 				<option value={'timestamp'} selected={true}>Submit time</option>
 				<option value={'pt'}>Point</option>
-				<option value={'progress'}>Progress</option>
+				{#if list == 0}
+					<option value={'progress'}>Progress</option>
+				{/if}
 				<option value={'levelid'}>Level ID</option>
 			</select>
 		</div>
