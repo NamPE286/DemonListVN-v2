@@ -17,20 +17,37 @@
 	var showAddRecordModal = false;
 	var showEditRecordModal = false;
 	var sortBy = "timestamp"
+	var firstFetch = false
 	fetch(`https://demon-listv2-api.vercel.app/players/${id}`)
 		.then((response) => response.json())
 		.then((data) => {
 			player = data;
 		});
-	fetch(`https://demon-listv2-api.vercel.app/players/${id}/records/${sortBy}`)
-		.then((response) => response.json())
-		.then((data) => {
-			for (const i in data) {
-				if (data[i].flPt) flrec.push(data[i]);
-				if (data[i].dlPt) dlrec.push(data[i]);
-			}
-			if (dlrec.length) list = 0;
-		});
+	function fetchRecords(){
+		if(sortBy == 'pt'){
+			if(list == 0) sortBy = 'dlPt'
+			else if(list == 1) sortBy = 'flPt'
+		}
+		fetch(`https://demon-listv2-api.vercel.app/players/${id}/records/${sortBy}`)
+			.then((response) => response.json())
+			.then((data) => {
+				flrec = []
+				dlrec = []
+				for (const i in data) {
+					if (data[i].flPt) flrec.push(data[i]);
+					if (data[i].dlPt) dlrec.push(data[i]);
+				}
+				if (dlrec.length && !firstFetch) {
+					list = 0;
+					firstFetch = true
+				}
+			});
+		if(sortBy == 'flPt' || sortBy == 'dlPt'){
+			sortBy = 'pt'
+		}
+	}
+	fetchRecords()
+
 	function getDiscordTag() {
 		const tag = player.discord;
 		if (tag == null) {
@@ -186,13 +203,24 @@
 			<div class="showRecordFrom">
 				<span>Show records from</span>
 			</div>
-			<select bind:value={list}>
+			<select bind:value={list} on:change={fetchRecords}>
 				{#if dlrec.length}
 					<option value={0} selected={true}>Demon List</option>
 				{/if}
 				{#if flrec.length}
 					<option value={1}>Featured List</option>
 				{/if}
+			</select>
+		</div>
+		<div class="listSelect1">
+			<div class="showRecordFrom">
+				<span>Sort by</span>
+			</div>
+			<select bind:value={sortBy} on:change={fetchRecords}>
+				<option value={'timestamp'} selected={true}>Submit time</option>
+				<option value={'pt'}>Point</option>
+				<option value={'progress'}>Progress</option>
+				<option value={'levelid'}>Level ID</option>
 			</select>
 		</div>
 		{#if list == 0}
@@ -336,6 +364,7 @@
 		grid-template-areas:
 			"info dltop fltop"
 			"info sel sel"
+			"info sel1 sel1"
 			"info record record";
 		grid-template-columns: 28% 33.25% 33.25%;
 	}
@@ -469,6 +498,33 @@
 			padding-inline: 10px;
 		}
 	}
+	.listSelect1 {
+		grid-area: sel1;
+		height: 50px;
+		width: 100%;
+		border-radius: 50px;
+		display: flex;
+		align-items: center;
+		.showRecordFrom {
+			height: 100%;
+			width: 175px;
+			background-color: #202020;
+			border-radius: 50px 0 0 50px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		select {
+			width: calc(100% - 175px);
+			height: 100%;
+			border-radius: 0 50px 50px 0;
+			background-color: #2b2b2b;
+			border-color: #2b2b2b;
+			color: #8e8e8e;
+			padding-inline: 10px;
+		}
+	}
+
 	#highlight2 {
 		background-color: #202020;
 	}
@@ -557,6 +613,7 @@
 				"fltop"
 				"dltop"
 				"sel"
+				"sel1"
 				"record";
 			grid-template-columns: 100%;
 			.avatar {
