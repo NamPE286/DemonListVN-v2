@@ -25,14 +25,7 @@
 			dlLegacy = dlLevels.slice(150, dlLevels.length);
 			dlLevels = dlLevels.slice(0, 150);
 		});
-	function checkAdmin(){
-		try{
-			return $userdata.data.isAdmin
-		}
-		catch{
-			return false
-		}
-	}
+
 </script>
 <head>
 	<title>List - Demon List VN</title>
@@ -67,7 +60,7 @@
 				>
 			</li>
 		</ul>
-		{#if checkAdmin()}
+		{#if $userdata.data.isAdmin}
 			<a href='#!' id='noDec' on:click={() => showAddLevelModal = !showAddLevelModal}>
 				<div class="AddLvBtn">
 					<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M18.625 31.667V21.375H8.333v-2.75h10.292V8.333h2.75v10.292h10.292v2.75H21.375v10.292Z"/></svg>
@@ -152,7 +145,7 @@
 		</div>
 	</div>
 </div>
-{#if checkAdmin()}
+{#if $userdata.data.isAdmin}
 	<AddLevelModal bind:ifShow={showAddLevelModal} />
 {/if}
 <style lang="scss">
