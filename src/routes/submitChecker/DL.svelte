@@ -9,7 +9,7 @@
             .from('submissions')
             .select('*, levels!inner(name, dlTop), players(name)')
             .not('levels.dlTop', 'is', null)
-            .order('timestamp', {ascending: false})
+            .order('id', {ascending: false})
         submissions = data
     }
     getData()

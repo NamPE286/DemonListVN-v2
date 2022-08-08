@@ -10,7 +10,7 @@
             .select('*, levels!inner(name, flTop), players(name)')
             .not('levels.flTop', 'is', null)
             .eq('progress', 100)
-            .order('timestamp', {ascending: false})
+            .order('id', {ascending: false})
         submissions = data
     }
     getData()

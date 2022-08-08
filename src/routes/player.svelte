@@ -16,18 +16,23 @@
 	var showEditProfileModal = false;
 	var showAddRecordModal = false;
 	var showEditRecordModal = false;
+	var sortBy = "timestamp"
 	fetch(`https://demon-listv2-api.vercel.app/players/${id}`)
 		.then((response) => response.json())
 		.then((data) => {
 			player = data;
-			for (const i in data.records) {
-				if (data.records[i].flPt) flrec.push(data.records[i]);
-				if (data.records[i].dlPt) dlrec.push(data.records[i]);
+		});
+	fetch(`https://demon-listv2-api.vercel.app/players/${id}/records/${sortBy}`)
+		.then((response) => response.json())
+		.then((data) => {
+			for (const i in data) {
+				if (data[i].flPt) flrec.push(data[i]);
+				if (data[i].dlPt) dlrec.push(data[i]);
 			}
 			if (dlrec.length) list = 0;
 		});
 	function getDiscordTag() {
-		const tag = player.data.discord;
+		const tag = player.discord;
 		if (tag == null) {
 			alert("Player's discord tag unavailable");
 			return;
@@ -75,19 +80,19 @@
 
 {#if player}
 	<head>
-		<title>{player.data.name}'s Info - Demon List VN</title>
-		<meta name="description" content="{player.data.name}'s Info" />
+		<title>{player.name}'s Info - Demon List VN</title>
+		<meta name="description" content="{player.name}'s Info" />
 	</head>
 	<div class="pageContent">
 		<div class="playerInfoWidgetWrapper">
 			<div class="playerInfoWidget">
 				<div class="avatar">
-					<img src={player.data.avatar} alt="" />
+					<img src={player.avatar} alt="" />
 				</div>
-				<span class="playerName">{player.data.name}</span>
+				<span class="playerName">{player.name}</span>
 				<div class="social">
 					<a
-						href={player.data.youtube ? player.data.youtube : "#!"}
+						href={player.youtube ? player.youtube : "#!"}
 						target="_blank"
 						class="iconWrapper"
 					>
@@ -108,7 +113,7 @@
 						</svg>
 					</a>
 					<a
-						href={player.data.facebook ? player.data.facebook : "#!"}
+						href={player.facebook ? player.facebook : "#!"}
 						target="_blank"
 						class="iconWrapper"
 					>
@@ -171,11 +176,11 @@
 		</div>
 		<div class="fltop">
 			<p class="topTitle">Featured List Rank</p>
-			<p class="top">#{player.data.flrank ? player.data.flrank : "N/a"}</p>
+			<p class="top">#{player.flrank ? player.flrank : "N/a"}</p>
 		</div>
 		<div class="dltop">
 			<p class="topTitle">Demon List Rank</p>
-			<p class="top">#{player.data.dlrank ? player.data.dlrank : "N/a"}</p>
+			<p class="top">#{player.dlrank ? player.dlrank : "N/a"}</p>
 		</div>
 		<div class="listSelect">
 			<div class="showRecordFrom">
