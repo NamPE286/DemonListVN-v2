@@ -3,10 +3,6 @@
 	import { userdata } from '../routes/stores'
 	import { createClient } from "@supabase/supabase-js";
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-	var user;
-	userdata.subscribe(value => {
-		user = value
-	})
 	export var ifShow: boolean;
 	var a = {
 		levelid: null,
@@ -20,7 +16,7 @@
 	}
 	async function submit(){
 		a.timestamp = Date.now()
-		a.userid = user.metadata.id
+		a.userid = $userdata.metadata.id
 		if(list == 'Featured List') a.progress = 100
 		for(const i in a){
 			console.log(i)
@@ -41,7 +37,7 @@
 		}
 		a = {
 			levelid: null,
-			userid: user.metadata.id,
+			userid: $userdata.metadata.id,
 			videoLink: null,
 			refreshRate: null,
 			mobile: false,
@@ -57,7 +53,7 @@
 		console.log(a)
 		a = {
 			levelid: null,
-			userid: user.metadata.id,
+			userid: $userdata.metadata.id,
 			videoLink: null,
 			refreshRate: null,
 			mobile: false,
@@ -69,7 +65,7 @@
 	var list;
 </script>
 
-{#if ifShow && user}
+{#if ifShow && $userdata}
 <div out:fade="{{duration: 200}}" id='abcs'>
 	<div
 		class="dimBg"
@@ -92,7 +88,7 @@
 					<option value="Demon List">Demon List</option>
 					<option value="Featured List">Featured List</option>
 				</select>
-				<input class="s_input" value={user.data.name} readonly={true} />
+				<input class="s_input" value={$userdata.data.name} readonly={true} />
 				<input class="s_input" placeholder="Level ID" type="number" bind:value={a.levelid}/>
 				{#if list == 'Demon List'}
 					<input class="s_input" placeholder="Progress" type="number" bind:value={a.progress}/>
