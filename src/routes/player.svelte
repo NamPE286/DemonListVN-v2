@@ -93,6 +93,14 @@
         if(item.mobile) return "Mobile "
         return ''
     }
+	function checkAdmin(){
+		try{
+			return $userdata.data.data.isAdmin
+		}
+		catch{
+			return false
+		}
+	}
 </script>
 
 {#if player}
@@ -228,7 +236,7 @@
 				<div class="playersList">
 					<div class="playerName">
 						<p>Level name</p>
-						{#if $userdata.data.data.isAdmin}
+						{#if checkAdmin()}
 							<a href="#!" on:click={() => (showAddRecordModal = !showAddRecordModal)}
 								><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 									><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z" /></svg
@@ -251,7 +259,7 @@
 						</div>
 						<div class="playerPt">
 							<p id='center'>{item.dlPt} <br id="abcs" />({item.progress}%)</p>
-							{#if $userdata.data.data.isAdmin}
+							{#if checkAdmin()}
 								<a
 									href="#!"
 									on:click={() => {
@@ -282,7 +290,7 @@
 				<div class="playersList">
 					<div class="playerName">
 						<p>Level name</p>
-						{#if $userdata.data.data.isAdmin}
+						{#if checkAdmin()}
 							<a href="#!" on:click={() => (showAddRecordModal = !showAddRecordModal)}
 								><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 									><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z" /></svg
@@ -305,7 +313,7 @@
 						</div>
 						<div class="playerPt">
 							<p id='center'>{item.flPt}</p>
-							{#if $userdata.data.data.isAdmin}
+							{#if checkAdmin()}
 								<a
 									href="#!"
 									on:click={() => {
@@ -335,7 +343,7 @@
 	{#if id == getID()}
 		<EditProfileModal bind:ifShow={showEditProfileModal} />
 	{/if}
-	{#if $userdata.data.data.isAdmin}
+	{#if checkAdmin()}
 		<AddRecordModal bind:ifShow={showAddRecordModal} bind:player />
 		{#if currentLevel}
 			<EditRecordModal bind:ifShow={showEditRecordModal} bind:player bind:level={currentLevel} />
