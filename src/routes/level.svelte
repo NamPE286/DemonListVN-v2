@@ -62,12 +62,10 @@
 					<p class="levelName">{level.name}</p>
 					<p class="creator">by {level.creator} - {getPoint()}</p>
 				</div>
-				{#if $userdata}
-					{#if $userdata.data.data.isAdmin}
-						<a href='#!' on:click={() => {showEditLevelModal = !showEditLevelModal}}>
-							<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M9 39h2.2l22.15-22.15-2.2-2.2L9 36.8Zm30.7-24.3-6.4-6.4 2.1-2.1q.85-.85 2.1-.85t2.1.85l2.2 2.2q.85.85.85 2.1t-.85 2.1Zm-2.1 2.1L12.4 42H6v-6.4l25.2-25.2Zm-5.35-1.05-1.1-1.1 2.2 2.2Z"/></svg>
-						</a>
-					{/if}
+				{#if $userdata.data.isAdmin}
+					<a href='#!' on:click={() => {showEditLevelModal = !showEditLevelModal}}>
+						<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M9 39h2.2l22.15-22.15-2.2-2.2L9 36.8Zm30.7-24.3-6.4-6.4 2.1-2.1q.85-.85 2.1-.85t2.1.85l2.2 2.2q.85.85.85 2.1t-.85 2.1Zm-2.1 2.1L12.4 42H6v-6.4l25.2-25.2Zm-5.35-1.05-1.1-1.1 2.2 2.2Z"/></svg>
+					</a>
 				{/if}
 			</div>			
 		</div>
@@ -171,7 +169,7 @@
 					</div>
 					<div class="playerPt">
 						<p id='center'>{item.progress}% ({ifMobile(item)}{item.refreshRate}fps)</p>
-						{#if $userdata.data.data.isAdmin}
+						{#if $userdata.data.isAdmin}
 							<a
 								href="#!"
 								on:click={() => {
@@ -202,7 +200,7 @@
 			{/each}
 		</div>
 	</div>
-	{#if $userdata.data.data.isAdmin}
+	{#if $userdata.data.isAdmin}
 		{#if player}
 			<AddRecordModal bind:ifShow={showAddRecordModal} {player} />
 			{#if currentLevel}

@@ -19,7 +19,6 @@ if(dat){
     .then((response) => response.json())
     .then((data) => {
         dat1.data = data
-        console.log(dat1)
     });
 }
 export const userdata = writable(dat1);
