@@ -5,8 +5,9 @@
 	import EditProfileModal from "../components/EditProfileModal.svelte";
 	import AddRecordModal from "../components/AddRecordModal.svelte";
 	import EditRecordModal from "../components/EditRecordModal.svelte";
+	import MySubmissionsModal from "../components/MySubmissionsModal.svelte";
 	import { userdata } from "./stores";
-	const id = $page.url.searchParams.get("id");
+	var id = $page.url.searchParams.get("id");
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	var player;
 	var list = 1;
@@ -16,6 +17,7 @@
 	var showEditProfileModal = false;
 	var showAddRecordModal = false;
 	var showEditRecordModal = false;
+	var showMySubmissonsModal = false;
 	var sortBy = "timestamp"
 	var firstFetch = false
 	fetch(`https://demon-listv2-api.vercel.app/players/${id}`)
@@ -189,6 +191,16 @@
 					>
 					<span>Edit profile</span>
 				</a>
+				<a
+					href="#!"
+					class="editProfile"
+					on:click={() => {
+						showMySubmissonsModal = !showMySubmissonsModal;
+					}}
+				>
+				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M4 21q-.825 0-1.412-.587Q2 19.825 2 19V5q0-.825.588-1.413Q3.175 3 4 3h16q.825 0 1.413.587Q22 4.175 22 5v14q0 .825-.587 1.413Q20.825 21 20 21Zm0-2h16V5H4v14Zm1-2h5v-2H5Zm9.55-2 4.95-4.95-1.425-1.425-3.525 3.55-1.425-1.425-1.4 1.425ZM5 13h5v-2H5Zm0-4h5V7H5ZM4 19V5v14Z"/></svg>
+					<span>My submissions</span>
+				</a>
 			{/if}
 		</div>
 		<div class="fltop">
@@ -336,6 +348,7 @@
 	</div>
 	{#if id == getID()}
 		<EditProfileModal bind:ifShow={showEditProfileModal} />
+		<MySubmissionsModal bind:ifShow={showMySubmissonsModal} bind:uid={id} />
 	{/if}
 	{#if $userdata.data.isAdmin}
 		<AddRecordModal bind:ifShow={showAddRecordModal} bind:player />
