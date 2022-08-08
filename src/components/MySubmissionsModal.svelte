@@ -42,8 +42,8 @@
 			</div>
 			{#each submissions as item, index}
 				<div class="submission">
-					<p><b id='levelName'>{item.levels.name}</b> <span id='levelID'>(ID: {item.levelid}) ({item.progress}% {item.refreshRate}hz)</span></p>
-					<a href="#!" on:click={() => cancel(item, index)}>
+					<a id='info' href={item.videoLink} target='_blank'><b id='levelName'>{item.levels.name}</b> <span id='levelID'>(ID: {item.levelid}) ({item.progress}% {item.refreshRate}hz)</span></a>
+					<a id='cancel' href="#!" on:click={() => cancel(item, index)}>
 						<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>
 					</a>
 				</div>
@@ -84,13 +84,18 @@
 		display: flex;
 		align-items: center;
 		margin-bottom: 10px;
-		p{
+		#info{
 			margin-left: 25px;
+			padding-top: 18px;
+			padding-bottom: 18px;
+			color: white;
+			text-decoration: none;
 		}
 		svg{
 			filter: invert(1);
+			margin-top: 8px;
 		}
-		a{
+		#cancel{
 			margin-left: auto;
 			margin-right: 25px;
 		}

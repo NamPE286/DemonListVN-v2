@@ -17,7 +17,7 @@
 		staffYT="https://www.youtube.com/channel/UCYw-j3PO02FCfEL-M-VZqGg"
 		staffFB="https://www.facebook.com/thecloudsgiveway"
 		staffGH="#!"
-		staffAvatar="https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-6/239625086_1055808268291685_5337694855111988668_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=z2wYoUfQPwAAX-o3kgY&_nc_ht=scontent.fhan15-1.fna&oh=00_AT9AVDGqJw0h4zcxM7W2c134sunDcmCcJ1uwUr2r_8_VZw&oe=62E71541"
+		staffAvatar="https://cdn.discordapp.com/attachments/1006116184703369216/1006136970340225074/unknown.png"
 	/>
 	<CardVisit
 		staffName="noeruchan"
