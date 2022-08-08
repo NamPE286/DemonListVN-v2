@@ -46,7 +46,7 @@
         return ''
     }
 </script>
-{#if $userdata.metadata}
+{#if $userdata.data.isAdmin}
 <div class="pageContent">
     <Title title="Submit Checker" description={`Total submissions: ${submissions.length.toString()}`} />
     {#each submissions as item, index}

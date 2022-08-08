@@ -17,7 +17,7 @@
     }
 </script>
 
-{#if $userdata.data.data.isAdmin}
+{#if $userdata.data.isAdmin}
 	<div class="pageContent">
 		<Title title="Admin" description="" />
         <div>

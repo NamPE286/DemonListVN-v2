@@ -12,11 +12,11 @@
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function apply(){
 		const a = {
-			name: user.data.data.name,
-			avatar: user.data.data.avatar,
-			youtube: user.data.data.youtube,
-			facebook: user.data.data.facebook,
-			discord: user.data.data.discord,
+			name: user.data.name,
+			avatar: user.data.avatar,
+			youtube: user.data.youtube,
+			facebook: user.data.facebook,
+			discord: user.data.discord,
 		}
 		const { data, error } = await supabase
 			.from('players')
@@ -47,11 +47,11 @@
 				<p class="s_title s_margin4">Edit profile</p>
 			</div>
 			<div class="s_flexcol" style="align-items: center;">
-				<input class="s_input" id='name' bind:value={user.data.data.name} />
-				<input class="s_input" id='avatar' placeholder="Avatar" bind:value={user.data.data.avatar}/>
-				<input class="s_input" id='youtube' placeholder="Youtube Link" bind:value={user.data.data.youtube} />
-				<input class="s_input" id='facebook' placeholder="Facebook Link" bind:value={user.data.data.facebook}/>
-				<input class="s_input" id='discord' placeholder="Discord tag" bind:value={user.data.data.discord} />
+				<input class="s_input" id='name' bind:value={user.data.name} />
+				<input class="s_input" id='avatar' placeholder="Avatar" bind:value={user.data.avatar}/>
+				<input class="s_input" id='youtube' placeholder="Youtube Link" bind:value={user.data.youtube} />
+				<input class="s_input" id='facebook' placeholder="Facebook Link" bind:value={user.data.facebook}/>
+				<input class="s_input" id='discord' placeholder="Discord tag" bind:value={user.data.discord} />
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<a

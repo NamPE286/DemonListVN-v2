@@ -92,7 +92,7 @@
 					<option value="Demon List">Demon List</option>
 					<option value="Featured List">Featured List</option>
 				</select>
-				<input class="s_input" value={user.data.data.name} readonly={true} />
+				<input class="s_input" value={user.data.name} readonly={true} />
 				<input class="s_input" placeholder="Level ID" type="number" bind:value={a.levelid}/>
 				{#if list == 'Demon List'}
 					<input class="s_input" placeholder="Progress" type="number" bind:value={a.progress}/>
