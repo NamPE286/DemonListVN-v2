@@ -15,10 +15,16 @@
 	}
 	async function apply(){
 		a.timestamp = Date.now()
-		a.userid = player.data.uid
+		a.userid = player.uid
 		var { data, error } = await supabase
 			.from('records')
 			.insert(a)
+		if(error){
+			console.log(error)
+			return
+		}
+		var { data, error} = await supabase.rpc('updateRank')
+		alert('Record added')
 		a = {
 			levelid: null,
 			userid: null,
@@ -28,12 +34,6 @@
 			progress: null,
 			timestamp: null
 		}
-		if(error){
-			console.log(error)
-			return
-		}
-		var { data, error} = await supabase.rpc('updateRank')
-		alert('Record added')
 		window.location.reload()
 	}
 	function cancel(){
