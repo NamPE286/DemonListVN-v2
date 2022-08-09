@@ -7,8 +7,9 @@
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	var a = level
 	async function apply(){
-		a.timestamp = Date.now()
-		a.userid = player.data.uid
+		const b = new Date(a.timestamp)
+		a.timestamp = b.getTime()
+		a.userid = player.uid
 		delete a.levels
 		console.log(a)
 		var { data, error } = await supabase
@@ -38,6 +39,13 @@
 	}
 	function update(){
 		a = level
+		var b = new Date(a.timestamp)
+		var c = b.toISOString()
+		var d = c.split(':')
+		d.pop()
+		var e = d.join(':')
+		console.log(e)
+		a.timestamp = e
 		return ''
 	}
 </script>
@@ -66,8 +74,9 @@
 					<option value={false}>Desktop</option>
 					<option value={true}>Mobile</option>
 				</select>
-				<input class="s_input" placeholder="Refresh rate" bind:value={a.refreshRate} />
-				<input class="s_input" placeholder="Progress" bind:value={a.progress}/>
+				<input class="s_input" placeholder="Refresh rate" bind:value={a.refreshRate} type='number'/>
+				<input class="s_input" placeholder="Progress" bind:value={a.progress} type='number'/>
+				<input class="s_input" placeholder="Progress" bind:value={a.timestamp} type="datetime-local"/>
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<a
