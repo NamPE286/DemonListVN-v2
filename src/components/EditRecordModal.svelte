@@ -76,7 +76,7 @@
 				</select>
 				<input class="s_input" placeholder="Refresh rate" bind:value={a.refreshRate} type='number'/>
 				<input class="s_input" placeholder="Progress" bind:value={a.progress} type='number'/>
-				<input class="s_input" placeholder="Progress" bind:value={a.timestamp} type="datetime-local"/>
+				<input class="s_input" placeholder="Timestamp" bind:value={a.timestamp} type="datetime-local"/>
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<a

@@ -14,7 +14,8 @@
 		timestamp: null
 	}
 	async function apply(){
-		a.timestamp = Date.now()
+		const b = new Date(a.timestamp)
+		a.timestamp = b.getTime()
 		a.userid = player.uid
 		var { data, error } = await supabase
 			.from('records')
@@ -76,6 +77,7 @@
 				</select>
 				<input class="s_input" placeholder="Refresh rate" bind:value={a.refreshRate} type='number'/>
 				<input class="s_input" placeholder="Progress" bind:value={a.progress} type='number'/>
+				<input class="s_input" placeholder="Timestamp" bind:value={a.timestamp} type="datetime-local"/>
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<a
