@@ -90,7 +90,7 @@
 		grid-auto-columns: 1fr;
 	}
     .submit{
-        height: 180px;
+        height: 200px;
         width: 100%;
         background-color: #202020;
         border-radius: 50px;
