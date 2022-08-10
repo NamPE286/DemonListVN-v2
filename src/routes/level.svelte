@@ -300,6 +300,7 @@
 		border-radius: 50px;
 		padding: 15px;
 		padding-inline: 35px;
+		overflow: auto;
 	}
 	.additionalInfo {
 		grid-area: widget2;
