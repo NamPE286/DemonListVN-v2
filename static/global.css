@@ -13,7 +13,7 @@ body {
 	border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-	background-color: #575757; 
+	background-color: #585858; 
 }
 ::-webkit-scrollbar-thumb:active {
 	background-color: #424242; 
