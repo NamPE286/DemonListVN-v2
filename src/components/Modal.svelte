@@ -4,6 +4,7 @@
 	import { createClient } from "@supabase/supabase-js";
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	export var ifShow: boolean;
+	var list = "Demon List";
 	var a = {
 		levelid: null,
 		userid: null,
@@ -31,6 +32,9 @@
 			.insert(a)
 		console.log(data, error)
 		if(error){
+			if(list == "Featured List"){
+				alert('This level doesn\'t exist')
+			}
 			if(confirm('This level doesn\'t exist in the list. Do you want to proceed?')){
 				fetch(`https://gdbrowser.com/api/level/${a.levelid}`)
 					.then((response) => response.json())
@@ -95,7 +99,6 @@
 			comment: ''
 		}
 	}
-	var list;
 </script>
 
 {#if ifShow && $userdata}
