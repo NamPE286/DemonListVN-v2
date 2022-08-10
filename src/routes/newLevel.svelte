@@ -59,6 +59,8 @@
             <input type='number' bind:value={item.dlTop}><br><br>
             <span>Video ID: </span>
             <input type='text' bind:value={item.videoID}><br><br>
+            <span>Minimum Progress: </span>
+            <input type='number' bind:value={item.minProgress}><br><br>
             <button id='bla' on:click={() => addLv(item, index)}>Add</button>
             <button on:click={() => delLv(item, index)}>Delete</button>
         </div>
