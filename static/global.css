@@ -3,4 +3,18 @@ body {
 	font-family: 'Roboto Flex', sans-serif;
 	font-size: 16px;
 	color: #fff;
+	
+}
+::-webkit-scrollbar {
+	width: 10px;
+  }
+::-webkit-scrollbar-thumb {
+	background: #777777; 
+	border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color: #575757; 
+}
+::-webkit-scrollbar-thumb:active {
+	background-color: #424242; 
 }
