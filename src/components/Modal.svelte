@@ -31,8 +31,41 @@
 			.insert(a)
 		console.log(data, error)
 		if(error){
-			console.log(error)
-			alert('An error occured\n' + '(' + error.message + ')')
+			if(confirm('This level doesn\'t exist in the list. Do you want to proceed?')){
+				fetch(`https://gdbrowser.com/api/level/${a.levelid}`)
+					.then((response) => response.json())
+					.then((data) => {
+						console.log(data)
+						var level = {
+							id: data.id,
+							name: data.name.trim(),
+							creator: data.author
+						}
+						async function addLv(){
+							var { data, error } = await supabase
+								.from('levels')
+								.insert(level)
+							console.log(data, error)
+							var { data, error } = await supabase
+								.from('submissions')
+								.insert(a)
+							console.log(data, error)
+							a = {
+								levelid: null,
+								userid: $userdata.metadata.id,
+								videoLink: null,
+								refreshRate: null,
+								mobile: false,
+								progress: null,
+								timestamp: null,
+								comment: ''
+							}
+							alert('Your submission has been sent!')
+							ifShow = false
+						}
+						addLv()
+					});
+			}
 			return
 		}
 		a = {
@@ -45,7 +78,7 @@
 			timestamp: null,
 			comment: ''
 		}
-		alert('Level submitted')
+		alert('Your submission has been sent!')
 		ifShow = false
 	}
 	function cancel(){

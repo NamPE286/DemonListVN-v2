@@ -17,9 +17,20 @@
 	async function apply(){
 		if(deleteLv == 'yes'){
 			var { data, error } = await supabase
+				.from('submissions')
+				.delete()
+				.match({ levelid: level.id })
+			console.log(data, error)
+			var { data, error } = await supabase
+				.from('records')
+				.delete()
+				.match({ levelid: level.id })
+			console.log(data, error)
+			var { data, error } = await supabase
 				.from('levels')
 				.delete()
 				.match({id: level.id})
+			console.log(data, error)
 			if(error){
 				console.log(error)
 				alert("An error occured")
