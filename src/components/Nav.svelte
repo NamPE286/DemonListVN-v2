@@ -67,7 +67,6 @@
 			if(searchValue.length) fetch(`https://demon-listv2-api.vercel.app/search/${searchValue}`)
 				.then((response) => response.json())
 				.then((data) => {
-					console.log(data[1])
 					searchRes = data[0]
 					searchPlayerRes = data[1]
 					isTyping = false
