@@ -55,6 +55,7 @@
 	var searchValue = ''
 	var tOut = []
 	var searchRes = []
+	var searchPlayerRes = []
 	var isTyping = false
 	function typingAction(){
 		isTyping = true
@@ -66,7 +67,9 @@
 			if(searchValue.length) fetch(`https://demon-listv2-api.vercel.app/search/${searchValue}`)
 				.then((response) => response.json())
 				.then((data) => {
-					searchRes = data
+					console.log(data[1])
+					searchRes = data[0]
+					searchPlayerRes = data[1]
 					isTyping = false
 				});
 		},400));
@@ -88,15 +91,19 @@
 		{/if}
 	</a>
 	<a id="title" href='/'>Demon List VN</a>
-	<input class='searchBox' placeholder='Search' bind:value={searchValue} on:input={typingAction} >
-	{#if (searchRes.length && searchValue.length) && !isTyping}
+	<input autocomplete="false" class='searchBox' placeholder='Search' bind:value={searchValue} on:input={typingAction} >
+	{#if (searchRes.length && searchValue.length) && !isTyping || ((searchPlayerRes.length && searchValue.length) && !isTyping)}
 		<div class="searchRes">
 			{#each searchRes as item, index}
 				<a href={`/level?id=${item.id}`} on:click={() => searchValue = ''}><br><b>{item.name}</b> by {item.creator}</a><br>
-			{/each}<br>
+			{/each}
+			{#each searchPlayerRes as item, index}
+				<a href={`/player?id=${item.id}`} on:click={() => searchValue = ''}><br><b>{item.name}</b></a><br>
+			{/each}
+			<br>
 		</div>
 	{/if}
-	{#if (!searchRes.length && searchValue.length) && !isTyping}
+	{#if (!searchRes.length && !searchPlayerRes.length && searchValue.length) && !isTyping}
 		<div class="searchRes">
 				<a href='#!' on:click={() => searchValue = ''}><br><b>No result</a><br>
 			<br>
