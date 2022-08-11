@@ -11,6 +11,13 @@
             .not('levels.dlTop', 'is', null)
             .order('id', {ascending: true})
         submissions = data
+        var { data, error } = await supabase
+            .from('submissions')
+            .select('*, levels!inner(name, dlTop), players(name)')
+            .is('levels.dlTop', null)
+            .is('levels.flTop', null)
+            .order('id', {ascending: true})
+        submissions = submissions.concat(data)
     }
     getData()
     async function reject(item, index){
