@@ -29,6 +29,7 @@
 		.then((data) => (levelAPI = data));
 	function getPoint() {
 		if (level.flPt && level.dlPt) return `${level.dlPt}pt (#${level.flTop} ${level.flPt}pt)`;
+		if(level.flPt == 0) return '0pt'
 		return `${level.flPt ? level.flPt : level.dlPt}pt`;
 	}
 	async function removeLevel(item, index) {
