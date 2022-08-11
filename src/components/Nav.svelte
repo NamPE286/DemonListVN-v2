@@ -2,7 +2,6 @@
 	import { fade } from "svelte/transition";
 	import { onMount } from "svelte";
 	import { createClient } from "@supabase/supabase-js";
-	import { userdata } from '../routes/stores'
 	import Modal from "./Modal.svelte";
 	import NameModal from "./NameModal.svelte";
 	async function addUser(user1) {
@@ -64,15 +63,13 @@
 		}
 		tOut = []
 		tOut.push(setTimeout(()=>{
-			console.log('stopped typing')
 			if(searchValue.length) fetch(`https://demon-listv2-api.vercel.app/search/${searchValue}`)
 				.then((response) => response.json())
 				.then((data) => {
 					searchRes = data
-					console.log(searchRes)
 					isTyping = false
 				});
-		},600));
+		},400));
 	}
 </script>
 
