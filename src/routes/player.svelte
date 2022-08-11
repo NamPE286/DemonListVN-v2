@@ -36,8 +36,8 @@
 				flrec = []
 				dlrec = []
 				for (const i in data) {
-					if (data[i].flPt) flrec.push(data[i]);
-					if (data[i].dlPt) dlrec.push(data[i]);
+					if (data[i].flPt || data[i].flPt == 0) flrec.push(data[i]);
+					if (data[i].dlPt || data[i].dlPt == 0) dlrec.push(data[i]);
 				}
 				if (dlrec.length && !firstFetch) {
 					list = 0;
