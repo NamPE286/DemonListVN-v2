@@ -33,7 +33,7 @@
 </head>
 <div class="pageContent">
 	{#if list == 0}
-		<Title title="Featured List" description="Levels created and beaten by Vietnamese" />
+		<Title title="Featured List" description="Hardest levels created by Vietnamese" />
 	{/if}
 	{#if list == 1}
 		<Title title="Demon List" description="Hardest demons beaten by Vietnamese"/>
