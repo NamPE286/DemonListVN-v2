@@ -14,12 +14,13 @@ var dat1 = {
     }
 }
 dat1.metadata = dat
-if(dat){
+supabase.auth.onAuthStateChange((event, session) => {
+    console.log(event, session)
     fetch(`https://demon-listv2-api.vercel.app/players/${dat.id}`)
     .then((response) => response.json())
     .then((data) => {
         dat1.data = data
     });
-}
+})
 
 export const userdata = writable(dat1);
