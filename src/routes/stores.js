@@ -2,7 +2,6 @@ import { writable } from "svelte/store";
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-var dat = supabase.auth.user()
 var dat1 = {
     metadata: {
         id:null
@@ -13,13 +12,15 @@ var dat1 = {
         }
     }
 }
-dat1.metadata = dat
 supabase.auth.onAuthStateChange((event, session) => {
-    fetch(`https://demon-listv2-api.vercel.app/players/${dat.id}`)
+    console.log(event, session.user.id)
+    dat1.metadata = session.user
+    fetch(`https://demon-listv2-api.vercel.app/players/${session.user.id}`)
     .then((response) => response.json())
     .then((data) => {
         dat1.data = data
     });
-})
+})    
+
 
 export const userdata = writable(dat1);
