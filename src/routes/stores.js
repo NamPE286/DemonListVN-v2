@@ -14,11 +14,18 @@ var dat1 = {
     }
 }
 dat1.metadata = dat
-if(dat){
-    fetch(`https://demon-listv2-api.vercel.app/players/${dat.id}`)
-    .then((response) => response.json())
-    .then((data) => {
-        dat1.data = data
-    });
+function waitForElement(){
+    if(dat){
+        fetch(`https://demon-listv2-api.vercel.app/players/${dat.id}`)
+        .then((response) => response.json())
+        .then((data) => {
+            dat1.data = data
+        });
+    }
+    else{
+        setTimeout(waitForElement, 250);
+    }
 }
+waitForElement()
+
 export const userdata = writable(dat1);
