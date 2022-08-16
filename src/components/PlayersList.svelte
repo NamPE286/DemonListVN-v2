@@ -1,12 +1,12 @@
 <script>
 	var flPlayer = [];
 	var dlPlayer = [];
-	fetch("https://demon-listv2-api.vercel.app/players/FL/page/1")
+	fetch("https://seademonlist-api.vercel.app/players/fl/page/1")
 		.then((response) => response.json())
 		.then((data) => {
 			flPlayer = data;
 		});
-	fetch("https://demon-listv2-api.vercel.app/players/DL/page/1")
+	fetch("https://seademonlist-api.vercel.app/players/dl/page/1")
 		.then((response) => response.json())
 		.then((data) => {
 			dlPlayer = data;

@@ -18,7 +18,7 @@
 	var showEditRecordModal = false;
 	var showEditLevelModal = false;
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-	fetch(`https://demon-listv2-api.vercel.app/levels/${id}`)
+	fetch(`https://seademonlist-api.vercel.app/levels/${id}`)
 		.then((response) => response.json())
 		.then((data) => {
 			level = data.data;

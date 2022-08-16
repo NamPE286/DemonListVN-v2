@@ -11,14 +11,14 @@
 	var dlLevels = [];
 	var dlLegacy = [];
 	var showAddLevelModal = false;
-	fetch("https://demon-listv2-api.vercel.app/levels/FL/page/1")
+	fetch("https://seademonlist-api.vercel.app/levels/fl/page/1")
 		.then((response) => response.json())
 		.then((data) => {
 			flLevels = data;
 			flLegacy = flLevels.slice(50, flLevels.length);
 			flLevels = flLevels.slice(0, 50);
 		});
-	fetch("https://demon-listv2-api.vercel.app/levels/DL/page/1")
+	fetch("https://seademonlist-api.vercel.app/levels/dl/page/1")
 		.then((response) => response.json())
 		.then((data) => {
 			dlLevels = data;
