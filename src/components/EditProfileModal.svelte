@@ -18,6 +18,10 @@
 			facebook: user.data.facebook,
 			discord: user.data.discord,
 		}
+		if(a.avatar.length > 200){
+			alert('Invalid avatar url')
+			return
+		}
 		const { data, error } = await supabase
 			.from('players')
 			.update(a)
