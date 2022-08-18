@@ -10,6 +10,7 @@
 		minProgress: null,
 		flTop: null,
 		dlTop: null,
+		seaTop: null
 	}
 	var prevFL = JSON.parse(JSON.stringify(level.flTop))
 	var prevDL = JSON.parse(JSON.stringify(level.dlTop))
