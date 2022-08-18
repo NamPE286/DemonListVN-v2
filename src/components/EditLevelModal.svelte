@@ -10,32 +10,23 @@
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function apply(){
 		if(deleteLv == 'yes'){
-			var { data, error } = await supabase
-				.from('submissions')
-				.delete()
-				.match({ levelid: level.id })
-			console.log(data, error)
-			var { data, error } = await supabase
-				.from('records')
-				.delete()
-				.match({ levelid: level.id })
-			console.log(data, error)
-			var { data, error } = await supabase
-				.from('levels')
-				.delete()
-				.match({id: level.id})
-			console.log(data, error)
-			if(error){
-				console.log(error)
-				alert("An error occured")
-				return
-			}
-			var { data, error } = await supabase
-				.rpc('updateRank')
-			alert('Level Deleted')
-			window.location.replace('/')
-			return
+			fetch(`https://seademonlist-api.vercel.app/level/${level.id}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				token: supabase.auth.session().access_token,
+			})
+		})
+			.then((data) => {
+				alert('Level Deleted')
+				window.location.replace('/')
+			})
+		return
 		}
+		level['prevdlTop'] = prevDL
+		level['prevflTop'] = prevFL
 		fetch(`https://seademonlist-api.vercel.app/level/${level.id}`, {
 			method: 'PUT',
 			headers: {
@@ -48,13 +39,11 @@
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log('Success:', data);
 				alert('Level updated')
 				window.location.reload()
 			})
 	}
 	function cancel(){
-		console.log(supabase.auth.session().access_token)
 		ifShow = false
 	}
 </script>
@@ -79,8 +68,8 @@
 			<div class="s_flexcol" style="align-items: center;">
 				<input class="s_input" placeholder="Video ID" bind:value={level.videoID}/>
 				<input class="s_input" placeholder="Minimum Progress" bind:value={level.minProgress} />
-				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop}/>
-				<input class="s_input" placeholder="Demon List Top (leave blank for null)" bind:value={level.dlTop} />
+				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop} type="number"/>
+				<input class="s_input" placeholder="Demon List Top (leave blank for null)" bind:value={level.dlTop}  type="number"/>
 				<input class="s_input" placeholder="Delete level? (type yes to proceed, if not leave this blank)" bind:value={deleteLv} />
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">

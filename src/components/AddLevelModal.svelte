@@ -16,35 +16,23 @@
 	var prevDL = JSON.parse(JSON.stringify(level.dlTop))
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function apply(){
-		if(level.flTop == ""){
-			level.flTop = null
-		}
-		else{
-			if(parseInt(level.flTop) > prevFL) level.flTop = parseInt(level.flTop) + 0.5
-			else level.flTop = parseInt(level.flTop) - 0.5
-		}
-		if(level.dlTop == ""){
-			level.dlTop = null
-		}
-		else{
-			if(parseInt(level.dlTop) > prevDL) level.dlTop = parseInt(level.dlTop) + 0.5
-			else level.dlTop = parseInt(level.dlTop) - 0.5
-		}
-		var { data, error } = await supabase
-			.from('levels')
-			.insert(level)
-		if(error){
-			console.log(error)
-			alert("An error occured")
-			return
-		}
-		var { data, error } = await supabase
-			.rpc('updateRank')
-		alert('Level updated')
-		window.location.reload()
+		fetch(`https://seademonlist-api.vercel.app/level/${level.id}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				token: supabase.auth.session().access_token,
+				data: level
+			})
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				alert('Level updated')
+				window.location.reload()
+			})
 	}
 	function cancel(){
-		console.log(level)
 		ifShow = false
 	}
 </script>
@@ -68,8 +56,6 @@
 			</div>
 			<div class="s_flexcol" style="align-items: center;">
 				<input class="s_input" placeholder="Level ID" bind:value={level.id} type="number"/>
-				<input class="s_input" placeholder="Level name" bind:value={level.name} />
-				<input class="s_input" placeholder="Creator" bind:value={level.creator}/>
 				<input class="s_input" placeholder="Video ID" bind:value={level.videoID}/>
 				<input class="s_input" placeholder="Minimum Progress" bind:value={level.minProgress} type='number'/>
 				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop} type='number'/>
