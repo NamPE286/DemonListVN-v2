@@ -56,6 +56,8 @@
 			</div>
 			<div class="s_flexcol" style="align-items: center;">
 				<input class="s_input" placeholder="Level ID" bind:value={level.id} type="number"/>
+				<input class="s_input" placeholder="Level name (autofilled)" bind:value={level.name} readonly />
+				<input class="s_input" placeholder="Creator (leave blank for auto fill)" bind:value={level.creator} />
 				<input class="s_input" placeholder="Video ID" bind:value={level.videoID}/>
 				<input class="s_input" placeholder="Minimum Progress" bind:value={level.minProgress} type='number'/>
 				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop} type='number'/>

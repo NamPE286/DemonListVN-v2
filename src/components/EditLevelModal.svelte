@@ -67,7 +67,9 @@
 			</div>
 			<div class="s_flexcol" style="align-items: center;">
 				<input class="s_input" placeholder="Video ID" bind:value={level.videoID}/>
-				<input class="s_input" placeholder="Minimum Progress" bind:value={level.minProgress} />
+				<input class="s_input" placeholder="Level name" bind:value={level.name} readonly />
+				<input class="s_input" placeholder="Creator (leave blank for autofill)" bind:value={level.creator} />
+				<input class="s_input" placeholder="Minimum Progress" bind:value={level.minProgress} type='number'/>
 				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop} type="number"/>
 				<input class="s_input" placeholder="Demon List Top (leave blank for null)" bind:value={level.dlTop}  type="number"/>
 				<input class="s_input" placeholder="Delete level? (type yes to proceed, if not leave this blank)" bind:value={deleteLv} />
