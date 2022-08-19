@@ -17,25 +17,30 @@
 		const b = new Date(a.timestamp)
 		a.timestamp = b.getTime()
 		a.userid = player.uid
-		var { data, error } = await supabase
-			.from('records')
-			.insert(a)
-		if(error){
-			console.log(error)
-			return
-		}
-		var { data, error} = await supabase.rpc('updateRank')
-		alert('Record added')
-		a = {
-			levelid: null,
-			userid: null,
-			videoLink: '',
-			refreshRate: null,
-			mobile: false,
-			progress: null,
-			timestamp: null
-		}
-		window.location.reload()
+		fetch(`http://localhost:5050/record`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				token: supabase.auth.session().access_token,
+				data: a
+			})
+		})
+			.then((data) => {
+				alert('Record added')
+				a = {
+					levelid: null,
+					userid: null,
+					videoLink: '',
+					refreshRate: null,
+					mobile: false,
+					progress: null,
+					timestamp: null
+				}
+				window.location.reload()
+			})
+
 	}
 	function cancel(){
 		a = {
@@ -77,7 +82,7 @@
 				</select>
 				<input class="s_input" placeholder="Refresh rate" bind:value={a.refreshRate} type='number'/>
 				<input class="s_input" placeholder="Progress" bind:value={a.progress} type='number'/>
-				<input class="s_input" placeholder="Timestamp" bind:value={a.timestamp} type="datetime-local"/>
+				<input class="s_input" placeholder="Timestamp" bind:value={a.timestamp} type="date"/>
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<a

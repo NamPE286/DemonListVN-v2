@@ -74,15 +74,15 @@
 			dlrec.splice(index, 1);
 			dlrec = dlrec
 		}
-		var { data, error } = await supabase
-			.from('records')
-			.delete()
-			.match({ id: item.id })
-		if (error) {
-			alert(error.message);
-			return;
-		}
-		var { data, error} = await supabase.rpc('updateRank')
+		fetch(`https://seademonlist-api.vercel.app/record/${item.id}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				token: supabase.auth.session().access_token
+			})
+		})
 	}
 	function getID(){
 		try{

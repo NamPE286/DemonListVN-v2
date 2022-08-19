@@ -11,27 +11,29 @@
 		a.timestamp = b.getTime()
 		a.userid = player.uid
 		delete a.levels
-		console.log(a)
-		var { data, error } = await supabase
-			.from('records')
-			.update(a)
-			.match({id: level.id})
-		a = {
-			levelid: level.levelid,
-			userid: level.userid,
-			videoLink: level.videoLink,
-			refreshRate: level.refreshRate,
-			mobile:false,
-			progress: level.progress,
-			timestamp: level.timestamp
-		}
-		if(error){
-			console.log(error)
-			return
-		}
-		var { data, error} = await supabase.rpc('updateRank')
-		alert('Successfully updated')
-		window.location.reload()
+		fetch(`https://seademonlist-api.vercel.app/record`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				token: supabase.auth.session().access_token,
+				data: a
+			})
+		})
+			.then((data) => {
+				a = {
+					levelid: level.levelid,
+					userid: level.userid,
+					videoLink: level.videoLink,
+					refreshRate: level.refreshRate,
+					mobile:false,
+					progress: level.progress,
+					timestamp: level.timestamp
+				}
+				alert('Successfully updated')
+				window.location.reload()
+			})
 	}
 	function cancel(){
 		ifShow = !ifShow;
@@ -40,12 +42,11 @@
 	function update(){
 		a = level
 		var b = new Date(a.timestamp)
+		console.log(b)
 		var c = b.toISOString()
-		var d = c.split(':')
-		d.pop()
-		var e = d.join(':')
-		console.log(e)
-		a.timestamp = e
+		var d = c.split('T')
+		console.log(d[0])
+		a.timestamp = d[0]
 		return ''
 	}
 </script>
@@ -76,7 +77,7 @@
 				</select>
 				<input class="s_input" placeholder="Refresh rate" bind:value={a.refreshRate} type='number'/>
 				<input class="s_input" placeholder="Progress" bind:value={a.progress} type='number'/>
-				<input class="s_input" placeholder="Timestamp" bind:value={a.timestamp} type="datetime-local"/>
+				<input class="s_input" placeholder="Timestamp" bind:value={a.timestamp} type="date"/>
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<a
