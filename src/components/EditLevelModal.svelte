@@ -11,19 +11,19 @@
 	async function apply(){
 		if(deleteLv == 'yes'){
 			fetch(`https://seademonlist-api.vercel.app/level/${level.id}`, {
-			method: 'DELETE',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				token: supabase.auth.session().access_token,
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					token: supabase.auth.session().access_token,
+				})
 			})
-		})
-			.then((data) => {
-				alert('Level Deleted')
-				window.location.replace('/')
-			})
-		return
+				.then((data) => {
+					alert('Level Deleted')
+					window.location.replace('/')
+				})
+			return
 		}
 		level['prevdlTop'] = prevDL
 		level['prevflTop'] = prevFL
@@ -69,7 +69,7 @@
 				<input class="s_input" placeholder="Video ID" bind:value={level.videoID}/>
 				<input class="s_input" placeholder="Level name" bind:value={level.name} readonly />
 				<input class="s_input" placeholder="Creator (leave blank for autofill)" bind:value={level.creator} />
-				<input class="s_input" placeholder="Minimum Progress" bind:value={level.minProgress} type='number'/>
+				<input class="s_input" placeholder="Minimum Progress (must be greater than 0, default is 100)" bind:value={level.minProgress} type='number'/>
 				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop} type="number"/>
 				<input class="s_input" placeholder="Demon List Top (leave blank for null)" bind:value={level.dlTop}  type="number"/>
 				<input class="s_input" placeholder="Delete level? (type yes to proceed, if not leave this blank)" bind:value={deleteLv} />
