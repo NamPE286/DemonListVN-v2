@@ -17,7 +17,7 @@
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function apply(){
 		fetch(`https://seademonlist-api.vercel.app/level/${level.id}`, {
-			method: 'PUT',
+			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},

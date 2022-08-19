@@ -11,7 +11,7 @@
 	async function apply(){
 		if(deleteLv == 'yes'){
 			fetch(`https://seademonlist-api.vercel.app/level/${level.id}`, {
-			method: 'PUT',
+			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -28,7 +28,7 @@
 		level['prevdlTop'] = prevDL
 		level['prevflTop'] = prevFL
 		fetch(`https://seademonlist-api.vercel.app/level/${level.id}`, {
-			method: 'PUT',
+			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
 			},
