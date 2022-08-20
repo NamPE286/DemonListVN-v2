@@ -30,7 +30,7 @@
 				})
     }
     async function accept(item, index){
-        fetch(`https://seademonlist-api.vercel.app/player`, {
+        fetch(`https://seademonlist-api.vercel.app/submission`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
