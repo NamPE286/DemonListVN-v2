@@ -15,31 +15,35 @@
     }
     getData()
     async function reject(item, index){
-        submissions.splice(index, 1)
-        submissions = submissions
-        var { data, error } = await supabase
-			.from('submissions')
-			.delete()
-			.match({ id: item.id })
+		fetch(`https://seademonlist-api.vercel.app/submission/${item.id}`, {
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					token: supabase.auth.session().access_token
+				})
+			})
+				.then((data) => {
+                    submissions.splice(index, 1)
+                    submissions = submissions
+				})
     }
     async function accept(item, index){
-        submissions.splice(index, 1)
-        submissions = submissions
-        var { data, error } = await supabase
-			.from('submissions')
-			.delete()
-			.match({ id: item.id })
-        console.log(data, error)
-        delete item.id
-        delete item.comment
-        delete item.players
-        delete item.levels
-        var { data, error } = await supabase
-			.from('records')
-			.insert(item)
-        console.log(data, error)
-        var { data, error } = await supabase
-            .rpc('updateRank')
+        fetch(`https://seademonlist-api.vercel.app/player`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					token: supabase.auth.session().access_token,
+					data : item
+				})
+			})
+				.then((data) => {
+                    submissions.splice(index, 1)
+                    submissions = submissions
+				})
     }
     function ifMobile(item){
         if(item.mobile) return "Mobile "
