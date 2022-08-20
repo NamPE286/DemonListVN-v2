@@ -11,9 +11,20 @@
 	getData();
     var n
     async function addPlayer(){
-        var { data, error } = await supabase.from("players").insert({name: n})
-        console.log(data, error)
-        window.location.reload()
+		fetch(`https://seademonlist-api.vercel.app/player`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					token: supabase.auth.session().access_token,
+					data : {name:n}
+				})
+			})
+				.then((data) => {
+					alert('Player added')
+					window.location.reload()
+				})
     }
 </script>
 
