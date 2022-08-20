@@ -17,7 +17,7 @@
 		const b = new Date(a.timestamp)
 		a.timestamp = b.getTime()
 		a.userid = player.uid
-		fetch(`http://localhost:5050/record`, {
+		fetch(`https://seademonlist-api.vercel.app/record`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',

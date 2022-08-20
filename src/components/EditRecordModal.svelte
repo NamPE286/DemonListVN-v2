@@ -9,8 +9,9 @@
 	async function apply(){
 		const b = new Date(a.timestamp)
 		a.timestamp = b.getTime()
-		a.userid = player.uid
+		a.userid = player.data.uid
 		delete a.levels
+		delete a.players
 		fetch(`https://seademonlist-api.vercel.app/record`, {
 			method: 'PUT',
 			headers: {
@@ -22,15 +23,6 @@
 			})
 		})
 			.then((data) => {
-				a = {
-					levelid: level.levelid,
-					userid: level.userid,
-					videoLink: level.videoLink,
-					refreshRate: level.refreshRate,
-					mobile:false,
-					progress: level.progress,
-					timestamp: level.timestamp
-				}
 				alert('Successfully updated')
 				window.location.reload()
 			})
@@ -38,6 +30,7 @@
 	function cancel(){
 		ifShow = !ifShow;
 		a = level
+		console.log(level, player)
 	}
 	function update(){
 		a = level

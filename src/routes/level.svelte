@@ -33,14 +33,17 @@
 		return `${level.flPt ? level.flPt : level.dlPt}pt`;
 	}
 	async function removeLevel(item, index) {
-		var { data, error } = await supabase.from("records").delete().match({ id: item.id });
-		if (error) {
-			alert(error.message);
-			return;
-		}
+		fetch(`https://seademonlist-api.vercel.app/record/${item.id}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				token: supabase.auth.session().access_token
+			})
+		})
 		records.splice(index, 1);
 		records = records;
-		var { data, error } = await supabase.rpc("updateRank");
 	}
 	function ifMobile(item){
         if(item.mobile) return "Mobile "
@@ -176,6 +179,7 @@
 								on:click={() => {
 									showEditRecordModal = !showEditProfileModal;
 									currentLevel = item;
+									console.log(item)
 									player = {
 										data:{
 											uid: item.userid

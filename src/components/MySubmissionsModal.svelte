@@ -4,7 +4,7 @@
 	export var ifShow: boolean;
 	export var uid;
 	var submissions = []
-	fetch(`https://seademonlist-api.vercel.app/players/${uid}/submissions`)
+	fetch(`https://seademonlist-api.vercel.app/player/${uid}/submissions`)
 		.then((response) => response.json())
 		.then((data) => {
 			submissions = data;
