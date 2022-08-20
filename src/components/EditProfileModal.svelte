@@ -22,11 +22,16 @@
 			alert('Invalid avatar url')
 			return
 		}
-		const { data, error } = await supabase
-			.from('players')
-			.update(a)
-			.match({ uid: user.metadata.id })
-			console.log(data, error)
+		fetch(`https://seademonlist-api.vercel.app/player/${user.metadata.id}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				token: supabase.auth.session().access_token,
+				data: a
+			})
+		})
 	}
 	function cancel(){
 		user = JSON.parse(JSON.stringify(user1))
