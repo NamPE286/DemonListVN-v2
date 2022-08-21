@@ -10,7 +10,8 @@
 			var { data, error } = await supabase.from("players").insert({
 				uid: user.id,
 				name: "/defaultplayers/",
-				email: user1.email
+				email: user1.email,
+				country:'VI'
 			});
 			ifShowNameInput = true;
 		} else {
