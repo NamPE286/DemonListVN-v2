@@ -64,7 +64,7 @@
 		}
 		tOut = []
 		tOut.push(setTimeout(()=>{
-			if(searchValue.length) fetch(`https://demon-listv2-api.vercel.app/search/${searchValue}`)
+			if(searchValue.length) fetch(`https://seademonlist-api.vercel.app/search/${searchValue}`)
 				.then((response) => response.json())
 				.then((data) => {
 					searchRes = data[0]
@@ -92,7 +92,6 @@
 	<a id="title" href='/'>Demon List VN</a>
 	<input autocomplete="false" class='searchBox' placeholder='Search' bind:value={searchValue} on:input={typingAction} >
 	{#if (searchRes && searchValue) && !isTyping || ((searchPlayerRes && searchValue) && !isTyping)}
-	{console.log(searchRes, searchPlayerRes)}
 		<div class="searchRes">
 			{#each searchRes as item, index}
 				<a href={`/level?id=${item.id}`} on:click={() => searchValue = ''}><br><b>{item.name}</b> by {item.creator}</a><br>
