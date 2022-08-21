@@ -7,9 +7,10 @@
     async function getData(){
         var { data, error } = await supabase
             .from('submissions')
-            .select('*, levels!inner(name, flTop), players(name)')
+            .select('*, levels!inner(name, flTop), players!inner(name, uid, country)')
             .not('levels.flTop', 'is', null)
             .eq('progress', 100)
+            .eq('players.country', 'VI')
             .order('id', {ascending: true})
         submissions = data
     }
