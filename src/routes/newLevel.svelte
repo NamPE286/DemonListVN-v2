@@ -54,15 +54,7 @@
     <Title title="New levels" description={`Total new levels: ${levels.length.toString()}`} />
     {#each levels as item, index}
         <div class='submit'>
-            <p><b id='title'>{item.name}</b> (ID:{item.id})<br></p>
-            <span>Demon List Top: </span>
-            <input type='number' bind:value={item.dlTop}><br><br>
-            <span>Video ID: </span>
-            <input type='text' bind:value={item.videoID}><br><br>
-            <span>Minimum Progress: </span>
-            <input type='number' bind:value={item.minProgress}><br><br>
-            <button id='bla' on:click={() => addLv(item, index)}>Add</button>
-            <button on:click={() => delLv(item, index)}>Delete</button>
+            <a href={`/level?=${item.id}`}><b id='title'>{item.name}</b></a>by {item.creator} (ID:{item.id})<br>
         </div>
     {/each}
 </div>
@@ -70,7 +62,9 @@
 
 <style lang='scss'>
     #title{
-        font-size: 25px;
+        font-size: 20px;
+        margin-right: 5px;
+        
     }
     #bla{
         margin-left: 50px;
@@ -90,13 +84,17 @@
 		grid-auto-columns: 1fr;
 	}
     .submit{
-        height: 200px;
+        height: 65px;
         width: 100%;
         background-color: #202020;
         border-radius: 50px;
-        p{
+        display: flex;
+        align-items: center;
+        a{
+            color: white;
             margin-left: 50px;
             font-size: 16px;
+            text-decoration: none;
         }
     }
     @media screen and (max-width: 1450px) {
