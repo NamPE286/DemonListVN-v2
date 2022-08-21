@@ -12,6 +12,7 @@
 				name: "/defaultplayers/",
 				email: user1.email
 			});
+			ifShowNameInput = true;
 		} else {
 			if (data[0].name == "/defaultplayers/") {
 				ifShowNameInput = true;
