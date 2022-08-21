@@ -26,10 +26,12 @@
 				data: level
 			})
 		})
-			.then((response) => response.json())
-			.then((data) => {
-				alert('Level updated')
-				window.location.reload()
+			.then((res) => {
+				if(res.ok){
+					alert('Level updated')
+					window.location.reload()
+				}
+				else alert('An error occured')
 			})
 	}
 	function cancel(){

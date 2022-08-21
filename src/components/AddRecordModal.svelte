@@ -27,18 +27,21 @@
 				data: a
 			})
 		})
-			.then((data) => {
-				alert('Record added')
-				a = {
-					levelid: null,
-					userid: null,
-					videoLink: '',
-					refreshRate: null,
-					mobile: false,
-					progress: null,
-					timestamp: null
+			.then((res) => {
+				if(res.ok){
+					alert('Record added')
+					a = {
+						levelid: null,
+						userid: null,
+						videoLink: '',
+						refreshRate: null,
+						mobile: false,
+						progress: null,
+						timestamp: null
+					}
+					window.location.reload()
 				}
-				window.location.reload()
+				else alert('An error occured')
 			})
 
 	}

@@ -32,9 +32,12 @@
 				data: a
 			})
 		})
-			.then((data) => {
-				alert('Profile updated!')
-				window.location.reload()
+			.then((res) => {
+				if(res.ok){
+					alert('Profile updated!')
+					window.location.reload()
+				}
+				else alert('An error occured')
 			})
 	}
 	function cancel(){

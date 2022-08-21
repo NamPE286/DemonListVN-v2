@@ -19,9 +19,12 @@
 					token: supabase.auth.session().access_token,
 				})
 			})
-				.then((data) => {
-					alert('Level Deleted')
-					window.location.replace('/')
+				.then((res) => {
+					if(res.ok){
+						alert('Level Deleted')
+						window.location.replace('/')
+					}
+					else alert('An error occured')
 				})
 			return
 		}

@@ -20,8 +20,9 @@
 				data: {name:newname}
 			})
 		})
-			.then((data) => {
-				ifShow = false
+			.then((res) => {
+				if(res.ok) ifShow = false
+				else alert('Invalid name')
 			})
 	}
 </script>
