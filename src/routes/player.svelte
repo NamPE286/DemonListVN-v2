@@ -13,6 +13,7 @@
 	var list = 1;
 	var flrec = [];
 	var dlrec = [];
+	var title = ""
 	var currentLevel;
 	var showEditProfileModal = false;
 	var showAddRecordModal = false;
@@ -24,7 +25,7 @@
 		.then((response) => response.json())
 		.then((data) => {
 			player = data;
-			console.log(data)
+			title = data.name
 		});
 	function fetchRecords(){
 		if(sortBy == 'pt'){
@@ -98,11 +99,12 @@
     }
 </script>
 
+<svelte:head>
+	<title>{title}'s Info - Demon List VN</title>
+	<meta name="description" content={`${title}'s Info`} />
+</svelte:head>
+
 {#if player}
-	<head>
-		<title>{player.name}'s Info - Demon List VN</title>
-		<meta name="description" content="{player.name}'s Info" />
-	</head>
 	<div class="pageContent">
 		<div class="playerInfoWidgetWrapper">
 			<div class="playerInfoWidget">

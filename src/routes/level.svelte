@@ -8,6 +8,7 @@
 	import EditLevelModal from "../components/EditLevelModal.svelte";
 	const id = $page.url.searchParams.get("id");
 	var level = null;
+	var title = ""
 	var records = [];
 	var levelAPI = null;
 	var currentLevel;
@@ -22,6 +23,7 @@
 		.then((response) => response.json())
 		.then((data) => {
 			level = data.data;
+			title = data.data.name
 			if (data.records) records = data.records;
 		});
 	fetch(`https://gdbrowser.com/api/level/${id}`)
@@ -52,11 +54,12 @@
 
 </script>
 
+<svelte:head>
+	<title>{title}'s Info - Demon List VN</title>
+	<meta name="description" content={`${title}'s Info`} />
+</svelte:head>
+
 {#if level && levelAPI}
-	<head>
-		<title>{level.name}'s Info - Demon List VN</title>
-		<meta name="description" content="{level.name}'s Info" />
-	</head>
 	<div class="pageContent">
 		<div class="thumbnailWidget">
 			<img src={`https://img.youtube.com/vi/${level.videoID}/mqdefault.jpg`} alt="" />
