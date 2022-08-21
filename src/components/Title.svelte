@@ -5,10 +5,10 @@
 
 <div class="titleWidget">
 	<div class="title">
-		<p class="bigTitle">{title}</p>
-                {#if description != ""}
-		<p class="description">{description}</p>
-                {/if}
+		<h1 class="bigTitle">{title}</h1>
+		{#if description != ""}
+			<p class="description">{description}</p>
+		{/if}
 	</div>
 </div>
 
@@ -33,8 +33,10 @@
 			margin: 0;
 		}
 		.bigTitle {
+			font-weight: 500;
 			font-size: 50px;
 			margin-bottom: 20px;
+			margin-top: 0;
 		}
 	}
 	@media screen and (max-width: 1100px) {

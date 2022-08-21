@@ -27,10 +27,10 @@
 		});
 
 </script>
-<head>
-	<title>List - Demon List VN</title>
-	<meta name='description' content='Welcome to Demon List VN, this is where we keep track of the hardest demons created, verified and beaten by Vietnamese and hardest demon beaten by Vietnamese!'>
-</head>
+<svelte:head>
+	<title>Demon List VN</title>
+	<meta name='description' content='Welcome to Demon List VN, this is where we keep track of the hardest demons created, verified and hardest demon beaten by Vietnamese!'>
+</svelte:head>
 <div class="pageContent">
 	{#if list == 0}
 		<Title title="Featured List" description="Hardest levels created by Vietnamese" />
