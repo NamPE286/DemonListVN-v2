@@ -91,7 +91,8 @@
 	</a>
 	<a id="title" href='/'>Demon List VN</a>
 	<input autocomplete="false" class='searchBox' placeholder='Search' bind:value={searchValue} on:input={typingAction} >
-	{#if (searchRes.length && searchValue.length) && !isTyping || ((searchPlayerRes.length && searchValue.length) && !isTyping)}
+	{#if (searchRes && searchValue) && !isTyping || ((searchPlayerRes && searchValue) && !isTyping)}
+	{console.log(searchRes, searchPlayerRes)}
 		<div class="searchRes">
 			{#each searchRes as item, index}
 				<a href={`/level?id=${item.id}`} on:click={() => searchValue = ''}><br><b>{item.name}</b> by {item.creator}</a><br>
@@ -102,7 +103,7 @@
 			<br>
 		</div>
 	{/if}
-	{#if (!searchRes.length && !searchPlayerRes.length && searchValue.length) && !isTyping}
+	{#if (!searchRes && !searchPlayerRes && searchValue) && !isTyping}
 		<div class="searchRes">
 				<a href='#!' on:click={() => searchValue = ''}><br><b>No result</a><br>
 			<br>
