@@ -15,6 +15,8 @@
     }
     getData()
     async function reject(item, index){
+        submissions.splice(index, 1)
+        submissions = submissions
 		fetch(`https://seademonlist-api.vercel.app/submission/${item.id}`, {
 				method: 'DELETE',
 				headers: {
@@ -24,12 +26,10 @@
 					token: supabase.auth.session().access_token
 				})
 			})
-				.then((data) => {
-                    submissions.splice(index, 1)
-                    submissions = submissions
-				})
     }
     async function accept(item, index){
+        submissions.splice(index, 1)
+        submissions = submissions
         fetch(`https://seademonlist-api.vercel.app/submission`, {
 				method: 'POST',
 				headers: {
@@ -40,10 +40,6 @@
 					data : item
 				})
 			})
-				.then((data) => {
-                    submissions.splice(index, 1)
-                    submissions = submissions
-				})
     }
     function ifMobile(item){
         if(item.mobile) return "Mobile "
