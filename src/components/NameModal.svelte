@@ -1,6 +1,7 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
 	import { createClient } from "@supabase/supabase-js";
+	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	export var ifShow: boolean;
 	export var uid:string
 	var newname:string = ''
@@ -9,12 +10,19 @@
 			alert('Please enter a name')
 			return
 		}
-		const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-		const { data, error } = await supabase
-			.from('players')
-			.update({ name: newname })
-			.match({uid: uid})
-		ifShow = false
+		fetch(`https://seademonlist-api.vercel.app/player/${uid}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				token: supabase.auth.session().access_token,
+				data: {name:newname}
+			})
+		})
+			.then((data) => {
+				ifShow = false
+			})
 	}
 </script>
 
@@ -50,7 +58,7 @@
 		height: 200%;
 		width: 200%;
 		background-color: black;
-		z-index: 2;
+		z-index: 3;
 		opacity: 0.5;
 		top: 0;
 		left: 0;
@@ -58,7 +66,7 @@
 		bottom: 0;
 	}
 	.modalWrapper {
-		z-index: 3;
+		z-index: 4;
 	}
 	.submitModal {
 		position: fixed;
@@ -66,7 +74,7 @@
 		background-color: #202020;
 		width: 36%;
 		border-radius: 48px;
-		z-index: 2;
+		z-index: 4;
 		transform: translateY(-50%);
 	}
 	.s_flexrow {
