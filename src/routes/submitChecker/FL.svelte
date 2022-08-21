@@ -10,7 +10,7 @@
             .select('*, levels!inner(name, flTop), players!inner(name, uid, country)')
             .not('levels.flTop', 'is', null)
             .eq('progress', 100)
-            .eq('players.country', 'VI')
+            .eq('players.country', $userdata.data.country)
             .order('id', {ascending: true})
         submissions = data
     }

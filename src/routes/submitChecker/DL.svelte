@@ -10,7 +10,7 @@
             .select('*, levels!inner(name, dlTop), players!inner(name, uid, country)')
             .is('levels.flTop', null)
             .is('levels.seaTop', null)
-            .eq('players.country', 'VI')
+            .eq('players.country', $userdata.data.country)
             .order('id', {ascending: true})
         submissions = data
     }
