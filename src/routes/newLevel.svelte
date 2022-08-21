@@ -54,7 +54,7 @@
     <Title title="New levels" description={`Total new levels: ${levels.length.toString()}`} />
     {#each levels as item, index}
         <div class='submit'>
-            <a href={`/level?=${item.id}`}><b id='title'>{item.name}</b></a>by {item.creator} (ID:{item.id})<br>
+            <a href={`/level?id=${item.id}`}><b id='title'>{item.name}</b></a>by {item.creator} (ID:{item.id})<br>
         </div>
     {/each}
 </div>
