@@ -207,9 +207,9 @@
 	</div>
 	{#if $userdata.data.isAdmin}
 		{#if player}
-			<AddRecordModal bind:ifShow={showAddRecordModal} {player} />
+			<AddRecordModal bind:ifShow={showAddRecordModal} player={player.data} />
 			{#if currentLevel}
-				<EditRecordModal bind:ifShow={showEditRecordModal} {player} level={currentLevel} />
+				<EditRecordModal bind:ifShow={showEditRecordModal} player={player.data} level={currentLevel} />
 			{/if}
 		{/if}
 		<EditLevelModal bind:ifShow={showEditLevelModal} level={level}/>

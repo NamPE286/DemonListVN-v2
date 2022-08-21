@@ -9,7 +9,7 @@
 	async function apply(){
 		const b = new Date(a.timestamp)
 		a.timestamp = b.getTime()
-		a.userid = player.data.uid
+		a.userid = player.uid
 		delete a.levels
 		delete a.players
 		fetch(`https://seademonlist-api.vercel.app/record`, {
