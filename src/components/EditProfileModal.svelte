@@ -32,6 +32,10 @@
 				data: a
 			})
 		})
+			.then((data) => {
+				alert('Profile updated!')
+				window.location.reload()
+			})
 	}
 	function cancel(){
 		user = JSON.parse(JSON.stringify(user1))
@@ -73,7 +77,6 @@
 				>
 				<a href="#!" class="s_button2 s_margin5 s_blue" on:click={() => {
 					apply()
-					ifShow = !ifShow;
 				}}>Apply</a>
 			</div>
 		</div>
