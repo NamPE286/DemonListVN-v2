@@ -57,6 +57,7 @@
 <svelte:head>
 	<title>{title}'s Info - Demon List VN</title>
 	<meta name="description" content={`${title}'s Info`} />
+	<meta name='keywords' content={title}/>
 </svelte:head>
 
 {#if level && levelAPI}
