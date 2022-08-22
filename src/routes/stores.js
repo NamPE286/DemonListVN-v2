@@ -15,7 +15,7 @@ var dat1 = {
 supabase.auth.onAuthStateChange((event, session) => {
     console.log(event, session.user.id)
     dat1.metadata = session.user
-    fetch(`https://demon-listv2-api.vercel.app/players/${session.user.id}`)
+    fetch(`https://seademonlist-api.vercel.app/player/${session.user.id}`)
     .then((response) => response.json())
     .then((data) => {
         dat1.data = data
