@@ -5,14 +5,19 @@
     const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
     var submissions = [];
     async function getData(){
-        var { data, error } = await supabase
-            .from('submissions')
-            .select('*, levels!inner(name, dlTop), players!inner(name, uid, country)')
-            .is('levels.flTop', null)
-            .is('levels.seaTop', null)
-            .eq('players.country', $userdata.data.country)
-            .order('id', {ascending: true})
-        submissions = data
+        if($userdata.data.country){
+            var { data, error } = await supabase
+                .from('submissions')
+                .select('*, levels!inner(name, dlTop), players!inner(name, uid, country)')
+                .is('levels.flTop', null)
+                .is('levels.seaTop', null)
+                .eq('players.country', $userdata.data.country)
+                .order('id', {ascending: true})
+            submissions = data
+        }
+        else{
+            setTimeout(getData, 50)
+        }
     }
     getData()
     async function reject(item, index){
