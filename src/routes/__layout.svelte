@@ -14,7 +14,9 @@
 	getImg()
 	
 </script>
-<img src={img} alt='bg'>
+{#if img}
+	<img src={img} alt='bg'>
+{/if}
 <Nav />
 <slot />
 
