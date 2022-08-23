@@ -1,307 +1,295 @@
-<script lang="ts">
-	import Title from "../components/Title.svelte";
-	import Levels from "../components/Levels.svelte";
-	import PlayersList from "../components/PlayersList.svelte";
-	import AddLevelModal from "../components/AddLevelModal.svelte";
-	import { userdata } from "../routes/stores";
-	var list = 1;
-	var listOption = 0;
-	var flLevels = [];
-	var flLegacy = [];
-	var dlLevels = [];
-	var dlLegacy = [];
-	var showAddLevelModal = false;
-	fetch("https://seademonlist-api.vercel.app/levels/fl/page/1")
-		.then((response) => response.json())
-		.then((data) => {
-			flLevels = data;
-			flLegacy = flLevels.slice(50, flLevels.length);
-			flLevels = flLevels.slice(0, 50);
-		});
-	fetch("https://seademonlist-api.vercel.app/levels/dl/page/1")
-		.then((response) => response.json())
-		.then((data) => {
-			dlLevels = data;
-			dlLegacy = dlLevels.slice(150, dlLevels.length);
-			dlLevels = dlLevels.slice(0, 150);
-		});
-
+<script>
+	import { createClient } from "@supabase/supabase-js";
+	import LoadingAnimation from "../components/LoadingAnimation.svelte";
+	import { userdata } from "./stores";
+	var id = $userdata.metadata.id
+	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	var player;
+    var randomDL, randomFL;
+    function getData(){
+        if(id){
+            fetch(`https://seademonlist-api.vercel.app/player/${id}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    player = data;
+                });
+			
+        }
+        else{
+            setTimeout(getData, 100)
+        }
+            
+    }
+    getData()
+    async function getRandom(){
+        var { data, error } = await supabase
+            .from('random_levels')
+            .select('*')
+            .not('flTop', 'is', null)
+            .limit(1)
+            .single()
+        randomFL = data.id
+        var { data, error } = await supabase
+            .from('random_levels')
+            .select('*')
+            .not('dlTop', 'is', null)
+            .limit(1)
+            .single()
+        randomDL = data.id
+    }
+    getRandom()
+	function getGreeting(a){
+		var greeting = [
+			'Hi',
+			'Hello',
+			'Welcome',
+			'Hola',
+			'Bonjour',
+			'Xin chào'
+		]
+		var item = greeting[Math.floor(Math.random()*greeting.length)];
+		if(a) {
+			return `${item}, ${a}!`
+		}
+		return `${item}!`
+	}
 </script>
+
 <svelte:head>
 	<title>Demon List VN</title>
 	<meta name='description' content='Welcome to Demon List VN, this is where we keep track of the hardest demons created, verified and hardest demon beaten by Vietnamese!'>
 </svelte:head>
-<div class="pageContent">
-	{#if list == 0}
-		<Title title="Featured List" description="Hardest levels created by Vietnamese" />
-	{/if}
-	{#if list == 1}
-		<Title title="Demon List" description="Hardest demons beaten by Vietnamese"/>
-	{/if}
-	<div class="listSelector">
-		<ul>
-			<li>
-				<a
-					href="#!"
-					id={listOption == 0 ? "highlight1" : ""}
-					on:click={() => {
-						listOption = 0;
-						$userdata = $userdata
-					}}>Levels Listing</a
-				>
-			</li>
-			<li>
-				<a
-					href="#!"
-					id={listOption == 1 ? "highlight1" : ""}
-					on:click={() => {
-						listOption = 1;
-					}}>Top Player</a
-				>
-			</li>
-		</ul>
-		{#if $userdata.data.isAdmin}
-			<a href='#!' id='noDec' on:click={() => showAddLevelModal = !showAddLevelModal}>
-				<div class="AddLvBtn">
-					<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M18.625 31.667V21.375H8.333v-2.75h10.292V8.333h2.75v10.292h10.292v2.75H21.375v10.292Z"/></svg>
-					<span>Add Level</span>
-				</div>
-			</a>
-		{/if}
-	</div>
-	<hr />
-	{#if listOption == 0}
-		{#if list == 0}
-			{#each flLevels as item, index}
-				<Levels
-					top={item.flTop}
-					name={item.name}
-					creator={item.creator}
-					point={item.flPt}
-					videoID={item.videoID}
-					levelID={item.id}
-				/>
-			{/each}
-			<p id="legacyLabel"><span>Legacy List</span></p>
-			{#each flLegacy as item, index}
-				<Levels
-					top={item.flTop}
-					name={item.name}
-					creator={item.creator}
-					point={item.flPt}
-					videoID={item.videoID}
-					levelID={item.id}
-				/>
-			{/each}
-		{/if}
-		{#if list == 1}
-			{#each dlLevels as item, index}
-				<Levels
-					top={item.dlTop}
-					name={item.name}
-					creator={item.creator}
-					point={item.dlPt}
-					videoID={item.videoID}
-					levelID={item.id}
-				/>
-			{/each}
-			<p id="legacyLabel"><span>Legacy List</span></p>
 
-			{#each dlLegacy as item, index}
-				<Levels
-					top={item.dlTop}
-					name={item.name}
-					creator={item.creator}
-					point={item.dlPt}
-					videoID={item.videoID}
-					levelID={item.id}
-				/>
-			{/each}
-		{/if}
-	{/if}
-	<PlayersList bind:list bind:listOption />
-	<div class="listSwitcherWrapper">
-		<div class="listSwitcher">
-			<a
-				class="listSwitcherItem"
-				id={list == 1 ? "highlight" : ""}
-				on:click={() => {
-					list = 1;
-				}}
-				href="#!"
-			>
-				<a href="#!">Demon List</a>
-			</a>
-			<a
-				class="listSwitcherItem"
-				id={list == 0 ? "highlight" : ""}
-				on:click={() => {
-					list = 0;
-				}}
-				href="#!"
-			>
-				<a href="#!">Featured List</a>
-			</a>
+{#if player}
+    <div class='greeting'>
+        <h1>{getGreeting(player.name)}</h1>
+    </div>
+	<div class="pageContent">
+        <div class="fltop">
+			<p class="topTitle">Featured List Rank</p>
+			<p class="top">#{player.flrank ? player.flrank : "N/a"}</p>
 		</div>
-	</div>
-</div>
-{#if $userdata.data.isAdmin}
-	<AddLevelModal bind:ifShow={showAddLevelModal} />
+		<div class="dltop">
+			<p class="topTitle">Demon List Rank</p>
+			<p class="top">#{player.dlrank ? player.dlrank : "N/a"}</p>
+		</div>
+        <iframe src="https://e.widgetbot.io/channels/877546680801697813/877546680801697816" title="Discord"></iframe>
+        <div class='tobeat'>
+            <p class="topTitle">Utilities</p>
+            <a href={`/level?id=${randomDL}`} class='level'>
+                <p>Pick a random level from Demon List</p>
+            </a>
+            <a href={`/level?id=${randomFL}`} class='level'>
+                <p>Pick a random level from Featured List</p>
+            </a>
+        </div>
+    </div>
+{:else}
+	<LoadingAnimation />
 {/if}
+
 <style lang="scss">
-	#noDec{
-		text-decoration: none;
-	}
-	.AddLvBtn{
-		background-color: #353535;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 20px;
-		margin-top: 10px;
-		margin-bottom: 10px;
-		color: white;
-		svg{
-			filter: invert(1);
-		}
-	}
-	#legacyLabel {
-		grid-column: 1 / 3;
-		margin-inline: auto;
-		font-weight: 500;
+    .level{
+        background-color: #005ff9;
+        height: 50px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+    .greeting{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        h1{
+            font-weight: 500;
+        }
+    }
+	#center{
 		text-align: center;
-		border-bottom: 1px solid #888888;
-		line-height: 0.1em;
-		margin: 10px 0 20px;
-		span {
-			background: #141414;
-			padding: 0 10px;
-			color: #888888;
-		}
+	}
+	#abcs {
+		display: none;
+	}
+	#videoLink {
+		margin-left: 3px;
 	}
 	.pageContent {
 		display: grid;
-		width: 60%;
+		width: 70%;
 		margin-inline: auto;
 		margin-bottom: 100px;
 		gap: 30px;
 		grid-template-areas:
-			"header header"
+			"dltop fltop"
 			"sel sel"
-			"line line"
-			"widget widget";
-		grid-auto-columns: 1fr;
+			"sel1 sel1"
+			"record record";
+        grid-template-columns: 50% 50%;
 	}
-	.listSwitcherWrapper {
+	.avatar {
+		background-color: black;
+		margin-bottom: 30px;
+		width: 12.5vw;
+		height: 12.5vw;
+		margin-inline: auto;
+		border-radius: 50%;
+		border-color: white;
+		border-style: solid;
+		img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+			border-radius: 50%;
+		}
+	}
+	.playerName {
+		font-size: 30px;
+		font-weight: 500;
+		margin-bottom: 30px;
+		svg {
+			filter: invert(1);
+			margin-left: -30px;
+		}
+	}
+	.playerInfoWidget {
+		height: fit-content;
 		width: 100%;
-		left: 0;
-		right: 0;
-		z-index: 1;
-		position: fixed;
-		bottom: 0;
-		margin-bottom: 15px;
-		pointer-events: none;
-		.listSwitcher {
-			pointer-events: auto;
-			height: 50px;
-			width: fit-content;
-			margin-inline: auto;
-			background-color: #202020;
-			box-shadow: 0 0 30px rgb(7, 7, 7);
-			border-radius: 50px;
-			a {
-				color: white;
-				text-decoration: none;
-			}
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			.listSwitcherItem {
-				margin-inline: 8px;
-				padding-left: 15px;
-				padding-right: 15px;
-				height: calc(100% - 15px);
-				border-radius: 50px;
-				display: flex;
-				align-items: center;
-				transition: background-color 0.3s;
-			}
-			.listSwitcherItem:hover {
-				transition: background-color 0.3s;
-				background-color: #3b3b3b;
-			}
+		border-radius: 50px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-top: 40px;
+		padding-bottom: 40px;
+		background-color: #202020;
+	}
+	.playerInfoWidgetWrapper {
+		grid-area: info;
+		height: fit-content;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.fltop {
+		grid-area: fltop;
+		height: 200px;
+		border-radius: 50px;
+		background-color: #202020;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding-inline: 50px;
+		.topTitle {
+			font-size: 28px;
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+		.top {
+			font-size: 75px;
+			margin-top: 0;
+			margin-bottom: 0;
+			color: #6b6b6b;
+			font-weight: 300;
 		}
 	}
-	.listSelector {
-		grid-area: sel;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: -50px;
-		ul {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
+	.dltop {
+		grid-area: dltop;
+		height: 200px;
+		border-radius: 50px;
+		background-color: #202020;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding-inline: 50px;
+		.topTitle {
+			font-size: 28px;
+			margin-top: 0;
+			margin-bottom: 0;
 		}
-		li {
-			float: left;
-			list-style-type: none;
-			margin-left: 5px;
-			margin-right: 5px;
-			a {
-				display: block;
-				padding-left: 30px;
-				padding-right: 30px;
-				padding-top: 10px;
-				padding-bottom: 10px;
-				border-radius: 50px;
-				text-decoration: none;
-				color: white;
-				transition: 0.3s;
-			}
-			a:hover {
-				background-color: #353535;
-				transition: 0.3s;
-			}
+		.top {
+			font-size: 75px;
+			margin-top: 0;
+			margin-bottom: 0;
+			color: #6b6b6b;
+			font-weight: 300;
 		}
 	}
-	hr {
-		grid-area: line;
-		width: 100%;
-		height: 0;
-		margin: 0;
-		border-color: rgb(71, 71, 71);
-		margin-top: 20px;
-	}
-	#highlight {
-		background-color: #3b3b3b;
-	}
-	#highlight1 {
-		background-color: #353535;
-	}
+    iframe{
+        border-radius: 50px;
+        width: 100%;
+        height: 400px;
+        border-color: transparent;
+    }
+    .tobeat{
+        box-sizing: border-box;
+        padding-inline: 50px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-radius: 50px;
+        width: 100%;
+        height: 400px;
+        background-color: #202020;
+        .topTitle {
+			font-size: 28px;
+			margin-top: 0;
+			margin-bottom: 10px;
+		}
+        a{
+            color:white;
+            text-decoration: none;
+        }
+    }
 	@media screen and (max-width: 1450px) {
 		.pageContent {
 			width: 80%;
+			.avatar {
+				margin-top: 35px;
+				width: 14vw;
+				height: 14vw;
+			}
+		}
+		.playerInfoWidget {
+			padding-top: 0px;
+			padding-bottom: 30px;
+			.avatar {
+				margin-bottom: 30px;
+			}
+			.playerName {
+				font-size: 26px;
+			}
 		}
 	}
 	@media screen and (max-width: 1100px) {
-		#legacyLabel {
-			grid-column: 1;
+		#abcs {
+			display: block;
 		}
 		.pageContent {
 			width: 90%;
 			grid-template-areas:
-				"header"
+				"info"
+				"fltop"
+				"dltop"
 				"sel"
-				"line"
-				"widget";
-		}
-		.listSelector {
-			a {
-				margin-inline: 10px;
-				padding-inline: 10px;
+				"sel1"
+				"record";
+			grid-template-columns: 100%;
+			.avatar {
+				margin-top: 35px;
+				width: 50vw;
+				height: 50vw;
 			}
-			margin-bottom: -40px;
+		}
+		.playerPt {
+			margin-right: 20px;
+		}
+		.playersList {
+			height: 80px;
 		}
 	}
 </style>

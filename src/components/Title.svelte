@@ -21,7 +21,7 @@
 		border-radius: 50px;
 		display: flex;
 		align-items: center;
-		margin-bottom: -10px;
+		margin-bottom: -25px;
 		.title {
 			margin-inline: 80px;
 			font-weight: 500;

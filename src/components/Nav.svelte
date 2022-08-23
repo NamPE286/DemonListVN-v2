@@ -134,7 +134,7 @@
 	/>
 {/if}
 <div class={menuExpanded ? "sidebar1" : "sidebar"} id="sidebarDiv">
-	<a href="/" class="sidebarIconWrapper">
+	<a href="/DL" class="sidebarIconWrapper">
 		<div class='hide' id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
@@ -143,9 +143,18 @@
 					/></svg
 				>
 			</div>
-			<p id="title1">List</p>
+			<p id="title1">Demon List</p>
 		</div>
-		<p class='hideText' id="iconTitle">List</p>
+		<p class='hideText' id="iconTitle">Demon List</p>
+	</a>
+	<a href="/FL" class="sidebarIconWrapper">
+		<div class='hide' id="sidebarIcon">
+			<div class="sidebarIcon">
+				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z"/></svg>
+			</div>
+			<p id="title1">Featured List</p>
+		</div>
+		<p class='hideText' id="iconTitle">Featured List</p>
 	</a>
 	<hr />
 	{#if uid}
@@ -300,6 +309,12 @@
 		.barItem {
 			background-color: #2e2e2e;
 		}
+		#title1{
+			white-space: nowrap; 
+			width: 100%; 
+			overflow: hidden;
+			text-overflow: clip; 
+		}
 		#sidebarIcon {
 			padding-inline: 16px;
 			border-radius: 16px;
@@ -362,6 +377,7 @@
 	.hideText {
 		opacity: 0;
 		transition: opacity 0.3s;
+		text-align: center;
 	}
 	.topBar1 {
 		position: fixed;
@@ -408,7 +424,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		background-color: #141414;
+		background-color: transparent;
 		width: 100%;
 		height: 60px;
 		box-sizing: border-box;
@@ -425,6 +441,7 @@
 			margin-top: 0;
 			margin-bottom: 0;
 			color: white;
+			text-shadow: 2px 2px 8px gray;
 		}
 		.submitBtn {
 			background-color: #005ff9;
