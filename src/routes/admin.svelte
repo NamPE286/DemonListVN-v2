@@ -18,7 +18,10 @@
 				},
 				body: JSON.stringify({
 					token: supabase.auth.session().access_token,
-					data : {name:n}
+					data : {
+						name:n,
+						country: 'VI'
+					}
 				})
 			})
 				.then((data) => {
