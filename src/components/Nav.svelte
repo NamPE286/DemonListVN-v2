@@ -441,7 +441,6 @@
 			margin-top: 0;
 			margin-bottom: 0;
 			color: white;
-			text-shadow: 2px 2px 8px gray;
 		}
 		.submitBtn {
 			background-color: #005ff9;
