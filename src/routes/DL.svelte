@@ -40,7 +40,7 @@
 				top={item.dlTop}
 				name={item.name}
 				creator={item.creator}
-				point={item.flPt}
+				point={item.dlPt}
 				videoID={item.videoID}
 				levelID={item.id}
 			/>
@@ -51,7 +51,7 @@
 				top={item.dlTop}
 				name={item.name}
 				creator={item.creator}
-				point={item.flPt}
+				point={item.dlPt}
 				videoID={item.videoID}
 				levelID={item.id}
 			/>
