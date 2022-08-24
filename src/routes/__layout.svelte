@@ -5,7 +5,6 @@
 		try{
 			img = localStorage.getItem('bg')
 			if(!img) img = ''
-			console.log(img)
 		}
 		catch{
 			setTimeout(getImg, 100)
