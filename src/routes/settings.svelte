@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Title from "../components/Title.svelte";
+	import Title from "../components/widgets/Title.svelte";
 	//import Selector from "../components/Selector.svelte";
-	import SettingInput from "../components/ImagePicker.svelte"
-	import SliderPicker from "../components/SliderPicker.svelte"
+	import SettingInput from "../components/settings/ImagePicker.svelte"
+	import SliderPicker from "../components/settings/SliderPicker.svelte"
 </script>
 <head>
 	<title>Settings - Demon List VN</title>

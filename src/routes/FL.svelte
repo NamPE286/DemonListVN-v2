@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Title from "../components/Title.svelte";
-	import Levels from "../components/Levels.svelte";
+	import Title from "../components/widgets/Title.svelte";
+	import Levels from "../components/widgets/Levels.svelte";
 	import PlayersList from "../components/PlayersList.svelte";
-	import AddLevelModal from "../components/AddLevelModal.svelte";
+	import AddLevelModal from "../components/modals/AddLevelModal.svelte";
 	import { userdata } from "../routes/stores";
 	var list = 0
 	var listOption = 0;

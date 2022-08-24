@@ -1,6 +1,6 @@
 <script>
 	import { createClient } from "@supabase/supabase-js";
-	import LoadingAnimation from "../components/LoadingAnimation.svelte";
+	import LoadingAnimation from "../components/animations/LoadingAnimation.svelte";
 	import { userdata } from "./stores";
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	var player;

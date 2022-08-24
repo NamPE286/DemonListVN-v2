@@ -1,6 +1,6 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
-	import { userdata } from '../routes/stores'
+	import { userdata } from '../../routes/stores'
 	import { createClient } from "@supabase/supabase-js";
 	var user;
 	var user1;

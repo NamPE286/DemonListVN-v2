@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Title from "../components/Title.svelte";
-	import CardVisit from "../components/PersonnalCard.svelte";
+	import Title from "../components/widgets/Title.svelte";
+	import CardVisit from "../components/widgets/PersonnalCard.svelte";
 </script>
 <svelte:head>
 	<title>About - Demon List VN</title>

@@ -1,11 +1,11 @@
 <script>
 	import { page } from "$app/stores";
 	import { createClient } from "@supabase/supabase-js";
-	import LoadingAnimation from "../components/LoadingAnimation.svelte";
-	import EditProfileModal from "../components/EditProfileModal.svelte";
-	import AddRecordModal from "../components/AddRecordModal.svelte";
-	import EditRecordModal from "../components/EditRecordModal.svelte";
-	import MySubmissionsModal from "../components/MySubmissionsModal.svelte";
+	import LoadingAnimation from "../components/animations/LoadingAnimation.svelte";
+	import EditProfileModal from "../components/modals/EditProfileModal.svelte";
+	import AddRecordModal from "../components/modals/AddRecordModal.svelte";
+	import EditRecordModal from "../components/modals/EditRecordModal.svelte";
+	import MySubmissionsModal from "../components/modals/MySubmissionsModal.svelte";
 	import { userdata } from "./stores";
 	var id = $page.url.searchParams.get("id");
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);

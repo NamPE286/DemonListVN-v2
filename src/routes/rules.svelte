@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Title from "../components/Title.svelte";
+	import Title from "../components/widgets/Title.svelte";
 </script>
 <svelte:head>
     <title>Rules - Demon List VN</title>

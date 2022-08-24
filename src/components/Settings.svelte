@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Title from "./Title.svelte";
-	import Selector from "./Selector.svelte";
+	import Title from "./widgets/Title.svelte";
+	import Selector from "./settings/Selector.svelte";
 </script>
 
 <Title title="Settings" description="View and modify your preferences" />

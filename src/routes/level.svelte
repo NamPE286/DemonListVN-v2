@@ -2,10 +2,10 @@
 	import { page } from "$app/stores";
 	import { userdata } from "./stores";
 	import { createClient } from "@supabase/supabase-js";
-	import LoadingAnimation from "../components/LoadingAnimation.svelte";
-	import AddRecordModal from "../components/AddRecordModal.svelte";
-	import EditRecordModal from "../components/EditRecordModal.svelte";
-	import EditLevelModal from "../components/EditLevelModal.svelte";
+	import LoadingAnimation from "../components/animations/LoadingAnimation.svelte";
+	import AddRecordModal from "../components/modals/AddRecordModal.svelte";
+	import EditRecordModal from "../components/modals/EditRecordModal.svelte";
+	import EditLevelModal from "../components/modals/EditLevelModal.svelte";
 	const id = $page.url.searchParams.get("id");
 	var level = null;
 	var title = ""
