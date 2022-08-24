@@ -29,6 +29,7 @@
 		text-decoration: none;
 		color: white;
 		overflow: hidden;
+		transition: all 0.3s;
 		img {
 			height: 70%;
 			width: 100%;
@@ -70,6 +71,11 @@
 				}
 			}
 		}
+	}
+	.levelWidget:hover{
+		transform: scale(1.15);
+		box-shadow: 0 0 32px rgb(34, 34, 34);
+		z-index: 2;
 	}
 	@media screen and (min-width: 1100px) {
 		.levelName {
