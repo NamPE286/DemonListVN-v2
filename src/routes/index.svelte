@@ -2,25 +2,10 @@
 	import { createClient } from "@supabase/supabase-js";
 	import LoadingAnimation from "../components/LoadingAnimation.svelte";
 	import { userdata } from "./stores";
-	var id = $userdata.metadata.id
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	var player;
+	$: player = $userdata.data
     var randomDL, randomFL;
-    function getData(){
-        if(id){
-            fetch(`https://seademonlist-api.vercel.app/player/${id}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    player = data;
-                });
-			
-        }
-        else{
-            setTimeout(getData, 100)
-        }
-            
-    }
-    getData()
     async function getRandom(){
         var { data, error } = await supabase
             .from('random_levels')
@@ -38,8 +23,7 @@
         randomDL = data.id
     }
     getRandom()
-	function getGreeting(a){
-		var greeting = [
+	var greeting = [
 			'Hi',
 			'Hello',
 			'Welcome',
@@ -47,11 +31,12 @@
 			'Bonjour',
 			'Xin chào'
 		]
-		var item = greeting[Math.floor(Math.random()*greeting.length)];
+	var l = Math.floor(Math.random()*greeting.length);
+	function getGreeting(a){
 		if(a) {
-			return `${item}, ${a}!`
+			return `${greeting[l]}, ${a}!`
 		}
-		return `${item}!`
+		return `${greeting[l]}!`
 	}
 </script>
 

@@ -17,11 +17,12 @@ supabase.auth.onAuthStateChange((event, session) => {
     console.log(event, session.user.id)
     dat1.metadata = session.user
     fetch(`https://seademonlist-api.vercel.app/player/${session.user.id}`)
-    .then((response) => response.json())
-    .then((data) => {
-        dat1.data = data
-    });
-})    
+        .then((response) => response.json())
+        .then((data) => {
+            dat1.data = data
+            userdata.set(dat1)
+        });
+})
 
 
 export const userdata = writable(dat1);
