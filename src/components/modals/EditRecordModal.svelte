@@ -35,15 +35,12 @@
 	function cancel(){
 		ifShow = !ifShow;
 		a = level
-		console.log(level, player)
 	}
 	function update(){
 		a = level
 		var b = new Date(a.timestamp)
-		console.log(b)
 		var c = b.toISOString()
 		var d = c.split('T')
-		console.log(d[0])
 		a.timestamp = d[0]
 		return ''
 	}

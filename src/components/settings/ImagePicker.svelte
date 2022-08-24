@@ -11,7 +11,6 @@
                 localStorage.setItem(key, val);
                 window.location.reload()
             };
-        console.log(image)
     }
 </script>
 

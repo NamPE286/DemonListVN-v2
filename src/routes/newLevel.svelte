@@ -18,12 +18,10 @@
             .from('submissions')
             .delete()
             .match({ levelid: item.id })
-        console.log(data, error)
         var { data, error } = await supabase
             .from('levels')
             .delete()
             .match({ id: item.id })
-        console.log(data, error)
         levels.splice(index, 1)
         levels = levels
     }
@@ -41,7 +39,6 @@
             .from('levels')
             .update(item)
             .match({ id: item.id })
-        console.log(data, error)
         var { data, error } = await supabase
             .rpc('updateRank')
         levels.splice(index, 1)

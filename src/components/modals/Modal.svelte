@@ -20,17 +20,14 @@
 		a.userid = $userdata.metadata.id
 		if(list == 'Featured List') a.progress = 100
 		for(const i in a){
-			console.log(i)
 			if(a[i] == null){
 				alert('Please fill in all fields')
 				return
 			}
 		}
-		console.log(a)
 		var { data, error } = await supabase
 			.from('submissions')
 			.insert(a)
-		console.log(data, error)
 		if(error){
 			if(list == "Featured List"){
 				alert('This level doesn\'t exist')
@@ -39,7 +36,6 @@
 				fetch(`https://gdbrowser.com/api/level/${a.levelid}`)
 					.then((response) => response.json())
 					.then((data) => {
-						console.log(data)
 						var level = {
 							id: data.id,
 							name: data.name.trim(),
@@ -49,11 +45,9 @@
 							var { data, error } = await supabase
 								.from('levels')
 								.insert(level)
-							console.log(data, error)
 							var { data, error } = await supabase
 								.from('submissions')
 								.insert(a)
-							console.log(data, error)
 							a = {
 								levelid: null,
 								userid: $userdata.metadata.id,
@@ -87,7 +81,6 @@
 	}
 	function cancel(){
 		ifShow = !ifShow
-		console.log(a)
 		a = {
 			levelid: null,
 			userid: $userdata.metadata.id,

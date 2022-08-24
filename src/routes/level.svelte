@@ -183,7 +183,6 @@
 								on:click={() => {
 									showEditRecordModal = !showEditProfileModal;
 									currentLevel = item;
-									console.log(item)
 									player = {
 										data:{
 											uid: item.userid

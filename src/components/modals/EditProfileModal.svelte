@@ -18,6 +18,16 @@
 			facebook: user.data.facebook,
 			discord: user.data.discord,
 		}
+		for(const i in a){
+			if(i != 'name'){
+				var s = a[i].split(' ')
+				var s1 = ''
+				for(const j in s){
+					s1 += s[j]
+				}
+				a[i] = s1
+			}
+		}
 		if(a.avatar.length > 200){
 			alert('Invalid avatar url')
 			return

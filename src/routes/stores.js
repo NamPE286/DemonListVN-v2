@@ -14,7 +14,6 @@ var dat1 = {
 }
 if(!supabase.auth.user()) dat1.metadata.id = 1
 supabase.auth.onAuthStateChange((event, session) => {
-    console.log(event, session.user.id)
     dat1.metadata = session.user
     fetch(`https://seademonlist-api.vercel.app/player/${session.user.id}`)
         .then((response) => response.json())

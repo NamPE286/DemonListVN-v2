@@ -7,7 +7,6 @@
 			img = localStorage.getItem('bg')
 			blur = localStorage.getItem('blur')
 			opacity = localStorage.getItem('opacity')
-			console.log(localStorage)
 			if(!img) img = ''
 			if(!blur && blur != 0) blur = 0 
 			if(!opacity && opacity != 0) opacity = 100

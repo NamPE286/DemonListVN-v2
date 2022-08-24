@@ -8,7 +8,6 @@
 		.then((response) => response.json())
 		.then((data) => {
 			submissions = data;
-			console.log(data)
 		});
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function cancel(item, index){
@@ -16,7 +15,6 @@
 			.from('submissions')
 			.delete()
 			.match({id: item.id})
-		console.log(data, error)
 		submissions.splice(index, 1)
 		submissions = submissions
 	}
