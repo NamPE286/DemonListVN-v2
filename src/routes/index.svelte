@@ -257,8 +257,8 @@
 		.pageContent {
 			width: 90%;
 			grid-template-areas:
-				"fltop"
 				"dltop"
+				"fltop"
 				"info"
 				"sel"
 				"sel1"
