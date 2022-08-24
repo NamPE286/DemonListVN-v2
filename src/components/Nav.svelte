@@ -254,7 +254,7 @@
 		box-sizing: border-box;
 		padding-top: 8px;
 		z-index: 1;
-		transition: all 0.2s ease-out;
+		transition: all 0.3s;
 		box-sizing: border-box;
 		.sidebarIconWrapper {
 			color: white;
@@ -273,13 +273,6 @@
 		}
 		#title1 {
 			display: none;
-		}
-		.barItem {
-			background-color: #2e2e2e;
-			padding-inline: 10px;
-			padding-top: 6px;
-			padding-bottom: 2px;
-			border-radius: 16px;
 		}
 		p {
 			font-size: 12px;
@@ -306,16 +299,13 @@
 		padding-top: 8px;
 		z-index: 2;
 		box-shadow: 0 0 15px rgb(9, 9, 9);
-		transition: all 0.2s ease-out;
+		transition: all 0.3s;
 		overflow-x: hidden;
 		#iconTitle {
 			font-size: 10px;
 			margin-top: 0;
 			margin-bottom: 0;
 			visibility: hidden;
-		}
-		.barItem {
-			background-color: #2e2e2e;
 		}
 		#title1{
 			white-space: nowrap; 
@@ -345,7 +335,7 @@
 		hr {
 			margin-top: auto;
 			width: calc(100% - 10px);
-			border-color: #525252;
+			border: 1px solid rgb(56, 56, 56);
 			margin-bottom: 24px;
 		}
 		.bottomPad {
@@ -494,11 +484,9 @@
 			width: 100%;
 		}
 	}
-	@media screen and (max-width: 1580px) {
-		.dimBg {
-			display: block;
-			opacity: 0.5;
-		}
+	.dimBg {
+		display: block;
+		opacity: 0.5;
 	}
 	@media screen and (max-width: 1100px) {
 		.sidebar {
