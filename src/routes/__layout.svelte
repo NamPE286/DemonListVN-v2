@@ -1,10 +1,16 @@
 <script lang="ts">
 	import Nav from '../components/Nav.svelte';
 	var img;
+	var blur, opacity;
 	function getImg(){
 		try{
 			img = localStorage.getItem('bg')
+			blur = localStorage.getItem('blur')
+			opacity = localStorage.getItem('opacity')
+			console.log(localStorage)
 			if(!img) img = ''
+			if(!blur && blur != 0) blur = 0 
+			if(!opacity && opacity != 0) opacity = 100
 		}
 		catch{
 			setTimeout(getImg, 100)
@@ -14,7 +20,7 @@
 	
 </script>
 {#if img}
-	<img src={img} alt='bg'>
+	<img src={img} alt='bg' style={`filter: blur(${blur}px); opacity: ${opacity}%;`}>
 {/if}
 <Nav />
 <slot />

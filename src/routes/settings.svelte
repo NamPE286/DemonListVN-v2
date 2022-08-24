@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Title from "../components/Title.svelte";
-	import Selector from "../components/Selector.svelte";
-	import SettingInput from "../components/SettingsInput.svelte";
+	//import Selector from "../components/Selector.svelte";
+	import SettingInput from "../components/ImagePicker.svelte"
+	import SliderPicker from "../components/SliderPicker.svelte"
 </script>
 <head>
 	<title>Settings - Demon List VN</title>
@@ -11,7 +12,9 @@
     <Title title="Settings" description="View and modify your preferences" />
     <div class="st_option">
 		<SettingInput name="Background image" key='bg' />
-        <Selector name="Dark theme" isToggled />
+		<SliderPicker name="BG opacity" key="opacity" />
+		<SliderPicker name="BG blur" key="blur" />
+		<!-- <Selector name="Dark theme" isToggled /> -->
     </div>
 </div>
 
