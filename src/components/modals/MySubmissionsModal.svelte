@@ -100,14 +100,6 @@
 			margin-right: 25px;
 		}
 	}
-	button {
-		border: none;
-		color: white;
-		a{
-			text-decoration: none;
-			color: white;
-		}
-	}
 	.submitModal {
 		position: fixed;
 		top: 50%;
@@ -121,50 +113,15 @@
 		display: flex;
 		flex-direction: row;
 	}
-	.s_flexcol {
-		display: flex;
-		flex-direction: column;
-	}
 	.s_title {
 		font-weight: 500;
 		font-size: 42px;
-	}
-	.s_margin3 {
-		margin: 32px 0px 24px 0px;
 	}
 	.s_margin4 {
 		margin: 32px 16px 16px 52px;
 	}
 	.s_margin5 {
 		margin: 16px 50px 24px 0px;
-	}
-	.s_margin6 {
-		margin: 16px 16px 32px 0px;
-	}
-	.s_button {
-		background-color: #2d2d2d;
-		height: 28px;
-		width: 125px;
-		border-radius: 14px;
-		font-weight: 350;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		transition: 0.3s;
-		a{
-			margin-left: 10px;
-		}
-		svg{
-			filter: invert(1);
-		}
-	}
-	.s_button:hover{
-		background-color: #424242;
-		transition: 0.3s;
-	}
-	.s_button:active:hover{
-		background-color: #808080;
-		transition: 0.15s;
 	}
 	.s_button2 {
 		height: 36px;
@@ -178,58 +135,9 @@
 		align-items: center;
 		font-weight: 400;
 	}
-	.s_input {
-		background-color: #2d2d2d;
-		width: calc(100% - 126px);
-		border-radius: 10px;
-		margin-bottom: 8px;
-		padding: 16px 16px 16px 16px;
-		border: none;
-		color: #fff;
-		font-family: "Roboto Flex", "Roboto", sans-serif;
-		font-size: 16px;
-		transition: all 0.25s ease-in-out;
-	}
-	.s_select {
-		background-color: #2d2d2d;
-		width: calc(100% - 96px);
-		border-radius: 10px;
-		margin-bottom: 8px;
-		padding: 16px 16px 16px 12px;
-		border: none;
-		color: #fff;
-		font-family: "Roboto Flex", "Roboto", sans-serif;
-		font-size: 16px;
-		transition: all 0.25s ease-in-out;
-	}
-	.s_input::placeholder {
-		position: relative;
-		font-family: "Roboto Flex", "Roboto", sans-serif;
-		font-size: 16px;
-	}
-	.s_input:focus {
-		outline: none;
-		border: 0;
-		background-color: #333333;
-		transition: all 0.25s ease-in-out;
-	}
-	.s_select:focus {
-		outline: none;
-		border: 0;
-		background-color: #333333;
-		transition: all 0.25s ease-in-out;
-	}
 	.s_red {
 		background-color: #f90000;
 		transition: 0.3s;
-	}
-	.s_blue {
-		background-color: #005ff9;
-		transition: 0.3s;
-	}
-	.s_blue:active:hover{
-		background-color: #0040a7;
-		transition: 0.15s;
 	}
 	.s_shadow {
 		box-shadow: 0px 0px 32px #000000;
@@ -242,12 +150,6 @@
 	@media screen and (max-width: 750px) {
 		.submitModal {
 			width: 95%;
-		}
-		.s_input {
-			width: calc(100% - 66px);
-		}
-		.s_select {
-			width: calc(100% - 36px);
 		}
 		.s_margin4 {
 			margin: 32px 16px 16px 22px;

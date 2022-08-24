@@ -94,9 +94,6 @@
 	}
 
 	// demo-specific
-	body {
-		background-color: $white;
-	}
 	.showbox {
 		position: absolute;
 		top: 0;

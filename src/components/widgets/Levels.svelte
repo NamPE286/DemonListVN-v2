@@ -36,13 +36,6 @@
 			object-fit: cover;
 			border-radius: 50px 50px 0 0;
 		}
-		svg {
-			filter: invert(0.5);
-			margin-top: auto;
-			margin-bottom: auto;
-			margin-left: auto;
-			margin-right: 40px;
-		}
 		.levelInfo {
 			display: flex;
 			margin-top: auto;
