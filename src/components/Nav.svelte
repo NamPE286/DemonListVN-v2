@@ -92,7 +92,7 @@
 		{/if}
 	</a>
 	<a id="title" href='/'>Demon List VN</a>
-	<input autocomplete="false" class='searchBox' placeholder='Search' bind:value={searchValue} on:input={typingAction} >
+	<input autocomplete="false" class='searchBox' placeholder='Search' id='hideRes' bind:value={searchValue} on:input={typingAction} >
 	{#if (searchRes.length && searchValue.length) && !isTyping || ((searchPlayerRes.length && searchValue.length) && !isTyping)}
 		<div class="searchRes">
 			{#each searchRes as item, index}
@@ -511,10 +511,20 @@
 			display: none;
 		}
 		.searchBox{
-			display: none;
+			width: calc(100% - 300px);
+			height: 30px;
+			left: 75px;
+			transition: all 0.3s;
+			position: fixed;
+		}
+		.searchBox:focus{
+			transform: translateX(-70px);
+			width: calc(100% - 10px);
+			height: 50px;
 		}
 		.searchRes{
-			display: none;
+			width: 100%;
+			left: 0;
 		}
 	}
 </style>
