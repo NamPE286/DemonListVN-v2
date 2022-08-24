@@ -13,8 +13,8 @@
 		.then((response) => response.json())
 		.then((data) => {
 			dlLevels = data;
-			dlLegacy = dlLevels.slice(50, dlLevels.length);
-			dlLevels = dlLevels.slice(0, 50);
+			dlLegacy = dlLevels.slice(150, dlLevels.length);
+			dlLevels = dlLevels.slice(0, 150);
 		});;
 
 </script>
