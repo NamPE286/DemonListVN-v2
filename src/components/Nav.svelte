@@ -465,7 +465,7 @@
 		border-radius: 8px;
 		height: 55%;
 		margin-left: auto;
-		margin-right: 75px;
+		margin-right: 65px;
 		width: 400px;
 		box-sizing: border-box;
 		padding-inline: 15px;
@@ -473,7 +473,7 @@
 	}
 	.searchRes{
 		position: fixed;
-		left: calc(50% - 203.5px);
+		left: calc(50% - 197.5px);
 		top: 60px;
 		background-color: #2d2d2d;
 		width: 400px;
