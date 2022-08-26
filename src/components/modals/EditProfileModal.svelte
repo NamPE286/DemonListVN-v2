@@ -18,9 +18,10 @@
 			youtube: user.data.youtube,
 			facebook: user.data.facebook,
 			discord: user.data.discord,
+			isHidden: user.data.isHidden
 		}
 		for(const i in a){
-			if(i != 'name'){
+			if(i != 'name' && i != 'isHidden'){
 				var s = a[i].split(' ')
 				var s1 = ''
 				for(const j in s){
@@ -43,7 +44,7 @@
 				data: a
 			})
 		})
-			.then((res) => {
+			.then(async (res) => {
 				document.body.style.cursor = 'default'
 				if(res.ok){
 					alert('Profile updated!')
@@ -80,6 +81,22 @@
 				<input class="s_input" id='youtube' placeholder="Youtube Link" bind:value={user.data.youtube} />
 				<input class="s_input" id='facebook' placeholder="Facebook Link" bind:value={user.data.facebook}/>
 				<input class="s_input" id='discord' placeholder="Discord tag" bind:value={user.data.discord} />
+				{#if !user.data.isHidden}
+					<button class="hideBtn" on:click={
+						() => {
+							user.data.isHidden = true
+							apply()
+						}
+					}>Make my profile hidden</button>
+				{/if}
+				{#if user.data.isHidden}
+					<button class="hideBtn1" on:click={
+						() => {
+							user.data.isHidden = false
+							apply()
+						}
+					}>Make my profile visible</button>
+				{/if}
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<a
@@ -101,6 +118,24 @@
 {/if}
 
 <style lang="scss">
+	.hideBtn{
+		height: 60px;
+		width: calc(100% - 90px);
+		border-radius: 15px;
+		background-color: red;
+		color: white;
+		font-size: 15px;
+		font-weight: 600;
+	}
+	.hideBtn1{
+		height: 60px;
+		width: calc(100% - 90px);
+		border-radius: 15px;
+		background-color: rgb(0, 233, 31);
+		color: white;
+		font-size: 15px;
+		font-weight: 600;
+	}
 	.dimBg {
 		position: fixed;
 		margin-top: -135px;
@@ -214,6 +249,12 @@
 		}
 		.s_margin5 {
 			margin: 16px 22px 24px 0px;
+		}
+		.hideBtn{
+			width: calc(100% - 30px);
+		}
+		.hideBtn1{
+			width: calc(100% - 30px);
 		}
 	}
 </style>
