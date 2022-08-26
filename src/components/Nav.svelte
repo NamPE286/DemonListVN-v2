@@ -212,11 +212,6 @@
 	#signIn {
 		margin-left: auto;
 	}
-	.signOut {
-		color: #f90000;
-		margin-left: auto;
-		margin-right: 25px;
-	}
 	.dimBg {
 		position: fixed;
 		margin-top: -135px;
