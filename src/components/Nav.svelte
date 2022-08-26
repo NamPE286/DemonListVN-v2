@@ -111,7 +111,6 @@
 		</div>
 	{/if}
 	{#if uid && !forceSignIn}
-		<a href="#!" class="signOut" on:click={signOut}>Sign out</a>
 		<a class="submitBtn" href="#!" on:click={openModal}>
 			<p>Submit</p>
 		</a>
@@ -407,6 +406,7 @@
 			text-decoration: none;
 			color: white;
 			transition: 0.15s;
+			margin-left: auto;
 			p {
 				margin-top: 8px;
 				margin-bottom: 8px;
@@ -448,6 +448,7 @@
 			text-decoration: none;
 			color: white;
 			transition: 0.15s;
+			margin-left: auto;
 			p {
 				margin-top: 8px;
 				margin-bottom: 8px;
@@ -464,6 +465,7 @@
 		border-radius: 8px;
 		height: 55%;
 		margin-left: auto;
+		margin-right: 75px;
 		width: 400px;
 		box-sizing: border-box;
 		padding-inline: 15px;
@@ -471,7 +473,7 @@
 	}
 	.searchRes{
 		position: fixed;
-		left: calc(50% - 207.5px);
+		left: calc(50% - 203.5px);
 		top: 60px;
 		background-color: #2d2d2d;
 		width: 400px;
@@ -499,7 +501,7 @@
 			display: none;
 		}
 		.searchBox{
-			width: calc(100% - 300px);
+			width: calc(100% - 225px);
 			height: 30px;
 			left: 75px;
 			transition: all 0.3s;

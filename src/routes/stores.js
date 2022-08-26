@@ -3,16 +3,13 @@ import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 var dat1 = {
-    metadata: {
-        id:null
-    },
+    metadata: null,
     data: {
         data:{
             isAdmin: false
         }
     }
 }
-if(!supabase.auth.user()) dat1.metadata.id = 1
 supabase.auth.onAuthStateChange((event, session) => {
     dat1.metadata = session.user
     fetch(`https://seademonlist-api.vercel.app/player/${session.user.id}`)

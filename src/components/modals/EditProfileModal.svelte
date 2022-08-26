@@ -11,6 +11,7 @@
 	export var ifShow: boolean;
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function apply(){
+		document.body.style.cursor = 'wait'
 		const a = {
 			name: user.data.name,
 			avatar: user.data.avatar,
@@ -28,7 +29,7 @@
 				a[i] = s1
 			}
 		}
-		if(a.avatar.length > 200){
+		if(a.avatar.length > 500){
 			alert('Invalid avatar url')
 			return
 		}
@@ -43,6 +44,7 @@
 			})
 		})
 			.then((res) => {
+				document.body.style.cursor = 'default'
 				if(res.ok){
 					alert('Profile updated!')
 					window.location.reload()

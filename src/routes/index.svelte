@@ -74,6 +74,9 @@
 {/if}
 
 <style lang="scss">
+	iframe{
+		background-color: #202020;
+	}
     .level{
         background-color: #005ff9;
         height: 50px;
