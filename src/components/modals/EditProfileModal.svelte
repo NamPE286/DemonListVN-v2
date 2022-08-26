@@ -84,7 +84,7 @@
 				{#if !user.data.isHidden}
 					<button class="hideBtn" on:click={
 						() => {
-							if(confirm('By continue, your profile will be:\n- Hidden from top player.\n- Hidden from search result.\n- You will not be able to see your rank.\n- All of your records will be hidden (won\'t be deleted).\n- You still be able to submit new record.\nDo you wish to proceed?')){
+							if(confirm('By continue, your profile will be:\n- Hidden from top player.\n- Hidden from search result.\n- You will not be able to see your rank.\n- All of your records will be hidden (won\'t be deleted).\n- You\'re still be able to submit new record.\nDo you wish to proceed?')){
 								user.data.isHidden = true
 								apply()
 							}
