@@ -13,6 +13,7 @@
                 .is('levels.seaTop', null)
                 .eq('players.country', $userdata.data.country)
                 .order('id', {ascending: true})
+            console.log(data, error)
             submissions = data
         }
         else{
