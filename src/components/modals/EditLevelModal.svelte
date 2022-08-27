@@ -6,28 +6,8 @@
 	export var level: any;
 	var prevFL = JSON.parse(JSON.stringify(level.flTop))
 	var prevDL = JSON.parse(JSON.stringify(level.dlTop))
-	var deleteLv = ''
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function apply(){
-		if(deleteLv == 'yes'){
-			fetch(`https://seademonlist-api.vercel.app/level/${level.id}`, {
-				method: 'DELETE',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					token: supabase.auth.session().access_token,
-				})
-			})
-				.then((res) => {
-					if(res.ok){
-						alert('Level Deleted')
-						window.location.replace('/')
-					}
-					else alert('An error occured')
-				})
-			return
-		}
 		level['prevdlTop'] = prevDL
 		level['prevflTop'] = prevFL
 		fetch(`https://seademonlist-api.vercel.app/level/${level.id}`, {
@@ -75,7 +55,6 @@
 				<input class="s_input" placeholder="Minimum Progress (must be greater than 0, default is 100)" bind:value={level.minProgress} type='number'/>
 				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop} type="number"/>
 				<input class="s_input" placeholder="Demon List Top (leave blank for null)" bind:value={level.dlTop}  type="number"/>
-				<input class="s_input" placeholder="Delete level? (type yes to proceed, if not leave this blank)" bind:value={deleteLv} />
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<a
