@@ -28,6 +28,7 @@
 			}
 		}
 		var { data, error } = await supabase.from("submissions").insert(a);
+		const b = JSON.parse(JSON.stringify(a));
 		if (error) {
 			if (list == "Featured List") {
 				alert("This level doesn't exist");
@@ -43,8 +44,9 @@
 							name: data.name.trim(),
 							creator: data.author
 						};
+						console.log(level, b)
 						async function addLv() {
-							fetch(`http://localhost:5050/level/${level.id}`, {
+							fetch(`https://seademonlist-api.vercel.app/level/${level.id}`, {
 								method: "POST",
 								headers: {
 									"Content-Type": "application/json"
@@ -53,9 +55,11 @@
 									token: supabase.auth.session().access_token,
 									data: level
 								})
-							}).then(async (res) => {
-								var { data, error } = await supabase.from("submissions").insert(a);
-							});
+							}).then((res) => {
+							})
+							.then( async (dat) => {
+								var { data, error } = await supabase.from("submissions").insert(b);
+							})
 						}
 						addLv()
 					});
