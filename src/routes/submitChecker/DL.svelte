@@ -9,8 +9,7 @@
             var { data, error } = await supabase
                 .from('submissions')
                 .select('*, levels!inner(name, dlTop), players!inner(name, uid, country)')
-                .is('levels.flTop', null)
-                .is('levels.seaTop', null)
+                .not('levels.dlTop', 'is', 'null')
                 .eq('players.country', $userdata.data.country)
                 .order('id', {ascending: true})
             console.log(data, error)
