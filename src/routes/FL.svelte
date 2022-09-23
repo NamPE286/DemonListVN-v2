@@ -9,14 +9,22 @@
 	var flLevels = [];
 	var flLegacy = [];
 	var showAddLevelModal = false;
-	fetch("https://seademonlist-api.vercel.app/levels/fl/page/1")
-		.then((response) => response.json())
-		.then((data) => {
-			flLevels = data;
-			flLegacy = flLevels.slice(50, flLevels.length);
-			flLevels = flLevels.slice(0, 50);
-		});;
-
+	function fetchData(){
+		if(typeof $userdata.metadata.id != 'undefined'){
+			fetch(`https://seademonlist-api.vercel.app/levels/fl/page/1/${$userdata.metadata.id}`)
+				.then((response) => response.json())
+				.then((data) => {
+					flLevels = data;
+					flLegacy = flLevels.slice(50, flLevels.length);
+					flLevels = flLevels.slice(0, 50);
+					console.log(data)
+				});
+			}
+		else{
+			setTimeout(fetchData, 50)
+		}
+	}
+	fetchData()
 </script>
 <svelte:head>
 	<title>Demon List VN</title>
@@ -43,6 +51,7 @@
 				point={item.flPt}
 				videoID={item.videoID}
 				levelID={item.id}
+				progress={item.progress}
 			/>
 		{/each}
 		<p id="legacyLabel"><span>Legacy List</span></p>
@@ -54,6 +63,7 @@
 				point={item.flPt}
 				videoID={item.videoID}
 				levelID={item.id}
+				progress={item.progress}
 			/>
 		{/each}
 	{/if}
