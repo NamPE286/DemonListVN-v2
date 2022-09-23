@@ -20,20 +20,23 @@
 			discord: user.data.discord,
 			isHidden: user.data.isHidden
 		}
-		for(const i in a){
-			if(i != 'name' && i != 'isHidden'){
-				var s = a[i].split(' ')
-				var s1 = ''
-				for(const j in s){
-					s1 += s[j]
+		try{
+			for(const i in a){
+				if(i != 'name' && i != 'isHidden'){
+					var s = a[i].split(' ')
+					var s1 = ''
+					for(const j in s){
+						s1 += s[j]
+					}
+					a[i] = s1
 				}
-				a[i] = s1
+			}
+			if(a.avatar.length > 500){
+				alert('Invalid avatar url')
+				return
 			}
 		}
-		if(a.avatar.length > 500){
-			alert('Invalid avatar url')
-			return
-		}
+		catch{}
 		fetch(`https://seademonlist-api.vercel.app/player/${user.metadata.id}`, {
 			method: 'PATCH',
 			headers: {

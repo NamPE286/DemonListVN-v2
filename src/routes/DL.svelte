@@ -9,13 +9,21 @@
 	var dlLevels = [];
 	var dlLegacy = [];
 	var showAddLevelModal = false;
-	fetch("https://seademonlist-api.vercel.app/levels/dl/page/1")
-		.then((response) => response.json())
-		.then((data) => {
-			dlLevels = data;
-			dlLegacy = dlLevels.slice(150, dlLevels.length);
-			dlLevels = dlLevels.slice(0, 150);
-		});;
+	function fetchData(){
+		if(typeof $userdata.metadata.id != 'undefined'){
+			fetch(`https://seademonlist-api.vercel.app/levels/dl/page/1/${$userdata.metadata.id}`)
+			.then((response) => response.json())
+			.then((data) => {
+				dlLevels = data;
+				dlLegacy = dlLevels.slice(150, dlLevels.length);
+				dlLevels = dlLevels.slice(0, 150);
+			});
+		}
+		else{
+			setTimeout(fetchData, 50)
+		}
+	}
+	fetchData()
 
 </script>
 <svelte:head>
@@ -43,6 +51,7 @@
 				point={item.dlPt}
 				videoID={item.videoID}
 				levelID={item.id}
+				progress={item.progress}
 			/>
 		{/each}
 		<p id="legacyLabel"><span>Legacy List</span></p>
@@ -54,6 +63,7 @@
 				point={item.dlPt}
 				videoID={item.videoID}
 				levelID={item.id}
+				progress={item.progress}
 			/>
 		{/each}
 	{/if}

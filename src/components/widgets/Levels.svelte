@@ -5,6 +5,7 @@
 	export var point: number;
 	export var videoID: string;
 	export var levelID: number;
+	export var progress: number;
 </script>
 
 <a href={`/level?id=${levelID}`} class="levelWidget">
@@ -15,6 +16,12 @@
 			<p class="levelName">{name}</p>
 			<p class="creator">by {creator} - {point}pt</p>
 		</div>
+		{#if progress != 100 && progress != 0}	
+			<span>{progress}%</span>
+		{/if}
+		{#if progress == 100}
+			<span><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4Z"/></svg></span>
+		{/if}
 	</div>
 </a>
 
@@ -30,11 +37,21 @@
 		color: white;
 		overflow: hidden;
 		transition: all 0.3s;
+		span{
+			height: 100%;
+			margin-left: auto;
+			margin-right: 35px;
+			display: flex;
+			align-items: center;
+		}
 		img {
 			height: 70%;
 			width: 100%;
 			object-fit: cover;
 			border-radius: 50px 50px 0 0;
+		}
+		svg{
+			filter: invert(1);
 		}
 		.levelInfo {
 			display: flex;
