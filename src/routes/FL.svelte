@@ -17,7 +17,6 @@
 					flLevels = data;
 					flLegacy = flLevels.slice(50, flLevels.length);
 					flLevels = flLevels.slice(0, 50);
-					console.log(data)
 				});
 			}
 		catch{
