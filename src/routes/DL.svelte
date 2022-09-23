@@ -10,7 +10,7 @@
 	var dlLegacy = [];
 	var showAddLevelModal = false;
 	function fetchData(){
-		if(typeof $userdata.metadata.id != 'undefined'){
+		try{
 			fetch(`https://seademonlist-api.vercel.app/levels/dl/page/1/${$userdata.metadata.id}`)
 			.then((response) => response.json())
 			.then((data) => {
@@ -19,7 +19,7 @@
 				dlLevels = dlLevels.slice(0, 150);
 			});
 		}
-		else{
+		catch{
 			setTimeout(fetchData, 50)
 		}
 	}
