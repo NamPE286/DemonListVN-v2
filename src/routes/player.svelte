@@ -21,7 +21,7 @@
 	var showMySubmissonsModal = false;
 	var sortBy = "timestamp"
 	var firstFetch = false
-	fetch(`https://seademonlist-api.vercel.app/player/${id}`)
+	$: fetch(`https://seademonlist-api.vercel.app/player/${$page.url.searchParams.get("id")}`)
 		.then((response) => response.json())
 		.then((data) => {
 			player = data;
@@ -32,7 +32,7 @@
 			if(list == 0) sortBy = 'dlPt'
 			else if(list == 1) sortBy = 'flPt'
 		}
-		fetch(`https://seademonlist-api.vercel.app/player/${id}/records/${sortBy}`)
+		fetch(`https://seademonlist-api.vercel.app/player/${$page.url.searchParams.get("id")}/records/${sortBy}`)
 			.then((response) => response.json())
 			.then((data) => {
 				flrec = []
@@ -50,7 +50,7 @@
 			sortBy = 'pt'
 		}
 	}
-	fetchRecords()
+	$: $page.url.searchParams.get("id"), fetchRecords()
 
 	function getDiscordTag() {
 		const tag = player.discord;

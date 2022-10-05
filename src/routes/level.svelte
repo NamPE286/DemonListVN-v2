@@ -3,30 +3,27 @@
 	import { userdata } from "./stores";
 	import { createClient } from "@supabase/supabase-js";
 	import LoadingAnimation from "../components/animations/LoadingAnimation.svelte";
-	import AddRecordModal from "../components/modals/AddRecordModal.svelte";
 	import EditRecordModal from "../components/modals/EditRecordModal.svelte";
 	import EditLevelModal from "../components/modals/EditLevelModal.svelte";
-	const id = $page.url.searchParams.get("id");
+	var id = $page.url.searchParams.get("id");
 	var level = null;
 	var title = ""
 	var records = [];
 	var levelAPI = null;
 	var currentLevel;
 	var player;
-	var lid;
 	var showEditProfileModal = false;
-	var showAddRecordModal = false;
 	var showEditRecordModal = false;
 	var showEditLevelModal = false;
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-	fetch(`https://seademonlist-api.vercel.app/level/${id}`)
+	$: fetch(`https://seademonlist-api.vercel.app/level/${$page.url.searchParams.get("id")}`)
 		.then((response) => response.json())
 		.then((data) => {
 			level = data.data;
 			title = data.data.name
 			if (data.records) records = data.records;
 		});
-	fetch(`https://gdbrowser.com/api/level/${id}`)
+	$: fetch(`https://gdbrowser.com/api/level/${$page.url.searchParams.get("id")}`)
 		.then((response) => response.json())
 		.then((data) => (levelAPI = data));
 	function getPoint() {
