@@ -9,18 +9,28 @@
 	var dlLevels = [];
 	var dlLegacy = [];
 	var showAddLevelModal = false;
-	function fetchData(){
+	function fetchData(count = 0){
+		if(count == 2){
+			fetch(`https://seademonlist-api.vercel.app/levels/dl/page/1/${$userdata.metadata.id}`)
+				.then((response) => response.json())
+				.then((data) => {
+					dlLevels = data;
+					dlLegacy = dlLevels.slice(150, dlLevels.length);
+					dlLevels = dlLevels.slice(0, 150);
+				});
+		}
 		try{
 			fetch(`https://seademonlist-api.vercel.app/levels/dl/page/1/${$userdata.metadata.id}`)
-			.then((response) => response.json())
-			.then((data) => {
-				dlLevels = data;
-				dlLegacy = dlLevels.slice(150, dlLevels.length);
-				dlLevels = dlLevels.slice(0, 150);
-			});
+				.then((response) => response.json())
+				.then((data) => {
+					dlLevels = data;
+					dlLegacy = dlLevels.slice(150, dlLevels.length);
+					dlLevels = dlLevels.slice(0, 150);
+				});
 		}
 		catch{
 			setTimeout(fetchData, 50)
+			count++
 		}
 	}
 	fetchData()
