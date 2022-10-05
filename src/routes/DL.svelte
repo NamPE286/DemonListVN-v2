@@ -11,7 +11,7 @@
 	var showAddLevelModal = false;
 	function fetchData(count = 0){
 		if(count == 2){
-			fetch(`https://seademonlist-api.vercel.app/levels/dl/page/1/${$userdata.metadata.id}`)
+			fetch(`https://seademonlist-api.vercel.app/levels/dl/page/1`)
 				.then((response) => response.json())
 				.then((data) => {
 					dlLevels = data;
@@ -29,8 +29,7 @@
 				});
 		}
 		catch{
-			setTimeout(fetchData, 50)
-			count++
+			setTimeout(() => fetchData(count + 1), 50)
 		}
 	}
 	fetchData()
