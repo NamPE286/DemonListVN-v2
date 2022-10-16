@@ -36,7 +36,7 @@
 
 </script>
 <svelte:head>
-	<title>Demon List VN</title>
+	<title>Demon List - Demon List VN</title>
 	<meta name='description' content='Welcome to Demon List VN, this is where we keep track of the hardest demons created, verified and hardest demon beaten by Vietnamese!'>
 </svelte:head>
 <div class="pageContent">
