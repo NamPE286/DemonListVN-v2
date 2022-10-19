@@ -13,51 +13,56 @@
 	var list = 1;
 	var flrec = [];
 	var dlrec = [];
-	var title = ""
+	var title = "";
 	var currentLevel;
 	var showEditProfileModal = false;
 	var showAddRecordModal = false;
 	var showEditRecordModal = false;
 	var showMySubmissonsModal = false;
-	var sortBy = "timestamp"
-	var firstFetch = false
-	$: fetch(`https://seademonlist-api.vercel.app/player/${$page.url.searchParams.get("id")}`)
-		.then((response) => response.json())
-		.then((data) => {
-			player = data;
-			title = data.name
-		});
-	function getPlayerAvatar(){
-		const { data } = supabase.storage
-			.from('avatars')
-			.getPublicUrl(`${id}.jpg`)
-		let ret = data.publicURL
-		return ret
-	}
-	function fetchRecords(){
-		if(sortBy == 'pt'){
-			if(list == 0) sortBy = 'dlPt'
-			else if(list == 1) sortBy = 'flPt'
+	var sortBy = "timestamp";
+	var firstFetch = false;
+	var avatarSrc = "";
+	async function fetchPlayerData() {
+		const testSrc = `https://qdwpenfblwdmhywwszzj.supabase.co/storage/v1/object/public/avatars/${$page.url.searchParams.get(
+			"id"
+		)}.jpg`;
+		var res = await fetch(testSrc);
+		if (res.ok) avatarSrc = testSrc;
+		else
+			avatarSrc =
+				"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Black_flag.svg/2560px-Black_flag.svg.png";
+		const dat = await (
+			await fetch(`https://seademonlist-api.vercel.app/player/${$page.url.searchParams.get("id")}`)
+		).json();
+		player = dat;
+		title = dat.name;
+
+		if (sortBy == "pt") {
+			if (list == 0) sortBy = "dlPt";
+			else if (list == 1) sortBy = "flPt";
 		}
-		fetch(`https://seademonlist-api.vercel.app/player/${$page.url.searchParams.get("id")}/records/${sortBy}`)
-			.then((response) => response.json())
-			.then((data) => {
-				flrec = []
-				dlrec = []
-				for (const i in data) {
-					if (data[i].flPt || data[i].flPt == 0) flrec.push(data[i]);
-					if (data[i].dlPt || data[i].dlPt == 0) dlrec.push(data[i]);
-				}
-				if (dlrec.length && !firstFetch) {
-					list = 0;
-					firstFetch = true
-				}
-			});
-		if(sortBy == 'flPt' || sortBy == 'dlPt'){
-			sortBy = 'pt'
+		const data = await (
+			await fetch(
+				`https://seademonlist-api.vercel.app/player/${$page.url.searchParams.get(
+					"id"
+				)}/records/${sortBy}`
+			)
+		).json();
+		flrec = [];
+		dlrec = [];
+		for (const i in data) {
+			if (data[i].flPt || data[i].flPt == 0) flrec.push(data[i]);
+			if (data[i].dlPt || data[i].dlPt == 0) dlrec.push(data[i]);
+		}
+		if (dlrec.length && !firstFetch) {
+			list = 0;
+			firstFetch = true;
+		}
+		if (sortBy == "flPt" || sortBy == "dlPt") {
+			sortBy = "pt";
 		}
 	}
-	$: $page.url.searchParams.get("id"), fetchRecords()
+	$: $page.url.searchParams.get("id"), fetchPlayerData();
 
 	function getDiscordTag() {
 		const tag = player.discord;
@@ -73,44 +78,42 @@
 		document.body.removeChild(el);
 		alert("Copied tag to clipboard");
 	}
-	async function removeLevel(item, index){
-		if(list == 1){
+	async function removeLevel(item, index) {
+		if (list == 1) {
 			flrec.splice(index, 1);
-			flrec = flrec
-		}
-		else if(list == 0){
+			flrec = flrec;
+		} else if (list == 0) {
 			dlrec.splice(index, 1);
-			dlrec = dlrec
+			dlrec = dlrec;
 		}
 		fetch(`https://seademonlist-api.vercel.app/record/${item.id}`, {
-			method: 'DELETE',
+			method: "DELETE",
 			headers: {
-				'Content-Type': 'application/json',
+				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
 				token: supabase.auth.session().access_token
 			})
-		})
+		});
 	}
-	function getID(){
-		try{
-			return $userdata.metadata.id
-		}
-		catch{
-			return null
+	function getID() {
+		try {
+			return $userdata.metadata.id;
+		} catch {
+			return null;
 		}
 	}
-	function ifMobile(item){
-        if(item.mobile) return "Mobile "
-        return ''
-    }
+	function ifMobile(item) {
+		if (item.mobile) return "Mobile ";
+		return "";
+	}
 </script>
 
 <svelte:head>
 	{#if title}
 		<title>{title}'s Info - Demon List VN</title>
 		<meta name="description" content={`${title}'s Info`} />
-		<meta name='keywords' content={title}/>
+		<meta name="keywords" content={title} />
 	{/if}
 </svelte:head>
 
@@ -119,15 +122,11 @@
 		<div class="playerInfoWidgetWrapper">
 			<div class="playerInfoWidget">
 				<div class="avatar">
-					<img src={getPlayerAvatar()} alt="" />
+					<img src={avatarSrc} alt="" />
 				</div>
 				<span class="playerName">{player.name}</span>
 				<div class="social">
-					<a
-						href={player.youtube ? player.youtube : "#!"}
-						target="_blank"
-						class="iconWrapper"
-					>
+					<a href={player.youtube ? player.youtube : "#!"} target="_blank" class="iconWrapper">
 						<svg
 							id="youtube"
 							xmlns="http://www.w3.org/2000/svg"
@@ -144,11 +143,7 @@
 							/>
 						</svg>
 					</a>
-					<a
-						href={player.facebook ? player.facebook : "#!"}
-						target="_blank"
-						class="iconWrapper"
-					>
+					<a href={player.facebook ? player.facebook : "#!"} target="_blank" class="iconWrapper">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="39.398"
@@ -211,7 +206,11 @@
 						showMySubmissonsModal = !showMySubmissonsModal;
 					}}
 				>
-				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M4 21q-.825 0-1.412-.587Q2 19.825 2 19V5q0-.825.588-1.413Q3.175 3 4 3h16q.825 0 1.413.587Q22 4.175 22 5v14q0 .825-.587 1.413Q20.825 21 20 21Zm0-2h16V5H4v14Zm1-2h5v-2H5Zm9.55-2 4.95-4.95-1.425-1.425-3.525 3.55-1.425-1.425-1.4 1.425ZM5 13h5v-2H5Zm0-4h5V7H5ZM4 19V5v14Z"/></svg>
+					<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+						><path
+							d="M4 21q-.825 0-1.412-.587Q2 19.825 2 19V5q0-.825.588-1.413Q3.175 3 4 3h16q.825 0 1.413.587Q22 4.175 22 5v14q0 .825-.587 1.413Q20.825 21 20 21Zm0-2h16V5H4v14Zm1-2h5v-2H5Zm9.55-2 4.95-4.95-1.425-1.425-3.525 3.55-1.425-1.425-1.4 1.425ZM5 13h5v-2H5Zm0-4h5V7H5ZM4 19V5v14Z"
+						/></svg
+					>
 					<span>My submissions</span>
 				</a>
 			{/if}
@@ -228,7 +227,7 @@
 			<div class="showRecordFrom">
 				<span>Show records from</span>
 			</div>
-			<select bind:value={list} on:change={fetchRecords}>
+			<select bind:value={list} on:change={fetchPlayerData}>
 				{#if dlrec.length}
 					<option value={0} selected={true}>Demon List</option>
 				{/if}
@@ -241,13 +240,13 @@
 			<div class="showRecordFrom">
 				<span>Sort by</span>
 			</div>
-			<select bind:value={sortBy} on:change={fetchRecords}>
-				<option value={'timestamp'} selected={true}>Submit time</option>
-				<option value={'pt'}>Point</option>
+			<select bind:value={sortBy} on:change={fetchPlayerData}>
+				<option value={"timestamp"} selected={true}>Submit time</option>
+				<option value={"pt"}>Point</option>
 				{#if list == 0}
-					<option value={'progress'}>Progress</option>
+					<option value={"progress"}>Progress</option>
 				{/if}
-				<option value={'levelid'}>Level ID</option>
+				<option value={"levelid"}>Level ID</option>
 			</select>
 		</div>
 		{#if list == 0}
@@ -270,14 +269,12 @@
 				{#each dlrec as item, index}
 					<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 						<div class="playerName">
-							<a href={`/level?id=${item.levelid}`}>{item.levels.name} ({ifMobile(item)}{item.refreshRate}fps)</a><a
-								href={item.videoLink}
-								target="_blank"
-								id="videoLink">(Video Link)</a
-							>
+							<a href={`/level?id=${item.levelid}`}
+								>{item.levels.name} ({ifMobile(item)}{item.refreshRate}fps)</a
+							><a href={item.videoLink} target="_blank" id="videoLink">(Video Link)</a>
 						</div>
 						<div class="playerPt">
-							<p id='center'>{item.dlPt} <br id="abcs" />({item.progress}%)</p>
+							<p id="center">{item.dlPt} <br id="abcs" />({item.progress}%)</p>
 							{#if $userdata.data.isAdmin}
 								<a
 									href="#!"
@@ -324,14 +321,12 @@
 				{#each flrec as item, index}
 					<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 						<div class="playerName">
-							<a href={`/level?id=${item.levelid}`}>{item.levels.name} ({ifMobile(item)}{item.refreshRate}fps)</a><a
-								href={item.videoLink}
-								target="_blank"
-								id="videoLink">(Video Link)</a
-							>
+							<a href={`/level?id=${item.levelid}`}
+								>{item.levels.name} ({ifMobile(item)}{item.refreshRate}fps)</a
+							><a href={item.videoLink} target="_blank" id="videoLink">(Video Link)</a>
 						</div>
 						<div class="playerPt">
-							<p id='center'>{item.flPt}</p>
+							<p id="center">{item.flPt}</p>
 							{#if $userdata.data.isAdmin}
 								<a
 									href="#!"
@@ -374,7 +369,7 @@
 {/if}
 
 <style lang="scss">
-	#center{
+	#center {
 		text-align: center;
 	}
 	#abcs {
