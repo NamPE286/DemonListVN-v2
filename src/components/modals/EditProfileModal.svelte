@@ -58,7 +58,7 @@
 		let image = e.target.files[0];
 		const options = {
 			maxSizeMB: 0.035,
-			maxWidthOrHeight: 1920,
+			maxWidthOrHeight: 480,
 			useWebWorker: true
 		};
 		uploadText = 'Compressing image...'
