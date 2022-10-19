@@ -1,129 +1,184 @@
 <script lang="ts">
-    import { fade } from 'svelte/transition';
-	import { userdata } from '../../routes/stores'
+	import { fade } from "svelte/transition";
+	import { userdata } from "../../routes/stores";
 	import { createClient } from "@supabase/supabase-js";
+	import imageCompression from "browser-image-compression";
 	var user;
 	var user1;
-	userdata.subscribe(value => {
-		user = value
-		user1 = JSON.parse(JSON.stringify(value))
-	})
+	var fileinput;
+	var uploadText = 'Upload avatar'
+	userdata.subscribe((value) => {
+		user = value;
+		user1 = JSON.parse(JSON.stringify(value));
+	});
 	export var ifShow: boolean;
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-	async function apply(){
-		document.body.style.cursor = 'wait'
+	async function apply() {
+		document.body.style.cursor = "wait";
 		const a = {
 			name: user.data.name,
-			avatar: user.data.avatar,
 			youtube: user.data.youtube,
 			facebook: user.data.facebook,
 			discord: user.data.discord,
 			isHidden: user.data.isHidden
-		}
-		try{
-			for(const i in a){
-				if(i != 'name' && i != 'isHidden'){
-					var s = a[i].split(' ')
-					var s1 = ''
-					for(const j in s){
-						s1 += s[j]
+		};
+		try {
+			for (const i in a) {
+				if (i != "name" && i != "isHidden") {
+					var s = a[i].split(" ");
+					var s1 = "";
+					for (const j in s) {
+						s1 += s[j];
 					}
-					a[i] = s1
+					a[i] = s1;
 				}
 			}
-			if(a.avatar.length > 500){
-				alert('Invalid avatar url')
-				return
-			}
-		}
-		catch{}
+		} catch {}
 		fetch(`https://seademonlist-api.vercel.app/player/${user.metadata.id}`, {
-			method: 'PATCH',
+			method: "PATCH",
 			headers: {
-				'Content-Type': 'application/json',
+				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
 				token: supabase.auth.session().access_token,
 				data: a
 			})
-		})
-			.then(async (res) => {
-				document.body.style.cursor = 'default'
-				if(res.ok){
-					alert('Profile updated!')
-					window.location.reload()
-				}
-				else alert('An error occured')
-			})
+		}).then(async (res) => {
+			document.body.style.cursor = "default";
+			if (res.ok) {
+				alert("Profile updated!");
+				window.location.reload();
+			} else alert("An error occured");
+		});
 	}
-	function cancel(){
-		user = JSON.parse(JSON.stringify(user1))
+	function cancel() {
+		user = JSON.parse(JSON.stringify(user1));
+	}
+	function getImage(e) {
+		let image = e.target.files[0];
+		const options = {
+			maxSizeMB: 0.035,
+			maxWidthOrHeight: 1920,
+			useWebWorker: true
+		};
+		uploadText = 'Compressing image...'
+		imageCompression(image, options).then(async (cImg) => {
+			var { data, error } = await supabase.storage
+				.from("avatars")
+				.upload(`/${$userdata.metadata.id}.jpg`, cImg, {
+					cacheControl: "0",
+					upsert: true
+				});
+			if(error) uploadText = 'An error ocurred'
+			else {
+				uploadText = 'Avatar uploaded! (refreshing page)'
+				window.location.reload()
+			}
+		});
 	}
 </script>
 
 {#if ifShow}
-<div out:fade="{{duration: 200}}" id='abcs'>
-	<div
-		class="dimBg"
-		on:click={() => {
-			ifShow = !ifShow;
-		}}
-        in:fade="{{duration: 150}}"
-	/>
-	<div
-		style="display: flex; justify-content: center; align-items: center; transition: all 0.25s ease-in-out;"
-		class="modalWrapper"
-	>
-		<div class="submitModal s_shadow">
-			<div class="s_flexrow" style="align-items: flex-end;">
-				<p class="s_title s_margin4">Edit profile</p>
-			</div>
-			<div class="s_flexcol" style="align-items: center;">
-				<input class="s_input" id='name' bind:value={user.data.name} />
-				<input class="s_input" id='avatar' placeholder="Avatar" bind:value={user.data.avatar}/>
-				<input class="s_input" id='youtube' placeholder="Youtube Link" bind:value={user.data.youtube} />
-				<input class="s_input" id='facebook' placeholder="Facebook Link" bind:value={user.data.facebook}/>
-				<input class="s_input" id='discord' placeholder="Discord tag" bind:value={user.data.discord} />
-				{#if !user.data.isHidden}
-					<button class="hideBtn" on:click={
-						() => {
-							if(confirm('By continue, your profile will be:\n- Hidden from top player.\n- Hidden from search result.\n- You will not be able to see your rank.\n- All of your records will be hidden (won\'t be deleted).\n- You\'re still be able to submit new record.\nDo you wish to proceed?')){
-								user.data.isHidden = true
-								apply()
-							}
-						}
-					}>Make my profile hidden</button>
-				{/if}
-				{#if user.data.isHidden}
-					<button class="hideBtn1" on:click={
-						() => {
-							user.data.isHidden = false
-							apply()
-						}
-					}>Make my profile visible</button>
-				{/if}
-			</div>
-			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
-				<a
-					href="#!"
-					class="s_button2 s_margin6 s_red"
-					on:click={() => {
-						ifShow = !ifShow;
-						cancel()
-					}}>Cancel</a
-				>
-				<a href="#!" class="s_button2 s_margin5 s_blue" on:click={() => {
-					apply()
-				}}>Apply</a>
+	<div out:fade={{ duration: 200 }} id="abcs">
+		<div
+			class="dimBg"
+			on:click={() => {
+				ifShow = !ifShow;
+			}}
+			in:fade={{ duration: 150 }}
+		/>
+		<div
+			style="display: flex; justify-content: center; align-items: center; transition: all 0.25s ease-in-out;"
+			class="modalWrapper"
+		>
+			<div class="submitModal s_shadow">
+				<div class="s_flexrow" style="align-items: flex-end;">
+					<p class="s_title s_margin4">Edit profile</p>
+				</div>
+				<div class="s_flexcol" style="align-items: center;">
+					<input class="s_input" id="name" bind:value={user.data.name} />
+					<button
+						class="s_input1"
+						id="avatar"
+						placeholder="Avatar"
+						on:click={() => {
+							fileinput.click();
+						}}>{uploadText}</button
+					>
+					<input
+						style="display:none"
+						type="file"
+						accept=".jpg, .jpeg"
+						on:change={(e) => getImage(e)}
+						bind:this={fileinput}
+					/>
+					<input
+						class="s_input"
+						id="youtube"
+						placeholder="Youtube Link"
+						bind:value={user.data.youtube}
+					/>
+					<input
+						class="s_input"
+						id="facebook"
+						placeholder="Facebook Link"
+						bind:value={user.data.facebook}
+					/>
+					<input
+						class="s_input"
+						id="discord"
+						placeholder="Discord tag"
+						bind:value={user.data.discord}
+					/>
+					{#if !user.data.isHidden}
+						<button
+							class="hideBtn"
+							on:click={() => {
+								if (
+									confirm(
+										"By continue, your profile will be:\n- Hidden from top player.\n- Hidden from search result.\n- You will not be able to see your rank.\n- All of your records will be hidden (won't be deleted).\n- You're still be able to submit new record.\nDo you wish to proceed?"
+									)
+								) {
+									user.data.isHidden = true;
+									apply();
+								}
+							}}>Make my profile hidden</button
+						>
+					{/if}
+					{#if user.data.isHidden}
+						<button
+							class="hideBtn1"
+							on:click={() => {
+								user.data.isHidden = false;
+								apply();
+							}}>Make my profile visible</button
+						>
+					{/if}
+				</div>
+				<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
+					<a
+						href="#!"
+						class="s_button2 s_margin6 s_red"
+						on:click={() => {
+							ifShow = !ifShow;
+							cancel();
+						}}>Cancel</a
+					>
+					<a
+						href="#!"
+						class="s_button2 s_margin5 s_blue"
+						on:click={() => {
+							apply();
+						}}>Apply</a
+					>
+				</div>
 			</div>
 		</div>
 	</div>
-
-</div>
 {/if}
 
 <style lang="scss">
-	.hideBtn{
+	.hideBtn {
 		height: 60px;
 		width: calc(100% - 90px);
 		border-radius: 15px;
@@ -132,7 +187,7 @@
 		font-size: 15px;
 		font-weight: 600;
 	}
-	.hideBtn1{
+	.hideBtn1 {
 		height: 60px;
 		width: calc(100% - 90px);
 		border-radius: 15px;
@@ -211,6 +266,18 @@
 		font-size: 16px;
 		transition: all 0.25s ease-in-out;
 	}
+	.s_input1 {
+		background-color: #2d2d2d;
+		width: calc(100% - 95px);
+		border-radius: 10px;
+		margin-bottom: 8px;
+		padding: 16px 16px 16px 16px;
+		border: none;
+		color: #fff;
+		font-family: "Roboto Flex", "Roboto", sans-serif;
+		font-size: 16px;
+		transition: all 0.1s ease-in-out;
+	}
 	.s_input::placeholder {
 		position: relative;
 		font-family: "Roboto Flex", "Roboto", sans-serif;
@@ -222,6 +289,12 @@
 		background-color: #333333;
 		transition: all 0.25s ease-in-out;
 	}
+	.s_input1:active {
+		outline: none;
+		border: 0;
+		background-color: #333333;
+	}
+
 	.s_red {
 		background-color: #f90000;
 		transition: 0.3s;
@@ -230,7 +303,7 @@
 		background-color: #005ff9;
 		transition: 0.3s;
 	}
-	.s_blue:active:hover{
+	.s_blue:active:hover {
 		background-color: #0040a7;
 		transition: 0.15s;
 	}
@@ -255,10 +328,10 @@
 		.s_margin5 {
 			margin: 16px 22px 24px 0px;
 		}
-		.hideBtn{
+		.hideBtn {
 			width: calc(100% - 30px);
 		}
-		.hideBtn1{
+		.hideBtn1 {
 			width: calc(100% - 30px);
 		}
 	}

@@ -27,6 +27,13 @@
 			player = data;
 			title = data.name
 		});
+	function getPlayerAvatar(){
+		const { data } = supabase.storage
+			.from('avatars')
+			.getPublicUrl(`${$userdata.metadata.id}.jpg`)
+		console.log(data)
+		return data.publicURL
+	}
 	function fetchRecords(){
 		if(sortBy == 'pt'){
 			if(list == 0) sortBy = 'dlPt'
@@ -112,7 +119,7 @@
 		<div class="playerInfoWidgetWrapper">
 			<div class="playerInfoWidget">
 				<div class="avatar">
-					<img src={player.avatar} alt="" />
+					<img src={getPlayerAvatar()} alt="" />
 				</div>
 				<span class="playerName">{player.name}</span>
 				<div class="social">
