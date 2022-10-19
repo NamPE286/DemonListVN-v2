@@ -30,9 +30,9 @@
 	function getPlayerAvatar(){
 		const { data } = supabase.storage
 			.from('avatars')
-			.getPublicUrl(`${$userdata.metadata.id}.jpg`)
-		console.log(data)
-		return data.publicURL
+			.getPublicUrl(`${id}.jpg`)
+		let ret = data.publicURL
+		return ret
 	}
 	function fetchRecords(){
 		if(sortBy == 'pt'){
