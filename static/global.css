@@ -1,3 +1,31 @@
+:root{
+	--color0: #f00d0d;
+	--color1: #f90000;
+	--color2: #00f900;
+	--color3: #003996;
+	--color4: #0040a7;
+	--color5: #005ff9;
+	--color6: #fff;
+	--color7: #b8b8b8;
+	--color8: #8e8e8e;
+	--color9: #888888;
+	--color10: #808080;
+	--color11: #777777;
+	--color12: #707070;
+	--color13: #6b6b6b;
+	--color14: #585858;
+	--color15: #424242;
+	--color16: #3b3b3b;
+	--color17: #353535;
+	--color18: #333333;
+	--color19: #2d2d2d;
+	--color20: #2e2e2e;
+	--color21: #2b2b2b;
+	--color22: #272727;
+	--color23: #202020;
+	--color24: #141414;
+	--color25: #000000;
+}
 body {
 	background-color: #141414;
 	font-family: 'Roboto Flex', sans-serif;
