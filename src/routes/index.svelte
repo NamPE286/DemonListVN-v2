@@ -75,10 +75,10 @@
 
 <style lang="scss">
 	iframe{
-		background-color: #202020;
+		background-color: var(--color23);
 	}
     .level{
-        background-color: #005ff9;
+        background-color: var(--color5);
         height: 50px;
         border-radius: 50px;
         display: flex;
@@ -155,7 +155,7 @@
 		align-items: center;
 		padding-top: 40px;
 		padding-bottom: 40px;
-		background-color: #202020;
+		background-color: var(--color23);
 	}
 	.playerInfoWidgetWrapper {
 		grid-area: info;
@@ -168,7 +168,7 @@
 		grid-area: fltop;
 		height: 200px;
 		border-radius: 50px;
-		background-color: #202020;
+		background-color: var(--color23);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -182,7 +182,7 @@
 			font-size: 75px;
 			margin-top: 0;
 			margin-bottom: 0;
-			color: #6b6b6b;
+			color: var(--color13);
 			font-weight: 300;
 		}
 	}
@@ -190,7 +190,7 @@
 		grid-area: dltop;
 		height: 200px;
 		border-radius: 50px;
-		background-color: #202020;
+		background-color: var(--color23);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -204,7 +204,7 @@
 			font-size: 75px;
 			margin-top: 0;
 			margin-bottom: 0;
-			color: #6b6b6b;
+			color: var(--color13);
 			font-weight: 300;
 		}
 	}
@@ -222,7 +222,7 @@
         border-radius: 50px;
         width: 100%;
         height: 400px;
-        background-color: #202020;
+        background-color: var(--color23);
         .topTitle {
 			font-size: 28px;
 			margin-top: 0;

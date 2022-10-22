@@ -45,7 +45,7 @@
 		margin: 25px auto 0 auto;
 	}
 	.submitBtn {
-		background-color: #f00d0d;
+		background-color: var(--color0);
 		padding-inline: 24px;
 		border-radius: 16px;
 		text-decoration: none;

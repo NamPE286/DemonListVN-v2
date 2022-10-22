@@ -92,7 +92,7 @@
     .submit{
         height: 160px;
         width: 100%;
-        background-color: #202020;
+        background-color: var(--color23);
         border-radius: 50px;
         p{
             margin-left: 50px;

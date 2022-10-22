@@ -75,7 +75,7 @@
 		z-index: 3;
 	}
 	.submission{
-		background-color: #2b2b2b;
+		background-color: var(--color21);
 		width: 80%;
 		margin-inline: auto;
 		border-radius: 20px;
@@ -101,7 +101,7 @@
 	.submitModal {
 		position: fixed;
 		top: 50%;
-		background-color: #202020;
+		background-color: var(--color23);
 		width: 36%;
 		border-radius: 48px;
 		z-index: 3;
@@ -125,7 +125,7 @@
 		height: 36px;
 		width: 96px;
 		border-radius: 24px;
-		color: #fff;
+		color: var(--color6);
 		font-weight: 350;
 		text-decoration: none;
 		display: flex;
@@ -134,11 +134,11 @@
 		font-weight: 400;
 	}
 	.s_red {
-		background-color: #f90000;
+		background-color: var(--color1);
 		transition: 0.3s;
 	}
 	.s_shadow {
-		box-shadow: 0px 0px 32px #000000;
+		box-shadow: 0px 0px 32px var(--color25);
 	}
 	@media screen and (max-width: 1250px) {
 		.submitModal {

@@ -110,7 +110,7 @@
 		text-decoration: none;
 	}
 	.AddLvBtn{
-		background-color: #353535;
+		background-color: var(--color17);
 		width: 150px;
 		display: flex;
 		align-items: center;
@@ -128,13 +128,13 @@
 		margin-inline: auto;
 		font-weight: 500;
 		text-align: center;
-		border-bottom: 1px solid #888888;
+		border-bottom: 1px solid var(--color9);
 		line-height: 0.1em;
 		margin: 10px 0 20px;
 		span {
-			background: #141414;
+			background: var(--color24);
 			padding: 0 10px;
-			color: #888888;
+			color: var(--color9);
 		}
 	}
 	.pageContent {
@@ -164,7 +164,7 @@
 			height: 50px;
 			width: fit-content;
 			margin-inline: auto;
-			background-color: #202020;
+			background-color: var(--color23);
 			box-shadow: 0 0 30px rgb(7, 7, 7);
 			border-radius: 50px;
 			a {
@@ -186,7 +186,7 @@
 			}
 			.listSwitcherItem:hover {
 				transition: background-color 0.3s;
-				background-color: #3b3b3b;
+				background-color: var(--color16);
 			}
 		}
 	}
@@ -218,7 +218,7 @@
 				transition: 0.3s;
 			}
 			a:hover {
-				background-color: #353535;
+				background-color: var(--color17);
 				transition: 0.3s;
 			}
 		}
@@ -232,10 +232,10 @@
 		margin-top: 20px;
 	}
 	#highlight {
-		background-color: #3b3b3b;
+		background-color: var(--color16);
 	}
 	#highlight1 {
-		background-color: #353535;
+		background-color: var(--color17);
 	}
 	@media screen and (max-width: 1450px) {
 		.pageContent {

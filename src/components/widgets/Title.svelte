@@ -17,7 +17,7 @@
 		grid-area: header;
 		width: 100%;
 		min-height: 300px;
-		background-color: #202020;
+		background-color: var(--color23);
 		border-radius: 50px;
 		display: flex;
 		align-items: center;

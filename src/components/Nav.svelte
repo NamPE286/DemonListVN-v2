@@ -261,7 +261,7 @@
 		hr {
 			margin-top: auto;
 			width: 90%;
-			border-color: #707070;
+			border-color: var(--color12);
 			margin-bottom: 24px;
 			opacity: 0;
 		}
@@ -280,7 +280,7 @@
 	}
 	.sidebar1 {
 		overflow-x: hidden;
-		background-color: #202020;
+		background-color: var(--color23);
 		border-radius: 16px;
 		position: fixed;
 		display: flex;
@@ -323,7 +323,7 @@
 			}
 		}
 		#sidebarIcon:hover {
-			background-color: #2e2e2e;
+			background-color: var(--color20);
 			transition: background-color 0.3s;
 		}
 		hr {
@@ -345,14 +345,14 @@
 		transition: 0.15s;
 	}
 	.menuIconWrapper:hover {
-		background-color: #424242;
+		background-color: var(--color15);
 	}
 	.menuIconWrapper:active:hover {
 		background-color: gray;
 	}
 	.sidebarIconWrapper:hover {
 		#sidebarIcon {
-			background-color: #2e2e2e;
+			background-color: var(--color20);
 		}
 		#iconTitle {
 			opacity: 1;
@@ -375,7 +375,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		background-color: #272727;
+		background-color: var(--color22);
 		width: 100%;
 		height: 60px;
 		box-sizing: border-box;
@@ -394,7 +394,7 @@
 			color: white;
 		}
 		.submitBtn {
-			background-color: #005ff9;
+			background-color: var(--color5);
 			padding-inline: 24px;
 			border-radius: 16px;
 			margin-right: 26px;
@@ -408,7 +408,7 @@
 			}
 		}
 		.submitBtn:active:hover {
-			background-color: #003996;
+			background-color: var(--color3);
 			transition: 0.15s;
 		}
 	}
@@ -436,7 +436,7 @@
 			color: white;
 		}
 		.submitBtn {
-			background-color: #005ff9;
+			background-color: var(--color5);
 			padding-inline: 24px;
 			border-radius: 16px;
 			margin-right: 26px;
@@ -450,12 +450,12 @@
 			}
 		}
 		.submitBtn:active:hover {
-			background-color: #003996;
+			background-color: var(--color3);
 			transition: 0.15s;
 		}
 	}
 	.searchBox{
-		background-color: #2d2d2d;
+		background-color: var(--color19);
 		border-color: transparent;
 		border-radius: 8px;
 		height: 55%;
@@ -470,7 +470,7 @@
 		position: fixed;
 		left: calc(50% - 197.5px);
 		top: 60px;
-		background-color: #2d2d2d;
+		background-color: var(--color19);
 		width: 400px;
 		border-radius: 8px;
 		box-sizing: border-box;

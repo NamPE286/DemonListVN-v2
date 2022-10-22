@@ -120,7 +120,7 @@
 	.submitModal {
 		position: fixed;
 		top: 50%;
-		background-color: #202020;
+		background-color: var(--color23);
 		width: 36%;
 		border-radius: 48px;
 		z-index: 3;
@@ -151,7 +151,7 @@
 		margin: 16px 16px 32px 0px;
 	}
 	.s_button {
-		background-color: #2d2d2d;
+		background-color: var(--color19);
 		height: 28px;
 		width: 125px;
 		border-radius: 14px;
@@ -168,18 +168,18 @@
 		}
 	}
 	.s_button:hover{
-		background-color: #424242;
+		background-color: var(--color15);
 		transition: 0.3s;
 	}
 	.s_button:active:hover{
-		background-color: #808080;
+		background-color: var(--color10);
 		transition: 0.15s;
 	}
 	.s_button2 {
 		height: 36px;
 		width: 96px;
 		border-radius: 24px;
-		color: #fff;
+		color: var(--color6);
 		font-weight: 350;
 		text-decoration: none;
 		display: flex;
@@ -188,25 +188,25 @@
 		font-weight: 400;
 	}
 	.s_input {
-		background-color: #2d2d2d;
+		background-color: var(--color19);
 		width: calc(100% - 126px);
 		border-radius: 10px;
 		margin-bottom: 8px;
 		padding: 16px 16px 16px 16px;
 		border: none;
-		color: #fff;
+		color: var(--color6);
 		font-family: "Roboto Flex", "Roboto", sans-serif;
 		font-size: 16px;
 		transition: all 0.25s ease-in-out;
 	}
 	.s_select {
-		background-color: #2d2d2d;
+		background-color: var(--color19);
 		width: calc(100% - 96px);
 		border-radius: 10px;
 		margin-bottom: 8px;
 		padding: 16px 16px 16px 12px;
 		border: none;
-		color: #fff;
+		color: var(--color6);
 		font-family: "Roboto Flex", "Roboto", sans-serif;
 		font-size: 16px;
 		transition: all 0.25s ease-in-out;
@@ -219,29 +219,29 @@
 	.s_input:focus {
 		outline: none;
 		border: 0;
-		background-color: #333333;
+		background-color: var(--color18);
 		transition: all 0.25s ease-in-out;
 	}
 	.s_select:focus {
 		outline: none;
 		border: 0;
-		background-color: #333333;
+		background-color: var(--color18);
 		transition: all 0.25s ease-in-out;
 	}
 	.s_red {
-		background-color: #f90000;
+		background-color: var(--color1);
 		transition: 0.3s;
 	}
 	.s_blue {
-		background-color: #005ff9;
+		background-color: var(--color5);
 		transition: 0.3s;
 	}
 	.s_blue:active:hover{
-		background-color: #0040a7;
+		background-color: var(--color4);
 		transition: 0.15s;
 	}
 	.s_shadow {
-		box-shadow: 0px 0px 32px #000000;
+		box-shadow: 0px 0px 32px var(--color25);
 	}
 	@media screen and (max-width: 1250px) {
 		.submitModal {

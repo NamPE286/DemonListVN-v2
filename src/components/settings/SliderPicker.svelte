@@ -50,7 +50,7 @@
         margin-left: 4px;
         height: 16px;
         width: 16px;
-        background-color: #fff;
+        background-color: var(--color6);
         border-radius: 10px;
     }
     .sl_buttonToggled {
@@ -58,13 +58,13 @@
         margin-right: 4px;
         height: 16px;
         width: 16px;
-        background-color: #fff;
+        background-color: var(--color6);
         border-radius: 10px;
     }
     .unToggled {
-        background-color: #202020;
+        background-color: var(--color23);
     }
     .Toggled {
-        background-color: #00f900;
+        background-color: var(--color2);
     }
 </style>

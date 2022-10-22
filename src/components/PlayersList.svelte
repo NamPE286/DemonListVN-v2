@@ -61,7 +61,7 @@
 
 <style lang="scss">
 	#highlight2 {
-		background-color: #202020;
+		background-color: var(--color23);
 	}
 	.playersListWrapper {
 		grid-area: widget;

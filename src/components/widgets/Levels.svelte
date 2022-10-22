@@ -72,7 +72,7 @@
 		position: absolute;
 		height: auto;
 		width: 200px;
-		background-color: #202020;
+		background-color: var(--color23);
 		right: 0;
 		margin-right: 20px;
 		margin-top: 60px;
@@ -94,7 +94,7 @@
 			transition: 0.2s;
 		}
 		section:hover{
-			background-color: #2e2e2e;
+			background-color: var(--color20);
 		}
 	}
 	.levelWidget {
@@ -104,7 +104,7 @@
 		width: 100%;
 		height: 300px;
 		border-radius: 50px;
-		background-color: #202020;
+		background-color: var(--color23);
 		text-decoration: none;
 		color: white;
 		overflow: hidden;
@@ -153,7 +153,7 @@
 				.creator {
 					font-size: 14px;
 					font-weight: 200;
-					color: #b8b8b8;
+					color: var(--color7);
 				}
 			}
 		}

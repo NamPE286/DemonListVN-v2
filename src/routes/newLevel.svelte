@@ -52,7 +52,7 @@
 	.submit {
 		height: 65px;
 		width: 100%;
-		background-color: #202020;
+		background-color: var(--color23);
 		border-radius: 50px;
 		display: flex;
 		align-items: center;
