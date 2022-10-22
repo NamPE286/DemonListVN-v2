@@ -8,7 +8,7 @@
         if($userdata.data.country){
             var { data, error } = await supabase
                 .from('submissions')
-                .select('*, levels!inner(name, flTop), players!inner(name, uid, country)')
+                .select('*, levels!inner(name, flTop, minProgress), players!inner(name, uid, country)')
                 .not('levels.flTop', 'is', null)
                 .eq('progress', 100)
                 .eq('players.country', $userdata.data.country)
@@ -58,12 +58,14 @@
     {#each submissions as item, index}
         <div class='submit'>
             <p><b id='title'>{item.levels.name}</b> ({ifMobile(item)}{item.progress}%) ({item.refreshRate}hz) (ID:{item.levelid})<br>
-                Player name: {item.players.name}<br>
+                <a href='#!'>Player name: {item.players.name}</a><br>
                 Comment: {item.comment}<br>
                 Video Link: <a href={item.videoLink}>{item.videoLink}</a>
             </p>
             <button id='bla' on:click={() => reject(item, index)}>Reject</button>
-            <button on:click={() => accept(item, index)}>Accept</button>
+            {#if item.progress >= item.levels.minProgress}
+                <button on:click={() => accept(item, index)}>Accept</button>
+            {/if}
         </div>
     {/each}
 </div>

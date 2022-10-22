@@ -8,7 +8,7 @@
         if($userdata.data.country){
             var { data, error } = await supabase
                 .from('submissions')
-                .select('*, levels!inner(name, dlTop), players!inner(name, uid, country)')
+                .select('*, levels!inner(name, dlTop, minProgress), players!inner(name, uid, country)')
                 .not('levels.dlTop', 'is', 'null')
                 .eq('players.country', $userdata.data.country)
                 .order('id', {ascending: true})
@@ -58,12 +58,14 @@
     {#each submissions as item, index}
         <div class='submit'>
             <p><b id='title'>{item.levels.name}</b> ({ifMobile(item)}{item.progress}%) ({item.refreshRate}hz) (ID:{item.levelid})<br>
-                Player name: {item.players.name}<br>
+                Player name: <a href={`/player?id=${item.players.id}`}>{item.players.name}</a><br>
                 Comment: {item.comment}<br>
                 Video Link: <a href={item.videoLink}>{item.videoLink}</a>
             </p>
             <button id='bla' on:click={() => reject(item, index)}>Reject</button>
-            <button on:click={() => accept(item, index)}>Accept</button>
+            {#if item.progress >= item.levels.minProgress}
+                <button on:click={() => accept(item, index)}>Accept</button>
+            {/if}
         </div>
     {/each}
 </div>
@@ -71,6 +73,11 @@
 
 
 <style lang='scss'>
+    .pageContent{
+        a{
+            color: rgb(58, 61, 255);
+        }
+    }
     #title{
         font-size: 25px;
     }
