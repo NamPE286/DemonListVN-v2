@@ -23,7 +23,7 @@
     async function reject(item, index){
         submissions.splice(index, 1)
         submissions = submissions
-		fetch(`https://seademonlist-api.vercel.app/submission/${item.id}`, {
+		fetch(`https://seademonlist-api.vercel.app/${item.id}`, {
 				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
@@ -37,7 +37,7 @@
         submissions.splice(index, 1)
         submissions = submissions
         fetch(`https://seademonlist-api.vercel.app/record`, {
-				method: 'POST',
+				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
 				},

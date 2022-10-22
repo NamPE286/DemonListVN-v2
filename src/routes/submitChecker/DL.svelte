@@ -37,7 +37,7 @@
         submissions.splice(index, 1)
         submissions = submissions
         fetch(`https://seademonlist-api.vercel.app/record`, {
-				method: 'POST',
+				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
 				},
