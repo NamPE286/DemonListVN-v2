@@ -23,9 +23,9 @@
 			title = data.data.name
 			if (data.records) records = data.records;
 		});
-	$: fetch(`https://gdbrowser.com/api/level/${$page.url.searchParams.get("id")}`)
-		.then((response) => response.json())
-		.then((data) => (levelAPI = data));
+	// $: fetch(`https://gdbrowser.com/api/level/${$page.url.searchParams.get("id")}`)
+	// 	.then((response) => response.json())
+	// 	.then((data) => (levelAPI = data));
 	function getPoint() {
 		if (level.flPt && level.dlPt) return `${level.dlPt}pt (#${level.flTop} ${level.flPt}pt)`;
 		if(level.flPt == 0) return '0pt'
@@ -59,7 +59,7 @@
 	{/if}
 </svelte:head>
 
-{#if level && levelAPI}
+{#if level}
 	<div class="pageContent">
 		<div class="thumbnailWidget">
 			<img src={`https://img.youtube.com/vi/${level.videoID}/mqdefault.jpg`} alt="" />
@@ -89,17 +89,18 @@
 			<p>
 				<b>Description:</b><br />
 				<span class="desc">
-					{levelAPI.description}
+					<!-- {levelAPI.description} -->
+					(temporary disabled)
 				</span>
 			</p>
 			{#if level.dlPt}
 				<p><b>Minimum Progress: </b><span class="desc">{level.minProgress}%</span></p>
 			{/if}
-			<p><b>Difficulty: </b><span class="desc">{levelAPI.difficulty}</span></p>
+			<!-- <p><b>Difficulty: </b><span class="desc">{levelAPI.difficulty}</span></p> -->
 			<p><b>ID: </b><span class="desc">{id}</span></p>
 		</div>
 		<div class="additionalInfo">
-			<svg
+			<!-- <svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="26.901"
 				height="27.215"
@@ -154,7 +155,7 @@
 					fill="var(--color6)"
 				/>
 			</svg>
-			<span>{levelAPI.length}</span>
+			<span>{levelAPI.length}</span> -->
 		</div>
 		<div class="playersListWrapper">
 			<div class="playersList">
