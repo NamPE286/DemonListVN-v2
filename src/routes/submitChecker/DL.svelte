@@ -36,7 +36,7 @@
     async function accept(item, index){
         submissions.splice(index, 1)
         submissions = submissions
-        fetch(`https://seademonlist-api.vercel.app/submission`, {
+        fetch(`https://seademonlist-api.vercel.app/record`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
