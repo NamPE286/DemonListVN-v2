@@ -7,9 +7,8 @@
 	import EditLevelModal from "../components/modals/EditLevelModal.svelte";
 	var id = $page.url.searchParams.get("id");
 	var level = null;
-	var title = ""
+	var title = "";
 	var records = [];
-	var levelAPI = null;
 	var currentLevel;
 	var player;
 	var showEditProfileModal = false;
@@ -20,42 +19,38 @@
 		.then((response) => response.json())
 		.then((data) => {
 			level = data.data;
-			title = data.data.name
+			title = data.data.name;
 			if (data.records) records = data.records;
 		});
-	// $: fetch(`https://gdbrowser.com/api/level/${$page.url.searchParams.get("id")}`)
-	// 	.then((response) => response.json())
-	// 	.then((data) => (levelAPI = data));
 	function getPoint() {
 		if (level.flPt && level.dlPt) return `${level.dlPt}pt (#${level.flTop} ${level.flPt}pt)`;
-		if(level.flPt == 0) return '0pt'
+		if (level.flPt == 0) return "0pt";
 		return `${level.flPt ? level.flPt : level.dlPt}pt`;
 	}
 	async function removeRecord(item, index) {
 		fetch(`https://seademonlist-api.vercel.app/record/${item.id}`, {
-			method: 'DELETE',
+			method: "DELETE",
 			headers: {
-				'Content-Type': 'application/json',
+				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
 				token: supabase.auth.session().access_token
 			})
-		})
+		});
 		records.splice(index, 1);
 		records = records;
 	}
-	function ifMobile(item){
-        if(item.mobile) return "Mobile "
-        return ''
-    }
-
+	function ifMobile(item) {
+		if (item.mobile) return "Mobile ";
+		return "";
+	}
 </script>
 
 <svelte:head>
 	{#if title}
 		<title>{title}'s Info - Demon List VN</title>
 		<meta name="description" content={`${title}'s Info`} />
-		<meta name='keywords' content={title}/>
+		<meta name="keywords" content={title} />
 	{/if}
 </svelte:head>
 
@@ -70,11 +65,20 @@
 					<p class="creator">by {level.creator} - {getPoint()}</p>
 				</div>
 				{#if $userdata.data.isAdmin}
-					<a href='#!' on:click={() => {showEditLevelModal = !showEditLevelModal}}>
-						<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M9 39h2.2l22.15-22.15-2.2-2.2L9 36.8Zm30.7-24.3-6.4-6.4 2.1-2.1q.85-.85 2.1-.85t2.1.85l2.2 2.2q.85.85.85 2.1t-.85 2.1Zm-2.1 2.1L12.4 42H6v-6.4l25.2-25.2Zm-5.35-1.05-1.1-1.1 2.2 2.2Z"/></svg>
+					<a
+						href="#!"
+						on:click={() => {
+							showEditLevelModal = !showEditLevelModal;
+						}}
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"
+							><path
+								d="M9 39h2.2l22.15-22.15-2.2-2.2L9 36.8Zm30.7-24.3-6.4-6.4 2.1-2.1q.85-.85 2.1-.85t2.1.85l2.2 2.2q.85.85.85 2.1t-.85 2.1Zm-2.1 2.1L12.4 42H6v-6.4l25.2-25.2Zm-5.35-1.05-1.1-1.1 2.2 2.2Z"
+							/></svg
+						>
 					</a>
 				{/if}
-			</div>			
+			</div>
 		</div>
 		<iframe
 			width="560"
@@ -89,18 +93,17 @@
 			<p>
 				<b>Description:</b><br />
 				<span class="desc">
-					<!-- {levelAPI.description} -->
-					(temporary disabled)
+					{level.description}
 				</span>
 			</p>
 			{#if level.dlPt}
 				<p><b>Minimum Progress: </b><span class="desc">{level.minProgress}%</span></p>
 			{/if}
-			<!-- <p><b>Difficulty: </b><span class="desc">{levelAPI.difficulty}</span></p> -->
+			<p><b>Difficulty: </b><span class="desc">{level.difficulty}</span></p>
 			<p><b>ID: </b><span class="desc">{id}</span></p>
 		</div>
 		<div class="additionalInfo">
-			<!-- <svg
+			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="26.901"
 				height="27.215"
@@ -113,7 +116,7 @@
 					fill="var(--color6)"
 				/>
 			</svg>
-			<span>{levelAPI.downloads}</span>
+			<span>{level.downloads}</span>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="31.453"
@@ -127,7 +130,7 @@
 					fill="var(--color6)"
 				/>
 			</svg>
-			<span>{levelAPI.likes}</span>
+			<span>{level.likes}</span>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="27.838"
@@ -141,7 +144,7 @@
 					fill="var(--color6)"
 				/>
 			</svg>
-			<span>{levelAPI.coins} {levelAPI.coins && !levelAPI.verifiedCoins ? "(N/v)" : ""}</span>
+			<span>{level.coins} {level.coins && !level.verifiedCoins ? "(N/v)" : ""}</span>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="29.78"
@@ -155,73 +158,88 @@
 					fill="var(--color6)"
 				/>
 			</svg>
-			<span>{levelAPI.length}</span> -->
+			<span>{level.length}</span>
 		</div>
-		<div class="playersListWrapper">
-			<div class="playersList">
-				<div class="playerName">
-					<p>Player name</p>
-				</div>
-				<div class="playerPt">
-					<p>Progress</p>
-				</div>
-			</div>
-			{#each records as item, index}
-				<div class="playersList" id={index % 2 ? "" : "highlight2"}>
+		{#if !records.length}
+			<div class="centerText">No one has beaten this level yet</div>
+		{/if}
+		{#if records.length}
+			<div class="playersListWrapper">
+				<div class="playersList">
 					<div class="playerName">
-						<a href={`/player?id=${item.userid}`}>{item.players.name}</a><a
-							href={item.videoLink}
-							target="_blank"
-							id="videoLink">(Video Link)</a
-						>
+						<p>Player name</p>
 					</div>
 					<div class="playerPt">
-						<p id='center'>{item.progress}% ({ifMobile(item)}{item.refreshRate}fps)</p>
-						{#if $userdata.data.isAdmin}
-							<a
-								href="#!"
-								on:click={() => {
-									showEditRecordModal = !showEditProfileModal;
-									currentLevel = item;
-									player = {
-										data:{
-											uid: item.userid
-										}
-									};
-								}}
-								><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
-									><path
-										d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"
-									/></svg
-								></a
-							>
-							<a href="#!" on:click={() => removeRecord(item, index)}
-								><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
-									><path
-										d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z"
-									/></svg
-								></a
-							>
-						{/if}
+						<p>Progress</p>
 					</div>
 				</div>
-			{/each}
-		</div>
+				{#each records as item, index}
+					<div class="playersList" id={index % 2 ? "" : "highlight2"}>
+						<div class="playerName">
+							<a href={`/player?id=${item.userid}`}>{item.players.name}</a><a
+								href={item.videoLink}
+								target="_blank"
+								id="videoLink">(Video Link)</a
+							>
+						</div>
+						<div class="playerPt">
+							<p id="center">{item.progress}% ({ifMobile(item)}{item.refreshRate}fps)</p>
+							{#if $userdata.data.isAdmin}
+								<a
+									href="#!"
+									on:click={() => {
+										showEditRecordModal = !showEditProfileModal;
+										currentLevel = item;
+										player = {
+											data: {
+												uid: item.userid
+											}
+										};
+									}}
+									><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+										><path
+											d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"
+										/></svg
+									></a
+								>
+								<a href="#!" on:click={() => removeRecord(item, index)}
+									><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+										><path
+											d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z"
+										/></svg
+									></a
+								>
+							{/if}
+						</div>
+					</div>
+				{/each}
+			</div>
+		{/if}
 	</div>
 	{#if $userdata.data.isAdmin}
 		{#if player}
 			{#if currentLevel}
-				<EditRecordModal bind:ifShow={showEditRecordModal} player={player.data} level={currentLevel} />
+				<EditRecordModal
+					bind:ifShow={showEditRecordModal}
+					player={player.data}
+					level={currentLevel}
+				/>
 			{/if}
 		{/if}
-		<EditLevelModal bind:ifShow={showEditLevelModal} level={level}/>
+		<EditLevelModal bind:ifShow={showEditLevelModal} {level} />
 	{/if}
 {:else}
 	<LoadingAnimation />
 {/if}
 
 <style lang="scss">
-	#center{
+	.centerText{
+		grid-area: record;
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+	}
+	#center {
 		text-align: center;
 	}
 	#highlight2 {
@@ -274,8 +292,8 @@
 		display: flex;
 		margin-top: auto;
 		margin-bottom: auto;
-		svg{
-			filter:invert(1)
+		svg {
+			filter: invert(1);
 		}
 		p {
 			margin: 0;
