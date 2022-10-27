@@ -72,6 +72,72 @@ html[data-theme='dark']{
 	--color24: hsl(0, 0%, 8%);
 	--color25: hsl(0, 0%, 0%);
 }
+html[data-theme='pink']{
+	--color6: hsl(0, 100%, 100%);
+	--color7: hsl(300, 100%, 73%);
+	--color8: hsl(300, 100%, 56%);
+	--color9: hsl(300, 100%, 54%);
+	--color10: hsl(300, 100%, 51%);
+	--color11: hsl(300, 100%, 47%);
+	--color12: hsl(300, 100%, 44%);
+	--color13: hsl(300, 100%, 42%);
+	--color14: hsl(300, 100%, 35%);
+	--color15: hsl(300, 100%, 26%);
+	--color16: hsl(300, 100%, 24%);
+	--color17: hsl(300, 100%, 21%);
+	--color18: hsl(300, 100%, 20%);
+	--color19: hsl(300, 100%, 18%);
+	--color20: hsl(300, 100%, 19%);
+	--color21: hsl(300, 100%, 17%);
+	--color22: hsl(300, 100%, 16%);
+	--color23: hsl(300, 100%, 13%);
+	--color24: hsl(300, 100%, 8%);
+	--color25: hsl(300, 100%, 0%);
+}
+html[data-theme='green']{
+	--color6: hsl(0, 100%, 100%);
+	--color7: hsl(90, 100%, 73%);
+	--color8: hsl(90, 100%, 56%);
+	--color9: hsl(90, 100%, 54%);
+	--color10: hsl(90, 100%, 51%);
+	--color11: hsl(90, 100%, 47%);
+	--color12: hsl(90, 100%, 44%);
+	--color13: hsl(90, 100%, 42%);
+	--color14: hsl(90, 100%, 35%);
+	--color15: hsl(90, 100%, 26%);
+	--color16: hsl(90, 100%, 24%);
+	--color17: hsl(90, 100%, 21%);
+	--color18: hsl(90, 100%, 20%);
+	--color19: hsl(90, 100%, 18%);
+	--color20: hsl(90, 100%, 19%);
+	--color21: hsl(90, 100%, 17%);
+	--color22: hsl(90, 100%, 16%);
+	--color23: hsl(90, 100%, 13%);
+	--color24: hsl(90, 100%, 8%);
+	--color25: hsl(90, 100%, 0%);
+}
+html[data-theme='blue']{
+	--color6: hsl(0, 100%, 100%);
+	--color7: hsl(200, 100%, 73%);
+	--color8: hsl(200, 100%, 56%);
+	--color9: hsl(200, 100%, 54%);
+	--color10: hsl(200, 100%, 51%);
+	--color11: hsl(200, 100%, 47%);
+	--color12: hsl(200, 100%, 44%);
+	--color13: hsl(200, 100%, 42%);
+	--color14: hsl(200, 100%, 35%);
+	--color15: hsl(200, 100%, 26%);
+	--color16: hsl(200, 100%, 24%);
+	--color17: hsl(200, 100%, 21%);
+	--color18: hsl(200, 100%, 20%);
+	--color19: hsl(200, 100%, 18%);
+	--color20: hsl(200, 100%, 19%);
+	--color21: hsl(200, 100%, 17%);
+	--color22: hsl(200, 100%, 16%);
+	--color23: hsl(200, 100%, 13%);
+	--color24: hsl(200, 100%, 8%);
+	--color25: hsl(200, 100%, 0%);
+}
 body {
 	background-color: var(--color24);
 	font-family: "Roboto Flex", sans-serif;

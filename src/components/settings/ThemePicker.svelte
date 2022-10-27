@@ -15,6 +15,9 @@
     <select class="right" bind:value={currentTheme} on:change={() => apply(currentTheme)}>
         <option value="light">Light</option>
         <option value="dark">Dark</option>
+        <option value="pink">Pink</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
     </select>
     <input style="display:none" type="file" accept=".jpg, .jpeg, .png" on:change={(e) => apply(e)} bind:this={fileinput} >
 </div>
