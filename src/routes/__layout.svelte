@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Nav from '../components/Nav.svelte';
+	import { onMount } from 'svelte';
 	var img;
 	var blur, opacity;
 	function getImg(){
@@ -15,7 +16,18 @@
 			setTimeout(getImg, 100)
 		}
 	}
-	getImg()
+	function setTheme(){
+		var currentTheme = localStorage.getItem('theme')
+		if(!currentTheme){
+			currentTheme = 'dark'
+			localStorage.setItem('theme', 'dark')
+		}
+		document.documentElement.setAttribute('data-theme', currentTheme)
+	}
+	onMount(() => {
+		getImg()
+		setTheme()
+	})
 	
 </script>
 <svelte:head>

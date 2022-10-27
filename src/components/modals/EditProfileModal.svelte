@@ -183,7 +183,7 @@
 		width: calc(100% - 90px);
 		border-radius: 15px;
 		background-color: red;
-		color: white;
+		color: var(--color6);
 		font-size: 15px;
 		font-weight: 600;
 	}
@@ -192,7 +192,7 @@
 		width: calc(100% - 90px);
 		border-radius: 15px;
 		background-color: rgb(0, 233, 31);
-		color: white;
+		color: var(--color6);
 		font-size: 15px;
 		font-weight: 600;
 	}

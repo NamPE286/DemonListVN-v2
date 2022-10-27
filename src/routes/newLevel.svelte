@@ -57,7 +57,7 @@
 		display: flex;
 		align-items: center;
 		a {
-			color: white;
+			color: var(--color6);
 			margin-left: 50px;
 			font-size: 16px;
 			text-decoration: none;

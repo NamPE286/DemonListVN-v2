@@ -231,7 +231,7 @@
 		text-decoration: none;
 	}
 	svg {
-		filter: invert(1);
+		fill: var(--color6);
 	}
 	.topSpacer {
 		width: 100%;
@@ -251,7 +251,7 @@
 		transition: all 0.3s;
 		box-sizing: border-box;
 		.sidebarIconWrapper {
-			color: white;
+			color: var(--color6);
 			text-decoration: none;
 			display: flex;
 			flex-direction: column;
@@ -292,7 +292,6 @@
 		padding-inline: 14px;
 		padding-top: 8px;
 		z-index: 2;
-		box-shadow: 0 0 15px rgb(9, 9, 9);
 		transition: all 0.3s;
 		overflow-x: hidden;
 		#iconTitle {
@@ -313,7 +312,7 @@
 			display: flex;
 			align-items: center;
 			text-decoration: none;
-			color: white;
+			color: var(--color6);
 			transition: background-color 0.3s;
 			p {
 				margin-left: 12px;
@@ -391,7 +390,7 @@
 			font-weight: 600;
 			margin-top: 0;
 			margin-bottom: 0;
-			color: white;
+			color: var(--color6);
 		}
 		.submitBtn {
 			background-color: var(--color5);
@@ -433,7 +432,7 @@
 			font-weight: 600;
 			margin-top: 0;
 			margin-bottom: 0;
-			color: white;
+			color: var(--color6);
 		}
 		.submitBtn {
 			background-color: var(--color5);
@@ -464,7 +463,7 @@
 		width: 400px;
 		box-sizing: border-box;
 		padding-inline: 15px;
-		color: white;
+		color: var(--color6);
 	}
 	.searchRes{
 		position: fixed;
@@ -476,7 +475,7 @@
 		box-sizing: border-box;
 		padding-inline: 15px;
 		a{
-			color: white;
+			color: var(--color6);
 			text-decoration: none;
 			width: 100%;
 		}

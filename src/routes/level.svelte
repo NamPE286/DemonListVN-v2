@@ -293,7 +293,7 @@
 		margin-top: auto;
 		margin-bottom: auto;
 		svg {
-			filter: invert(1);
+			fill: var(--color6);	
 		}
 		p {
 			margin: 0;
@@ -353,7 +353,7 @@
 		font-weight: 500;
 		margin-bottom: 30px;
 		svg {
-			filter: invert(1);
+			fill: var(--color6);
 			margin-left: -30px;
 		}
 	}
@@ -362,7 +362,7 @@
 		display: flex;
 		border-radius: 50px;
 		a {
-			color: white;
+			color: var(--color6);
 			text-decoration: none;
 		}
 		.playerName {
@@ -385,7 +385,7 @@
 			width: 20%;
 			height: 100%;
 			svg {
-				filter: invert(1);
+				fill: var(--color6);
 				margin-left: 15px;
 			}
 		}
@@ -399,10 +399,10 @@
 		justify-content: center;
 		align-items: center;
 		margin-top: 30px;
-		color: white;
+		color: var(--color6);
 		text-decoration: none;
 		svg {
-			filter: invert(1);
+			fill: var(--color6);
 			margin-right: 10px;
 		}
 	}

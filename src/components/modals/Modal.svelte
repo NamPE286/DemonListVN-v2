@@ -170,10 +170,10 @@
 	}
 	button {
 		border: none;
-		color: white;
+		color: var(--color6);
 		a {
 			text-decoration: none;
-			color: white;
+			color: var(--color6);
 		}
 	}
 	.submitModal {
@@ -223,7 +223,7 @@
 			margin-left: 10px;
 		}
 		svg {
-			filter: invert(1);
+			fill: var(--color6);
 		}
 	}
 	.s_button:hover {

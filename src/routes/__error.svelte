@@ -5,7 +5,7 @@
 <style lang="scss">
     a {
         text-decoration: none;
-        color: white;
+        color: var(--color6);
         font-weight: 600;
         text-decoration: underline;
     }

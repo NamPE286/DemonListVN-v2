@@ -117,9 +117,9 @@
 		border-radius: 20px;
 		margin-top: 10px;
 		margin-bottom: 35px;
-		color: white;
+		color: var(--color6);
 		svg{
-			filter: invert(1);
+			
 		}
 	}
 	#legacyLabel {
@@ -164,10 +164,10 @@
 			width: fit-content;
 			margin-inline: auto;
 			background-color: var(--color23);
-			box-shadow: 0 0 30px rgb(7, 7, 7);
+			box-shadow: 0 0 15px rgba(7, 7, 7, 0.507);
 			border-radius: 50px;
 			a {
-				color: white;
+				color: var(--color6);
 				text-decoration: none;
 			}
 			display: flex;
@@ -213,7 +213,7 @@
 				padding-bottom: 10px;
 				border-radius: 50px;
 				text-decoration: none;
-				color: white;
+				color: var(--color6);
 				transition: 0.3s;
 			}
 			a:hover {

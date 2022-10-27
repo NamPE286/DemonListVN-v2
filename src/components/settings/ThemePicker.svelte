@@ -1,23 +1,22 @@
 <script lang="ts">
 	export var name:string;
-    export var isToggled:boolean;
+    var fileinput
+    import { onMount } from "svelte";
+    var currentTheme
+    onMount(() => currentTheme = localStorage.getItem('theme'))
+    function apply(theme){
+        localStorage.setItem('theme', theme)
+        document.documentElement.setAttribute('data-theme', theme)
+    }
 </script>
 
 <div class="titleWidget">
     <p class="sl_name">{name}</p>
-    <a href="#!" on:click={async() => {
-        isToggled = !isToggled;
-    }} class="right">
-        {#if isToggled == false}
-        <div class="right slider unToggled">
-            <span class="sl_button"> </span>
-        </div>
-        {:else}
-        <div class="right slider Toggled">
-            <span class="sl_buttonToggled"> </span>
-        </div>
-        {/if}
-    </a>
+    <select class="right" bind:value={currentTheme} on:change={() => apply(currentTheme)}>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+    <input style="display:none" type="file" accept=".jpg, .jpeg, .png" on:change={(e) => apply(e)} bind:this={fileinput} >
 </div>
 
 <style lang="scss">

@@ -128,7 +128,7 @@
 		height: 12.5vw;
 		margin-inline: auto;
 		border-radius: 50%;
-		border-color: white;
+		border-color: var(--color6);
 		border-style: solid;
 		img {
 			height: 100%;
@@ -142,7 +142,7 @@
 		font-weight: 500;
 		margin-bottom: 30px;
 		svg {
-			filter: invert(1);
+			fill: var(--color6);
 			margin-left: -30px;
 		}
 	}

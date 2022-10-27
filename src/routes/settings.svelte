@@ -2,7 +2,7 @@
 	import { createClient } from "@supabase/supabase-js";
 	import { userdata } from "./stores";
 	import Title from "../components/widgets/Title.svelte";
-	//import Selector from "../components/Selector.svelte";
+	import ThemePicker from "../components/settings/ThemePicker.svelte";
 	import SettingInput from "../components/settings/ImagePicker.svelte"
 	import SliderPicker from "../components/settings/SliderPicker.svelte"
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
@@ -19,6 +19,7 @@
 <div class="pageContent">
     <Title title="Settings" description="View and modify your preferences" />
     <div class="st_option">
+		<ThemePicker name="Theme" />
 		<SettingInput name="Background image" key='bg' />
 		<SliderPicker name="BG opacity" key="opacity" />
 		<SliderPicker name="BG blur" key="blur" />
@@ -27,7 +28,6 @@
 				<p>Sign Out</p>
 			</a>
 		{/if}
-		<!-- <Selector name="Dark theme" isToggled /> -->
     </div>
 </div>
 
@@ -49,7 +49,7 @@
 		padding-inline: 24px;
 		border-radius: 16px;
 		text-decoration: none;
-		color: white;
+		color: var(--color6);
 		margin-left: auto;
 		margin-right: 10px;
 		margin-top: 25px;

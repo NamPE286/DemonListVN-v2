@@ -144,29 +144,7 @@
 						</svg>
 					</a>
 					<a href={player.facebook ? player.facebook : "#!"} target="_blank" class="iconWrapper">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="39.398"
-							height="39.398"
-							viewBox="0 0 39.398 39.398"
-						>
-							<g id="Group_1" data-name="Group 1" transform="translate(-266 -618.672)">
-								<path
-									id="Path_2"
-									data-name="Path 2"
-									d="M39.4,19.7A19.7,19.7,0,1,0,16.621,39.158V25.393h-5V19.7h5v-4.34c0-4.937,2.941-7.664,7.441-7.664a30.292,30.292,0,0,1,4.41.385v4.848H25.987c-2.447,0-3.21,1.518-3.21,3.076v3.7H28.24l-.873,5.694h-4.59V39.158A19.7,19.7,0,0,0,39.4,19.7Z"
-									transform="translate(266 618.672)"
-									fill="var(--color6)"
-								/>
-								<path
-									id="Path_3"
-									data-name="Path 3"
-									d="M317.748,217.7l.873-5.694h-5.463v-3.7c0-1.558.763-3.076,3.21-3.076h2.484v-4.848a30.294,30.294,0,0,0-4.41-.385c-4.5,0-7.441,2.727-7.441,7.664V212h-5V217.7h5v13.765a19.907,19.907,0,0,0,6.156,0V217.7Z"
-									transform="translate(-24.381 426.367)"
-								/>
-							</g>
-						</svg>
-					</a>
+						<svg id="facebook" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" width="90px" height="90px">    <path d="M15,3C8.373,3,3,8.373,3,15c0,6.016,4.432,10.984,10.206,11.852V18.18h-2.969v-3.154h2.969v-2.099c0-3.475,1.693-5,4.581-5 c1.383,0,2.115,0.103,2.461,0.149v2.753h-1.97c-1.226,0-1.654,1.163-1.654,2.473v1.724h3.593L19.73,18.18h-3.106v8.697 C22.481,26.083,27,21.075,27,15C27,8.373,21.627,3,15,3z"/></svg>					</a>
 					<a href="#!" class="iconWrapper" on:click={getDiscordTag}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -369,6 +347,10 @@
 {/if}
 
 <style lang="scss">
+	#facebook{
+		fill: var(--color6);
+		scale: 0.75;
+	}
 	#center {
 		text-align: center;
 	}
@@ -398,7 +380,7 @@
 		height: 12.5vw;
 		margin-inline: auto;
 		border-radius: 50%;
-		border-color: white;
+		border-color: var(--color6);
 		border-style: solid;
 		img {
 			height: 100%;
@@ -412,7 +394,7 @@
 		font-weight: 500;
 		margin-bottom: 30px;
 		svg {
-			filter: invert(1);
+			fill: var(--color6);
 			margin-left: -30px;
 		}
 	}
@@ -561,7 +543,7 @@
 		display: flex;
 		border-radius: 50px;
 		a {
-			color: white;
+			color: var(--color6);
 			text-decoration: none;
 		}
 		.playerName {
@@ -584,7 +566,7 @@
 			width: 20%;
 			height: 100%;
 			svg {
-				filter: invert(1);
+				fill: var(--color6);
 				margin-left: 15px;
 			}
 		}
@@ -598,10 +580,10 @@
 		justify-content: center;
 		align-items: center;
 		margin-top: 30px;
-		color: white;
+		color: var(--color6);
 		text-decoration: none;
 		svg {
-			filter: invert(1);
+			fill: var(--color6);
 			margin-right: 10px;
 		}
 	}

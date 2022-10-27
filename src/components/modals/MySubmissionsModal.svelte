@@ -86,11 +86,11 @@
 			margin-left: 25px;
 			padding-top: 18px;
 			padding-bottom: 18px;
-			color: white;
+			color: var(--color6);
 			text-decoration: none;
 		}
 		svg{
-			filter: invert(1);
+			
 			margin-top: 8px;
 		}
 		#cancel{

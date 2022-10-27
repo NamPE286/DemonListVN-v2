@@ -1,0 +1,94 @@
+:root {
+	--invert: 1;
+	--color0: #f00d0d;
+	--color1: #f90000;
+	--color2: #00f900;
+	--color3: #003996;
+	--color4: #0040a7;
+	--color5: #005ff9;
+	--color6: hsl(0, 0%, 100%);
+	--color7: hsl(0, 0%, 73%);
+	--color8: hsl(0, 0%, 56%);
+	--color9: hsl(0, 0%, 54%);
+	--color10: hsl(0, 0%, 51%);
+	--color11: hsl(0, 0%, 47%);
+	--color12: hsl(0, 0%, 44%);
+	--color13: hsl(0, 0%, 42%);
+	--color14: hsl(0, 0%, 35%);
+	--color15: hsl(0, 0%, 26%);
+	--color16: hsl(0, 0%, 24%);
+	--color17: hsl(0, 0%, 21%);
+	--color18: hsl(0, 0%, 20%);
+	--color19: hsl(0, 0%, 18%);
+	--color20: hsl(0, 0%, 19%);
+	--color21: hsl(0, 0%, 17%);
+	--color22: hsl(0, 0%, 16%);
+	--color23: hsl(0, 0%, 13%);
+	--color24: hsl(0, 0%, 8%);
+	--color25: hsl(0, 0%, 0%);
+}
+html[data-theme='light']{
+	--invert: 0;
+	--color6: hsl(0, 0%, 0%);
+	--color7: hsl(0, 0%, 27%);
+	--color8: hsl(0, 0%, 44%);
+	--color9: hsl(0, 0%, 46%);
+	--color10: hsl(0, 0%, 49%);
+	--color11: hsl(0, 0%, 53%);
+	--color12: hsl(0, 0%, 56%);
+	--color13: hsl(0, 0%, 58%);
+	--color14: hsl(0, 0%, 65%);
+	--color15: hsl(0, 0%, 74%);
+	--color16: hsl(0, 0%, 76%);
+	--color17: hsl(0, 0%, 79%);
+	--color18: hsl(0, 0%, 80%);
+	--color19: hsl(0, 0%, 82%);
+	--color20: hsl(0, 0%, 81%);
+	--color21: hsl(0, 0%, 83%);
+	--color22: hsl(0, 0%, 84%);
+	--color23: hsl(0, 0%, 87%);
+	--color24: hsl(0, 0%, 92%);
+	--color25: hsl(0, 0%, 100%);
+}
+html[data-theme='dark']{
+	--color6: hsl(0, 0%, 100%);
+	--color7: hsl(0, 0%, 73%);
+	--color8: hsl(0, 0%, 56%);
+	--color9: hsl(0, 0%, 54%);
+	--color10: hsl(0, 0%, 51%);
+	--color11: hsl(0, 0%, 47%);
+	--color12: hsl(0, 0%, 44%);
+	--color13: hsl(0, 0%, 42%);
+	--color14: hsl(0, 0%, 35%);
+	--color15: hsl(0, 0%, 26%);
+	--color16: hsl(0, 0%, 24%);
+	--color17: hsl(0, 0%, 21%);
+	--color18: hsl(0, 0%, 20%);
+	--color19: hsl(0, 0%, 18%);
+	--color20: hsl(0, 0%, 19%);
+	--color21: hsl(0, 0%, 17%);
+	--color22: hsl(0, 0%, 16%);
+	--color23: hsl(0, 0%, 13%);
+	--color24: hsl(0, 0%, 8%);
+	--color25: hsl(0, 0%, 0%);
+}
+body {
+	background-color: var(--color24);
+	font-family: "Roboto Flex", sans-serif;
+	font-size: 16px;
+	color: var(--color6);
+}
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+::-webkit-scrollbar-thumb {
+	background: #777777;
+	border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color: #585858;
+}
+::-webkit-scrollbar-thumb:active {
+	background-color: #424242;
+}

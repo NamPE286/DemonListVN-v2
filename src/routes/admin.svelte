@@ -47,7 +47,7 @@
 <style lang="scss">
 	a {
 		text-decoration: none;
-		color: white;
+		color: var(--color6);
 	}
 	#title {
 		font-size: 25px;

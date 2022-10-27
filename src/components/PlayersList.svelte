@@ -73,7 +73,7 @@
 		display: flex;
 		border-radius: 50px;
 		a {
-			color: white;
+			color: var(--color6);
 			text-decoration: none;
 		}
 		.playerTop {
