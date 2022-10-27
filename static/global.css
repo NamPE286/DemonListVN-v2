@@ -1,48 +1,48 @@
-:root{
+:root {
 	--color0: #f00d0d;
 	--color1: #f90000;
 	--color2: #00f900;
 	--color3: #003996;
 	--color4: #0040a7;
 	--color5: #005ff9;
-	--color6: #fff;
-	--color7: #b8b8b8;
-	--color8: #8e8e8e;
-	--color9: #888888;
-	--color10: #808080;
-	--color11: #777777;
-	--color12: #707070;
-	--color13: #6b6b6b;
-	--color14: #585858;
-	--color15: #424242;
-	--color16: #3b3b3b;
-	--color17: #353535;
-	--color18: #333333;
-	--color19: #2d2d2d;
-	--color20: #2e2e2e;
-	--color21: #2b2b2b;
-	--color22: #272727;
-	--color23: #202020;
-	--color24: #141414;
-	--color25: #000000;
+	--color6: hsl(0, 0%, 100%);
+	--color7: hsl(0, 0%, 73%);
+	--color8: hsl(0, 0%, 56%);
+	--color9: hsl(0, 0%, 54%);
+	--color10: hsl(0, 0%, 51%);
+	--color11: hsl(0, 0%, 47%);
+	--color12: hsl(0, 0%, 44%);
+	--color13: hsl(0, 0%, 42%);
+	--color14: hsl(0, 0%, 35%);
+	--color15: hsl(0, 0%, 26%);
+	--color16: hsl(0, 0%, 24%);
+	--color17: hsl(0, 0%, 21%);
+	--color18: hsl(0, 0%, 20%);
+	--color19: hsl(0, 0%, 18%);
+	--color20: hsl(0, 0%, 19%);
+	--color21: hsl(0, 0%, 17%);
+	--color22: hsl(0, 0%, 16%);
+	--color23: hsl(0, 0%, 13%);
+	--color24: hsl(0, 0%, 8%);
+	--color25: hsl(0, 0%, 0%);
 }
 body {
 	background-color: #141414;
-	font-family: 'Roboto Flex', sans-serif;
+	font-family: "Roboto Flex", sans-serif;
 	font-size: 16px;
 	color: #fff;
 }
 ::-webkit-scrollbar {
 	width: 10px;
 	height: 10px;
-  }
+}
 ::-webkit-scrollbar-thumb {
-	background: #777777; 
+	background: #777777;
 	border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-	background-color: #585858; 
+	background-color: #585858;
 }
 ::-webkit-scrollbar-thumb:active {
-	background-color: #424242; 
+	background-color: #424242;
 }
