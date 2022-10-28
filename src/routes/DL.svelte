@@ -43,12 +43,12 @@
 	<Title title="Demon List" description="Hardest levels beaten by Vietnamese" />
 	<div class="listSelector">
 		{#if $userdata.data.isAdmin}
-			<a href='#!' id='noDec' on:click={() => showAddLevelModal = !showAddLevelModal}>
+			<span class="clickable" id='noDec' on:click={() => showAddLevelModal = !showAddLevelModal}>
 				<div class="AddLvBtn">
 					<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M18.625 31.667V21.375H8.333v-2.75h10.292V8.333h2.75v10.292h10.292v2.75H21.375v10.292Z"/></svg>
 					<span>Add Level</span>
 				</div>
-			</a>
+			</span>
 		{/if}
 	</div>
 	{#if listOption == 0}
@@ -79,26 +79,24 @@
 	<PlayersList bind:list bind:listOption />
 	<div class="listSwitcherWrapper">
 		<div class="listSwitcher">
-			<a
-				class="listSwitcherItem"
+			<span
+				class="listSwitcherItem clickable"
 				id={listOption == 0 ? "highlight" : ""}
 				on:click={() => {
 					listOption = 0;
 				}}
-				href="#!"
 			>
-				<a href="#!">Level listing</a>
-			</a>
-			<a
-				class="listSwitcherItem"
+				<span>Level listing</span>
+			</span>
+			<span
+				class="listSwitcherItem clickable"
 				id={listOption == 1 ? "highlight" : ""}
 				on:click={() => {
 					listOption = 1;
 				}}
-				href="#!"
 			>
-				<a href="#!">Top players</a>
-			</a>
+				<span>Top players</span>
+			</span>
 		</div>
 	</div>
 </div>

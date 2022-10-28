@@ -144,6 +144,9 @@ body {
 	font-size: 16px;
 	color: var(--color6);
 }
+.clickable{
+	cursor: pointer;
+}
 ::-webkit-scrollbar {
 	width: 10px;
 	height: 10px;

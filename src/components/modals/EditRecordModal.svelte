@@ -75,16 +75,15 @@
 				<input class="s_input" placeholder="Timestamp" bind:value={a.timestamp} type="date"/>
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
-				<a
-					href="#!"
-					class="s_button2 s_margin6 s_red"
+				<span
+					class="s_button2 s_margin6 s_red clickable"
 					on:click={() => {
 						cancel()
-					}}>Cancel</a
+					}}>Cancel</span
 				>
-				<a href="#!" class="s_button2 s_margin5 s_blue" on:click={() => {
+				<span class="s_button2 s_margin5 s_blue clickable" on:click={() => {
 					apply()
-				}}>Edit</a>
+				}}>Edit</span>
 			</div>
 		</div>
 	</div>

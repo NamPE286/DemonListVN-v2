@@ -24,9 +24,9 @@
 		<SliderPicker name="BG opacity" key="opacity" />
 		<SliderPicker name="BG blur" key="blur" />
 		{#if $userdata.metadata}
-			<a class="submitBtn" id="signIn" href="#!" on:click={signOut}>
+			<span class="submitBtn clickable" id="signIn" on:click={signOut}>
 				<p>Sign Out</p>
-			</a>
+			</span>
 		{/if}
     </div>
 </div>

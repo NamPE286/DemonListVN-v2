@@ -45,7 +45,7 @@
 				<input class="s_input" placeholder="Name" bind:value={newname}>
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
-				<a href="#!" class="s_button2 s_margin5 s_blue" on:click={updateName}>Done</a>
+				<span class="s_button2 s_margin5 s_blue clickable" on:click={updateName}>Done</span>
 			</div>
 		</div>
 	</div>

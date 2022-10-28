@@ -58,9 +58,9 @@
     {#each submissions as item, index}
         <div class='submit'>
             <p><b id='title'>{item.levels.name}</b> ({ifMobile(item)}{item.progress}%) ({item.refreshRate}hz) (ID:{item.levelid})<br>
-                <a href='#!'>Player name: {item.players.name}</a><br>
+                <span>Player name: {item.players.name}<br>
                 Comment: {item.comment}<br>
-                Video Link: <a href={item.videoLink}>{item.videoLink}</a>
+                Video Link: <a href={item.videoLink}>{item.videoLink}</span>
             </p>
             <button id='bla' on:click={() => reject(item, index)}>Reject</button>
             {#if item.progress >= item.levels.minProgress}

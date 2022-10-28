@@ -78,7 +78,7 @@
 </script>
 
 <div class={ifOntop ? "topBar" : "topBar1"}>
-	<a href="#!" class="menuIconWrapper" on:click={toggleMenu}>
+	<span class="menuIconWrapper clickable" on:click={toggleMenu}>
 		{#if !menuExpanded}
 			<svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 				><path d="M3 18v-2h18v2Zm0-5v-2h18v2Zm0-5V6h18v2Z" /></svg
@@ -90,7 +90,7 @@
 				/></svg
 			>
 		{/if}
-	</a>
+	</span>
 	<a id="title" href='/'>Demon List VN</a>
 	<input autocomplete="false" class='searchBox' placeholder='Search' id='hideRes' bind:value={searchValue} on:input={typingAction} >
 	{#if (searchRes.length && searchValue.length) && !isTyping || ((searchPlayerRes.length && searchValue.length) && !isTyping)}
@@ -111,14 +111,14 @@
 		</div>
 	{/if}
 	{#if uid && !forceSignIn}
-		<a class="submitBtn" href="#!" on:click={openModal}>
+		<span class="submitBtn clickable" on:click={openModal}>
 			<p>Submit</p>
-		</a>
+		</span>
 	{/if}
 	{#if !uid || forceSignIn}
-		<a class="submitBtn" id="signIn" href="#!" on:click={signIn}>
+		<span class="submitBtn clickable" id="signIn" on:click={signIn}>
 			<p>Sign In</p>
-		</a>
+		</span>
 	{/if}
 </div>
 <div class="topSpacer" />
