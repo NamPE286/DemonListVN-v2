@@ -127,7 +127,7 @@
 			border-radius: 50px 50px 0 0;
 		}
 		svg{
-			
+			fill: var(--color6);
 		}
 		.levelInfo {
 			display: flex;
@@ -157,6 +157,9 @@
 				}
 			}
 		}
+	}
+	.levelWidget:hover{
+		filter: brightness(110%);
 	}
 	@media screen and (min-width: 1100px) {
 		.levelName {
