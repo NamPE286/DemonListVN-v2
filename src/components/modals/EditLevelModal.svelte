@@ -223,7 +223,7 @@
 		transition: 0.15s;
 	}
 	.s_shadow {
-		box-shadow: 0px 0px 32px var(--color25);
+		box-shadow: 0px 0px 32px rgb(51, 51, 51);
 	}
 	@media screen and (max-width: 1250px) {
 		.submitModal {
