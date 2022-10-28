@@ -347,7 +347,7 @@
 		background-color: var(--color15);
 	}
 	.menuIconWrapper:active:hover {
-		background-color: gray;
+		background-color: var(--color10);
 	}
 	.sidebarIconWrapper:hover {
 		#sidebarIcon {
