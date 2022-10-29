@@ -18,7 +18,7 @@
 	}
 	
 </script>
-<div class="levelWidget" on:focus={() => 
+<div class="levelWidget">
 	<a href={`/level?id=${levelID}`} class="levelWidget">
 		<img src={`https://img.youtube.com/vi/${videoID}/mqdefault.jpg`} alt="" loading='lazy'/>
 		<div class="levelInfo">
