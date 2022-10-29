@@ -50,7 +50,6 @@
         return ''
     }
     function getList(item){
-        console.log(item)
         if(item.levels.dlTop) return 'DL'
         if(item.levels.flTop) return 'FL'
         return 'Not placed'
