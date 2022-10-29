@@ -118,7 +118,7 @@
 		margin-bottom: 35px;
 		color: var(--color6);
 		svg{
-			
+			fill: var(--color6);
 		}
 	}
 	#legacyLabel {
