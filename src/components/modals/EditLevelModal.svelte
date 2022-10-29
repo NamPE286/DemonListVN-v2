@@ -11,7 +11,7 @@
 		level['prevdlTop'] = prevDL
 		level['prevflTop'] = prevFL
 		console.log(level)
-		fetch(`http://localhost:5050/level/${level.id}`, {
+		fetch(`https://seademonlist-api.vercel.app//level/${level.id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
