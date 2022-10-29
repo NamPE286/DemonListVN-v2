@@ -1,6 +1,6 @@
 <script lang="ts">
     import { page } from '$app/stores';
-    console.log($page.error)
+    
 </script>
 <style lang="scss">
     a {

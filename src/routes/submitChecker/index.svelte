@@ -8,11 +8,9 @@
         if($userdata.data.country){
             var { data, error } = await supabase
                 .from('submissions')
-                .select('*, levels!inner(name, dlTop, minProgress), players!inner(name, uid, country)')
-                .not('levels.dlTop', 'is', 'null')
+                .select('*, levels!inner(name, dlTop, flTop, minProgress), players!inner(name, uid, country)')
                 .eq('players.country', $userdata.data.country)
                 .order('id', {ascending: true})
-            
             submissions = data
         }
         else{
@@ -51,13 +49,18 @@
         if(item.mobile) return "Mobile "
         return ''
     }
+    function getList(item){
+        if(item.levels.dlTop) return 'DL'
+        if(item.levels.flTop) return 'FL'
+        return 'Not placed'
+    }
 </script>
 {#if $userdata.data.isAdmin}
 <div class="pageContent">
     <Title title="Submit Checker" description={`Total submissions: ${submissions.length.toString()}`} />
     {#each submissions as item, index}
         <div class='submit'>
-            <p><b id='title'>{item.levels.name}</b> ({ifMobile(item)}{item.progress}%) ({item.refreshRate}hz) (ID:{item.levelid})<br>
+            <p><b id='title'>{item.levels.name}</b> ({ifMobile(item)}{item.progress}%) ({item.refreshRate}hz) (ID:{item.levelid}) ({getList(item)})<br>
                 Player name: <a href={`/player?id=${item.players.id}`}>{item.players.name}</a><br>
                 Comment: {item.comment}<br>
                 Video Link: <a href={item.videoLink}>{item.videoLink}</a>

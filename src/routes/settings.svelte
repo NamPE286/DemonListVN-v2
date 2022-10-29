@@ -10,7 +10,7 @@
 		window.location.reload();
 		const { error } = await supabase.auth.signOut();
 	}
-	console.log($userdata)
+	
 </script>
 <head>
 	<title>Settings - Demon List VN</title>

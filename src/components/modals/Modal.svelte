@@ -44,7 +44,7 @@
 							name: data.name.trim(),
 							creator: data.author
 						};
-						console.log(level, b)
+						
 						async function addLv() {
 							fetch(`https://seademonlist-api.vercel.app/level/${level.id}`, {
 								method: "POST",
