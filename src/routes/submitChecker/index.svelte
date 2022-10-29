@@ -50,6 +50,7 @@
         return ''
     }
     function getList(item){
+        console.log(item)
         if(item.levels.dlTop) return 'DL'
         if(item.levels.flTop) return 'FL'
         return 'Not placed'
@@ -61,7 +62,7 @@
     {#each submissions as item, index}
         <div class='submit'>
             <p><b id='title'>{item.levels.name}</b> ({ifMobile(item)}{item.progress}%) ({item.refreshRate}hz) (ID:{item.levelid}) ({getList(item)})<br>
-                Player name: <a href={`/player?id=${item.players.id}`}>{item.players.name}</a><br>
+                Player name: <a href={`/player?id=${item.players.uid}`}>{item.players.name}</a><br>
                 Comment: {item.comment}<br>
                 Video Link: <a href={item.videoLink}>{item.videoLink}</a>
             </p>

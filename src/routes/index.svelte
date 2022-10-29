@@ -9,20 +9,23 @@
     async function getRandom(){
         var { data, error } = await supabase
             .from('random_levels')
-            .select('*')
+            .select('id')
             .not('flTop', 'is', null)
             .limit(1)
             .single()
         randomFL = data.id
         var { data, error } = await supabase
             .from('random_levels')
-            .select('*')
+            .select('id')
             .not('dlTop', 'is', null)
             .limit(1)
             .single()
         randomDL = data.id
     }
-    getRandom()
+	try{
+		getRandom()
+	}
+	catch{}
 	var greeting = [
 			'Hi',
 			'Hello',
