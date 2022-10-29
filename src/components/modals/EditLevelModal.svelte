@@ -10,7 +10,8 @@
 	async function apply(){
 		level['prevdlTop'] = prevDL
 		level['prevflTop'] = prevFL
-		fetch(`https://seademonlist-api.vercel.app/level/${level.id}`, {
+		console.log(level)
+		fetch(`http://localhost:5050/level/${level.id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
@@ -50,7 +51,7 @@
 			</div>
 			<div class="s_flexcol" style="align-items: center;">
 				<input class="s_input" placeholder="Video ID" bind:value={level.videoID}/>
-				<input class="s_input" placeholder="Level name" bind:value={level.name} readonly />
+				<input class="s_input" placeholder="Level name" bind:value={level.name} />
 				<input class="s_input" placeholder="Creator (leave blank for autofill)" bind:value={level.creator} />
 				<input class="s_input" placeholder="Minimum Progress (must be greater than 0, default is 100)" bind:value={level.minProgress} type='number'/>
 				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop} type="number"/>
