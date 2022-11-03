@@ -1,12 +1,12 @@
 <script>
 	var flPlayer = [];
 	var dlPlayer = [];
-	fetch("https://api.vnpower.tech//players/fl/page/1")
+	fetch("https://api.vnpower.tech/players/fl/page/1")
 		.then((response) => response.json())
 		.then((data) => {
 			flPlayer = data;
 		});
-	fetch("https://api.vnpower.tech//players/dl/page/1")
+	fetch("https://api.vnpower.tech/players/dl/page/1")
 		.then((response) => response.json())
 		.then((data) => {
 			dlPlayer = data;

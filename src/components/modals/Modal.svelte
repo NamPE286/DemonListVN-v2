@@ -46,7 +46,7 @@
 						};
 						
 						async function addLv() {
-							fetch(`https://api.vnpower.tech//level/${level.id}`, {
+							fetch(`https://api.vnpower.tech/level/${level.id}`, {
 								method: "POST",
 								headers: {
 									"Content-Type": "application/json"

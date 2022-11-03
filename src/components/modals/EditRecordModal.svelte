@@ -12,7 +12,7 @@
 		a.userid = player.uid
 		delete a.levels
 		delete a.players
-		fetch(`https://api.vnpower.tech//record`, {
+		fetch(`https://api.vnpower.tech/record`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',

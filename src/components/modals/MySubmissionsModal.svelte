@@ -4,7 +4,7 @@
 	export var ifShow: boolean;
 	export var uid;
 	var submissions = []
-	fetch(`https://api.vnpower.tech//player/${uid}/submissions`)
+	fetch(`https://api.vnpower.tech/player/${uid}/submissions`)
 		.then((response) => response.json())
 		.then((data) => {
 			submissions = data;

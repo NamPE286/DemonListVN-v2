@@ -16,7 +16,7 @@
 	var prevDL = JSON.parse(JSON.stringify(level.dlTop))
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function apply(){
-		fetch(`https://api.vnpower.tech//level/${level.id}`, {
+		fetch(`https://api.vnpower.tech/level/${level.id}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

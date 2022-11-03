@@ -11,7 +11,7 @@
 	var showAddLevelModal = false;
 	function fetchData(count = 0){
 		if(count == 2){
-			fetch(`https://api.vnpower.tech//levels/dl/page/1`)
+			fetch(`https://api.vnpower.tech/levels/dl/page/1`)
 				.then((response) => response.json())
 				.then((data) => {
 					dlLevels = data;
@@ -20,7 +20,7 @@
 				});
 		}
 		try{
-			fetch(`https://api.vnpower.tech//levels/dl/page/1/${$userdata.metadata.id}`)
+			fetch(`https://api.vnpower.tech/levels/dl/page/1/${$userdata.metadata.id}`)
 				.then((response) => response.json())
 				.then((data) => {
 					dlLevels = data;

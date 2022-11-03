@@ -23,7 +23,7 @@
     async function reject(item, index){
         submissions.splice(index, 1)
         submissions = submissions
-		fetch(`https://api.vnpower.tech//${item.id}`, {
+		fetch(`https://api.vnpower.tech/${item.id}`, {
 				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
@@ -36,7 +36,7 @@
     async function accept(item, index){
         submissions.splice(index, 1)
         submissions = submissions
-        fetch(`https://api.vnpower.tech//record`, {
+        fetch(`https://api.vnpower.tech/record`, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
