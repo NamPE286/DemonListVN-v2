@@ -32,7 +32,7 @@
 			avatarSrc =
 				"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Black_flag.svg/2560px-Black_flag.svg.png";
 		const dat = await (
-			await fetch(`https://seademonlist-api.vercel.app/player/${$page.url.searchParams.get("id")}`)
+			await fetch(`https://api.vnpower.tech//player/${$page.url.searchParams.get("id")}`)
 		).json();
 		player = dat;
 		title = dat.name;
@@ -43,7 +43,7 @@
 		}
 		const data = await (
 			await fetch(
-				`https://seademonlist-api.vercel.app/player/${$page.url.searchParams.get(
+				`https://api.vnpower.tech//player/${$page.url.searchParams.get(
 					"id"
 				)}/records/${sortBy}`
 			)
@@ -86,7 +86,7 @@
 			dlrec.splice(index, 1);
 			dlrec = dlrec;
 		}
-		fetch(`https://seademonlist-api.vercel.app/record/${item.id}`, {
+		fetch(`https://api.vnpower.tech//record/${item.id}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json"

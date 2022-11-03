@@ -66,7 +66,7 @@
 		}
 		tOut = []
 		tOut.push(setTimeout(()=>{
-			if(searchValue.length) fetch(`https://seademonlist-api.vercel.app/search/${searchValue}`)
+			if(searchValue.length) fetch(`https://api.vnpower.tech//search/${searchValue}`)
 				.then((response) => response.json())
 				.then((data) => {
 					searchRes = data[0]

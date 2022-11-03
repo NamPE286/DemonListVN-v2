@@ -10,7 +10,7 @@
 			alert('Please enter a name')
 			return
 		}
-		fetch(`https://seademonlist-api.vercel.app/player/${uid}`, {
+		fetch(`https://api.vnpower.tech//player/${uid}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',

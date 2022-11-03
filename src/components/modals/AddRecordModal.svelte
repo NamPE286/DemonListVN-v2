@@ -17,7 +17,7 @@
 		const b = new Date(a.timestamp)
 		a.timestamp = b.getTime()
 		a.userid = player.uid
-		fetch(`https://seademonlist-api.vercel.app/record`, {
+		fetch(`https://api.vnpower.tech//record`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',

@@ -15,7 +15,7 @@
 	var showEditRecordModal = false;
 	var showEditLevelModal = false;
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-	$: fetch(`https://seademonlist-api.vercel.app/level/${$page.url.searchParams.get("id")}`)
+	$: fetch(`https://api.vnpower.tech//level/${$page.url.searchParams.get("id")}`)
 		.then((response) => response.json())
 		.then((data) => {
 			level = data.data;
@@ -28,7 +28,7 @@
 		return `${level.flPt ? level.flPt : level.dlPt}pt`;
 	}
 	async function removeRecord(item, index) {
-		fetch(`https://seademonlist-api.vercel.app/record/${item.id}`, {
+		fetch(`https://api.vnpower.tech//record/${item.id}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json"

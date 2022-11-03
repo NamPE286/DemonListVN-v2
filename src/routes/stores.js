@@ -12,7 +12,7 @@ var dat1 = {
 }
 supabase.auth.onAuthStateChange((event, session) => {
     dat1.metadata = session.user
-    fetch(`https://seademonlist-api.vercel.app/player/${session.user.id}`)
+    fetch(`https://api.vnpower.tech//player/${session.user.id}`)
         .then((response) => response.json())
         .then((data) => {
             dat1.data = data

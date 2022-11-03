@@ -34,7 +34,7 @@
 				}
 			}
 		} catch {}
-		fetch(`https://seademonlist-api.vercel.app/player/${user.metadata.id}`, {
+		fetch(`https://api.vnpower.tech//player/${user.metadata.id}`, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json"

@@ -11,7 +11,7 @@
 	getData();
     var n
     async function addPlayer(){
-		fetch(`https://seademonlist-api.vercel.app/player`, {
+		fetch(`https://api.vnpower.tech//player`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
