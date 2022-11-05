@@ -2,7 +2,7 @@
 	import { fade } from "svelte/transition";
 	import { onMount } from "svelte";
 	import { createClient } from "@supabase/supabase-js";
-	import Modal from "./modals/Modal.svelte";
+	import Modal from "./modals/submitModal.svelte";
 	import NameModal from "./modals/NameModal.svelte";
 	async function addUser(user1) {
 		var { data, error } = await supabase.from("players").select("uid, name").eq("uid", user1.id);
