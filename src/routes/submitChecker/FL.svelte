@@ -7,12 +7,13 @@
     async function getData(){
         if($userdata.data.country){
             var { data, error } = await supabase
-                .from('submissions')
+                .from('records')
                 .select('*, levels!inner(name, flTop, minProgress), players!inner(name, uid, country)')
                 .not('levels.flTop', 'is', null)
                 .eq('progress', 100)
                 .eq('players.country', $userdata.data.country)
-                .order('id', {ascending: true})
+                .eq('isChecked', false)
+                .order('timestamp', {ascending: true})
             submissions = data
         }
         else{
@@ -23,7 +24,7 @@
     async function reject(item, index){
         submissions.splice(index, 1)
         submissions = submissions
-		fetch(`https://api.vnpower.tech/${item.id}`, {
+		fetch(`https://api.vnpower.tech/record/${item.userid}/${item.levelid}`, {
 				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
@@ -36,6 +37,7 @@
     async function accept(item, index){
         submissions.splice(index, 1)
         submissions = submissions
+        item.isChecked = true
         fetch(`https://api.vnpower.tech/record`, {
 				method: 'PUT',
 				headers: {

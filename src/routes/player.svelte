@@ -86,7 +86,7 @@
 			dlrec.splice(index, 1);
 			dlrec = dlrec;
 		}
-		fetch(`https://api.vnpower.tech/record/${item.id}`, {
+		fetch(`https://api.vnpower.tech/record/${item.userid}/${item.levelid}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json"

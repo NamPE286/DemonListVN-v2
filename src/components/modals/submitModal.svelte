@@ -27,42 +27,32 @@
 				return;
 			}
 		}
-		var { data, error } = await supabase.from("submissions").insert(a);
+		var data = await (
+			await fetch(`https://api.vnpower.tech/submit/0`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(a)
+			})
+		).json();
 		const b = JSON.parse(JSON.stringify(a));
-		if (error) {
+		if (data.error) {
 			if (list == "Featured List") {
 				alert("This level doesn't exist");
 				document.body.style.cursor = "default";
-				return
+				return;
 			}
 			if (confirm("This level doesn't exist in the list. Do you want to proceed?")) {
-				fetch(`https://gdbrowser.com/api/level/${a.levelid}`)
-					.then((response) => response.json())
-					.then((data) => {
-						var level = {
-							id: data.id,
-							name: data.name.trim(),
-							creator: data.author
-						};
-						
-						async function addLv() {
-							fetch(`https://api.vnpower.tech/level/${level.id}`, {
-								method: "POST",
-								headers: {
-									"Content-Type": "application/json"
-								},
-								body: JSON.stringify({
-									token: supabase.auth.session().access_token,
-									data: level
-								})
-							}).then((res) => {
-							})
-							.then( async (dat) => {
-								var { data, error } = await supabase.from("submissions").insert(b);
-							})
-						}
-						addLv()
-					});
+				await (
+					await fetch(`https://api.vnpower.tech/submit/1`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(a)
+					})
+				).json();
 			}
 		}
 		a = {
@@ -143,7 +133,7 @@
 							cancel();
 						}}>Cancel</span
 					>
-					<!-- <span class="s_button2 s_margin5 s_blue clickable" on:click={submit}>Submit</span> -->
+					<span class="s_button2 s_margin5 s_blue clickable" on:click={submit}>Submit</span>
 				</div>
 			</div>
 		</div>
@@ -297,9 +287,6 @@
 	.s_blue:active:hover {
 		background-color: var(--color4);
 		transition: 0.15s;
-	}
-	.s_shadow {
-		
 	}
 	@media screen and (max-width: 1250px) {
 		.submitModal {

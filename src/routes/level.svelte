@@ -28,7 +28,7 @@
 		return `${level.flPt ? level.flPt : level.dlPt}pt`;
 	}
 	async function removeRecord(item, index) {
-		fetch(`https://api.vnpower.tech/record/${item.id}`, {
+		fetch(`https://api.vnpower.tech/record/${item.userid}/${item.levelid}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json"
