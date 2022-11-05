@@ -45,11 +45,15 @@
 		{#if $userdata.data.isAdmin}
 			<span class="clickable" id='noDec' on:click={() => showAddLevelModal = !showAddLevelModal}>
 				<div class="AddLvBtn">
-					<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M18.625 31.667V21.375H8.333v-2.75h10.292V8.333h2.75v10.292h10.292v2.75H21.375v10.292Z"/></svg>
 					<span>Add Level</span>
 				</div>
 			</span>
 		{/if}
+		<span class="clickable" id='noDec' on:click={() => document.getElementById("legacyLabel").scrollIntoView({behavior: 'smooth'})}>
+			<div class="AddLvBtn">
+				<span>Jump to legacy list</span>
+			</div>
+		</span>
 	</div>
 	{#if listOption == 0}
 		{#each dlLevels as item, index}
@@ -109,7 +113,8 @@
 	}
 	.AddLvBtn{
 		background-color: var(--color17);
-		width: 150px;
+		width: 300px;
+		height: 40px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
