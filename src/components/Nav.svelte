@@ -2,7 +2,7 @@
 	import { fade } from "svelte/transition";
 	import { onMount } from "svelte";
 	import { createClient } from "@supabase/supabase-js";
-	import SubmitModal from "./modals/SubmitModal.svelte";
+	import Modal from "./modals/Modal.svelte";
 	import NameModal from "./modals/NameModal.svelte";
 	async function addUser(user1) {
 		var { data, error } = await supabase.from("players").select("uid, name").eq("uid", user1.id);
@@ -203,7 +203,7 @@
 	</a>
 	<div class="bottomPad" />
 </div>
-<SubmitModal bind:ifShow={submitClicked} />
+<Modal bind:ifShow={submitClicked} />
 {#if user}
 	<NameModal bind:ifShow={ifShowNameInput} uid={user.id} />
 {/if}
