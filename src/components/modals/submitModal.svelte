@@ -143,7 +143,7 @@
 							cancel();
 						}}>Cancel</span
 					>
-					<span class="s_button2 s_margin5 s_blue clickable" on:click={submit}>Submit</span>
+					<!-- <span class="s_button2 s_margin5 s_blue clickable" on:click={submit}>Submit</span> -->
 				</div>
 			</div>
 		</div>
