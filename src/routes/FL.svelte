@@ -40,20 +40,22 @@
 </svelte:head>
 <div class="pageContent">
 	<Title title="Featured List" description="Hardest levels created by Vietnamese" />
-	<div class="listSelector">
-		{#if $userdata.data.isAdmin}
-			<span class="clickable" id='noDec' on:click={() => showAddLevelModal = !showAddLevelModal}>
+	{#if listOption == 0}
+		<div class="listSelector">
+			{#if $userdata.data.isAdmin}
+				<span class="clickable" id='noDec' on:click={() => showAddLevelModal = !showAddLevelModal}>
+					<div class="AddLvBtn">
+						<span>Add Level</span>
+					</div>
+				</span>
+			{/if}
+			<span class="clickable" id='noDec' on:click={() => document.getElementById("legacyLabel").scrollIntoView({behavior: 'smooth'})}>
 				<div class="AddLvBtn">
-					<span>Add Level</span>
+					<span>Jump to legacy list</span>
 				</div>
 			</span>
-		{/if}
-		<span class="clickable" id='noDec' on:click={() => document.getElementById("legacyLabel").scrollIntoView({behavior: 'smooth'})}>
-			<div class="AddLvBtn">
-				<span>Jump to legacy list</span>
-			</div>
-		</span>
-	</div>
+		</div>
+	{/if}
 	{#if listOption == 0}
 		{#each flLevels as item, index}
 			<Levels
