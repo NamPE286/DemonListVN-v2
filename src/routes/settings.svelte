@@ -33,9 +33,6 @@
 
 <style lang="scss">
     .pageContent {
-		width: 60%;
-		margin-inline: auto;
-		margin-bottom: 100px;
     }
 	.st_option {
 		display: flex;
@@ -59,14 +56,10 @@
 		}
 	}
     @media screen and (max-width: 1450px) {
-		.pageContent {
-			width: 80%;
-		}
+
 	}
 	@media screen and (max-width: 1100px) {
-		.pageContent {
-			width: 90%;
-		}
+
 		.submitBtn{
 			margin-left: auto;
 			margin-right: auto;

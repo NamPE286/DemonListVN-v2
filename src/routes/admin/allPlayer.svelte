@@ -1,7 +1,7 @@
 <script>
 	import { createClient } from "@supabase/supabase-js";
-	import Title from "../components/widgets/Title.svelte";
-	import { userdata } from "./stores";
+	import Title from "../../components/widgets/Title.svelte";
+	import { userdata } from "../stores";
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	var players = [];
 	async function getData() {
@@ -33,7 +33,7 @@
 
 {#if $userdata.data.isAdmin}
 	<div class="pageContent">
-		<Title title="Admin" description="" />
+		<Title title="All Player" description="" />
         <div>
             <button on:click={addPlayer}>Add player</button>
             <input bind:value={n}>
@@ -57,9 +57,6 @@
 	}
 	.pageContent {
 		display: grid;
-		width: 60%;
-		margin-inline: auto;
-		margin-bottom: 100px;
 		gap: 30px;
 		grid-template-areas:
 			"header"
@@ -77,14 +74,5 @@
 			font-size: 16px;
 		}
 	}
-	@media screen and (max-width: 1450px) {
-		.pageContent {
-			width: 80%;
-		}
-	}
-	@media screen and (max-width: 1100px) {
-		.pageContent {
-			width: 90%;
-		}
-	}
+
 </style>

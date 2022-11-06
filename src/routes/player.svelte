@@ -156,7 +156,7 @@
 							/></svg
 						>
 					</a>
-					<a href="#!" class="iconWrapper" on:click={getDiscordTag}>
+					<span class="iconWrapper clickable" on:click={getDiscordTag}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="33.004"
@@ -170,7 +170,7 @@
 								fill="var(--color6)"
 							/>
 						</svg>
-					</a>
+					</span>
 				</div>
 			</div>
 			{#if id == getID()}

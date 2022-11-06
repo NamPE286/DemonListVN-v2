@@ -1,14 +1,16 @@
 <script>
     import { createClient } from "@supabase/supabase-js";
-    import Title from "../../components/widgets/Title.svelte";
-    import { userdata } from '../stores'
+    import Title from "../../../components/widgets/Title.svelte";
+    import { userdata } from '../../stores'
     const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
     var submissions = [];
     async function getData(){
         if($userdata.data.country){
             var { data, error } = await supabase
                 .from('records')
-                .select('*, levels!inner(name, dlTop, flTop, minProgress), players!inner(name, uid, country)')
+                .select('*, levels!inner(name, flTop, minProgress), players!inner(name, uid, country)')
+                .not('levels.flTop', 'is', null)
+                .eq('progress', 100)
                 .eq('players.country', $userdata.data.country)
                 .eq('isChecked', false)
                 .order('timestamp', {ascending: true})
@@ -47,15 +49,9 @@
 				})
 			})
     }
-
     function ifMobile(item){
         if(item.mobile) return "Mobile "
         return ''
-    }
-    function getList(item){
-        if(item.levels.dlTop) return 'DL'
-        if(item.levels.flTop) return 'FL'
-        return 'Not placed'
     }
 </script>
 {#if $userdata.data.isAdmin}
@@ -63,7 +59,7 @@
     <Title title="Submit Checker" description={`Total submission: ${submissions.length.toString()}`} />
     {#each submissions as item, index}
         <div class='submit'>
-            <p><b id='title'>{item.levels.name}</b> ({ifMobile(item)}{item.progress}%) ({item.refreshRate}hz) (ID:{item.levelid}) ({getList(item)})<br>
+            <p><b id='title'>{item.levels.name}</b> ({ifMobile(item)}{item.progress}%) ({item.refreshRate}hz) (ID:{item.levelid})<br>
                 Player name: <a href={`/player?id=${item.players.uid}`}>{item.players.name}</a><br>
                 Comment: {item.comment}<br>
                 Video Link: <a href={item.videoLink}>{item.videoLink}</a>
@@ -77,13 +73,7 @@
 </div>
 {/if}
 
-
 <style lang='scss'>
-    .pageContent{
-        a{
-            color: rgb(58, 61, 255);
-        }
-    }
     #title{
         font-size: 25px;
     }
@@ -92,9 +82,6 @@
     }
 	.pageContent {
 		display: grid;
-		width: 60%;
-		margin-inline: auto;
-		margin-bottom: 100px;
 		gap: 30px;
 		grid-template-areas:
 			"header"
@@ -112,13 +99,9 @@
         }
     }
     @media screen and (max-width: 1450px) {
-		.pageContent {
-			width: 80%;
-		}
+
 	}
 	@media screen and (max-width: 1100px) {
-		.pageContent {
-			width: 90%;
-		}
+
 	}
 </style>

@@ -33,19 +33,12 @@
         padding-inline: 80px;
     }
     .pageContent {
-		width: 60%;
-		margin-inline: auto;
-		margin-bottom: 100px;
     }
     @media screen and (max-width: 1450px) {
-		.pageContent {
-			width: 80%;
-		}
+
 	}
 	@media screen and (max-width: 1100px) {
-		.pageContent {
-			width: 90%;
-		}
+
         .rule{
             padding-inline: 30px;
         }

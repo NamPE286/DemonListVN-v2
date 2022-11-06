@@ -40,9 +40,6 @@
 	}
 	.pageContent {
 		display: grid;
-		width: 60%;
-		margin-inline: auto;
-		margin-bottom: 100px;
 		gap: 30px;
 		grid-template-areas:
 			"header"
@@ -64,14 +61,10 @@
 		}
 	}
 	@media screen and (max-width: 1450px) {
-		.pageContent {
-			width: 80%;
-		}
+
 	}
 	@media screen and (max-width: 1100px) {
-		.pageContent {
-			width: 90%;
-		}
+
 		#bla {
 			margin-left: 30px;
 		}

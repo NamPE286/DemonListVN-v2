@@ -11,9 +11,11 @@
 		});
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function cancel(item, index) {
-		var { data, error } = await supabase.from("submissions").delete().match({ id: item.id });
-		submissions.splice(index, 1);
-		submissions = submissions;
+		if(confirm('Cancel submission?')){
+			var { data, error } = await supabase.from("submissions").delete().match({ id: item.id });
+			submissions.splice(index, 1);
+			submissions = submissions;
+		}
 	}
 </script>
 
@@ -108,6 +110,9 @@
 		#cancel {
 			margin-left: auto;
 			margin-right: 25px;
+			svg{
+				fill: var(--color6);
+			}
 		}
 	}
 	.submitModal {
