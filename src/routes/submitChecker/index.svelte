@@ -60,7 +60,7 @@
 </script>
 {#if $userdata.data.isAdmin}
 <div class="pageContent">
-    <Title title="Submit Checker" description={`Total submissions: ${submissions.length.toString()}`} />
+    <Title title="Submit Checker" description={`Total submission: ${submissions.length.toString()}`} />
     {#each submissions as item, index}
         <div class='submit'>
             <p><b id='title'>{item.levels.name}</b> ({ifMobile(item)}{item.progress}%) ({item.refreshRate}hz) (ID:{item.levelid}) ({getList(item)})<br>
