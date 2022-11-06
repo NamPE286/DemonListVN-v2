@@ -369,7 +369,6 @@
 			display: flex;
 			align-items: center;
 			font-size: 16px;
-			width: 80%;
 			height: 100%;
 			p {
 				margin-left: 40px;
@@ -382,7 +381,8 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			width: 20%;
+			margin-left: auto;
+			width: 180px;
 			height: 100%;
 			svg {
 				fill: var(--color6);
