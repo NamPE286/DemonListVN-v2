@@ -33,7 +33,7 @@
 
 {#if $userdata.data.isAdmin}
 	<div class="pageContent">
-		<Title title="All Player" description="" />
+		<Title title="Player manager" description="" />
         <div>
             <button on:click={addPlayer}>Add player</button>
             <input bind:value={n}>

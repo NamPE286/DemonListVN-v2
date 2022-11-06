@@ -98,10 +98,5 @@
             font-size: 16px;
         }
     }
-    @media screen and (max-width: 1450px) {
 
-	}
-	@media screen and (max-width: 1100px) {
-
-	}
 </style>

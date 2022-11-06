@@ -79,11 +79,6 @@
 
 
 <style lang='scss'>
-    .pageContent{
-        a{
-            color: rgb(58, 61, 255);
-        }
-    }
     #title{
         font-size: 25px;
     }
@@ -108,10 +103,5 @@
             font-size: 16px;
         }
     }
-    @media screen and (max-width: 1450px) {
 
-	}
-	@media screen and (max-width: 1100px) {
-
-	}
 </style>

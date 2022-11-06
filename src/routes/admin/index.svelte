@@ -3,13 +3,29 @@
 	import Title from "../../components/widgets/Title.svelte";
 	import { userdata } from "../stores";
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-
+	var a = 'Refresh list'
+	async function refreshList(){
+		a = 'Refreshing...'
+		const { data, error } = await supabase.rpc('updateRank')
+		a = 'Refreshed!'
+	}
 </script>
 {#if $userdata.data.isAdmin}
 	<div class="pageContent">
-		<Title title="All Player" description="" />
+		<Title title="Admin" description="" />
+		<button class='refreshList' on:click={refreshList}>{a}</button><br>
+		<span>Submit checker: </span>
+		<a href='/admin/submitChecker'>All</a>
+		<a href='/admin/submitChecker/DL'>DL</a>
+		<a href='/admin/submitChecker/FL'>FL</a><br>
+		<a href='/admin/allPlayer'>New levels</a><br>
+		<a href='/admin/allPlayer'>Player manager</a>
 	</div>
 {/if}
 <style lang="scss">
-
+	.refreshList{
+		margin-top: 50px;
+		height: 25px;
+		width: 100px;
+	}
 </style>

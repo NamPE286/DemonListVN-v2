@@ -154,8 +154,7 @@
 		background-color: var(--color1);
 		transition: 0.3s;
 	}
-	.s_shadow {
-	}
+
 	@media screen and (max-width: 1250px) {
 		.submitModal {
 			width: 65%;

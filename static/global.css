@@ -144,6 +144,10 @@ body {
 	font-size: 16px;
 	color: var(--color6);
 }
+a{
+	color: #8ab4f8;
+	text-decoration: none;
+}
 .pageContent {
 	width: 60%;
 	margin-inline: auto;
