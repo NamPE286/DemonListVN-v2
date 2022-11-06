@@ -58,8 +58,11 @@
 		object-fit: cover;
 	}
 	:global(.pageContent) {
-		width: 60%;
+		width: 1105px;
 		margin-inline: auto;
 		margin-bottom: 100px;
+		@media screen and (max-width: 1350px) {
+			width: 900px;
+		}
 	}
 </style>
