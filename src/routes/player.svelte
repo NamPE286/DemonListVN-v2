@@ -36,7 +36,6 @@
 		).json();
 		player = dat;
 		title = dat.name;
-
 		if (sortBy == "pt") {
 			if (list == 0) sortBy = "dlPt";
 			else if (list == 1) sortBy = "flPt";
@@ -48,6 +47,7 @@
 				)}/records/${sortBy}`
 			)
 		).json();
+		console.log(data)
 		flrec = [];
 		dlrec = [];
 		for (const i in data) {

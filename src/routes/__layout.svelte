@@ -64,5 +64,8 @@
 		@media screen and (max-width: 1350px) {
 			width: 900px;
 		}
+		@media screen and (max-width: 1100px) {
+			width: 90%;
+		}
 	}
 </style>
