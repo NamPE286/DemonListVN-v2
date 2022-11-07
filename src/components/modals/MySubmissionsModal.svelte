@@ -12,7 +12,7 @@
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function cancel(item, index) {
 		if(confirm('Cancel submission?')){
-			var { data, error } = await supabase.from("submissions").delete().match({ id: item.id });
+			var { data, error } = await supabase.from("records").delete().match({ userid: item.userid, levelid: item.levelid });
 			submissions.splice(index, 1);
 			submissions = submissions;
 		}

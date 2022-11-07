@@ -10,7 +10,6 @@
 	async function apply(){
 		level['prevdlTop'] = prevDL
 		level['prevflTop'] = prevFL
-		console.log(level)
 		fetch(`https://api.vnpower.tech/level/${level.id}`, {
 			method: 'PATCH',
 			headers: {

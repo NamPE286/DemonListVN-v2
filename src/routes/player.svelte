@@ -47,7 +47,6 @@
 				)}/records/${sortBy}`
 			)
 		).json();
-		console.log(data)
 		flrec = [];
 		dlrec = [];
 		for (const i in data) {
