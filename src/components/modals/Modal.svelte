@@ -36,7 +36,6 @@
 				body: JSON.stringify(a)
 			})
 		).json();
-		const b = JSON.parse(JSON.stringify(a));
 		if (data.error) {
 			if (list == "Featured List") {
 				alert("This level doesn't exist");
@@ -54,7 +53,11 @@
 					})
 				).json();
 			}
+			else return
 		}
+		alert("Your submission has been sent!");
+		document.body.style.cursor = "default";
+		ifShow = false;
 		a = {
 			levelid: null,
 			userid: $userdata.metadata.id,
@@ -65,9 +68,6 @@
 			timestamp: null,
 			comment: ""
 		};
-		document.body.style.cursor = "default";
-		alert("Your submission has been sent!");
-		ifShow = false;
 	}
 	function cancel() {
 		ifShow = !ifShow;
