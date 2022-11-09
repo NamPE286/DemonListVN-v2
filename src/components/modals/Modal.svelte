@@ -53,7 +53,10 @@
 					})
 				).json();
 			}
-			else return
+			else {
+				document.body.style.cursor = "default";
+				return
+			}
 		}
 		alert("Your submission has been sent!");
 		document.body.style.cursor = "default";
