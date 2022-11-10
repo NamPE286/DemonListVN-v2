@@ -6,8 +6,17 @@
 	var a = 'Refresh list'
 	async function refreshList(){
 		a = 'Refreshing...'
-		const { data, error } = await supabase.rpc('updateRank')
-		a = 'Refreshed!'
+		const res = await (
+					await fetch(`https://api.vnpower.tech/refreshList`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							token: supabase.auth.session().access_token
+						})
+					})
+				).json();
 	}
 </script>
 {#if $userdata.data.isAdmin}
