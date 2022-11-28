@@ -21,7 +21,7 @@
 		a.userid = $userdata.metadata.id;
 		if (list == "Featured List") a.progress = 100;
 		for (const i in a) {
-			if (a[i] == null) {
+			if (a[i] == null && i != 'comment') {
 				alert("Please fill in all fields");
 				document.body.style.cursor = "default";
 				return;
