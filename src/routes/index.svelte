@@ -215,6 +215,7 @@
 			grid-template-areas: 
 				"dltop"
 				"fltop";
+			gap: 0px;
 		}
 	}
 </style>
