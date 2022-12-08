@@ -58,17 +58,12 @@
 				>
 				<span>My submissions</span>
 			</span>
-			<iframe
-				src="https://e.widgetbot.io/channels/877546680801697813/877546680801697816"
-				title="Discord"
-			/>
-		{:else}
-			<iframe
-				src="https://e.widgetbot.io/channels/877546680801697813/877546680801697816"
-				title="Discord"
-				id="disLarge"
-			/>
 		{/if}
+		<iframe
+			src="https://e.widgetbot.io/channels/877546680801697813/877546680801697816"
+			title="Discord"
+			id={player.uid ? '' : 'disLarge'}
+		/>
 	</div>
 	<div class="sec2" />
 </div>
