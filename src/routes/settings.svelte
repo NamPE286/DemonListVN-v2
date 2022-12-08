@@ -5,10 +5,11 @@
 	import ThemePicker from "../components/settings/ThemePicker.svelte";
 	import SettingInput from "../components/settings/ImagePicker.svelte"
 	import SliderPicker from "../components/settings/SliderPicker.svelte"
+	import SettingToggle from "../components/settings/settingToggle.svelte";
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function signOut() {
 		window.location.reload();
-		const { error } = await supabase.auth.signOut();
+		await supabase.auth.signOut();
 	}
 	
 </script>
@@ -23,6 +24,7 @@
 		<SettingInput name="Background image" key='bg' />
 		<SliderPicker name="BG opacity" key="opacity" />
 		<SliderPicker name="BG blur" key="blur" />
+		<SettingToggle name='Enable snowfall' key='snowfall' defaultKey='true'/>
 		{#if $userdata.metadata}
 			<span class="submitBtn clickable" id="signIn" on:click={signOut}>
 				<p>Sign Out</p>
@@ -32,8 +34,6 @@
 </div>
 
 <style lang="scss">
-    .pageContent {
-    }
 	.st_option {
 		display: flex;
 		flex-direction: column;

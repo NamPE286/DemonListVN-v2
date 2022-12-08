@@ -1,8 +1,10 @@
 <script lang="ts">
 	import Nav from "../components/Nav.svelte";
+	import Snowfall from "../components/effect/Snowfall.svelte";
 	import { onMount } from "svelte";
 	var img;
 	var blur, opacity;
+	var isSnowfallEnable = false
 	function getImg() {
 		try {
 			img = localStorage.getItem("bg");
@@ -26,6 +28,11 @@
 	onMount(() => {
 		getImg();
 		setTheme();
+		isSnowfallEnable = JSON.parse(localStorage.getItem('snowfall'))
+		if(isSnowfallEnable == null) {
+			isSnowfallEnable = true
+			localStorage.setItem('snowfall', 'true')
+		}
 	});
 </script>
 
@@ -41,8 +48,12 @@
 		gtag("config", "G-8T6SG5ZBDC");
 	</script>
 </svelte:head>
+
 {#if img}
 	<img src={img} alt="bg" style={`filter: blur(${blur}px); opacity: ${opacity}%;`} />
+{/if}
+{#if isSnowfallEnable}
+	<Snowfall/>
 {/if}
 <Nav />
 <slot />

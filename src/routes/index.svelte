@@ -7,17 +7,10 @@
 	var d = new Date();
 	$: time = d.toLocaleTimeString();
 	var showMySubmissonsModal = false;
-	var greetings = [
-			'Hi',
-			'Hello',
-			'Welcome',
-			'Hola',
-			'Bonjour',
-			'Xin chào'
-		]
-	var greeting = ''
+	var greetings = ["Hi", "Hello", "Welcome", "Hola", "Bonjour", "Xin chào"];
+	var greeting = "";
 	onMount(() => {
-		greeting = greetings[Math.floor(Math.random()*greetings.length)]
+		greeting = greetings[Math.floor(Math.random() * greetings.length)];
 		const interval = setInterval(() => {
 			d = new Date();
 		}, 1000);
@@ -43,11 +36,11 @@
 		</div>
 		{#if player.uid}
 			<div class="topWrapper">
-				<div class="fltop">
+				<div class="fltop topWidget">
 					<p class="topTitle">Featured List Rank</p>
 					<p class="top">#{player.flrank ? player.flrank : "N/a"}</p>
 				</div>
-				<div class="dltop">
+				<div class="dltop topWidget">
 					<p class="topTitle">Demon List Rank</p>
 					<p class="top">#{player.dlrank ? player.dlrank : "N/a"}</p>
 				</div>
@@ -73,7 +66,7 @@
 			<iframe
 				src="https://e.widgetbot.io/channels/877546680801697813/877546680801697816"
 				title="Discord"
-				id='disLarge'
+				id="disLarge"
 			/>
 		{/if}
 	</div>
@@ -82,6 +75,7 @@
 {#if player.uid}
 	<MySubmissionsModal bind:ifShow={showMySubmissonsModal} bind:uid={player.uid} />
 {/if}
+
 <style lang="scss">
 	.pageContent {
 		display: grid;
@@ -101,7 +95,7 @@
 		border-color: transparent;
 		background-color: var(--color23);
 	}
-	#disLarge{
+	#disLarge {
 		height: 400px;
 	}
 	.sec1 {
@@ -128,29 +122,11 @@
 	}
 	.fltop {
 		grid-area: fltop;
-		height: 160px;
-		border-radius: 50px;
-		background-color: var(--color23);
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding-inline: 35px;
-		margin-bottom: 20px;
-		.topTitle {
-			font-size: 20px;
-			margin-top: 0;
-			margin-bottom: 0;
-		}
-		.top {
-			font-size: 65px;
-			margin-top: 0;
-			margin-bottom: 0;
-			color: var(--color13);
-			font-weight: 300;
-		}
 	}
 	.dltop {
 		grid-area: dltop;
+	}
+	.topWidget{
 		height: 160px;
 		border-radius: 50px;
 		background-color: var(--color23);
@@ -159,18 +135,18 @@
 		justify-content: center;
 		padding-inline: 35px;
 		margin-bottom: 20px;
-		.topTitle {
-			font-size: 20px;
-			margin-top: 0;
-			margin-bottom: 0;
-		}
-		.top {
-			font-size: 65px;
-			margin-top: 0;
-			margin-bottom: 0;
-			color: var(--color13);
-			font-weight: 300;
-		}
+	}
+	.topTitle {
+		font-size: 24px;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	.top {
+		font-size: 65px;
+		margin-top: 0;
+		margin-bottom: 0;
+		color: var(--color13);
+		font-weight: 300;
 	}
 	.editProfile {
 		background-color: var(--color23);
@@ -192,7 +168,7 @@
 	@media screen and (max-width: 1100px) {
 		.pageContent {
 			display: grid;
-			width: 80%;
+			width: 90%;
 			margin-inline: auto;
 			margin-bottom: 100px;
 			box-sizing: border-box;
@@ -201,18 +177,18 @@
 			grid-template-columns: 100% 0%;
 			gap: 50px;
 		}
-		iframe{
+		iframe {
 			height: 400px;
 		}
-		.titleWrapper{
+		.titleWrapper {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 		}
 	}
 	@media screen and (max-width: 800px) {
-		.topWrapper{
-			grid-template-areas: 
+		.topWrapper {
+			grid-template-areas:
 				"dltop"
 				"fltop";
 			gap: 0px;
