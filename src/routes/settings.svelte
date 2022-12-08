@@ -25,6 +25,7 @@
 		<SliderPicker name="BG opacity" key="opacity" />
 		<SliderPicker name="BG blur" key="blur" />
 		<SettingToggle name='Enable snowfall' key='snowfall' defaultKey='true'/>
+		<SettingToggle name='Show discord widget' key='showDiscordWidget' defaultKey='true'/>
 		{#if $userdata.metadata}
 			<span class="submitBtn clickable" id="signIn" on:click={signOut}>
 				<p>Sign Out</p>

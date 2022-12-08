@@ -9,8 +9,15 @@
 	var showMySubmissonsModal = false;
 	var greetings = ["Hi", "Hello", "Welcome", "Hola", "Bonjour", "Xin chào", "Merry Christmas"];
 	var greeting = "";
+	var isShowDiscord = false
+	var discordCssID = ''
+	$: discordCssID = player.uid ? 'disSmall' : 'disLarge'
 	onMount(() => {
 		greeting = greetings[Math.floor(Math.random() * greetings.length)];
+		if(localStorage.getItem('showDiscordWidget') == null){
+			localStorage.setItem('showDiscordWidget', 'true')
+		}
+		isShowDiscord = JSON.parse(localStorage.getItem('showDiscordWidget'))
 		const interval = setInterval(() => {
 			d = new Date();
 		}, 1000);
@@ -59,11 +66,13 @@
 				<span>My submissions</span>
 			</span>
 		{/if}
-		<iframe
-			src="https://e.widgetbot.io/channels/877546680801697813/877546680801697816"
-			title="Discord"
-			id={player.uid ? '' : 'disLarge'}
-		/>
+		{#if isShowDiscord}
+			<iframe
+				src="https://e.widgetbot.io/channels/877546680801697813/877546680801697816"
+				title="Discord"
+				id={discordCssID}
+			/>
+		{/if}
 	</div>
 	<div class="sec2" />
 </div>
@@ -75,13 +84,12 @@
 	.pageContent {
 		display: grid;
 		width: 80%;
+		height: 80vh;
 		margin-inline: auto;
-		margin-bottom: 100px;
-		box-sizing: border-box;
-		padding-top: 100px;
 		grid-template-areas: "sec1 sec2";
 		grid-template-columns: 50% 50%;
 		gap: 50px;
+		margin-bottom: 0;
 	}
 	iframe {
 		border-radius: 50px;
@@ -93,8 +101,14 @@
 	#disLarge {
 		height: 400px;
 	}
+	#disSmall{
+		height: 250px;
+	}
 	.sec1 {
 		grid-area: sec1;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
 	}
 	.sec2 {
 		grid-area: sec2;
