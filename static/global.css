@@ -138,6 +138,28 @@ html[data-theme="blue"] {
 	--color24: hsl(200, 100%, 8%);
 	--color25: hsl(200, 100%, 0%);
 }
+html[data-theme="red"] {
+	--color6: hsl(0, 100%, 100%);
+	--color7: hsl(0, 100%, 73%);
+	--color8: hsl(0, 100%, 56%);
+	--color9: hsl(0, 100%, 54%);
+	--color10: hsl(0, 100%, 51%);
+	--color11: hsl(0, 100%, 47%);
+	--color12: hsl(0, 100%, 44%);
+	--color13: hsl(0, 100%, 42%);
+	--color14: hsl(0, 100%, 35%);
+	--color15: hsl(0, 100%, 26%);
+	--color16: hsl(0, 100%, 24%);
+	--color17: hsl(0, 100%, 21%);
+	--color18: hsl(0, 100%, 20%);
+	--color19: hsl(0, 100%, 18%);
+	--color20: hsl(0, 100%, 19%);
+	--color21: hsl(0, 100%, 17%);
+	--color22: hsl(0, 100%, 16%);
+	--color23: hsl(0, 100%, 13%);
+	--color24: hsl(0, 100%, 8%);
+	--color25: hsl(0, 100%, 0%);
+}
 body {
 	background-color: var(--color24);
 	font-family: "Roboto Flex", sans-serif;
