@@ -2,6 +2,7 @@
 	import { fade } from "svelte/transition";
 	import { userdata } from "../../routes/stores";
 	import { createClient } from "@supabase/supabase-js";
+  import AllPlayer from "src/routes/admin/allPlayer.svelte";
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	export var ifShow: boolean;
 	var list = "Demon List";
@@ -17,6 +18,7 @@
 	};
 	async function submit() {
 		document.body.style.cursor = "wait";
+		var error = null
 		a.timestamp = Date.now();
 		a.userid = $userdata.metadata.id;
 		if (list == "Featured List") a.progress = 100;
@@ -43,7 +45,7 @@
 				return;
 			}
 			if (confirm("This level doesn't exist in the list. Do you want to proceed?")) {
-				await (
+				var data1 = await (
 					await fetch(`https://api.vnpower.tech/submit/1`, {
 						method: "POST",
 						headers: {
@@ -52,14 +54,19 @@
 						body: JSON.stringify(a)
 					})
 				).json();
+				error = data.error
 			}
 			else {
 				document.body.style.cursor = "default";
 				return
 			}
 		}
-		alert("Your submission has been sent!");
 		document.body.style.cursor = "default";
+		if(error){
+			alert(`An error occurred (${error})`)
+			return
+		}
+		alert("Your submission has been sent!");
 		ifShow = false;
 		a = {
 			levelid: null,
