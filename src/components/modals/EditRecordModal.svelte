@@ -108,14 +108,6 @@
 	.modalWrapper {
 		z-index: 3;
 	}
-	button {
-		border: none;
-		color: var(--color6);
-		a{
-			text-decoration: none;
-			color: var(--color6);
-		}
-	}
 	.submitModal {
 		position: fixed;
 		top: 50%;
@@ -137,9 +129,6 @@
 		font-weight: 500;
 		font-size: 42px;
 	}
-	.s_margin3 {
-		margin: 32px 0px 24px 0px;
-	}
 	.s_margin4 {
 		margin: 32px 16px 16px 52px;
 	}
@@ -148,31 +137,6 @@
 	}
 	.s_margin6 {
 		margin: 16px 16px 32px 0px;
-	}
-	.s_button {
-		background-color: var(--color19);
-		height: 28px;
-		width: 125px;
-		border-radius: 14px;
-		font-weight: 350;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		transition: 0.3s;
-		a{
-			margin-left: 10px;
-		}
-		svg{
-			
-		}
-	}
-	.s_button:hover{
-		background-color: var(--color15);
-		transition: 0.3s;
-	}
-	.s_button:active:hover{
-		background-color: var(--color10);
-		transition: 0.15s;
 	}
 	.s_button2 {
 		height: 36px;
@@ -238,9 +202,6 @@
 	.s_blue:active:hover{
 		background-color: var(--color4);
 		transition: 0.15s;
-	}
-	.s_shadow {
-		
 	}
 	@media screen and (max-width: 1250px) {
 		.submitModal {
