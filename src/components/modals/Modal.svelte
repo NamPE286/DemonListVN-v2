@@ -2,7 +2,6 @@
 	import { fade } from "svelte/transition";
 	import { userdata } from "../../routes/stores";
 	import { createClient } from "@supabase/supabase-js";
-  import AllPlayer from "src/routes/admin/allPlayer.svelte";
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	export var ifShow: boolean;
 	var list = "Demon List";
