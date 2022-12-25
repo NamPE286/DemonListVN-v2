@@ -5,6 +5,7 @@
 	import LoadingAnimation from "../components/animations/LoadingAnimation.svelte";
 	import EditRecordModal from "../components/modals/EditRecordModal.svelte";
 	import EditLevelModal from "../components/modals/EditLevelModal.svelte";
+	import { fly } from "svelte/transition"
 	var id = $page.url.searchParams.get("id");
 	var level = null;
 	var title = "";
@@ -55,7 +56,7 @@
 </svelte:head>
 
 {#if level}
-	<div class="pageContent">
+	<div class="pageContent" in:fly={{y: 50, duration: 250, delay: 300}}>
 		<div class="thumbnailWidget">
 			<img src={`https://img.youtube.com/vi/${level.videoID}/mqdefault.jpg`} alt="" />
 			<div class="levelInfo">

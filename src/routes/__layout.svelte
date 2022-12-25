@@ -2,6 +2,8 @@
 	import Nav from "../components/Nav.svelte";
 	import Snowfall from "../components/effect/Snowfall.svelte";
 	import { onMount } from "svelte";
+	import { fly } from "svelte/transition";
+	import { page } from '$app/stores'
 	var img;
 	var blur, opacity;
 	var isSnowfallEnable = false
@@ -56,7 +58,11 @@
 	<Snowfall/>
 {/if}
 <Nav />
-<slot />
+{#key $page.url}
+	<div in:fly={{y: 50, duration: 250, delay: 300}}>
+		<slot />
+	</div>
+{/key}
 
 <style lang="scss">
 	img {
