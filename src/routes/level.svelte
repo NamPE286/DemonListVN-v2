@@ -65,8 +65,7 @@
 					<p class="creator">by {level.creator} - {getPoint()}</p>
 				</div>
 				{#if $userdata.data.isAdmin}
-					<a
-						href="#!"
+					<span
 						on:click={() => {
 							showEditLevelModal = !showEditLevelModal;
 						}}
@@ -76,7 +75,7 @@
 								d="M9 39h2.2l22.15-22.15-2.2-2.2L9 36.8Zm30.7-24.3-6.4-6.4 2.1-2.1q.85-.85 2.1-.85t2.1.85l2.2 2.2q.85.85.85 2.1t-.85 2.1Zm-2.1 2.1L12.4 42H6v-6.4l25.2-25.2Zm-5.35-1.05-1.1-1.1 2.2 2.2Z"
 							/></svg
 						>
-					</a>
+					</span>
 				{/if}
 			</div>
 		</div>
@@ -185,8 +184,7 @@
 						<div class="playerPt">
 							<p id="center">{item.progress}% ({ifMobile(item)}{item.refreshRate}fps)</p>
 							{#if $userdata.data.isAdmin}
-								<a
-									href="#!"
+								<span
 									on:click={() => {
 										showEditRecordModal = !showEditProfileModal;
 										currentLevel = item;
@@ -200,14 +198,14 @@
 										><path
 											d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"
 										/></svg
-									></a
+									></span
 								>
-								<a href="#!" on:click={() => removeRecord(item, index)}
+								<span on:click={() => removeRecord(item, index)}
 									><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 										><path
 											d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z"
 										/></svg
-									></a
+									></span
 								>
 							{/if}
 						</div>

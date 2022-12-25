@@ -106,7 +106,7 @@
 	{/if}
 	{#if (!searchRes.length && !searchPlayerRes.length && searchValue.length) && !isTyping}
 		<div class="searchRes">
-				<a href='#!' on:click={() => searchValue = ''}><br><b>No result</a><br>
+				<span on:click={() => searchValue = ''}><br><b>No result</span><br>
 			<br>
 		</div>
 	{/if}
