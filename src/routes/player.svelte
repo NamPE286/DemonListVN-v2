@@ -115,6 +115,15 @@
 </svelte:head>
 
 {#if player}
+	{#if player.isHidden}
+		<div class='warn'>
+			{#if player.uid == $userdata.metadata.id}
+				<p>You are unranked because your profile are hidden. To make your profile visible, go to Edit profile > Make my profile visible.</p>
+			{:else}
+				<p>This profile is unranked because it's hidden.</p>
+			{/if}
+		</div>
+	{/if}
 	<div class="pageContent">
 		<div class="playerInfoWidgetWrapper">
 			<div class="playerInfoWidget">
@@ -199,6 +208,7 @@
 				</span>
 			{/if}
 		</div>
+
 		<div class="fltop topWidget">
 			<p class="topTitle">Featured List Rank</p>
 			<p class="top">#{player.flrank ? player.flrank : "N/a"}</p>
@@ -380,7 +390,20 @@
 			"info main main"
 			"info main main";
 		grid-template-columns: 28% 33.25% 33.25%;
-		grid-template-rows: 180px;
+		grid-template-rows: 195px;
+	}
+	.warn{
+		width: 70%;
+		background-color: rgb(119, 111, 0);
+		height: fit-content;
+		box-sizing: border-box;
+		padding-inline: 18px;
+		padding-top: 1px;
+		padding-bottom: 1px;
+		border-radius: 20px;
+		margin-inline: auto;
+		margin-bottom: 35px;
+		color: yellow;
 	}
 	.avatar {
 		background-color: black;
@@ -563,6 +586,9 @@
 				height: 14vw;
 			}
 		}
+		.warn{
+			width: 80%;
+		}
 		.playerInfoWidget {
 			padding-top: 0px;
 			padding-bottom: 30px;
@@ -581,6 +607,7 @@
 		.pageContent {
 			width: 90%;
 			grid-template-areas:
+				"warn"
 				"info"
 				"fltop"
 				"dltop"
@@ -592,6 +619,10 @@
 				width: 50vw;
 				height: 50vw;
 			}
+		}
+		.warn{
+			width: 90%;
+			margin-bottom: 0px;
 		}
 		.playerPt {
 			margin-right: 20px;

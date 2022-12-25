@@ -42,6 +42,15 @@
 			<p class="time">{time}</p>
 		</div>
 		{#if player.uid}
+			{#if player.isHidden}
+				<div class='warn'>
+					{#if player.uid == $userdata.metadata.id}
+						<p>You are unranked because your profile are hidden. To make your profile visible, go to Edit profile > Make my profile visible.</p>
+					{:else}
+						<p>This profile is unranked because it's hidden.</p>
+					{/if}
+				</div>
+			{/if}
 			<div class="topWrapper">
 				<div class="fltop topWidget">
 					<p class="topTitle">Featured List Rank</p>
@@ -90,6 +99,19 @@
 		grid-template-columns: 50% 50%;
 		gap: 50px;
 		margin-bottom: 0;
+	}
+	.warn{
+		width: 100%;
+		background-color: rgb(119, 111, 0);
+		height: fit-content;
+		box-sizing: border-box;
+		padding-inline: 18px;
+		padding-top: 1px;
+		padding-bottom: 1px;
+		border-radius: 20px;
+		margin-inline: auto;
+		margin-bottom: 25px;
+		color: yellow;
 	}
 	iframe {
 		border-radius: 50px;
@@ -185,6 +207,7 @@
 			grid-template-areas: "sec1 sec2";
 			grid-template-columns: 100% 0%;
 			gap: 50px;
+			height: 75vh;
 		}
 		iframe {
 			height: 400px;
