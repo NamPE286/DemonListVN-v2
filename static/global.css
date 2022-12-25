@@ -26,6 +26,7 @@
 	--color23: hsl(0, 0%, 13%);
 	--color24: hsl(0, 0%, 8%);
 	--color25: hsl(0, 0%, 0%);
+	--color26: hsl(0, 0%, 13%, 65%);
 }
 html[data-theme="light"] {
 	--invert: 0;
@@ -49,6 +50,7 @@ html[data-theme="light"] {
 	--color23: hsl(0, 0%, 87%);
 	--color24: hsl(0, 0%, 92%);
 	--color25: hsl(0, 0%, 100%);
+	--color26: hsl(0, 0%, 87%, 65%);
 }
 html[data-theme="dark"] {
 	--color6: hsl(0, 0%, 100%);
@@ -71,6 +73,7 @@ html[data-theme="dark"] {
 	--color23: hsl(0, 0%, 13%);
 	--color24: hsl(0, 0%, 8%);
 	--color25: hsl(0, 0%, 0%);
+	--color26: hsl(0, 0%, 13%, 65%);
 }
 html[data-theme="pink"] {
 	--color6: hsl(0, 100%, 100%);
@@ -93,6 +96,7 @@ html[data-theme="pink"] {
 	--color23: hsl(300, 100%, 13%);
 	--color24: hsl(300, 100%, 8%);
 	--color25: hsl(300, 100%, 0%);
+	--color26: hsl(300, 100%, 13%, 65%);
 }
 html[data-theme="green"] {
 	--color6: hsl(0, 100%, 100%);
@@ -115,6 +119,7 @@ html[data-theme="green"] {
 	--color23: hsl(90, 100%, 13%);
 	--color24: hsl(90, 100%, 8%);
 	--color25: hsl(90, 100%, 0%);
+	--color26: hsl(90, 100%, 13%, 65%);
 }
 html[data-theme="blue"] {
 	--color6: hsl(0, 100%, 100%);
@@ -137,6 +142,7 @@ html[data-theme="blue"] {
 	--color23: hsl(200, 100%, 13%);
 	--color24: hsl(200, 100%, 8%);
 	--color25: hsl(200, 100%, 0%);
+	--color26: hsl(200, 100%, 13%, 65%);
 }
 html[data-theme="red"] {
 	--color6: hsl(0, 100%, 100%);
@@ -159,6 +165,7 @@ html[data-theme="red"] {
 	--color23: hsl(0, 100%, 13%);
 	--color24: hsl(0, 100%, 8%);
 	--color25: hsl(0, 100%, 0%);
+	--color26: hsl(0, 100%, 13%, 65%);
 }
 body {
 	background-color: var(--color24);
