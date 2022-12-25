@@ -56,7 +56,7 @@
 </svelte:head>
 
 {#if level}
-	<div class="pageContent" in:fly={{y: 50, duration: 250, delay: 300}}>
+	<div class="pageContent" in:fly={{y: 50, duration: 500, delay: 300}}>
 		<div class="thumbnailWidget">
 			<img src={`https://img.youtube.com/vi/${level.videoID}/mqdefault.jpg`} alt="" />
 			<div class="levelInfo">
