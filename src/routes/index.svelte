@@ -207,7 +207,7 @@
 			grid-template-areas: "sec1 sec2";
 			grid-template-columns: 100% 0%;
 			gap: 50px;
-			height: 75vh;
+			height: 70vh;
 		}
 		iframe {
 			height: 400px;
