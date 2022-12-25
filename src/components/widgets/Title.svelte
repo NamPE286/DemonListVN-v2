@@ -35,6 +35,7 @@
 			align-items: center;
 			justify-content: center;
 			flex-direction: column;
+			text-align: center;
 		}
 		.description {
 			font-weight: 300;
@@ -52,8 +53,10 @@
 	}
 	@media screen and (max-width: 1100px) {
 		.titleWidget {
-			.title {
-				margin-left: 30px;
+			width: 100%;
+			margin-left: 0;
+			.bigTitle{
+				font-size: 70px;
 			}
 		}
 	}
