@@ -6,11 +6,11 @@
 	<title>About - Demon List VN</title>
 	<meta name='description' content='A list of people who maintain Demon List VN as well as the website developers' />
 </svelte:head>
+<Title
+	title="About"
+	description="A list of people who maintain Demon List VN as well as the website developers"
+/>
 <div class="pageContent">
-	<Title
-		title="About"
-		description="A list of people who maintain Demon List VN as well as the website developers"
-	/>
 	<p>Staffs</p>
 	<CardVisit
 		staffName="Hito73"

@@ -15,14 +15,14 @@
 <style lang="scss">
 	.titleWidget {
 		grid-area: header;
-		width: 120%;
-		margin-left: -10%;
+		width: 75%;
+		min-width: 1100px;
+		margin-inline: auto;
 		min-height: 350px;
 		border-radius: 50px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-bottom: -25px;
 		background-color: var(--color26);
 		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 		backdrop-filter: blur(10.8px);
@@ -51,9 +51,15 @@
 			margin-top: 0;
 		}
 	}
+	@media screen and (max-width: 1350px){
+		.titleWidget{
+			min-width: 900px;
+		}
+	}
 	@media screen and (max-width: 1100px) {
 		.titleWidget {
 			width: 100%;
+			min-width: 0;
 			margin-left: 0;
 			.bigTitle{
 				font-size: 70px;

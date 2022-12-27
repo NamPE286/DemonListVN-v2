@@ -26,7 +26,7 @@
 				<p>Total point</p>
 			</div>
 		</div>
-		{#if list == 0}
+		{#if list == 'fl'}
 			{#each flPlayer as item, index}
 				<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 					<div class="playerTop">
@@ -41,7 +41,7 @@
 				</div>
 			{/each}
 		{/if}
-		{#if list == 1}
+		{#if list == 'dl'}
 			{#each dlPlayer as item, index}
 				<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 					<div class="playerTop">

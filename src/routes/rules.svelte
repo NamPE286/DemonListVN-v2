@@ -5,8 +5,8 @@
     <title>Rules - Demon List VN</title>
     <meta name='description' content='Read the rules'>
 </svelte:head>
+<Title title="Rules" description="Read the rules" />
 <div class="pageContent">
-    <Title title="Rules" description="Read the rules" />
     <div class='rule'>
         <h2>Demon List rules:</h2>
         <ul>

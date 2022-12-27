@@ -20,7 +20,11 @@
 </script>
 <div class="levelWidget">
 	<a href={`/level?id=${levelID}`} class="levelWidget">
-		<img src={`https://img.youtube.com/vi/${videoID}/mqdefault.jpg`} alt="" loading='lazy'/>
+		{#if videoID}
+			<img src={`https://img.youtube.com/vi/${videoID}/mqdefault.jpg`} alt="" loading='lazy'/>
+		{:else}
+			<div id='placeholder'/>
+		{/if}
 		<div class="levelInfo">
 			<p class="top">#{top}</p>
 			<div class="info">
@@ -153,6 +157,12 @@
 				}
 			}
 		}
+	}
+	#placeholder{
+		height: 70%;
+		width: 100%;
+		border-radius: 50px 50px 0 0;
+		background-color: var(--color21);
 	}
 	@media screen and (min-width: 1100px) {
 		.levelName {
