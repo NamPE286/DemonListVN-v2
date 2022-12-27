@@ -18,7 +18,6 @@
         <option value="pink">Pink</option>
         <option value="green">Green</option>
         <option value="blue">Blue</option>
-        <option value="red">Xmas</option>
     </select>
     <input style="display:none" type="file" accept=".jpg, .jpeg, .png" on:change={(e) => apply(e)} bind:this={fileinput} >
 </div>

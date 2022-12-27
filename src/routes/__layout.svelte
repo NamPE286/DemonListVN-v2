@@ -30,11 +30,6 @@
 	onMount(() => {
 		getImg();
 		setTheme();
-		isSnowfallEnable = JSON.parse(localStorage.getItem('snowfall'))
-		if(isSnowfallEnable == null) {
-			isSnowfallEnable = true
-			localStorage.setItem('snowfall', 'true')
-		}
 	});
 </script>
 
@@ -53,9 +48,6 @@
 
 {#if img}
 	<img src={img} alt="bg" style={`filter: blur(${blur}px); opacity: ${opacity}%;`} />
-{/if}
-{#if isSnowfallEnable}
-	<Snowfall/>
 {/if}
 <Nav />
 {#key $page.url}
