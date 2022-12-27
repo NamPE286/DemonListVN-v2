@@ -188,6 +188,15 @@
 		</div>
 		<p class='hideText' id="iconTitle">Settings</p>
 	</a>
+	<a href="/rules" class="sidebarIconWrapper" on:click={() => menuExpanded = false}>
+		<div class='hide' id="sidebarIcon">
+			<div class="sidebarIcon">
+				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M2 17v-2h9v2Zm0-8V7h9v2Zm12.4 11L13 18.6l2.6-2.6-2.6-2.6 1.4-1.4 2.6 2.6 2.6-2.6 1.4 1.4-2.6 2.6 2.6 2.6-1.4 1.4-2.6-2.6Zm2.15-9L13 7.45l1.4-1.4 2.125 2.125 4.25-4.25 1.4 1.425Z"/></svg>
+			</div>
+			<p id="title1">Rules</p>
+		</div>
+		<p class='hideText' id="iconTitle">Rules</p>
+	</a>
 	<a href="/about" class="sidebarIconWrapper" on:click={() => menuExpanded = false}>
 		<div class='hide' id="sidebarIcon">
 			<div class="sidebarIcon">
