@@ -2,6 +2,7 @@
 	export var name:string;
     export var key:string;
 	var a;
+    var isChanged = false
 	function getImg(){
 		try{
 			a = localStorage.getItem(key)
@@ -16,16 +17,33 @@
 	}
     getImg()
     function update(){
+        isChanged = true
         localStorage.setItem(key, a)
     }
 </script>
-
+{#if isChanged}
+    <div class='warn'>
+        <p>The page need to be refreshed for this setting to take effect</p>
+    </div>
+{/if}
 <div class="titleWidget">
     <p class="sl_name">{name}</p>
     <input class='right' type="range" min="0" max="100" bind:value={a} on:change={update}>
 </div>
 
 <style lang="scss">
+    .warn{
+		width: 100%;
+		background-color: rgb(66, 62, 1);
+		height: fit-content;
+		box-sizing: border-box;
+		padding-inline: 18px;
+		padding-top: 1px;
+		padding-bottom: 1px;
+		border-radius: 20px;
+		margin-inline: auto;
+		color: yellow;
+	}
     .titleWidget {
         display: flex;
         flex-direction: row;

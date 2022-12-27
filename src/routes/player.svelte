@@ -392,7 +392,7 @@
 	}
 	.warn{
 		width: 70%;
-		background-color: rgb(119, 111, 0);
+		background-color: rgb(66, 62, 1);
 		height: fit-content;
 		box-sizing: border-box;
 		padding-inline: 18px;
