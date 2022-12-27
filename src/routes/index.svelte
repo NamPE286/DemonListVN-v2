@@ -7,7 +7,7 @@
 	var d = new Date();
 	$: time = d.toLocaleTimeString();
 	var showMySubmissonsModal = false;
-	var greetings = ["Hi", "Hello", "Welcome", "Hola", "Bonjour", "Xin chào", "Merry Christmas"];
+	var greetings = ["Hi", "Hello", "Welcome", "Hola", "Bonjour", "Xin chào"];
 	var greeting = "";
 	var isShowDiscord = false
 	var discordCssID = ''
