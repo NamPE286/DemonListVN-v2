@@ -27,7 +27,7 @@
 		<a href="/admin/submitChecker">All</a>
 		<a href="/admin/submitChecker/DL">DL</a>
 		<a href="/admin/submitChecker/FL">FL</a><br />
-		<a href="/admin/allPlayer">New levels</a><br />
+		<a href="/admin/newLevel">New levels</a><br />
 		<a href="/admin/allPlayer">Player manager</a>
 	</div>
 {/if}
