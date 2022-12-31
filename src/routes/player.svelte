@@ -255,11 +255,8 @@
 							<div class="playerName">
 								<p>Level name</p>
 								{#if $userdata.data.isAdmin}
-									<span id="forAdmin1" on:click={() => (showAddRecordModal = !showAddRecordModal)}
-										><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
-											><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z" /></svg
-										></span
-									>
+									<svg on:click={() => (showAddRecordModal = !showAddRecordModal)} xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+										><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z" /></svg>
 								{/if}
 							</div>
 							<div class="playerPt">
@@ -369,9 +366,6 @@
 {/if}
 
 <style lang="scss">
-	#forAdmin1{
-		margin-left: 35px;
-	}
 	#facebook {
 		fill: var(--color6);
 		scale: 0.75;
@@ -434,7 +428,6 @@
 		margin-bottom: 30px;
 		svg {
 			fill: var(--color6);
-			margin-left: -30px;
 		}
 	}
 	.playerInfoWidget {
