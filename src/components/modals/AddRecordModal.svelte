@@ -13,13 +13,15 @@
 		mobile: false,
 		progress: null,
 		timestamp: null,
-		country: null
+		country: null,
+		isChecked: null
 	}
 	async function apply(){
 		const b = new Date(a.timestamp)
 		a.timestamp = b.getTime()
 		a.userid = player.uid
 		a.country = player.country
+		a.isChecked = true
 		fetch(`https://api.vnpower.tech/record`, {
 			method: 'PUT',
 			headers: {
