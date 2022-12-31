@@ -16,7 +16,7 @@
 		<div class="playerName">
 			<p>Player name</p>
 		</div>
-		<div class="playerPt">
+		<div class="playerPt" style="margin-left: 30px;">
 			{#if list == 'rating'}
 				<p>Rating</p>
 			{:else}
