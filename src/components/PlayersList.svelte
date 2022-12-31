@@ -1,15 +1,14 @@
-<script>
+<script lang="ts">
 	var players = [];
-	export var list;
+	export var list:string;
 	export var listOption;
-	fetch("https://api.vnpower.tech/players/fl/page/1")
+	fetch(`https://api.vnpower.tech/players/${list}/page/1`)
 		.then((response) => response.json())
 		.then((data) => {
 			players = data;
 		});
 </script>
 
-{#if listOption == 1}
 	<div class="playersListWrapper">
 		<div class="playersList">
 			<div class="playerTop" />
@@ -23,18 +22,17 @@
 		{#each players as item, index}
 			<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 				<div class="playerTop">
-					<p>#{item.flrank}</p>
+					<p>#{item[`${list}rank`]}</p>
 				</div>
 				<div class="playerName">
 					<a href={`/player?id=${item.uid}`}>{item.name}</a>
 				</div>
 				<div class="playerPt">
-					<p>{item.totalFLpt}</p>
+					<p>{item[`total${list.toUpperCase()}pt`]}</p>
 				</div>
 			</div>
 		{/each}
 	</div>
-{/if}
 
 <style lang="scss">
 	#highlight2 {
