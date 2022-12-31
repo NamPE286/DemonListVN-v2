@@ -1,18 +1,12 @@
 <script>
-	var flPlayer = [];
-	var dlPlayer = [];
+	var players = [];
+	export var list;
+	export var listOption;
 	fetch("https://api.vnpower.tech/players/fl/page/1")
 		.then((response) => response.json())
 		.then((data) => {
-			flPlayer = data;
+			players = data;
 		});
-	fetch("https://api.vnpower.tech/players/dl/page/1")
-		.then((response) => response.json())
-		.then((data) => {
-			dlPlayer = data;
-		});
-	export var list;
-	export var listOption;
 </script>
 
 {#if listOption == 1}
@@ -26,36 +20,19 @@
 				<p>Total point</p>
 			</div>
 		</div>
-		{#if list == 'fl'}
-			{#each flPlayer as item, index}
-				<div class="playersList" id={index % 2 ? "" : "highlight2"}>
-					<div class="playerTop">
-						<p>#{item.flrank}</p>
-					</div>
-					<div class="playerName">
-						<a href={`/player?id=${item.uid}`}>{item.name}</a>
-					</div>
-					<div class="playerPt">
-						<p>{item.totalFLpt}</p>
-					</div>
+		{#each players as item, index}
+			<div class="playersList" id={index % 2 ? "" : "highlight2"}>
+				<div class="playerTop">
+					<p>#{item.flrank}</p>
 				</div>
-			{/each}
-		{/if}
-		{#if list == 'dl'}
-			{#each dlPlayer as item, index}
-				<div class="playersList" id={index % 2 ? "" : "highlight2"}>
-					<div class="playerTop">
-						<p>#{item.dlrank}</p>
-					</div>
-					<div class="playerName">
-						<a href={`/player?id=${item.uid}`}>{item.name}</a>
-					</div>
-					<div class="playerPt">
-						<p>{item.totalDLpt}</p>
-					</div>
+				<div class="playerName">
+					<a href={`/player?id=${item.uid}`}>{item.name}</a>
 				</div>
-			{/each}
-		{/if}
+				<div class="playerPt">
+					<p>{item.totalFLpt}</p>
+				</div>
+			</div>
+		{/each}
 	</div>
 {/if}
 
