@@ -4,6 +4,7 @@
 	export var ifShow: boolean;
 	export var player;
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	console.log(player)
 	var a = {
 		levelid: null,
 		userid: null,
@@ -11,12 +12,14 @@
 		refreshRate: null,
 		mobile: false,
 		progress: null,
-		timestamp: null
+		timestamp: null,
+		country: null
 	}
 	async function apply(){
 		const b = new Date(a.timestamp)
 		a.timestamp = b.getTime()
 		a.userid = player.uid
+		a.country = player.country
 		fetch(`https://api.vnpower.tech/record`, {
 			method: 'PUT',
 			headers: {
@@ -30,15 +33,7 @@
 			.then((res) => {
 				if(res.ok){
 					alert('Record added')
-					a = {
-						levelid: null,
-						userid: null,
-						videoLink: '',
-						refreshRate: null,
-						mobile: false,
-						progress: null,
-						timestamp: null
-					}
+					for(const i in a) a[i] = null
 					window.location.reload()
 				}
 				else alert('An error occured')
@@ -46,15 +41,7 @@
 
 	}
 	function cancel(){
-		a = {
-			levelid: null,
-			userid: null,
-			videoLink: '',
-			refreshRate: null,
-			mobile: false,
-			progress: null,
-			timestamp: null
-		}
+		for(const i in a) a[i] = null
 		ifShow = !ifShow;
 	}
 </script>
