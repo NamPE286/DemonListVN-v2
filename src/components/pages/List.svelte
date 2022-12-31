@@ -60,8 +60,6 @@
 				</div>
 			</span>
 		</div>
-	{/if}
-	{#if listOption == 0}
         {#if !levels.length}
             {#each Array(4) as item, index}
                 <Levels
@@ -90,8 +88,9 @@
                 {/if}
             {/each}
         {/if}
+	{:else}
+		<PlayersList list={list} />
 	{/if}
-	<PlayersList bind:list bind:listOption />
 	<div class="listSwitcherWrapper" in:fly={{y: 200, duration: 500, delay: 800}}>
 		<div class="listSwitcher">
 			<span

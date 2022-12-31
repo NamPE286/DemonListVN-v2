@@ -40,7 +40,7 @@
 </svelte:head>
 <Title title={'Leaderboard'} description={'test'} />
 <div class="pageContent">
-	<PlayersList list={0} bind:listOption />
+	<PlayersList list={'fl'} />
 </div>
 <style lang="scss">
 	#noDec{

@@ -1,7 +1,6 @@
 <script lang="ts">
 	var players = [];
-	export var list:string;
-	export var listOption;
+	export var list: string;
 	fetch(`https://api.vnpower.tech/players/${list}/page/1`)
 		.then((response) => response.json())
 		.then((data) => {
@@ -9,30 +8,45 @@
 		});
 </script>
 
-	<div class="playersListWrapper">
-		<div class="playersList">
-			<div class="playerTop" />
-			<div class="playerName">
-				<p>Player name</p>
-			</div>
-			<div class="playerPt">
-				<p>Total point</p>
-			</div>
+<div class="playersListWrapper">
+	<div class="playersList">
+		<div class="playerTop" />
+		<div class="playerName">
+			<p>Player name</p>
 		</div>
-		{#each players as item, index}
+		<div class="playerPt">
+			<p>Total point</p>
+		</div>
+	</div>
+	{#if players.length == 0}
+		{#each Array(30) as item, index}
 			<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 				<div class="playerTop">
-					<p>#{item[`${list}rank`]}</p>
+					<p>#{index + 1}</p>
 				</div>
 				<div class="playerName">
-					<a href={`/player?id=${item.uid}`}>{item.name}</a>
+					Loading...
 				</div>
 				<div class="playerPt">
-					<p>{item[`total${list.toUpperCase()}pt`]}</p>
+					<p>N/a</p>
 				</div>
 			</div>
 		{/each}
-	</div>
+	{/if}
+	{#each players as item, index}
+		<div class="playersList" id={index % 2 ? "" : "highlight2"}>
+			<div class="playerTop">
+				<p>#{item[`${list}rank`]}</p>
+			</div>
+			<div class="playerName">
+				<a href={`/player?id=${item.uid}`}>{item.name}</a>
+			</div>
+			<div class="playerPt">
+				<p>{item[`total${list.toUpperCase()}pt`]}</p>
+			</div>
+		</div>
+	{/each}
+</div>
 
 <style lang="scss">
 	#highlight2 {
