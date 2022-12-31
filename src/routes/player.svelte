@@ -6,6 +6,7 @@
 	import AddRecordModal from "../components/modals/AddRecordModal.svelte";
 	import EditRecordModal from "../components/modals/EditRecordModal.svelte";
 	import MySubmissionsModal from "../components/modals/MySubmissionsModal.svelte";
+	import Badge from "../components/badge.svelte";
 	import { fly } from "svelte/transition";
 	import { userdata } from "./stores";
 	var id = $page.url.searchParams.get("id");
@@ -135,7 +136,11 @@
 					<div class="avatar">
 						<img src={avatarSrc} alt="" />
 					</div>
-					<span class="playerName">{player.name}</span>
+					<div class="playerNameWrapper">
+						<Badge rating={player.rating} size={1}>
+							<span class="playerName">{player.name}</span>
+						</Badge>
+					</div>
 					<div class="social">
 						<a href={player.youtube ? player.youtube : "#!"} target="_blank" class="iconWrapper">
 							<svg
@@ -425,7 +430,6 @@
 	.playerName {
 		font-size: 30px;
 		font-weight: 500;
-		margin-bottom: 30px;
 		svg {
 			fill: var(--color6);
 		}
@@ -476,6 +480,7 @@
 		font-weight: 300;
 	}
 	.social {
+		margin-top: 30px;
 		display: flex;
 		align-items: center;
 		.iconWrapper {

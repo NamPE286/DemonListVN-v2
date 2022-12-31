@@ -4,6 +4,7 @@
 	import { createClient } from "@supabase/supabase-js";
 	import LoadingAnimation from "../components/animations/LoadingAnimation.svelte";
 	import EditRecordModal from "../components/modals/EditRecordModal.svelte";
+	import Badge from "../components/badge.svelte";
 	import EditLevelModal from "../components/modals/EditLevelModal.svelte";
 	import { fly } from "svelte/transition"
 	var id = $page.url.searchParams.get("id");
@@ -176,14 +177,11 @@
 				{#each records as item, index}
 					<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 						<div class="playerName">
-							<a href={`/player?id=${item.userid}`}>{item.players.name}</a><a
-								href={item.videoLink}
-								target="_blank"
-								id="videoLink">(Video Link)</a
-							>
+							
+							<a href={`/player?id=${item.userid}`}><Badge rating={item.players.rating}>{item.players.name}</Badge></a>
 						</div>
 						<div class="playerPt">
-							<p id="center">{item.progress}% ({ifMobile(item)}{item.refreshRate}fps)</p>
+							<a href={item.videoLink} id="center">{item.progress}% ({ifMobile(item)}{item.refreshRate}fps)</a>
 							{#if $userdata.data.isAdmin}
 								<span
 									on:click={() => {

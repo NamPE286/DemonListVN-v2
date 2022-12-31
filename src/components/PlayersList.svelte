@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Badge from "./badge.svelte";
 	var players = [];
 	export var list: string;
 	fetch(`https://api.vnpower.tech/players/${list}/page/1`)
@@ -47,6 +48,7 @@
 					<p>#{item[`${list}rank`]}</p>
 				{/if}
 			</div>
+			<Badge rating={item.rating}/>
 			<div class="playerName">
 				<a href={`/player?id=${item.uid}`}>{item.name}</a>
 			</div>
