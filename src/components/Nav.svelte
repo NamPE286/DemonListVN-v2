@@ -161,7 +161,16 @@
 			</div>
 			<p id="title1">Featured List</p>
 		</div>
-		<p class='hideText' id="iconTitle">Featured List</p>
+		<p class='hideText' id="iconTitle">FT List</p>
+	</a>
+	<a href="/leaderboard" class="sidebarIconWrapper" on:click={() => menuExpanded = false}>
+		<div class='hide' id="sidebarIcon">
+			<div class="sidebarIcon">
+				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M4 19h4v-8H4Zm6 0h4V5h-4Zm6 0h4v-6h-4ZM2 21V9h6V3h8v8h6v10Z"/></svg>
+			</div>
+			<p id="title1">Leaderboard</p>
+		</div>
+		<p class='hideText' id="iconTitle">Leaderboard</p>
 	</a>
 	<hr />
 	{#if uid}

@@ -5,6 +5,7 @@
 		.then((response) => response.json())
 		.then((data) => {
 			players = data;
+			console.log(data)
 		});
 </script>
 
@@ -15,7 +16,11 @@
 			<p>Player name</p>
 		</div>
 		<div class="playerPt">
-			<p>Total point</p>
+			{#if list == 'rating'}
+				<p>Rating</p>
+			{:else}
+				<p>Total point</p>
+			{/if}
 		</div>
 	</div>
 	{#if players.length == 0}
@@ -36,13 +41,21 @@
 	{#each players as item, index}
 		<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 			<div class="playerTop">
-				<p>#{item[`${list}rank`]}</p>
+				{#if list == 'rating'}
+					<p>#{index + 1}</p>
+				{:else}
+					<p>#{item[`${list}rank`]}</p>
+				{/if}
 			</div>
 			<div class="playerName">
 				<a href={`/player?id=${item.uid}`}>{item.name}</a>
 			</div>
 			<div class="playerPt">
-				<p>{item[`total${list.toUpperCase()}pt`]}</p>
+				{#if list == 'rating'}
+					<p>{item.rating}</p>
+				{:else}
+					<p>{item[`total${list.toUpperCase()}pt`]}</p>
+				{/if}
 			</div>
 		</div>
 	{/each}
