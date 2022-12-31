@@ -15,7 +15,7 @@
 	var flrec = [];
 	var dlrec = [];
 	var title = "";
-	var currentLevel;
+	var currentRecord;
 	var showEditProfileModal = false;
 	var showAddRecordModal = false;
 	var showEditRecordModal = false;
@@ -275,7 +275,7 @@
 									{#if $userdata.data.isAdmin}
 										<span
 											on:click={() => {
-												currentLevel = item;
+												currentRecord = item;
 												showEditRecordModal = !showEditRecordModal;
 											}}
 											><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
@@ -326,7 +326,7 @@
 									{#if $userdata.data.isAdmin}
 										<span
 											on:click={() => {
-												currentLevel = item;
+												currentRecord = item;
 												showEditRecordModal = !showEditProfileModal;
 											}}
 											><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
@@ -356,8 +356,8 @@
 		{/if}
 		{#if $userdata.data.isAdmin}
 			<AddRecordModal bind:ifShow={showAddRecordModal} bind:player />
-			{#if currentLevel}
-				<EditRecordModal bind:ifShow={showEditRecordModal} bind:player bind:level={currentLevel} />
+			{#if currentRecord}
+				<EditRecordModal bind:ifShow={showEditRecordModal} bind:player bind:record={currentRecord} />
 			{/if}
 		{/if}
 	</div>

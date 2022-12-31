@@ -3,15 +3,28 @@
 	import { createClient } from "@supabase/supabase-js";
 	export var ifShow: boolean;
 	export var player;
-	export var level;
+	export var record;
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-	var a = level
+	var a = record
+	var recordTemplate = {
+		levelid: null,
+		userid: null,
+		videoLink: '',
+		refreshRate: null,
+		mobile: false,
+		progress: null,
+		timestamp: null,
+		country: null,
+		isChecked: null
+	}
 	async function apply(){
 		const b = new Date(a.timestamp)
 		a.timestamp = b.getTime()
 		a.userid = player.uid
-		delete a.levels
-		delete a.players
+		a.country = player.country
+		var dataToSend = recordTemplate
+		for(const i in dataToSend) dataToSend[i] = a[i]
+		console.log(dataToSend)
 		fetch(`https://api.vnpower.tech/record`, {
 			method: 'PUT',
 			headers: {
@@ -19,7 +32,7 @@
 			},
 			body: JSON.stringify({
 				token: supabase.auth.session().access_token,
-				data: a
+				data: dataToSend
 			})
 		})
 			.then((res) => {
@@ -33,11 +46,12 @@
 			})
 	}
 	function cancel(){
+		console.log(a)
 		ifShow = !ifShow;
-		a = level
+		a = record
 	}
 	function update(){
-		a = level
+		a = record
 		var b = new Date(a.timestamp)
 		var c = b.toISOString()
 		var d = c.split('T')

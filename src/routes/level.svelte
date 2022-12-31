@@ -10,7 +10,7 @@
 	var level = null;
 	var title = "";
 	var records = [];
-	var currentLevel;
+	var currentRecord;
 	var player;
 	var showEditProfileModal = false;
 	var showEditRecordModal = false;
@@ -188,7 +188,7 @@
 								<span
 									on:click={() => {
 										showEditRecordModal = !showEditProfileModal;
-										currentLevel = item;
+										currentRecord = item;
 										player = {
 											data: {
 												uid: item.userid
@@ -217,11 +217,11 @@
 	</div>
 	{#if $userdata.data.isAdmin}
 		{#if player}
-			{#if currentLevel}
+			{#if currentRecord}
 				<EditRecordModal
 					bind:ifShow={showEditRecordModal}
 					player={player.data}
-					level={currentLevel}
+					record={currentRecord}
 				/>
 			{/if}
 		{/if}
