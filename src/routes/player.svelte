@@ -141,6 +141,7 @@
 							<span class="playerName">{player.name}</span>
 						</Badge>
 					</div>
+					<span class='rating'>Rating: {player.rating}</span>
 					<div class="social">
 						<a href={player.youtube ? player.youtube : "#!"} target="_blank" class="iconWrapper">
 							<svg
@@ -371,6 +372,9 @@
 {/if}
 
 <style lang="scss">
+	.rating{
+		margin-top: 15px;
+	}
 	#facebook {
 		fill: var(--color6);
 		scale: 0.75;
@@ -480,7 +484,7 @@
 		font-weight: 300;
 	}
 	.social {
-		margin-top: 30px;
+		margin-top: 20px;
 		display: flex;
 		align-items: center;
 		.iconWrapper {
