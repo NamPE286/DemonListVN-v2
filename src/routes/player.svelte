@@ -122,7 +122,7 @@
 			<div class="warn">
 				{#if player.uid == $userdata.metadata.id}
 					<p>
-						You are unranked because your profile are hidden. To make your profile visible, go to
+						You are unranked because your profile is hidden. To make your profile visible, go to
 						Edit profile > Make my profile visible.
 					</p>
 				{:else}
