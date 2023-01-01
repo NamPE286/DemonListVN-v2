@@ -6,7 +6,6 @@
 		.then((response) => response.json())
 		.then((data) => {
 			players = data;
-			console.log(data)
 		});
 </script>
 

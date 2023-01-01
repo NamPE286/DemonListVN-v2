@@ -24,7 +24,6 @@
 		a.country = player.country
 		var dataToSend = recordTemplate
 		for(const i in dataToSend) dataToSend[i] = a[i]
-		console.log(dataToSend)
 		fetch(`https://api.vnpower.tech/record`, {
 			method: 'PUT',
 			headers: {
@@ -46,7 +45,6 @@
 			})
 	}
 	function cancel(){
-		console.log(a)
 		ifShow = !ifShow;
 		a = record
 	}

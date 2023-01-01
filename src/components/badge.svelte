@@ -16,6 +16,17 @@
         if(rating >= 25) return 'N'
         return ''
     }
+    function getFullTitle(){
+        if(rating >= 300) return 'Legendary Grandmaster'
+        if(rating >= 250) return 'Grandmaster'
+        if(rating >= 200) return 'Master'
+        if(rating >= 150) return 'Candidate Master'
+        if(rating >= 100) return 'Expert'
+        if(rating >= 75) return 'Specialist'
+        if(rating >= 50) return 'Apprentice'
+        if(rating >= 25) return 'Novice'
+        return ''
+    }
     function getColor(){
         if(rating >= 300) return 'darkred'
         if(rating >= 250) return 'red'
@@ -30,7 +41,7 @@
 </script>
 <div class="wrapper">
     {#if getTitle()}
-        <div class='badge' style={`${setTextSize()}; background-color: ${getColor()}`}>{getTitle()}</div>
+        <div class='badge' title={getFullTitle()} style={`${setTextSize()}; background-color: ${getColor()}`}>{getTitle()}</div>
     {/if}
     <slot/>
 </div>
@@ -40,6 +51,7 @@
         align-items: center;
     }
     .badge{
+        user-select: none;
 		padding: 5px;
 		border-radius: 6px;
 		font-weight: 600;

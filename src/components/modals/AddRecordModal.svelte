@@ -4,7 +4,6 @@
 	export var ifShow: boolean;
 	export var player;
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-	console.log(player)
 	var a = {
 		levelid: null,
 		userid: null,
