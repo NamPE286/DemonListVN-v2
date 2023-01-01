@@ -274,10 +274,10 @@
 								<div class="playerName">
 									<a href={`/level?id=${item.levelid}`}
 										>{item.levels.name} ({ifMobile(item)}{item.refreshRate}fps)</a
-									><a href={item.videoLink} target="_blank" id="videoLink">(Video Link)</a>
+									>
 								</div>
 								<div class="playerPt">
-									<p id="center">{item.dlPt} <br id="abcs" />({item.progress}%)</p>
+									<a href={item.videoLink} id="center">{item.dlPt} <br id="abcs" />({item.progress}%)</a>
 									{#if $userdata.data.isAdmin}
 										<span
 											on:click={() => {
