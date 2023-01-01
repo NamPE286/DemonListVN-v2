@@ -10,7 +10,6 @@
     export var desc: string
 	var listOption = 0;
 	var levels = [];
-	var legacy = [];
 	var showAddLevelModal = false;
     var legacyIndex:number
     if(list == 'dl') legacyIndex = 149
@@ -21,8 +20,6 @@
 				.then((response) => response.json())
 				.then((data) => {
 					levels = data;
-					legacy = levels.slice(150, levels.length);
-					levels = levels.slice(0, 150);
 				});
 		}
 		try{
