@@ -19,7 +19,7 @@
         if(rating >= 300) return 'darkred'
         if(rating >= 250) return 'red'
         if(rating >= 200) return 'blue'
-        if(rating >= 150) return 'orange'
+        if(rating >= 150) return 'darkorange'
         if(rating >= 100) return 'purple'
         if(rating >= 75) return 'darkcyan'
         if(rating >= 50) return 'green'
