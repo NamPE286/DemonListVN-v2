@@ -37,8 +37,7 @@
                 <li><Badge rating={100}> Expert: >= 100</Badge></li>
                 <li><Badge rating={150}> Candidate Master: >= 150</Badge></li>
                 <li><Badge rating={200}> Master: >= 200</Badge></li>
-                <li><Badge rating={250}> Legendary Master: >= 250</Badge></li>
-                <li><Badge rating={275}> Grandmaster: >= 275</Badge></li>
+                <li><Badge rating={250}> Grandmaster: >= 250</Badge></li>
                 <li><Badge rating={300}> Legendary Grandmaster: >= 300</Badge></li>
             </ul>
         </ul>

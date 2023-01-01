@@ -7,8 +7,7 @@
     }
     function getTitle(){
         if(rating >= 300) return 'LGM'
-        if(rating >= 275) return 'GM'
-        if(rating >= 250) return 'LM'
+        if(rating >= 250) return 'GM'
         if(rating >= 200) return 'M'
         if(rating >= 150) return 'CM'
         if(rating >= 100) return 'EX'
