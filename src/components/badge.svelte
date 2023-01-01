@@ -14,6 +14,7 @@
         if(rating >= 100) return 'EX'
         if(rating >= 75) return 'SP'
         if(rating >= 50) return 'AP'
+        if(rating >= 25) return 'N'
         return ''
     }
     function getColor(){
@@ -23,7 +24,8 @@
         if(rating >= 150) return 'darkorange'
         if(rating >= 100) return 'purple'
         if(rating >= 75) return 'darkcyan'
-        if(rating >= 50) return 'green'
+        if(rating >= 50) return 'darkgreen'
+        if(rating >= 25) return 'green'
         return ''
     }
 </script>
