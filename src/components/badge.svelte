@@ -11,7 +11,7 @@
         if(rating >= 200) return 'M'
         if(rating >= 150) return 'CM'
         if(rating >= 100) return 'EX'
-        if(rating >= 75) return 'SPC'
+        if(rating >= 75) return 'SP'
         if(rating >= 50) return 'AP'
         return ''
     }
