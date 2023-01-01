@@ -9,16 +9,20 @@
         if(rating >= 300) return 'LGM'
         if(rating >= 250) return 'GM'
         if(rating >= 200) return 'M'
+        if(rating >= 150) return 'CM'
         if(rating >= 100) return 'EX'
-        if(rating >= 50) return 'SPC'
+        if(rating >= 75) return 'SPC'
+        if(rating >= 50) return 'AP'
         return ''
     }
     function getColor(){
         if(rating >= 300) return 'darkred'
         if(rating >= 250) return 'red'
         if(rating >= 200) return 'blue'
+        if(rating >= 150) return 'orange'
         if(rating >= 100) return 'purple'
-        if(rating >= 50) return 'darkcyan'
+        if(rating >= 75) return 'darkcyan'
+        if(rating >= 50) return 'green'
         return ''
     }
 </script>
