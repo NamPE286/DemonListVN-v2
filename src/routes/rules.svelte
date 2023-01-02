@@ -27,7 +27,7 @@
         <h2>Rating</h2>
         <ul>
             <li>Rating is a ratings metric intended to more accurately gauge player performance and skill.</li>
-            <li>Rating is based on player's best performance on both list and performance on other levels (Note: grinding is not a viable way to increase player's rating)</li>
+            <li>Rating is based on player's best performance and performance on other levels on Demon List (Note: grinding is not a viable way to increase player's rating)</li>
             <li>Rating also represents player potential to beat levels in their rating range</li>
             <li>Rating distribution:</li>
             <ul>
