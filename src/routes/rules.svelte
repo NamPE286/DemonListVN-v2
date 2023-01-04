@@ -38,7 +38,7 @@
                 <li><Badge rating={2200}> Candidate Master: >= 2200</Badge></li>
                 <li><Badge rating={2750}> Master: >= 2750</Badge></li>
                 <li><Badge rating={3500}> Grandmaster: >= 3500</Badge></li>
-                <li><Badge rating={4000}> Legendary Grandmaster: >= 4000</Badge></li>
+                <li><Badge rating={3800}> Legendary Grandmaster: >= 3800</Badge></li>
             </ul>
         </ul>
     </div>

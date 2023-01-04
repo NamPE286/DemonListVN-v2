@@ -6,7 +6,7 @@
         return 'font-size: 15px'
     }
     function getTitle(){
-        if(rating >= 4000) return 'LGM'
+        if(rating >= 3800) return 'LGM'
         if(rating >= 3500) return 'GM'
         if(rating >= 2750) return 'M'
         if(rating >= 2200) return 'CM'
@@ -17,7 +17,7 @@
         return ''
     }
     function getFullTitle(){
-        if(rating >= 4000) return 'Legendary Grandmaster'
+        if(rating >= 3800) return 'Legendary Grandmaster'
         if(rating >= 3500) return 'Grandmaster'
         if(rating >= 2750) return 'Master'
         if(rating >= 2200) return 'Candidate Master'
@@ -28,7 +28,7 @@
         return ''
     }
     function getColor(){
-        if(rating >= 4000) return 'darkred'
+        if(rating >= 3800) return 'darkred'
         if(rating >= 3500) return 'red'
         if(rating >= 2750) return 'blue'
         if(rating >= 2200) return 'darkorange'
