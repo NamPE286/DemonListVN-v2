@@ -13,7 +13,7 @@
 	var showAddLevelModal = false;
     var legacyIndex:number
     if(list == 'dl') legacyIndex = -1
-    else legacyIndex = 49
+    else legacyIndex = 74
 	function fetchData(count = 0){
 		if(count == 2){
 			fetch(`https://api.vnpower.tech/levels/${list}/page/1`)
