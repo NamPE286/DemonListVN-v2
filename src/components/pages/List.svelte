@@ -54,11 +54,13 @@
 					</div>
 				</span>
 			{/if}
-			<span class="clickable" id='noDec' on:click={() => document.getElementById("legacyLabel").scrollIntoView({behavior: 'smooth'})}>
-				<div class="AddLvBtn">
-					<span>Jump to legacy list</span>
-				</div>
-			</span>
+			{#if list == 'fl'}
+				<span class="clickable" id='noDec' on:click={() => document.getElementById("legacyLabel").scrollIntoView({behavior: 'smooth'})}>
+					<div class="AddLvBtn">
+						<span>Jump to legacy list</span>
+					</div>
+				</span>
+			{/if}
 		</div>
         {#if !levels.length}
             {#each Array(4) as item, index}
