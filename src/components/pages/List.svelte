@@ -12,7 +12,7 @@
 	var levels = [];
 	var showAddLevelModal = false;
     var legacyIndex:number
-    if(list == 'dl') legacyIndex = 149
+    if(list == 'dl') legacyIndex = -1
     else legacyIndex = 49
 	function fetchData(count = 0){
 		if(count == 2){
@@ -34,7 +34,10 @@
 		}
 	}
 	fetchData()
-
+	function getPoint(){
+		if(list == 'dl') return 'rating'
+		return 'flPt'
+ 	}
 </script>
 <svelte:head>
 	<title>{title} - Demon List VN</title>
@@ -75,7 +78,7 @@
                     top={item[`${list}Top`]}
                     name={item.name}
                     creator={item.creator}
-                    point={item[`${list}Pt`]}
+                    point={item[getPoint()]}
                     videoID={item.videoID}
                     levelID={item.id}
                     progress={item.progress}

@@ -25,9 +25,9 @@
 			if (data.records) records = data.records;
 		});
 	function getPoint() {
-		if (level.flPt && level.dlPt) return `${level.dlPt}pt (#${level.flTop} ${level.flPt}pt)`;
+		if (level.flPt && level.rating) return `${level.rating}pt (#${level.flTop} ${level.flPt}pt)`;
 		if (level.flPt == 0) return "0pt";
-		return `${level.flPt ? level.flPt : level.dlPt}pt`;
+		return `${level.flPt ? level.flPt : level.rating}pt`;
 	}
 	async function removeRecord(item, index) {
 		fetch(`https://api.vnpower.tech/record/${item.userid}/${item.levelid}`, {
@@ -97,7 +97,7 @@
 					{level.description}
 				</span>
 			</p>
-			{#if level.dlPt}
+			{#if level.rating}
 				<p><b>Minimum Progress: </b><span class="desc">{level.minProgress}%</span></p>
 			{/if}
 			<p><b>Difficulty: </b><span class="desc">{level.difficulty}</span></p>

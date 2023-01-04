@@ -5,10 +5,8 @@
 	export var ifShow: boolean;
 	export var level: any;
 	var prevFL = JSON.parse(JSON.stringify(level.flTop))
-	var prevDL = JSON.parse(JSON.stringify(level.dlTop))
 	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
 	async function apply(){
-		level['prevdlTop'] = prevDL
 		level['prevflTop'] = prevFL
 		fetch(`https://api.vnpower.tech/level/${level.id}`, {
 			method: 'PATCH',
@@ -54,7 +52,7 @@
 				<input class="s_input" placeholder="Creator" bind:value={level.creator} />
 				<input class="s_input" placeholder="Minimum Progress (must be greater than 0, default is 100)" bind:value={level.minProgress} type='number'/>
 				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop} type="number"/>
-				<input class="s_input" placeholder="Demon List Top (leave blank for null)" bind:value={level.dlTop}  type="number"/>
+				<input class="s_input" placeholder="Demon List Rating (leave blank for null)" bind:value={level.rating}  type="number"/>
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<span
