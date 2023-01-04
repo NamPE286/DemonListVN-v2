@@ -31,14 +31,14 @@
             <li>Rating also represents player potential to beat levels in their rating range</li>
             <li>Rating distribution:</li>
             <ul>
-                <li><Badge rating={25}> Novice: >= 25</Badge></li>
-                <li><Badge rating={50}> Apprentice: >= 50</Badge></li>
-                <li><Badge rating={75}> Specialist: >= 75</Badge></li>
-                <li><Badge rating={100}> Expert: >= 100</Badge></li>
-                <li><Badge rating={150}> Candidate Master: >= 150</Badge></li>
-                <li><Badge rating={200}> Master: >= 200</Badge></li>
-                <li><Badge rating={250}> Grandmaster: >= 250</Badge></li>
-                <li><Badge rating={300}> Legendary Grandmaster: >= 300</Badge></li>
+                <li><Badge rating={250}> Novice: >= 250</Badge></li>
+                <li><Badge rating={500}> Apprentice: >= 500</Badge></li>
+                <li><Badge rating={1000}> Specialist: >= 1000</Badge></li>
+                <li><Badge rating={1850}> Expert: >= 1850</Badge></li>
+                <li><Badge rating={2200}> Candidate Master: >= 2200</Badge></li>
+                <li><Badge rating={2750}> Master: >= 2750</Badge></li>
+                <li><Badge rating={3500}> Grandmaster: >= 3500</Badge></li>
+                <li><Badge rating={4000}> Legendary Grandmaster: >= 4000</Badge></li>
             </ul>
         </ul>
     </div>
