@@ -8,7 +8,8 @@ var dat1 = {
         data:{
             isAdmin: false
         }
-    }
+    },
+    isLoggedIn: false
 }
 supabase.auth.onAuthStateChange((event, session) => {
     dat1.metadata = session.user
@@ -16,6 +17,7 @@ supabase.auth.onAuthStateChange((event, session) => {
         .then((response) => response.json())
         .then((data) => {
             dat1.data = data
+            dat1.isLoggedIn = true
             userdata.set(dat1)
         });
 })
