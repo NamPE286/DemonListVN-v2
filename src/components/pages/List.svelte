@@ -10,6 +10,7 @@
 	export var desc: string;
 	var listOption = 0;
 	var levels = [];
+	var levelsFetched = false
 	var showAddLevelModal = false;
 	var showFilterBox = false;
 	var legacyIndex: number;
@@ -32,12 +33,16 @@
 		};
 	}
 	function fetchData(count = 0) {
-		if (count == 0) levels = [];
+		if (count == 0) {
+			levels = [];
+			levelsFetched = false
+		}
 		if (count == 2) {
 			fetch(`https://api.vnpower.tech/levels/${list}/page/1/${encodeURI(JSON.stringify(filter))}`)
 				.then((response) => response.json())
 				.then((data) => {
 					levels = data;
+					levelsFetched = true
 				});
 		}
 		try {
@@ -49,6 +54,7 @@
 				.then((response) => response.json())
 				.then((data) => {
 					levels = data;
+					levelsFetched = true
 				});
 		} catch {
 			setTimeout(() => fetchData(count + 1), 50);
@@ -96,7 +102,7 @@
 				</span>
 			{/if}
 		</div>
-		{#if !levels.length}
+		{#if !levelsFetched}
 			{#each Array(4) as item, index}
 				<Levels
 					top={NaN}
