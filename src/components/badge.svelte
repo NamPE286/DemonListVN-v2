@@ -3,45 +3,60 @@
     export var size = 0
     function setTextSize(){
         if(size == 0) return ''
-        return 'font-size: 15px'
+        return `font-size: ${size}px`
     }
     function getTitle(){
-        if(rating >= 3800) return 'LGM'
-        if(rating >= 3500) return 'GM'
-        if(rating >= 2750) return 'M'
-        if(rating >= 2200) return 'CM'
-        if(rating >= 1850) return 'EX'
-        if(rating >= 1000) return 'SP'
-        if(rating >= 500) return 'AP'
-        if(rating >= 250) return 'N'
-        return ''
+        if(rating >= 3800) return {
+            title: 'LGM',
+            fullTitle: 'Legendary Grandmaster',
+            color:'darkred'
+        }
+        if(rating >= 3500) return {
+            title: 'GM',
+            fullTitle: 'Grandmaster',
+            color:'red'
+        }
+        if(rating >= 2750) return {
+            title: 'M',
+            fullTitle: 'Master',
+            color:'blue'
+        }
+        if(rating >= 2200) return {
+            title: 'CM',
+            fullTitle: 'Candidate Master',
+            color:'darkorange'
+        }
+        if(rating >= 1850) return {
+            title: 'EX',
+            fullTitle: 'Expert',
+            color:'purple'
+        }
+        if(rating >= 1000) return {
+            title: 'SP',
+            fullTitle: 'Specialist',
+            color:'darkcyan'
+        }
+        if(rating >= 500) return {
+            title: 'AP',
+            fullTitle: 'Apprentice',
+            color:'darkgreen'
+        }
+        if(rating >= 250) return {
+            title: 'N',
+            fullTitle: 'Novice',
+            color:'green'
+        }
+        return {
+            title: '',
+            fullTitle: '',
+            color:''
+        }
     }
-    function getFullTitle(){
-        if(rating >= 3800) return 'Legendary Grandmaster'
-        if(rating >= 3500) return 'Grandmaster'
-        if(rating >= 2750) return 'Master'
-        if(rating >= 2200) return 'Candidate Master'
-        if(rating >= 1850) return 'Expert'
-        if(rating >= 1000) return 'Specialist'
-        if(rating >= 500) return 'Apprentice'
-        if(rating >= 250) return 'Novice'
-        return ''
-    }
-    function getColor(){
-        if(rating >= 3800) return 'darkred'
-        if(rating >= 3500) return 'red'
-        if(rating >= 2750) return 'blue'
-        if(rating >= 2200) return 'darkorange'
-        if(rating >= 1850) return 'purple'
-        if(rating >= 1000) return 'darkcyan'
-        if(rating >= 500) return 'darkgreen'
-        if(rating >= 250) return 'green'
-        return ''
-    }
+    const title = getTitle()
 </script>
 <div class="wrapper">
     {#if getTitle()}
-        <div class='badge' title={getFullTitle()} style={`${setTextSize()}; background-color: ${getColor()}`}>{getTitle()}</div>
+        <div class='badge' title={title.fullTitle} style={`${setTextSize()}; background-color: ${title.color}`}>{title.title}</div>
     {/if}
     <slot/>
 </div>
