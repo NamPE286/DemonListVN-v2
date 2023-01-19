@@ -46,11 +46,7 @@
             fullTitle: 'Novice',
             color:'green'
         }
-        return {
-            title: '',
-            fullTitle: '',
-            color:''
-        }
+        return null
     }
     const title = getTitle()
 </script>
