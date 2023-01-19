@@ -9,15 +9,15 @@
 	var showMySubmissonsModal = false;
 	var greetings = ["Hi", "Hello", "Welcome", "Hola", "Bonjour", "Xin chào"];
 	var greeting = "";
-	var isShowDiscord = false
-	var discordCssID = ''
-	$: discordCssID = player.uid ? 'disSmall' : 'disLarge'
+	var isShowDiscord = false;
+	var discordCssID = "";
+	$: discordCssID = player.uid ? "disSmall" : "disLarge";
 	onMount(() => {
 		greeting = greetings[Math.floor(Math.random() * greetings.length)];
-		if(localStorage.getItem('showDiscordWidget') == null){
-			localStorage.setItem('showDiscordWidget', 'true')
+		if (localStorage.getItem("showDiscordWidget") == null) {
+			localStorage.setItem("showDiscordWidget", "true");
 		}
-		isShowDiscord = JSON.parse(localStorage.getItem('showDiscordWidget'))
+		isShowDiscord = JSON.parse(localStorage.getItem("showDiscordWidget"));
 		const interval = setInterval(() => {
 			d = new Date();
 		}, 1000);
@@ -43,9 +43,12 @@
 		</div>
 		{#if player.uid}
 			{#if player.isHidden}
-				<div class='warn'>
+				<div class="warn">
 					{#if player.uid == $userdata.metadata.id}
-						<p>You are unranked because your profile are hidden. To make your profile visible, go to Edit profile > Make my profile visible.</p>
+						<p>
+							You are unranked because your profile are hidden. To make your profile visible, go to
+							Edit profile > Make my profile visible.
+						</p>
 					{:else}
 						<p>This profile is unranked because it's hidden.</p>
 					{/if}
@@ -76,11 +79,10 @@
 			</span>
 		{/if}
 		{#if isShowDiscord}
-			<iframe
-				src="https://e.widgetbot.io/channels/877546680801697813/877546680801697816"
-				title="Discord"
-				id={discordCssID}
-			/>
+			<div class="widgetBot" id={discordCssID}>
+				<widgetbot id='test' server="877546680801697813" channel="877546680801697816" />
+			</div>
+			<script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
 		{/if}
 	</div>
 	<div class="sec2" />
@@ -90,6 +92,18 @@
 {/if}
 
 <style lang="scss">
+	.widgetBot{
+		border-radius: 50px;
+		width: 100%;
+		height: 45%;
+		border-color: transparent;
+		background-color: var(--color23);
+		overflow: hidden;
+	}
+	#test{
+		width: 100%;
+		height: 100%;
+	}
 	.pageContent {
 		display: grid;
 		width: 80%;
@@ -100,7 +114,7 @@
 		gap: 50px;
 		margin-bottom: 0;
 	}
-	.warn{
+	.warn {
 		width: 100%;
 		background-color: rgb(119, 111, 0);
 		height: fit-content;
@@ -113,17 +127,10 @@
 		margin-bottom: 25px;
 		color: yellow;
 	}
-	iframe {
-		border-radius: 50px;
-		width: 100%;
-		height: 45%;
-		border-color: transparent;
-		background-color: var(--color23);
-	}
 	#disLarge {
 		height: 400px;
 	}
-	#disSmall{
+	#disSmall {
 		height: 250px;
 	}
 	.sec1 {
@@ -157,7 +164,7 @@
 	.dltop {
 		grid-area: dltop;
 	}
-	.topWidget{
+	.topWidget {
 		height: 160px;
 		border-radius: 50px;
 		background-color: var(--color23);
