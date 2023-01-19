@@ -21,16 +21,15 @@
         localStorage.setItem(key, a)
     }
 </script>
-{#if isChanged}
-    <div class='warn'>
-        <p>The page need to be refreshed for this setting to take effect</p>
-    </div>
-{/if}
 <div class="titleWidget">
     <p class="sl_name">{name}</p>
     <input class='right' type="range" min="0" max="100" bind:value={a} on:change={update}>
 </div>
-
+{#if isChanged}
+    <div class='warn'>
+        <p>This page need to be refreshed for this setting to take effect</p>
+    </div>
+{/if}
 <style lang="scss">
     .warn{
 		width: 100%;
