@@ -272,9 +272,9 @@
 		border-radius: 20px;
 		margin-top: 10px;
 		margin-bottom: 35px;
-		color: var(--color6);
+		color: var(--textColor);
 		svg {
-			fill: var(--color6);
+			fill: var(--textColor);
 		}
 	}
 	#legacyLabel {
@@ -293,7 +293,7 @@
 	}
 	.pageContent {
 		svg {
-			fill: var(--color6);
+			fill: var(--textColor);
 		}
 		display: grid;
 		gap: 30px;
@@ -322,7 +322,7 @@
 			box-shadow: 0 0 15px rgba(7, 7, 7, 0.507);
 			border-radius: 50px;
 			a {
-				color: var(--color6);
+				color: var(--textColor);
 				text-decoration: none;
 			}
 			display: flex;
@@ -368,7 +368,7 @@
 				padding-bottom: 10px;
 				border-radius: 50px;
 				text-decoration: none;
-				color: var(--color6);
+				color: var(--textColor);
 				transition: 0.3s;
 			}
 			a:hover {

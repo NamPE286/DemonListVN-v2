@@ -117,7 +117,7 @@
 			margin-left: 25px;
 			padding-top: 18px;
 			padding-bottom: 18px;
-			color: var(--color6);
+			color: var(--textColor);
 			text-decoration: none;
 		}
 		svg {
@@ -127,7 +127,7 @@
 			margin-left: auto;
 			margin-right: 25px;
 			svg{
-				fill: var(--color6);
+				fill: var(--textColor);
 			}
 		}
 	}
@@ -158,7 +158,7 @@
 		height: 36px;
 		width: 96px;
 		border-radius: 24px;
-		color: var(--color6);
+		color: var(--textColor);
 		font-weight: 350;
 		text-decoration: none;
 		display: flex;

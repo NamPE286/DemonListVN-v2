@@ -133,7 +133,7 @@
 		height: 36px;
 		width: 96px;
 		border-radius: 24px;
-		color: var(--color6);
+		color: var(--textColor);
 		font-weight: 350;
 		text-decoration: none;
 		display: flex;
@@ -148,7 +148,7 @@
 		margin-bottom: 8px;
 		padding: 16px 16px 16px 16px;
 		border: none;
-		color: var(--color6);
+		color: var(--textColor);
 		font-family: "Roboto Flex", "Roboto", sans-serif;
 		font-size: 16px;
 		transition: all 0.25s ease-in-out;

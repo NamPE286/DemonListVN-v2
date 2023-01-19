@@ -76,7 +76,7 @@
 		display: flex;
 		border-radius: 50px;
 		a {
-			color: var(--color6);
+			color: var(--textColor);
 			text-decoration: none;
 		}
 		.playerTop {

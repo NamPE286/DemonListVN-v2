@@ -46,7 +46,7 @@
 		padding-inline: 24px;
 		border-radius: 16px;
 		text-decoration: none;
-		color: var(--color6);
+		color: var(--textColor);
 		margin-left: auto;
 		margin-right: 10px;
 		margin-top: 25px;

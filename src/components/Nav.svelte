@@ -249,7 +249,7 @@
 		text-decoration: none;
 	}
 	svg {
-		fill: var(--color6);
+		fill: var(--textColor);
 	}
 	.topSpacer {
 		width: 100%;
@@ -269,7 +269,7 @@
 		transition: all 0.3s;
 		box-sizing: border-box;
 		.sidebarIconWrapper {
-			color: var(--color6);
+			color: var(--textColor);
 			text-decoration: none;
 			display: flex;
 			flex-direction: column;
@@ -330,7 +330,7 @@
 			display: flex;
 			align-items: center;
 			text-decoration: none;
-			color: var(--color6);
+			color: var(--textColor);
 			transition: background-color 0.3s;
 			p {
 				margin-left: 12px;
@@ -408,7 +408,7 @@
 			font-weight: 600;
 			margin-top: 0;
 			margin-bottom: 0;
-			color: var(--color6);
+			color: var(--textColor);
 		}
 		.submitBtn {
 			background-color: var(--color5);
@@ -450,7 +450,7 @@
 			font-weight: 600;
 			margin-top: 0;
 			margin-bottom: 0;
-			color: var(--color6);
+			color: var(--textColor);
 		}
 		.submitBtn {
 			background-color: var(--color5);
@@ -481,7 +481,7 @@
 		width: 400px;
 		box-sizing: border-box;
 		padding-inline: 15px;
-		color: var(--color6);
+		color: var(--textColor);
 	}
 	.searchRes{
 		position: fixed;
@@ -493,7 +493,7 @@
 		box-sizing: border-box;
 		padding-inline: 15px;
 		a{
-			color: var(--color6);
+			color: var(--textColor);
 			text-decoration: none;
 			width: 100%;
 		}

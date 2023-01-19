@@ -195,11 +195,11 @@
 		justify-content: center;
 		align-items: center;
 		margin-top: 30px;
-		color: var(--color6);
+		color: var(--textColor);
 		text-decoration: none;
 		margin-bottom: 20px;
 		svg {
-			fill: var(--color6);
+			fill: var(--textColor);
 			margin-right: 10px;
 		}
 	}

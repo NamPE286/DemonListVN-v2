@@ -15,10 +15,10 @@
 </div>
 
 <style lang='scss'>
-	$green: var(--color6);
-	$blue: var(--color6);
-	$red: var(--color6);
-	$yellow: var(--color6);
+	$green: var(--textColor);
+	$blue: var(--textColor);
+	$red: var(--textColor);
+	$yellow: var(--textColor);
 	$white: transparent;
 
 	// scaling... any units

@@ -54,7 +54,7 @@
 		display: flex;
 		align-items: center;
 		a {
-			color: var(--color6);
+			color: var(--textColor);
 			margin-left: 50px;
 			font-size: 16px;
 			text-decoration: none;

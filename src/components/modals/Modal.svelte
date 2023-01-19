@@ -168,10 +168,10 @@
 	}
 	button {
 		border: none;
-		color: var(--color6);
+		color: var(--textColor);
 		a {
 			text-decoration: none;
-			color: var(--color6);
+			color: var(--textColor);
 		}
 	}
 	.submitModal {
@@ -221,7 +221,7 @@
 			margin-left: 10px;
 		}
 		svg {
-			fill: var(--color6);
+			fill: var(--textColor);
 		}
 	}
 	.s_button:hover {
@@ -236,7 +236,7 @@
 		height: 36px;
 		width: 96px;
 		border-radius: 24px;
-		color: var(--color6);
+		color: var(--textColor);
 		font-weight: 350;
 		text-decoration: none;
 		display: flex;
@@ -251,7 +251,7 @@
 		margin-bottom: 8px;
 		padding: 16px 16px 16px 16px;
 		border: none;
-		color: var(--color6);
+		color: var(--textColor);
 		font-family: "Roboto Flex", "Roboto", sans-serif;
 		font-size: 16px;
 		transition: all 0.25s ease-in-out;
@@ -263,7 +263,7 @@
 		margin-bottom: 8px;
 		padding: 16px 16px 16px 12px;
 		border: none;
-		color: var(--color6);
+		color: var(--textColor);
 		font-family: "Roboto Flex", "Roboto", sans-serif;
 		font-size: 16px;
 		transition: all 0.25s ease-in-out;

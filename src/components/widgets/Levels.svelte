@@ -106,11 +106,11 @@
 		border-radius: 50px;
 		background-color: var(--color23);
 		text-decoration: none;
-		color: var(--color6);
+		color: var(--textColor);
 		overflow: hidden;
 		transition: all 0.3s;
 		a{
-			color: var(--color6);
+			color: var(--textColor);
 			text-decoration: none;
 		}
 		span{
@@ -127,7 +127,7 @@
 			border-radius: 50px 50px 0 0;
 		}
 		svg{
-			fill: var(--color6);
+			fill: var(--textColor);
 		}
 		.levelInfo {
 			display: flex;

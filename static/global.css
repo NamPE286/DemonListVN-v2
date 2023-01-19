@@ -6,7 +6,7 @@
 	--color3: #003996;
 	--color4: #0040a7;
 	--color5: #005ff9;
-	--color6: hsl(0, 0%, 100%);
+	--textColor: hsl(0, 0%, 100%);
 	--color7: hsl(0, 0%, 73%);
 	--color8: hsl(0, 0%, 56%);
 	--color9: hsl(0, 0%, 54%);
@@ -30,7 +30,7 @@
 }
 html[data-theme="light"] {
 	--invert: 0;
-	--color6: hsl(0, 0%, 0%);
+	--textColor: hsl(0, 0%, 0%);
 	--color7: hsl(0, 0%, 27%);
 	--color8: hsl(0, 0%, 44%);
 	--color9: hsl(0, 0%, 46%);
@@ -53,7 +53,7 @@ html[data-theme="light"] {
 	--color26: hsl(0, 0%, 87%, 65%);
 }
 html[data-theme="dark"] {
-	--color6: hsl(0, 0%, 100%);
+	--textColor: hsl(0, 0%, 100%);
 	--color7: hsl(0, 0%, 73%);
 	--color8: hsl(0, 0%, 56%);
 	--color9: hsl(0, 0%, 54%);
@@ -76,7 +76,7 @@ html[data-theme="dark"] {
 	--color26: hsl(0, 0%, 13%, 65%);
 }
 html[data-theme="pink"] {
-	--color6: hsl(0, 100%, 100%);
+	--textColor: hsl(0, 100%, 100%);
 	--color7: hsl(300, 100%, 73%);
 	--color8: hsl(300, 100%, 56%);
 	--color9: hsl(300, 100%, 54%);
@@ -99,7 +99,7 @@ html[data-theme="pink"] {
 	--color26: hsl(300, 100%, 13%, 65%);
 }
 html[data-theme="green"] {
-	--color6: hsl(0, 100%, 100%);
+	--textColor: hsl(0, 100%, 100%);
 	--color7: hsl(90, 100%, 73%);
 	--color8: hsl(90, 100%, 56%);
 	--color9: hsl(90, 100%, 54%);
@@ -122,7 +122,7 @@ html[data-theme="green"] {
 	--color26: hsl(90, 100%, 13%, 65%);
 }
 html[data-theme="blue"] {
-	--color6: hsl(0, 100%, 100%);
+	--textColor: hsl(0, 100%, 100%);
 	--color7: hsl(200, 100%, 73%);
 	--color8: hsl(200, 100%, 56%);
 	--color9: hsl(200, 100%, 54%);
@@ -149,7 +149,7 @@ body {
 	background-color: var(--color24);
 	font-family: "Roboto Flex", sans-serif;
 	font-size: 16px;
-	color: var(--color6);
+	color: var(--textColor);
 }
 a {
 	color: #8ab4f8;
