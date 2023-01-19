@@ -14,6 +14,7 @@
 	var showAddLevelModal = false;
 	var showFilterBox = false;
 	var legacyIndex: number;
+	var isFilered = false
 	if (list == "dl") legacyIndex = -1;
 	else legacyIndex = 74;
 	var filter = {
@@ -32,13 +33,17 @@
 			hideBeatenLevels: false
 		};
 	}
+	function getFilter(){
+		if(isFilered) return encodeURI(JSON.stringify(filter))
+		return ''
+	}
 	function fetchData(count = 0) {
 		if (count == 0) {
 			levels = [];
 			levelsFetched = false
 		}
 		if (count == 2) {
-			fetch(`https://api.vnpower.tech/levels/${list}/page/1/${encodeURI(JSON.stringify(filter))}`)
+			fetch(`https://api.vnpower.tech/levels/${list}/page/1/0/${getFilter()}`)
 				.then((response) => response.json())
 				.then((data) => {
 					levels = data;
@@ -47,9 +52,7 @@
 		}
 		try {
 			fetch(
-				`https://api.vnpower.tech/levels/${list}/page/1/${$userdata.metadata.id}/${encodeURI(
-					JSON.stringify(filter)
-				)}`
+				`https://api.vnpower.tech/levels/${list}/page/1/${$userdata.metadata.id}/${getFilter()}`
 			)
 				.then((response) => response.json())
 				.then((data) => {
@@ -154,6 +157,7 @@
 					<svg
 						class="clickable"
 						on:click={() => {
+							isFilered = true
 							fetchData();
 						}}
 						xmlns="http://www.w3.org/2000/svg"
