@@ -10,7 +10,7 @@
 	import { fly } from "svelte/transition";
 	import { userdata } from "./stores";
 	var id = $page.url.searchParams.get("id");
-	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 	var player;
 	var list = 1;
 	var flrec = [];
@@ -34,7 +34,7 @@
 			avatarSrc =
 				"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Black_flag.svg/2560px-Black_flag.svg.png";
 		const dat = await (
-			await fetch(`https://api.vnpower.tech/player/${$page.url.searchParams.get("id")}`)
+			await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/player/${$page.url.searchParams.get("id")}`)
 		).json();
 		player = dat;
 		title = dat.name;
@@ -44,7 +44,7 @@
 		}
 		const data = await (
 			await fetch(
-				`https://api.vnpower.tech/player/${$page.url.searchParams.get("id")}/records/${sortBy}`
+				`${import.meta.env.VITE_BACKEND_API_URL}/player/${$page.url.searchParams.get("id")}/records/${sortBy}`
 			)
 		).json();
 		flrec = [];
@@ -85,7 +85,7 @@
 			dlrec.splice(index, 1);
 			dlrec = dlrec;
 		}
-		fetch(`https://api.vnpower.tech/record/${item.userid}/${item.levelid}`, {
+		fetch(`${import.meta.env.VITE_BACKEND_API_URL}/record/${item.userid}/${item.levelid}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json"

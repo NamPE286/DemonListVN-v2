@@ -5,13 +5,13 @@
 	export var uid;
 	var submissions = [];
 	var hasSubmission = true
-	fetch(`https://api.vnpower.tech/player/${uid}/submissions`)
+	fetch(`${import.meta.env.VITE_BACKEND_API_URL}/player/${uid}/submissions`)
 		.then((response) => response.json())
 		.then((data) => {
 			submissions = data;
 			hasSubmission = submissions.length != 0
 		});
-	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 	async function cancel(item, index) {
 		if(confirm('Cancel submission?')){
 			var { data, error } = await supabase.from("records").delete().match({ userid: item.userid, levelid: item.levelid });

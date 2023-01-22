@@ -16,8 +16,8 @@
 	var showEditProfileModal = false;
 	var showEditRecordModal = false;
 	var showEditLevelModal = false;
-	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
-	$: fetch(`https://api.vnpower.tech/level/${$page.url.searchParams.get("id")}`)
+	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
+	$: fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${$page.url.searchParams.get("id")}`)
 		.then((response) => response.json())
 		.then((data) => {
 			level = data.data;
@@ -30,7 +30,7 @@
 		return `${level.flPt ? level.flPt : level.rating}pt`;
 	}
 	async function removeRecord(item, index) {
-		fetch(`https://api.vnpower.tech/record/${item.userid}/${item.levelid}`, {
+		fetch(`${import.meta.env.VITE_BACKEND_API_URL}/record/${item.userid}/${item.levelid}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json"

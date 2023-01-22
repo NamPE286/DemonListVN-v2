@@ -6,7 +6,7 @@
 	import SettingInput from "../components/settings/ImagePicker.svelte"
 	import SliderPicker from "../components/settings/SliderPicker.svelte"
 	import SettingToggle from "../components/settings/settingToggle.svelte";
-	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 	async function signOut() {
 		window.location.reload();
 		await supabase.auth.signOut();

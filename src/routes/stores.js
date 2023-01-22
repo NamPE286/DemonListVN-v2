@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 var dat1 = {
     metadata: null,
     data: {
@@ -13,7 +13,7 @@ var dat1 = {
 }
 supabase.auth.onAuthStateChange((event, session) => {
     dat1.metadata = session.user
-    fetch(`https://api.vnpower.tech/player/${session.user.id}`)
+    fetch(`${import.meta.env.VITE_BACKEND_API_URL}/player/${session.user.id}`)
         .then((response) => response.json())
         .then((data) => {
             dat1.data = data

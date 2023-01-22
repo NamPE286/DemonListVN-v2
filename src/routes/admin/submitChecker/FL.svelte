@@ -2,7 +2,7 @@
     import { createClient } from "@supabase/supabase-js";
     import Title from "../../../components/widgets/Title.svelte";
     import { userdata } from '../../stores'
-    const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+    const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
     var submissions = [];
     async function getData(){
         if($userdata.data.country){
@@ -24,7 +24,7 @@
     async function reject(item, index){
         submissions.splice(index, 1)
         submissions = submissions
-		fetch(`https://api.vnpower.tech/record/${item.userid}/${item.levelid}`, {
+		fetch(`${import.meta.env.VITE_BACKEND_API_URL}/record/${item.userid}/${item.levelid}`, {
 				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
@@ -38,7 +38,7 @@
         submissions.splice(index, 1)
         submissions = submissions
         item.isChecked = true
-        fetch(`https://api.vnpower.tech/record`, {
+        fetch(`${import.meta.env.VITE_BACKEND_API_URL}/record`, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',

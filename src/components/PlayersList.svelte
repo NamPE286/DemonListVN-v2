@@ -2,7 +2,7 @@
 	import Badge from "./badge.svelte";
 	var players = [];
 	export var list: string;
-	fetch(`https://api.vnpower.tech/players/${list}/page/1`)
+	fetch(`${import.meta.env.VITE_BACKEND_API_URL}/players/${list}/page/1`)
 		.then((response) => response.json())
 		.then((data) => {
 			players = data;

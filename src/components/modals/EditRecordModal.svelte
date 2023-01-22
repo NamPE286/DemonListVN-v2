@@ -4,7 +4,7 @@
 	export var ifShow: boolean;
 	export var player;
 	export var record;
-	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 	var a = record
 	var recordTemplate = {
 		levelid: null,
@@ -24,7 +24,7 @@
 		a.country = player.country
 		var dataToSend = recordTemplate
 		for(const i in dataToSend) dataToSend[i] = a[i]
-		fetch(`https://api.vnpower.tech/record`, {
+		fetch(`${import.meta.env.VITE_BACKEND_API_URL}/record`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',

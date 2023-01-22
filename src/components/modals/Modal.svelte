@@ -2,7 +2,7 @@
 	import { fade } from "svelte/transition";
 	import { userdata } from "../../routes/stores";
 	import { createClient } from "@supabase/supabase-js";
-	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 	export var ifShow: boolean;
 	var list = "Demon List";
 	var a = {
@@ -29,7 +29,7 @@
 			}
 		}
 		var data = await (
-			await fetch(`https://api.vnpower.tech/submit/0`, {
+			await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit/0`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"
@@ -45,7 +45,7 @@
 			}
 			if (confirm("This level doesn't exist in the list. Do you want to proceed?")) {
 				var data1 = await (
-					await fetch(`https://api.vnpower.tech/submit/1`, {
+					await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/submit/1`, {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json"

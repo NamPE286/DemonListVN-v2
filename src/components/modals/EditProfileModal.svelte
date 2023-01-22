@@ -12,7 +12,7 @@
 		user1 = JSON.parse(JSON.stringify(value));
 	});
 	export var ifShow: boolean;
-	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 	async function apply() {
 		document.body.style.cursor = "wait";
 		const a = {
@@ -34,7 +34,7 @@
 				}
 			}
 		} catch {}
-		fetch(`https://api.vnpower.tech/player/${user.metadata.id}`, {
+		fetch(`${import.meta.env.VITE_BACKEND_API_URL}/player/${user.metadata.id}`, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json"

@@ -20,7 +20,7 @@
 			}
 		}
 	}
-	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 	var user;
 	var uid;
 	supabase.auth.onAuthStateChange((_, session) => {
@@ -66,7 +66,7 @@
 		}
 		tOut = []
 		tOut.push(setTimeout(()=>{
-			if(searchValue.length) fetch(`https://api.vnpower.tech/search/${searchValue}`)
+			if(searchValue.length) fetch(`${import.meta.env.VITE_BACKEND_API_URL}/search/${searchValue}`)
 				.then((response) => response.json())
 				.then((data) => {
 					searchRes = data[0]

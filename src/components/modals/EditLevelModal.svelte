@@ -5,10 +5,10 @@
 	export var ifShow: boolean;
 	export var level: any;
 	var prevFL = JSON.parse(JSON.stringify(level.flTop))
-	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 	async function apply(){
 		level['prevflTop'] = prevFL
-		fetch(`https://api.vnpower.tech/level/${level.id}`, {
+		fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${level.id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',

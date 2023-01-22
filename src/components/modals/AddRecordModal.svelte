@@ -3,7 +3,7 @@
 	import { createClient } from "@supabase/supabase-js";
 	export var ifShow: boolean;
 	export var player;
-	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 	var a = {
 		levelid: null,
 		userid: null,
@@ -21,7 +21,7 @@
 		a.userid = player.uid
 		a.country = player.country
 		a.isChecked = true
-		fetch(`https://api.vnpower.tech/record`, {
+		fetch(`${import.meta.env.VITE_BACKEND_API_URL}/record`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',

@@ -43,7 +43,7 @@
 			levelsFetched = false
 		}
 		if (count == 2) {
-			fetch(`https://api.vnpower.tech/levels/${list}/page/1/0/${getFilter()}`)
+			fetch(`${import.meta.env.VITE_BACKEND_API_URL}/levels/${list}/page/1/0/${getFilter()}`)
 				.then((response) => response.json())
 				.then((data) => {
 					levels = data;
@@ -52,7 +52,7 @@
 		}
 		try {
 			fetch(
-				`https://api.vnpower.tech/levels/${list}/page/1/${$userdata.metadata.id}/${getFilter()}`
+				`${import.meta.env.VITE_BACKEND_API_URL}/levels/${list}/page/1/${$userdata.metadata.id}/${getFilter()}`
 			)
 				.then((response) => response.json())
 				.then((data) => {

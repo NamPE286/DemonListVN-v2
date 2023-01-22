@@ -14,9 +14,9 @@
 	}
 	var prevFL = JSON.parse(JSON.stringify(level.flTop))
 	var prevDL = JSON.parse(JSON.stringify(level.dlTop))
-	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 	async function apply(){
-		fetch(`https://api.vnpower.tech/level/${level.id}`, {
+		fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${level.id}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

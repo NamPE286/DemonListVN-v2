@@ -1,7 +1,7 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
 	import { createClient } from "@supabase/supabase-js";
-	const supabase = createClient(import.meta.env.VITE_API_URL, import.meta.env.VITE_API_KEY);
+	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 	export var ifShow: boolean;
 	export var uid:string
 	var newname:string = ''
@@ -10,7 +10,7 @@
 			alert('Please enter a name')
 			return
 		}
-		fetch(`https://api.vnpower.tech/player/${uid}`, {
+		fetch(`${import.meta.env.VITE_BACKEND_API_URL}/player/${uid}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
