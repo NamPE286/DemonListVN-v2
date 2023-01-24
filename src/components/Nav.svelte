@@ -10,21 +10,22 @@
 			var { data, error } = await supabase.from("players").insert({
 				uid: user.id,
 				name: "/defaultplayers/",
-				email: user1.email,
+				email: user1.email
 			});
 			ifShowNameInput = true;
-		} else {
-			if (data[0].name == "/defaultplayers/") {
-				ifShowNameInput = true;
-			}
+		} else if (data[0].name == "/defaultplayers/") {
+			ifShowNameInput = true;
 		}
 	}
-	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
+	const supabase = createClient(
+		import.meta.env.VITE_DATABASE_API_URL,
+		import.meta.env.VITE_DATABASE_API_KEY
+	);
 	var user;
 	var uid;
 	supabase.auth.onAuthStateChange((_, session) => {
 		user = session.user;
-		uid = user.id
+		uid = user.id;
 		addUser(session.user);
 	});
 	var menuExpanded: boolean = false;
@@ -53,26 +54,29 @@
 		const { error } = await supabase.auth.signOut();
 	}
 
-	var searchValue = ''
-	var tOut = []
-	var searchRes = []
-	var searchPlayerRes = []
-	var isTyping = false
-	function typingAction(){
-		isTyping = true
-		for (var i=0; i < tOut.length; i++) {
+	var searchValue = "";
+	var tOut = [];
+	var searchRes = [];
+	var searchPlayerRes = [];
+	var isTyping = false;
+	function typingAction() {
+		isTyping = true;
+		for (var i = 0; i < tOut.length; i++) {
 			clearTimeout(tOut[i]);
 		}
-		tOut = []
-		tOut.push(setTimeout(()=>{
-			if(searchValue.length) fetch(`${import.meta.env.VITE_BACKEND_API_URL}/search/${searchValue}`)
-				.then((response) => response.json())
-				.then((data) => {
-					searchRes = data[0]
-					searchPlayerRes = data[1]
-					isTyping = false
-				});
-		},400));
+		tOut = [];
+		tOut.push(
+			setTimeout(() => {
+				if (searchValue.length)
+					fetch(`${import.meta.env.VITE_BACKEND_API_URL}/search/${searchValue}`)
+						.then((response) => response.json())
+						.then((data) => {
+							searchRes = data[0];
+							searchPlayerRes = data[1];
+							isTyping = false;
+						});
+			}, 400)
+		);
 	}
 </script>
 
@@ -90,23 +94,34 @@
 			>
 		{/if}
 	</span>
-	<a id="title" href='/'>Demon List VN</a>
-	<input autocomplete="false" class='searchBox' placeholder='Search' id='hideRes' bind:value={searchValue} on:input={typingAction} >
-	{#if (searchRes.length && searchValue.length) && !isTyping || ((searchPlayerRes.length && searchValue.length) && !isTyping)}
+	<a id="title" href="/">Demon List VN</a>
+	<input
+		autocomplete="false"
+		class="searchBox"
+		placeholder="Search"
+		id="hideRes"
+		bind:value={searchValue}
+		on:input={typingAction}
+	/>
+	{#if (searchRes.length && searchValue.length && !isTyping) || (searchPlayerRes.length && searchValue.length && !isTyping)}
 		<div class="searchRes">
 			{#each searchRes as item, index}
-				<a href={`/level?id=${item.id}`} on:click={() => searchValue = ''}><br><b>{item.name}</b> by {item.creator}</a><br>
+				<a href={`/level?id=${item.id}`} on:click={() => (searchValue = "")}
+					><br /><b>{item.name}</b> by {item.creator}</a
+				><br />
 			{/each}
 			{#each searchPlayerRes as item, index}
-				<a href={`/player?id=${item.id}`} on:click={() => searchValue = ''}><br><b>{item.name}</b></a><br>
+				<a href={`/player?id=${item.id}`} on:click={() => (searchValue = "")}
+					><br /><b>{item.name}</b></a
+				><br />
 			{/each}
-			<br>
+			<br />
 		</div>
 	{/if}
-	{#if (!searchRes.length && !searchPlayerRes.length && searchValue.length) && !isTyping}
+	{#if !searchRes.length && !searchPlayerRes.length && searchValue.length && !isTyping}
 		<div class="searchRes">
-				<span on:click={() => searchValue = ''}><br><b>No result</span><br>
-			<br>
+			<span on:click={() => (searchValue = "")}><br /><b>No result</b></span><br />
+			<br />
 		</div>
 	{/if}
 	{#if uid && !forceSignIn}
@@ -132,16 +147,21 @@
 	/>
 {/if}
 <div class={menuExpanded ? "sidebar1" : "sidebar"} id="sidebarDiv">
-	<a href="/" class="sidebarIconWrapper" on:click={() => menuExpanded = false}>
-		<div class='hide' id="sidebarIcon">
+	<a href="/" class="sidebarIconWrapper" on:click={() => (menuExpanded = false)}>
+		<div class="hide" id="sidebarIcon">
 			<div class="sidebarIcon">
-				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M13 9V3h8v6ZM3 13V3h8v10Zm10 8V11h8v10ZM3 21v-6h8v6Zm2-10h4V5H5Zm10 8h4v-6h-4Zm0-12h4V5h-4ZM5 19h4v-2H5Zm4-8Zm6-4Zm0 6Zm-6 4Z"/></svg>			</div>
+				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+					><path
+						d="M13 9V3h8v6ZM3 13V3h8v10Zm10 8V11h8v10ZM3 21v-6h8v6Zm2-10h4V5H5Zm10 8h4v-6h-4Zm0-12h4V5h-4ZM5 19h4v-2H5Zm4-8Zm6-4Zm0 6Zm-6 4Z"
+					/></svg
+				>
+			</div>
 			<p id="title1">Dashboard</p>
 		</div>
-		<p class='hideText' id="iconTitle">Dashboard</p>
+		<p class="hideText" id="iconTitle">Dashboard</p>
 	</a>
-	<a href="/DL" class="sidebarIconWrapper" on:click={() => menuExpanded = false}>
-		<div class='hide' id="sidebarIcon">
+	<a href="/DL" class="sidebarIconWrapper" on:click={() => (menuExpanded = false)}>
+		<div class="hide" id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 					><path
@@ -151,40 +171,54 @@
 			</div>
 			<p id="title1">Demon List</p>
 		</div>
-		<p class='hideText' id="iconTitle">Demon List</p>
+		<p class="hideText" id="iconTitle">Demon List</p>
 	</a>
-	<a href="/FL" class="sidebarIconWrapper" on:click={() => menuExpanded = false}>
-		<div class='hide' id="sidebarIcon">
+	<a href="/FL" class="sidebarIconWrapper" on:click={() => (menuExpanded = false)}>
+		<div class="hide" id="sidebarIcon">
 			<div class="sidebarIcon">
-				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z"/></svg>
+				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+					><path
+						d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z"
+					/></svg
+				>
 			</div>
 			<p id="title1">Featured List</p>
 		</div>
-		<p class='hideText' id="iconTitle">FT List</p>
+		<p class="hideText" id="iconTitle">FT List</p>
 	</a>
-	<a href="/leaderboard" class="sidebarIconWrapper" on:click={() => menuExpanded = false}>
-		<div class='hide' id="sidebarIcon">
+	<a href="/leaderboard" class="sidebarIconWrapper" on:click={() => (menuExpanded = false)}>
+		<div class="hide" id="sidebarIcon">
 			<div class="sidebarIcon">
-				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M4 19h4v-8H4Zm6 0h4V5h-4Zm6 0h4v-6h-4ZM2 21V9h6V3h8v8h6v10Z"/></svg>
+				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+					><path d="M4 19h4v-8H4Zm6 0h4V5h-4Zm6 0h4v-6h-4ZM2 21V9h6V3h8v8h6v10Z" /></svg
+				>
 			</div>
 			<p id="title1">Leaderboard</p>
 		</div>
-		<p class='hideText' id="iconTitle">Leaderboard</p>
+		<p class="hideText" id="iconTitle">Leaderboard</p>
 	</a>
 	<hr />
 	{#if uid}
-	<a href={`/player?id=${uid}`} class="sidebarIconWrapper" on:click={() => menuExpanded = false}>
-		<div class='hide' id="sidebarIcon">
-			<div class="sidebarIcon">
-				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5.85 17.1q1.275-.975 2.85-1.538Q10.275 15 12 15q1.725 0 3.3.562 1.575.563 2.85 1.538.875-1.025 1.363-2.325Q20 13.475 20 12q0-3.325-2.337-5.663Q15.325 4 12 4T6.338 6.337Q4 8.675 4 12q0 1.475.488 2.775.487 1.3 1.362 2.325ZM12 13q-1.475 0-2.488-1.012Q8.5 10.975 8.5 9.5t1.012-2.488Q10.525 6 12 6t2.488 1.012Q15.5 8.025 15.5 9.5t-1.012 2.488Q13.475 13 12 13Zm0 9q-2.075 0-3.9-.788-1.825-.787-3.175-2.137-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175 1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138 1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175-1.35 1.35-3.175 2.137Q14.075 22 12 22Zm0-2q1.325 0 2.5-.387 1.175-.388 2.15-1.113-.975-.725-2.15-1.113Q13.325 17 12 17t-2.5.387q-1.175.388-2.15 1.113.975.725 2.15 1.113Q10.675 20 12 20Zm0-9q.65 0 1.075-.425.425-.425.425-1.075 0-.65-.425-1.075Q12.65 8 12 8q-.65 0-1.075.425Q10.5 8.85 10.5 9.5q0 .65.425 1.075Q11.35 11 12 11Zm0-1.5Zm0 9Z"/></svg>
+		<a
+			href={`/player?id=${uid}`}
+			class="sidebarIconWrapper"
+			on:click={() => (menuExpanded = false)}
+		>
+			<div class="hide" id="sidebarIcon">
+				<div class="sidebarIcon">
+					<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+						><path
+							d="M5.85 17.1q1.275-.975 2.85-1.538Q10.275 15 12 15q1.725 0 3.3.562 1.575.563 2.85 1.538.875-1.025 1.363-2.325Q20 13.475 20 12q0-3.325-2.337-5.663Q15.325 4 12 4T6.338 6.337Q4 8.675 4 12q0 1.475.488 2.775.487 1.3 1.362 2.325ZM12 13q-1.475 0-2.488-1.012Q8.5 10.975 8.5 9.5t1.012-2.488Q10.525 6 12 6t2.488 1.012Q15.5 8.025 15.5 9.5t-1.012 2.488Q13.475 13 12 13Zm0 9q-2.075 0-3.9-.788-1.825-.787-3.175-2.137-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175 1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138 1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175-1.35 1.35-3.175 2.137Q14.075 22 12 22Zm0-2q1.325 0 2.5-.387 1.175-.388 2.15-1.113-.975-.725-2.15-1.113Q13.325 17 12 17t-2.5.387q-1.175.388-2.15 1.113.975.725 2.15 1.113Q10.675 20 12 20Zm0-9q.65 0 1.075-.425.425-.425.425-1.075 0-.65-.425-1.075Q12.65 8 12 8q-.65 0-1.075.425Q10.5 8.85 10.5 9.5q0 .65.425 1.075Q11.35 11 12 11Zm0-1.5Zm0 9Z"
+						/></svg
+					>
+				</div>
+				<p id="title1">Profile</p>
 			</div>
-			<p id="title1">Profile</p>
-		</div>
-		<p class='hideText' id="iconTitle">Profile</p>
-	</a>
+			<p class="hideText" id="iconTitle">Profile</p>
+		</a>
 	{/if}
-	<a href="/settings" class="sidebarIconWrapper" on:click={() => menuExpanded = false}>
-		<div class='hide' id="sidebarIcon">
+	<a href="/settings" class="sidebarIconWrapper" on:click={() => (menuExpanded = false)}>
+		<div class="hide" id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 					><path
@@ -194,19 +228,23 @@
 			</div>
 			<p id="title1">Settings</p>
 		</div>
-		<p class='hideText' id="iconTitle">Settings</p>
+		<p class="hideText" id="iconTitle">Settings</p>
 	</a>
-	<a href="/rules" class="sidebarIconWrapper" on:click={() => menuExpanded = false}>
-		<div class='hide' id="sidebarIcon">
+	<a href="/rules" class="sidebarIconWrapper" on:click={() => (menuExpanded = false)}>
+		<div class="hide" id="sidebarIcon">
 			<div class="sidebarIcon">
-				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M2 17v-2h9v2Zm0-8V7h9v2Zm12.4 11L13 18.6l2.6-2.6-2.6-2.6 1.4-1.4 2.6 2.6 2.6-2.6 1.4 1.4-2.6 2.6 2.6 2.6-1.4 1.4-2.6-2.6Zm2.15-9L13 7.45l1.4-1.4 2.125 2.125 4.25-4.25 1.4 1.425Z"/></svg>
+				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+					><path
+						d="M2 17v-2h9v2Zm0-8V7h9v2Zm12.4 11L13 18.6l2.6-2.6-2.6-2.6 1.4-1.4 2.6 2.6 2.6-2.6 1.4 1.4-2.6 2.6 2.6 2.6-1.4 1.4-2.6-2.6Zm2.15-9L13 7.45l1.4-1.4 2.125 2.125 4.25-4.25 1.4 1.425Z"
+					/></svg
+				>
 			</div>
 			<p id="title1">Rules</p>
 		</div>
-		<p class='hideText' id="iconTitle">Rules</p>
+		<p class="hideText" id="iconTitle">Rules</p>
 	</a>
-	<a href="/about" class="sidebarIconWrapper" on:click={() => menuExpanded = false}>
-		<div class='hide' id="sidebarIcon">
+	<a href="/about" class="sidebarIconWrapper" on:click={() => (menuExpanded = false)}>
+		<div class="hide" id="sidebarIcon">
 			<div class="sidebarIcon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
 					><path
@@ -216,7 +254,7 @@
 			</div>
 			<p id="title1">About</p>
 		</div>
-		<p class='hideText' id="iconTitle">About</p>
+		<p class="hideText" id="iconTitle">About</p>
 	</a>
 	<div class="bottomPad" />
 </div>
@@ -317,11 +355,11 @@
 			margin-bottom: 0;
 			visibility: hidden;
 		}
-		#title1{
-			white-space: nowrap; 
-			width: 100%; 
+		#title1 {
+			white-space: nowrap;
+			width: 100%;
 			overflow: hidden;
-			text-overflow: clip; 
+			text-overflow: clip;
 		}
 		#sidebarIcon {
 			padding-inline: 16px;
@@ -470,7 +508,7 @@
 			transition: 0.15s;
 		}
 	}
-	.searchBox{
+	.searchBox {
 		background-color: var(--color19);
 		border-color: transparent;
 		border-radius: 8px;
@@ -482,7 +520,7 @@
 		padding-inline: 15px;
 		color: var(--textColor);
 	}
-	.searchRes{
+	.searchRes {
 		position: fixed;
 		left: calc(50% - 197.5px);
 		top: 60px;
@@ -491,7 +529,7 @@
 		border-radius: 8px;
 		box-sizing: border-box;
 		padding-inline: 15px;
-		a{
+		a {
 			color: var(--textColor);
 			text-decoration: none;
 			width: 100%;
@@ -511,19 +549,19 @@
 		#title {
 			display: none;
 		}
-		.searchBox{
+		.searchBox {
 			width: calc(100% - 225px);
 			height: 30px;
 			left: 75px;
 			transition: all 0.3s;
 			position: fixed;
 		}
-		.searchBox:focus{
+		.searchBox:focus {
 			transform: translateX(-70px);
 			width: calc(100% - 10px);
 			height: 50px;
 		}
-		.searchRes{
+		.searchRes {
 			width: 100%;
 			left: 0;
 		}
