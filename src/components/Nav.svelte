@@ -6,6 +6,7 @@
 	import NameModal from "./modals/NameModal.svelte";
 	async function addUser(user1) {
 		var { data, error } = await supabase.from("players").select("uid, name").eq("uid", user1.id);
+		console.log(user1, data, error)
 		if (data.length == 0) {
 			var { data, error } = await supabase.from("players").insert({
 				uid: user.id,

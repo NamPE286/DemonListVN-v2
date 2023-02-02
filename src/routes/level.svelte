@@ -97,9 +97,7 @@
 					{level.description}
 				</span>
 			</p>
-			{#if level.rating}
-				<p><b>Minimum Progress: </b><span class="desc">{level.minProgress}%</span></p>
-			{/if}
+			<p><b>Minimum Progress: </b><span class="desc">{level.minProgress}%</span></p>
 			<p><b>Difficulty: </b><span class="desc">{level.difficulty}</span></p>
 			<p><b>ID: </b><span class="desc">{id}</span></p>
 		</div>
