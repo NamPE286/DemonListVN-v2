@@ -6,7 +6,13 @@
 	export var level: any;
 	var prevFL = JSON.parse(JSON.stringify(level.flTop))
 	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
+	var ldmString = level.ldm.join(' ')
 	async function apply(){
+		var temp = ldmString.split(' ')
+		var temp1 = []
+		for(const i of temp) temp1.push(parseInt(i))
+		level.ldm = temp1
+		console.log(temp, temp1, level.ldm)
 		level['prevflTop'] = prevFL
 		fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${level.id}`, {
 			method: 'PATCH',
@@ -53,6 +59,7 @@
 				<input class="s_input" placeholder="Minimum Progress (must be greater than 0, default is 100)" bind:value={level.minProgress} type='number'/>
 				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop} type="number"/>
 				<input class="s_input" placeholder="Demon List Rating (leave blank for null)" bind:value={level.rating}  type="number"/>
+				<input class="s_input" placeholder="LDM (seperated by space)" bind:value={ldmString} type='text'/>
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<span

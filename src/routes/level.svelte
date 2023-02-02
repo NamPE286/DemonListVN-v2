@@ -100,6 +100,7 @@
 			<p><b>Minimum Progress: </b><span class="desc">{level.minProgress}%</span></p>
 			<p><b>Difficulty: </b><span class="desc">{level.difficulty}</span></p>
 			<p><b>ID: </b><span class="desc">{id}</span></p>
+			<p><b>LDM: </b><span class="desc">{level.ldm.length == 0 ? level.ldm.join(', ') : 'Unavailable'}</span></p>
 		</div>
 		<div class="additionalInfo">
 			<svg

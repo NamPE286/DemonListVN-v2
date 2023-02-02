@@ -10,12 +10,17 @@
 		minProgress: null,
 		flTop: null,
 		dlTop: null,
-		seaTop: null
+		ldm: []
 	}
+	var ldmString = ''
 	var prevFL = JSON.parse(JSON.stringify(level.flTop))
 	var prevDL = JSON.parse(JSON.stringify(level.dlTop))
 	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 	async function apply(){
+		var temp = ldmString.split(' ')
+		var temp1 = []
+		for(const i of temp) temp1.push(parseInt(i))
+		level.ldm = temp1
 		fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${level.id}`, {
 			method: 'POST',
 			headers: {
@@ -64,6 +69,7 @@
 				<input class="s_input" placeholder="Minimum Progress" bind:value={level.minProgress} type='number'/>
 				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop} type='number'/>
 				<input class="s_input" placeholder="Demon List Top (leave blank for null)" bind:value={level.dlTop} type='number'/>
+				<input class="s_input" placeholder="LDM (seperated by space)" bind:value={ldmString} type='text'/>
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
 				<span
