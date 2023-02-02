@@ -21,7 +21,7 @@
 
 {#if $userdata.data.isAdmin}
 	<div class="pageContent">
-		<Title title="Merge Account" description="" />
+		<Title title="Admin" description="" />
 		<button class="refreshList" on:click={refreshList}>{a}</button><br />
 		<span>Submit checker: </span>
 		<a href="/admin/submitChecker">All</a>
