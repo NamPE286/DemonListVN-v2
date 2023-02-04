@@ -28,8 +28,16 @@
         </ul>
         <h2>Rating</h2>
         <ul>
-            <li>Rating is a metric represents player potential to beat levels in their rating range.</li>
-            <li>Rating is based on player's best performance and performance on other levels on Demon List (Note: grinding is not a viable way to increase player's rating)</li>
+            <li>Overview:</li>
+            <ul>
+                <li>Rating is a metric represents player potential to beat levels in their rating range.</li>
+                <li>Rating is based on player's best performance and performance on other levels on Demon List (Note: grinding is not a viable way to increase player's rating)</li>
+            </ul>
+            <li>Rules:</li>
+            <ul>
+               <li>Rating is only applied to Demon List.</li>
+               <li>Banned and hidden accounts will be unrated.</li> 
+            </ul>
             <li>Rating distribution:</li>
             <ul>
                 <li><Badge rating={250}> Novice: >= 250</Badge></li>
