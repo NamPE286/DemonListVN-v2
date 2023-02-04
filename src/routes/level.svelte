@@ -180,7 +180,7 @@
 							<a href={`/player?id=${item.userid}`}><Badge rating={item.players.rating}>{item.players.name}</Badge></a>
 						</div>
 						<div class="playerPt">
-							<a href={item.videoLink} id="center">{item.progress}% ({ifMobile(item)}{item.refreshRate}fps)</a>
+							<a href={item.videoLink} id="center" target="_blank">{item.progress}% ({ifMobile(item)}{item.refreshRate}fps)</a>
 							{#if $userdata.data.isAdmin}
 								<span
 									on:click={() => {
