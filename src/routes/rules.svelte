@@ -40,10 +40,10 @@
             </ul>
             <li>Rating distribution:</li>
             <ul>
-                <li><Badge rating={1}> Casual: >= 3800</Badge></li>
-                <li><Badge rating={250}> Novice: >= 250</Badge></li>
-                <li><Badge rating={500}> Apprentice: >= 500</Badge></li>
-                <li><Badge rating={1000}> Specialist: >= 1000</Badge></li>
+                <li><Badge rating={1}> Casual: > 0</Badge></li>
+                <li><Badge rating={500}> Novice: >= 500</Badge></li>
+                <li><Badge rating={1000}> Apprentice: >= 1000</Badge></li>
+                <li><Badge rating={1400}> Specialist: >= 1400</Badge></li>
                 <li><Badge rating={1850}> Expert: >= 1850</Badge></li>
                 <li><Badge rating={2200}> Candidate Master: >= 2200</Badge></li>
                 <li><Badge rating={2750}> Master: >= 2750</Badge></li>
