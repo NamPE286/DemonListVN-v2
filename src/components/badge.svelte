@@ -31,20 +31,25 @@
             fullTitle: 'Expert',
             color:'purple'
         }
-        if(rating >= 1000) return {
+        if(rating >= 1400) return {
             title: 'SP',
             fullTitle: 'Specialist',
             color:'darkcyan'
         }
-        if(rating >= 500) return {
+        if(rating >= 1000) return {
             title: 'AP',
             fullTitle: 'Apprentice',
             color:'darkgreen'
         }
-        if(rating >= 250) return {
+        if(rating >= 500) return {
             title: 'N',
             fullTitle: 'Novice',
             color:'green'
+        }
+        if(rating > 0) return {
+            title: 'C',
+            fullTitle: 'Casual',
+            color:'gray'
         }
         return null
     }
