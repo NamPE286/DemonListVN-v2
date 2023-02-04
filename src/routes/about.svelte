@@ -11,6 +11,12 @@
 	description="A list of people who maintain Demon List VN as well as the website developers"
 />
 <div class="pageContent">
+	<p>Source code</p>
+	<ul>
+		<li>Frontend: <a href='https://github.com/NamPE286/DemonListVN-v2'>https://github.com/NamPE286/DemonListVN-v2</li>
+		<li>Backend: <a href='https://github.com/NamPE286/DemonListVN-api'>https://github.com/NamPE286/DemonListVN-api</li>
+		<li>Database: Supabase</li>
+	</ul>
 	<p>Staffs</p>
 	<CardVisit
 		staffName="Hito73"
