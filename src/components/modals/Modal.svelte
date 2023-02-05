@@ -123,6 +123,7 @@
 					</select>
 					<input class="s_input" value={$userdata.data.name} readonly={true} />
 					<input class="s_input" placeholder="Level ID" type="number" bind:value={a.levelid} />
+					<input class="s_input" placeholder="Progress" type="number" bind:value={a.progress} />
 					<select class="s_select" placeholder="Device" bind:value={a.mobile}>
 						<option value={false}>Desktop</option>
 						<option value={true}>Mobile</option>
