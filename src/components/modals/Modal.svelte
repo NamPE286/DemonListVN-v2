@@ -20,7 +20,6 @@
 		var error = null
 		a.timestamp = Date.now();
 		a.userid = $userdata.metadata.id;
-		if (list == "Featured List") a.progress = 100;
 		for (const i in a) {
 			if (a[i] == null && i != 'comment') {
 				alert("Please fill in all fields");
@@ -118,15 +117,8 @@
 					>
 				</div>
 				<div class="s_flexcol" style="align-items: center;">
-					<select class="s_select" bind:value={list}>
-						<option value="Demon List">Demon List</option>
-						<option value="Featured List">Featured List</option>
-					</select>
 					<input class="s_input" value={$userdata.data.name} readonly={true} />
 					<input class="s_input" placeholder="Level ID" type="number" bind:value={a.levelid} />
-					{#if list == "Demon List"}
-						<input class="s_input" placeholder="Progress" type="number" bind:value={a.progress} />
-					{/if}
 					<select class="s_select" placeholder="Device" bind:value={a.mobile}>
 						<option value={false}>Desktop</option>
 						<option value={true}>Mobile</option>
