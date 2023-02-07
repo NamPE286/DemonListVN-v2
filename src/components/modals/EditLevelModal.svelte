@@ -1,81 +1,130 @@
 <script lang="ts">
-    import { fade } from 'svelte/transition';
-	import { userdata } from '../../routes/stores'
+	import { fade } from "svelte/transition";
+	import { userdata } from "../../routes/stores";
 	import { createClient } from "@supabase/supabase-js";
 	export var ifShow: boolean;
 	export var level: any;
-	var prevFL = JSON.parse(JSON.stringify(level.flTop))
-	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
-	var ldmString = level.ldm.join(' ')
-	async function apply(){
-		var temp = ldmString.split(' ')
-		var temp1 = []
-		for(const i of temp) temp1.push(parseInt(i))
-		level.ldm = temp1
-		console.log(temp, temp1, level.ldm)
-		level['prevflTop'] = prevFL
-		fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${level.id}`, {
-			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				token: supabase.auth.session().access_token,
-				data: level
+	var prevFL = JSON.parse(JSON.stringify(level.flTop));
+	const supabase = createClient(
+		import.meta.env.VITE_DATABASE_API_URL,
+		import.meta.env.VITE_DATABASE_API_KEY
+	);
+	var ldmString = level.ldm.join(" ");
+	var delLv = "";
+	async function apply() {
+		var temp = ldmString.split(" ");
+		var temp1 = [];
+		for (const i of temp) temp1.push(parseInt(i));
+		level.ldm = temp1;
+		console.log(temp, temp1, level.ldm);
+		level["prevflTop"] = prevFL;
+		if (delLv == "yes") {
+			fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${level.id}`, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					token: supabase.auth.session().access_token,
+				})
 			})
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				alert('Level updated')
-				window.location.reload()
+				.then((response) => response.json())
+				.then((data) => {
+					alert("Level deleted");
+					window.location.reload();
+				});
+		} else {
+			fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${level.id}`, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					token: supabase.auth.session().access_token,
+					data: level
+				})
 			})
+				.then((response) => response.json())
+				.then((data) => {
+					alert("Level updated");
+					window.location.reload();
+				});
+		}
 	}
-	function cancel(){
-		ifShow = false
+	function cancel() {
+		ifShow = false;
 	}
 </script>
 
 {#if ifShow}
-<div out:fade="{{duration: 200}}" id='abcs'>
-	<div
-		class="dimBg"
-		on:click={() => {
-			ifShow = !ifShow;
-		}}
-        in:fade="{{duration: 150}}"
-	/>
-	<div
-		style="display: flex; justify-content: center; align-items: center; transition: all 0.25s ease-in-out;"
-		class="modalWrapper"
-	>
-		<div class="submitModal s_shadow">
-			<div class="s_flexrow" style="align-items: flex-end;">
-				<p class="s_title s_margin4">Edit level info</p>
-			</div>
-			<div class="s_flexcol" style="align-items: center;">
-				<input class="s_input" placeholder="Video ID" bind:value={level.videoID}/>
-				<input class="s_input" placeholder="Level name" bind:value={level.name} />
-				<input class="s_input" placeholder="Creator" bind:value={level.creator} />
-				<input class="s_input" placeholder="Minimum Progress (must be greater than 0, default is 100)" bind:value={level.minProgress} type='number'/>
-				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop} type="number"/>
-				<input class="s_input" placeholder="Demon List Rating (leave blank for null)" bind:value={level.rating}  type="number"/>
-				<input class="s_input" placeholder="LDM (seperated by space)" bind:value={ldmString} type='text'/>
-			</div>
-			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
-				<span
-					class="s_button2 s_margin6 s_red clickable"
-					on:click={() => {
-						cancel()
-					}}>Cancel</span
-				>
-				<span class="s_button2 s_margin5 s_blue clickable" on:click={() => {
-					apply()
-				}}>Apply</span>
+	<div out:fade={{ duration: 200 }} id="abcs">
+		<div
+			class="dimBg"
+			on:click={() => {
+				ifShow = !ifShow;
+			}}
+			in:fade={{ duration: 150 }}
+		/>
+		<div
+			style="display: flex; justify-content: center; align-items: center; transition: all 0.25s ease-in-out;"
+			class="modalWrapper"
+		>
+			<div class="submitModal s_shadow">
+				<div class="s_flexrow" style="align-items: flex-end;">
+					<p class="s_title s_margin4">Edit level info</p>
+				</div>
+				<div class="s_flexcol" style="align-items: center;">
+					<input class="s_input" placeholder="Video ID" bind:value={level.videoID} />
+					<input class="s_input" placeholder="Level name" bind:value={level.name} />
+					<input class="s_input" placeholder="Creator" bind:value={level.creator} />
+					<input
+						class="s_input"
+						placeholder="Minimum Progress (must be greater than 0, default is 100)"
+						bind:value={level.minProgress}
+						type="number"
+					/>
+					<input
+						class="s_input"
+						placeholder="Featured List Top (leave blank for null)"
+						bind:value={level.flTop}
+						type="number"
+					/>
+					<input
+						class="s_input"
+						placeholder="Demon List Rating (leave blank for null)"
+						bind:value={level.rating}
+						type="number"
+					/>
+					<input
+						class="s_input"
+						placeholder="LDM (seperated by space)"
+						bind:value={ldmString}
+						type="text"
+					/>
+					<input
+						class="s_input"
+						placeholder="Delete level? (type yes to proceed)"
+						bind:value={delLv}
+						type="text"
+					/>
+				</div>
+				<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
+					<span
+						class="s_button2 s_margin6 s_red clickable"
+						on:click={() => {
+							cancel();
+						}}>Cancel</span
+					>
+					<span
+						class="s_button2 s_margin5 s_blue clickable"
+						on:click={() => {
+							apply();
+						}}>Apply</span
+					>
+				</div>
 			</div>
 		</div>
 	</div>
-
-</div>
 {/if}
 
 <style lang="scss">
@@ -98,7 +147,7 @@
 	button {
 		border: none;
 		color: var(--textColor);
-		a{
+		a {
 			text-decoration: none;
 			color: var(--textColor);
 		}
@@ -146,18 +195,17 @@
 		align-items: center;
 		justify-content: center;
 		transition: 0.3s;
-		a{
+		a {
 			margin-left: 10px;
 		}
-		svg{
-			
+		svg {
 		}
 	}
-	.s_button:hover{
+	.s_button:hover {
 		background-color: var(--color15);
 		transition: 0.3s;
 	}
-	.s_button:active:hover{
+	.s_button:active:hover {
 		background-color: var(--color10);
 		transition: 0.15s;
 	}
@@ -222,12 +270,11 @@
 		background-color: var(--color5);
 		transition: 0.3s;
 	}
-	.s_blue:active:hover{
+	.s_blue:active:hover {
 		background-color: var(--color4);
 		transition: 0.15s;
 	}
 	.s_shadow {
-		
 	}
 	@media screen and (max-width: 1250px) {
 		.submitModal {
