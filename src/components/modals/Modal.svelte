@@ -36,6 +36,7 @@
 				body: JSON.stringify(a)
 			})
 		).json();
+		console.log(data)
 		if (data.error) {
 			if (list == "Featured List") {
 				alert("This level doesn't exist");
@@ -52,7 +53,8 @@
 						body: JSON.stringify(a)
 					})
 				).json();
-				error = data.error
+				console.log(data1)
+				error = data1.error
 			}
 			else {
 				document.body.style.cursor = "default";
@@ -61,6 +63,7 @@
 		}
 		document.body.style.cursor = "default";
 		if(error){
+			console.log(error)
 			alert(`An error occurred (${error})`)
 			return
 		}
