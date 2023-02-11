@@ -2,6 +2,7 @@
 	import { onMount } from "svelte";
 	import { userdata } from "./stores";
 	import MySubmissionsModal from "../components/modals/MySubmissionsModal.svelte";
+	import Badge from "../components/badge.svelte";
 	var player;
 	$: player = $userdata.data;
 	var d = new Date();
@@ -55,32 +56,43 @@
 				</div>
 			{/if}
 			<div class="topWrapper">
-				<div class="fltop topWidget">
-					<p class="topTitle">Featured List Rank</p>
-					<p class="top">#{player.flrank ? player.flrank : "N/a"}</p>
-				</div>
-				<div class="dltop topWidget">
-					<p class="topTitle">Demon List Rank</p>
-					<p class="top">#{player.dlrank ? player.dlrank : "N/a"}</p>
+				<div class="topWidget">
+					<div class="topWidget1">
+						<div class="avatar">
+							<img
+								src={`https://qdwpenfblwdmhywwszzj.supabase.co/storage/v1/object/public/avatars/${player.uid}.jpg`}
+								alt=""
+							/>
+						</div>
+						<div class="playerNameWrapper">
+							<Badge rating={player.rating} size={15}>
+								<span class="playerName">{player.name}</span>
+							</Badge>
+							<span>Rating: {player.rating} (#{player.overallRank})</span><br />
+							<span>Demon List: {player.totalDLpt} (#{player.dlrank})</span><br />
+							<span>Featured List: {player.totalFLpt} (#{player.flrank})</span><br />
+						</div>
+					</div>
+
+					<span
+						class="editProfile clickable"
+						on:click={() => {
+							showMySubmissonsModal = !showMySubmissonsModal;
+						}}
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+							><path
+								d="M4 21q-.825 0-1.412-.587Q2 19.825 2 19V5q0-.825.588-1.413Q3.175 3 4 3h16q.825 0 1.413.587Q22 4.175 22 5v14q0 .825-.587 1.413Q20.825 21 20 21Zm0-2h16V5H4v14Zm1-2h5v-2H5Zm9.55-2 4.95-4.95-1.425-1.425-3.525 3.55-1.425-1.425-1.4 1.425ZM5 13h5v-2H5Zm0-4h5V7H5ZM4 19V5v14Z"
+							/></svg
+						>
+						<span>My submissions</span>
+					</span>
 				</div>
 			</div>
-			<span
-				class="editProfile clickable"
-				on:click={() => {
-					showMySubmissonsModal = !showMySubmissonsModal;
-				}}
-			>
-				<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
-					><path
-						d="M4 21q-.825 0-1.412-.587Q2 19.825 2 19V5q0-.825.588-1.413Q3.175 3 4 3h16q.825 0 1.413.587Q22 4.175 22 5v14q0 .825-.587 1.413Q20.825 21 20 21Zm0-2h16V5H4v14Zm1-2h5v-2H5Zm9.55-2 4.95-4.95-1.425-1.425-3.525 3.55-1.425-1.425-1.4 1.425ZM5 13h5v-2H5Zm0-4h5V7H5ZM4 19V5v14Z"
-					/></svg
-				>
-				<span>My submissions</span>
-			</span>
 		{/if}
 		{#if isShowDiscord}
 			<div class="widgetBot" id={discordCssID}>
-				<widgetbot id='test' server="877546680801697813" channel="877546680801697816" />
+				<widgetbot id="test" server="877546680801697813" channel="877546680801697816" />
 			</div>
 			<script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
 		{/if}
@@ -92,7 +104,35 @@
 {/if}
 
 <style lang="scss">
-	.widgetBot{
+	.playerNameWrapper {
+		margin-left: 15px;
+		.playerName {
+			font-weight: bold;
+			display: flex;
+			font-size: 20px;
+			color: var(--textColor);
+		}
+		span {
+			color: var(--color7);
+		}
+	}
+	.avatar {
+		background-color: black;
+		width: 120px;
+		height: 120px;
+		min-width: 120px;
+		min-height: 120px;
+		border-radius: 50%;
+		border-color: var(--textColor);
+		border-style: solid;
+		img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+			border-radius: 50%;
+		}
+	}
+	.widgetBot {
 		border-radius: 50px;
 		width: 100%;
 		height: 45%;
@@ -100,7 +140,7 @@
 		background-color: var(--color23);
 		overflow: hidden;
 	}
-	#test{
+	#test {
 		width: 100%;
 		height: 100%;
 	}
@@ -152,10 +192,7 @@
 		font-size: 20px;
 	}
 	.topWrapper {
-		display: grid;
-		grid-template-areas: "dltop fltop";
 		width: 100%;
-		gap: 20px;
 		margin-bottom: -30px;
 	}
 	.fltop {
@@ -165,14 +202,17 @@
 		grid-area: dltop;
 	}
 	.topWidget {
-		height: 160px;
+		height: fit-content;
 		border-radius: 50px;
 		background-color: var(--color23);
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding-inline: 35px;
-		margin-bottom: 20px;
+		align-items: center;
+		padding: 20px;
+		margin-bottom: 60px;
+	}
+	.topWidget1 {
+		display: flex;
+		align-items: center;
 	}
 	.topTitle {
 		font-size: 24px;
@@ -187,20 +227,32 @@
 		font-weight: 300;
 	}
 	.editProfile {
-		background-color: var(--color23);
+		background-color: var(--color19);
 		height: 70px;
-		width: 100%;
+		width: fit-content;
 		border-radius: 50px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-top: 30px;
 		color: var(--textColor);
 		text-decoration: none;
-		margin-bottom: 20px;
+		padding-inline: 20px;
+		margin-left: auto;
 		svg {
 			fill: var(--textColor);
 			margin-right: 10px;
+		}
+	}
+	@media screen and (max-width: 1350px) {
+		.topWidget {
+			flex-direction: column;
+			align-items: flex-start;
+			.editProfile {
+				margin-top: 20px;
+				width: 100%;
+				margin-inline: auto;
+				padding: 0;
+			}
 		}
 	}
 	@media screen and (max-width: 1100px) {
