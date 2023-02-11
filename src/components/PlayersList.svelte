@@ -42,7 +42,7 @@
 		<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 			<div class="playerTop">
 				{#if list == 'rating'}
-					<p>#{index + 1}</p>
+					<p>#{item.overallRank}</p>
 				{:else}
 					<p>#{item[`${list}rank`]}</p>
 				{/if}
