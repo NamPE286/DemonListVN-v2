@@ -10,7 +10,10 @@
 	import { fly } from "svelte/transition";
 	import { userdata } from "./stores";
 	var id = $page.url.searchParams.get("id");
-	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
+	const supabase = createClient(
+		import.meta.env.VITE_DATABASE_API_URL,
+		import.meta.env.VITE_DATABASE_API_KEY
+	);
 	var player;
 	var list = 1;
 	var flrec = [];
@@ -34,7 +37,9 @@
 			avatarSrc =
 				"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Black_flag.svg/2560px-Black_flag.svg.png";
 		const dat = await (
-			await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/player/${$page.url.searchParams.get("id")}`)
+			await fetch(
+				`${import.meta.env.VITE_BACKEND_API_URL}/player/${$page.url.searchParams.get("id")}`
+			)
 		).json();
 		player = dat;
 		title = dat.name;
@@ -44,7 +49,9 @@
 		}
 		const data = await (
 			await fetch(
-				`${import.meta.env.VITE_BACKEND_API_URL}/player/${$page.url.searchParams.get("id")}/records/${sortBy}`
+				`${import.meta.env.VITE_BACKEND_API_URL}/player/${$page.url.searchParams.get(
+					"id"
+				)}/records/${sortBy}`
 			)
 		).json();
 		flrec = [];
@@ -141,7 +148,7 @@
 							<span class="playerName">{player.name}</span>
 						</Badge>
 					</div>
-					<span class='rating'>Rating: {player.rating}</span>
+					<span class="rating">Rating: {player.rating}</span>
 					<div class="social">
 						<a href={player.youtube ? player.youtube : "#!"} target="_blank" class="iconWrapper">
 							<svg
@@ -190,6 +197,12 @@
 						</span>
 					</div>
 				</div>
+				<div class="statWidget">
+					<span class="statTitle">Stats</span><br />
+					<span>Rating: {player.rating} (#{player.overallRank})</span><br />
+					<span>Demon List: {player.totalDLpt} (#{player.dlrank})</span><br />
+					<span>Featured List: {player.totalFLpt} (#{player.flrank})</span><br />
+				</div>
 				{#if id == getID()}
 					<span
 						class="editProfile clickable"
@@ -219,50 +232,48 @@
 					</span>
 				{/if}
 			</div>
-
-			<div class="fltop topWidget">
-				<p class="topTitle">Featured List Rank</p>
-				<p class="top">#{player.flrank ? player.flrank : "N/a"}</p>
-			</div>
-			<div class="dltop topWidget">
-				<p class="topTitle">Demon List Rank</p>
-				<p class="top">#{player.dlrank ? player.dlrank : "N/a"}</p>
-			</div>
 			<div class="mainWrapper">
-				<div class="listSelect">
-					<div class="showRecordFrom">
-						<span>Show records from</span>
+				<div class="selectWrapper">
+					<div class="listSelect">
+						<div class="showRecordFrom">
+							<span>Show records from</span>
+						</div>
+						<select bind:value={list} on:change={fetchPlayerData}>
+							{#if dlrec.length}
+								<option value={0} selected={true}>Demon List</option>
+							{/if}
+							{#if flrec.length}
+								<option value={1}>Featured List</option>
+							{/if}
+						</select>
 					</div>
-					<select bind:value={list} on:change={fetchPlayerData}>
-						{#if dlrec.length}
-							<option value={0} selected={true}>Demon List</option>
-						{/if}
-						{#if flrec.length}
-							<option value={1}>Featured List</option>
-						{/if}
-					</select>
-				</div>
-				<div class="listSelect">
-					<div class="showRecordFrom">
-						<span>Sort by</span>
+					<div class="listSelect">
+						<div class="showRecordFrom">
+							<span>Sort by</span>
+						</div>
+						<select bind:value={sortBy} on:change={fetchPlayerData}>
+							<option value={"timestamp"} selected={true}>Submit time</option>
+							<option value={"pt"}>Point</option>
+							{#if list == 0}
+								<option value={"progress"}>Progress</option>
+							{/if}
+							<option value={"levelid"}>Level ID</option>
+						</select>
 					</div>
-					<select bind:value={sortBy} on:change={fetchPlayerData}>
-						<option value={"timestamp"} selected={true}>Submit time</option>
-						<option value={"pt"}>Point</option>
-						{#if list == 0}
-							<option value={"progress"}>Progress</option>
-						{/if}
-						<option value={"levelid"}>Level ID</option>
-					</select>
 				</div>
+
 				{#if list == 0}
 					<div class="playersListWrapper">
 						<div class="playersList">
 							<div class="playerName">
 								<p>Level name</p>
 								{#if $userdata.data.isAdmin}
-									<svg on:click={() => (showAddRecordModal = !showAddRecordModal)} xmlns="http://www.w3.org/2000/svg" height="24" width="24"
-										><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z" /></svg>
+									<svg
+										on:click={() => (showAddRecordModal = !showAddRecordModal)}
+										xmlns="http://www.w3.org/2000/svg"
+										height="24"
+										width="24"><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z" /></svg
+									>
 								{/if}
 							</div>
 							<div class="playerPt">
@@ -277,7 +288,9 @@
 									>
 								</div>
 								<div class="playerPt">
-									<a href={item.videoLink} id="center">{item.dlPt} <br id="abcs" />({item.progress}%)</a>
+									<a href={item.videoLink} id="center"
+										>{item.dlPt} <br id="abcs" />({item.progress}%)</a
+									>
 									{#if $userdata.data.isAdmin}
 										<span
 											on:click={() => {
@@ -363,7 +376,11 @@
 		{#if $userdata.data.isAdmin}
 			<AddRecordModal bind:ifShow={showAddRecordModal} bind:player />
 			{#if currentRecord}
-				<EditRecordModal bind:ifShow={showEditRecordModal} bind:player bind:record={currentRecord} />
+				<EditRecordModal
+					bind:ifShow={showEditRecordModal}
+					bind:player
+					bind:record={currentRecord}
+				/>
 			{/if}
 		{/if}
 	</div>
@@ -372,8 +389,32 @@
 {/if}
 
 <style lang="scss">
-	.rating{
-		margin-top: 15px;
+	.selectWrapper {
+		display: flex;
+		gap: 12px;
+	}
+	.statWidget {
+		background-color: var(--color23);
+		height: fit-content;
+		width: 100%;
+		margin-top: 35px;
+		border-radius: 50px;
+		padding: 30px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		box-sizing: border-box;
+		span {
+			color: var(--color7);
+		}
+		.statTitle {
+			color: var(--textColor);
+			font-size: 20px;
+			font-weight: bold;
+		}
+	}
+
+	.rating {
+		margin-top: 10px;
 	}
 	#facebook {
 		fill: var(--textColor);
@@ -395,7 +436,6 @@
 		margin-bottom: 100px;
 		gap: 30px;
 		grid-template-areas:
-			"info dltop fltop"
 			"info main main"
 			"info main main"
 			"info main main";
@@ -445,6 +485,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: center;
 		padding-top: 40px;
 		padding-bottom: 40px;
 		background-color: var(--color23);
@@ -484,14 +525,12 @@
 		font-weight: 300;
 	}
 	.social {
-		margin-top: 20px;
+		margin-top: 8px;
 		display: flex;
 		align-items: center;
 		.iconWrapper {
-			background-color: var(--color16);
-			width: 60px;
-			height: 60px;
-			margin-inline: 10px;
+			width: 40px;
+			height: 40px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
