@@ -12,6 +12,25 @@ var dat1 = {
     notifications: [],
     isLoggedIn: false
 }
+async function updateNotification(id){
+    console.log(id)
+    const { data, error } = await supabase
+        .from('notifications')
+        .select('*')
+        .eq('to', id)
+    dat1.notifications = data
+    userdata.set(dat1)
+    console.log(data, error)
+    const sub = supabase
+        .from(`notifications:to=eq.${id}`)
+        .on('INSERT', (payload) => {
+            console.log(payload.new)
+            dat1.notifications.push(payload.new)
+            userdata.set(dat1)
+        })
+        .subscribe()
+    return () => {supabase.removeSubscription(sub)}
+}
 supabase.auth.onAuthStateChange((event, session) => {
     dat1.metadata = session.user
     fetch(`${import.meta.env.VITE_BACKEND_API_URL}/player/${session.user.id}`)
@@ -21,12 +40,7 @@ supabase.auth.onAuthStateChange((event, session) => {
             dat1.isLoggedIn = true
             userdata.set(dat1)
         });
-    fetch(`${import.meta.env.VITE_BACKEND_API_URL}/notifications/${session.user.id}`)
-        .then((response) => response.json())
-        .then((data) => {
-            dat1.notifications = data
-            userdata.set(dat1)
-        });
+    updateNotification(session.user.id)
 })
 
 
