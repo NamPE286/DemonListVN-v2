@@ -580,9 +580,9 @@
 			display: none;
 		}
 		.searchBox {
-			width: calc(100% - 225px);
+			width: calc(100% - 265px);
 			height: 30px;
-			left: 75px;
+			left: 115px;
 			transition: all 0.3s;
 			position: fixed;
 		}
