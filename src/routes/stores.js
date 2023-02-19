@@ -9,6 +9,7 @@ var dat1 = {
             isAdmin: false
         }
     },
+    notifications: [],
     isLoggedIn: false
 }
 supabase.auth.onAuthStateChange((event, session) => {
@@ -18,6 +19,12 @@ supabase.auth.onAuthStateChange((event, session) => {
         .then((data) => {
             dat1.data = data
             dat1.isLoggedIn = true
+            userdata.set(dat1)
+        });
+    fetch(`${import.meta.env.VITE_BACKEND_API_URL}/notifications/${session.user.id}`)
+        .then((response) => response.json())
+        .then((data) => {
+            dat1.notifications = data
             userdata.set(dat1)
         });
 })

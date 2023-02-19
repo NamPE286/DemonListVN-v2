@@ -2,11 +2,12 @@
 	import { fade } from "svelte/transition";
 	import { onMount } from "svelte";
 	import { createClient } from "@supabase/supabase-js";
+	import { userdata } from "../routes/stores";
 	import Modal from "./modals/Modal.svelte";
 	import NameModal from "./modals/NameModal.svelte";
 	async function addUser(user1) {
 		var { data, error } = await supabase.from("players").select("uid, name").eq("uid", user1.id);
-		console.log(user1, data, error)
+		console.log(user1, data, error);
 		if (data.length == 0) {
 			var { data, error } = await supabase.from("players").insert({
 				uid: user.id,
@@ -95,6 +96,18 @@
 			>
 		{/if}
 	</span>
+	{#if uid && !forceSignIn}
+		<a class="notificationIcon" href="/notifications">
+			<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"
+				><path
+					d="M160 856v-80h80V496q0-83 50-147.5T420 264v-28q0-25 17.5-42.5T480 176q25 0 42.5 17.5T540 236v28q80 20 130 84.5T720 496v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400 896h160q0 33-23.5 56.5T480 976ZM320 776h320V496q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"
+				/></svg
+			>
+			{#if $userdata.notifications.length}
+				<div class='notiCount'>{$userdata.notifications.length}</div>
+			{/if}
+		</a>
+	{/if}
 	<a id="title" href="/">Demon List VN</a>
 	<input
 		autocomplete="false"
@@ -125,6 +138,7 @@
 			<br />
 		</div>
 	{/if}
+
 	{#if uid && !forceSignIn}
 		<span class="submitBtn clickable" on:click={openModal}>
 			<p>Submit</p>
@@ -265,6 +279,21 @@
 {/if}
 
 <style lang="scss">
+	.notiCount{
+		position: absolute;
+		bottom: 0;
+		background-color: red;
+		color: white;
+		padding-inline: 3px;
+		border-radius: 20px;
+		margin-left: 13px;
+		margin-bottom: 12px;
+		font-size: 12px;
+	}
+	.notificationIcon {
+		margin-left: 15px;
+		margin-top: 2px;
+	}
 	#signIn {
 		margin-left: auto;
 	}
