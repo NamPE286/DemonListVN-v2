@@ -20,6 +20,7 @@
             <li>Secret routes or bug routes are not allowed.</li>
             <li>Record must have sound.</li>
             <li>Icon trail must be visible.</li>
+            <li>If you use custom LDM version, you have to show LDM level ID in comment when submit. Otherwise, your submission will be rejected immediately.</li>
         </ul>
         <h2>Demon List rules</h2>
         <ul>
