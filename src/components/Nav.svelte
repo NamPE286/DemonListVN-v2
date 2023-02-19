@@ -104,40 +104,42 @@
 				/></svg
 			>
 			{#if $userdata.notifications.length}
-				<div class='notiCount'>{$userdata.notifications.length}</div>
+				<div class="notiCount">{$userdata.notifications.length}</div>
 			{/if}
 		</a>
 	{/if}
 	<a id="title" href="/">Demon List VN</a>
-	<input
-		autocomplete="false"
-		class="searchBox"
-		placeholder="Search"
-		id="hideRes"
-		bind:value={searchValue}
-		on:input={typingAction}
-	/>
-	{#if (searchRes.length && searchValue.length && !isTyping) || (searchPlayerRes.length && searchValue.length && !isTyping)}
-		<div class="searchRes">
-			{#each searchRes as item, index}
-				<a href={`/level?id=${item.id}`} on:click={() => (searchValue = "")}
-					><br /><b>{item.name}</b> by {item.creator}</a
-				><br />
-			{/each}
-			{#each searchPlayerRes as item, index}
-				<a href={`/player?id=${item.id}`} on:click={() => (searchValue = "")}
-					><br /><b>{item.name}</b></a
-				><br />
-			{/each}
-			<br />
-		</div>
-	{/if}
-	{#if !searchRes.length && !searchPlayerRes.length && searchValue.length && !isTyping}
-		<div class="searchRes">
-			<span on:click={() => (searchValue = "")}><br /><b>No result</b></span><br />
-			<br />
-		</div>
-	{/if}
+	<div class="searchBox">
+		<input
+			autocomplete="false"
+			placeholder="Search"
+			class='searchInput'
+			id="hideRes"
+			bind:value={searchValue}
+			on:input={typingAction}
+		/>
+		{#if (searchRes.length && searchValue.length && !isTyping) || (searchPlayerRes.length && searchValue.length && !isTyping)}
+			<div class="searchRes">
+				{#each searchRes as item, index}
+					<a href={`/level?id=${item.id}`} on:click={() => (searchValue = "")}
+						><br /><b>{item.name}</b> by {item.creator}</a
+					><br />
+				{/each}
+				{#each searchPlayerRes as item, index}
+					<a href={`/player?id=${item.id}`} on:click={() => (searchValue = "")}
+						><br /><b>{item.name}</b></a
+					><br />
+				{/each}
+				<br />
+			</div>
+		{/if}
+		{#if !searchRes.length && !searchPlayerRes.length && searchValue.length && !isTyping}
+			<div class="searchRes">
+				<span on:click={() => (searchValue = "")}><br /><b>No result</b></span><br />
+				<br />
+			</div>
+		{/if}
+	</div>
 
 	{#if uid && !forceSignIn}
 		<span class="submitBtn clickable" on:click={openModal}>
@@ -279,7 +281,7 @@
 {/if}
 
 <style lang="scss">
-	.notiCount{
+	.notiCount {
 		position: absolute;
 		bottom: 0;
 		background-color: red;
@@ -540,25 +542,36 @@
 	}
 	.searchBox {
 		background-color: var(--color19);
-		border-color: transparent;
 		border-radius: 8px;
 		height: 55%;
 		margin-left: auto;
 		margin-right: 65px;
 		width: 400px;
-		box-sizing: border-box;
-		padding-inline: 15px;
-		color: var(--textColor);
+		input {
+			border-radius: 8px;
+			width: 100%;
+			height: 100%;
+			border-color: transparent;
+			background-color: transparent;
+			color: var(--textColor);
+			box-sizing: border-box;
+			padding-inline: 15px;
+		}
+	}
+	.searchInput:focus + .searchRes{
+		display: block;
 	}
 	.searchRes {
+		display: none;
 		position: fixed;
-		left: calc(50% - 197.5px);
-		top: 60px;
 		background-color: var(--color19);
 		width: 400px;
-		border-radius: 8px;
 		box-sizing: border-box;
 		padding-inline: 15px;
+		margin-top: 10px;
+		border-radius: 10px;
+		overflow-y: scroll;
+		max-height: 400px;
 		a {
 			color: var(--textColor);
 			text-decoration: none;
@@ -585,11 +598,6 @@
 			left: 115px;
 			transition: all 0.3s;
 			position: fixed;
-		}
-		.searchBox:focus {
-			transform: translateX(-70px);
-			width: calc(100% - 10px);
-			height: 50px;
 		}
 		.searchRes {
 			width: 100%;
