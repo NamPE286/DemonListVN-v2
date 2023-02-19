@@ -23,13 +23,16 @@
 	<div class="pageContent">
 		<Title title="Admin" description="" />
 		<button class="refreshList" on:click={refreshList}>{a}</button><br />
-		<span>Submit checker: </span>
+		<span>Submissions tool: </span>
 		<a href="/admin/submitChecker">All</a>
 		<a href="/admin/submitChecker/DL">DL</a>
-		<a href="/admin/submitChecker/FL">FL</a><br />
+		<a href="/admin/submitChecker/FL">FL</a>
 		<a href="/admin/newLevel">New levels</a><br />
+		<span>Players tool: </span>
 		<a href="/admin/allPlayer">Player manager</a>
-		<a href="/admin/mergeAccount">Merge Account</a>
+		<a href="/admin/mergeAccount">Merge Account</a><br>
+		<span>Misc.:</span>
+		<a href="/admin/sendNotification">Notification</a><br>
 	</div>
 {/if}
 
