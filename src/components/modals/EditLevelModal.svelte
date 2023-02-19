@@ -19,7 +19,7 @@
 		console.log(temp, temp1, level.ldm);
 		level["prevflTop"] = prevFL;
 		if (delLv == "yes") {
-			fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${level.id}`, {
+			await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${level.id}`, {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json"
@@ -28,11 +28,8 @@
 					token: supabase.auth.session().access_token,
 				})
 			})
-				.then((response) => response.json())
-				.then((data) => {
-					alert("Level deleted");
-					window.location.reload();
-				});
+			alert("Level deleted");
+			window.location.reload();
 		} else {
 			fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${level.id}`, {
 				method: "PATCH",
