@@ -560,6 +560,9 @@
 	.searchInput:focus + .searchRes{
 		display: block;
 	}
+	.searchRes:hover{
+		display: block;
+	}
 	.searchRes {
 		display: none;
 		position: fixed;
