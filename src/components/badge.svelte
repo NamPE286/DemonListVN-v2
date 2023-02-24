@@ -6,32 +6,32 @@
         return `font-size: ${size}px`
     }
     function getTitle(){
-        if(rating >= 3800) return {
+        if(rating >= 4000) return {
             title: 'LGM',
             fullTitle: 'Legendary Grandmaster',
             color:'darkred'
         }
-        if(rating >= 3500) return {
+        if(rating >= 3600) return {
             title: 'GM',
             fullTitle: 'Grandmaster',
             color:'red'
         }
-        if(rating >= 2750) return {
+        if(rating >= 3000) return {
             title: 'M',
             fullTitle: 'Master',
             color:'blue'
         }
-        if(rating >= 2200) return {
+        if(rating >= 2500) return {
             title: 'CM',
             fullTitle: 'Candidate Master',
             color:'darkorange'
         }
-        if(rating >= 1850) return {
+        if(rating >= 2000) return {
             title: 'EX',
             fullTitle: 'Expert',
             color:'purple'
         }
-        if(rating >= 1400) return {
+        if(rating >= 1500) return {
             title: 'SP',
             fullTitle: 'Specialist',
             color:'darkcyan'
