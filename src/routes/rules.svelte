@@ -46,7 +46,7 @@
                 <li><Badge rating={1000}> Apprentice: >= 1000</Badge></li>
                 <li><Badge rating={1500}> Specialist: >= 1500</Badge></li>
                 <li><Badge rating={2000}> Expert: >= 2000</Badge></li>
-                <li><Badge rating={3500}> Candidate Master: >= 2500</Badge></li>
+                <li><Badge rating={2500}> Candidate Master: >= 2500</Badge></li>
                 <li><Badge rating={3000}> Master: >= 3000</Badge></li>
                 <li><Badge rating={3600}> Grandmaster: >= 3600</Badge></li>
                 <li><Badge rating={4000}> Legendary Grandmaster: >= 4000</Badge></li>
