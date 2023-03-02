@@ -17,8 +17,9 @@
 	<title>Settings - Demon List VN</title>
 	<meta name='description' content='View and modify your preferences'>
 </head>
-<h1>Settings</h1>
+
 <div class="pageContent">
+<h1>Settings</h1>
     <div class="st_option">
 		<ThemePicker name="Theme" />
 		<SettingInput name="Background image" key='bg' />
