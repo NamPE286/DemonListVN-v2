@@ -647,6 +647,9 @@
 				font-size: 26px;
 			}
 		}
+		.selectWrapper{
+			flex-direction: column;
+		}
 	}
 	@media screen and (max-width: 1100px) {
 		#abcs {
