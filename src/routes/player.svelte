@@ -85,7 +85,14 @@
 			maxPt = Math.max(maxPt, i.dlPt);
 			totalPt += i.dlPt;
 			ratings.push(Math.floor(maxPt + (totalPt * 25) / maxPt));
-			timestamps.push(new Date(i.timestamp).toLocaleDateString("vi-VN") + "\n" + i.levels.name + '\n' + 'by ' + i.levels.creator);
+			timestamps.push(
+				new Date(i.timestamp).toLocaleDateString("vi-VN") +
+					"\n" +
+					i.levels.name +
+					"\n" +
+					"by " +
+					i.levels.creator
+			);
 		}
 		return {
 			ratings: ratings,
@@ -149,9 +156,9 @@
 			},
 			options: {
 				plugins: {
-					tooltip:{
-						xAlign: 'center',
-						yAlign: 'top',
+					tooltip: {
+						xAlign: "center",
+						yAlign: "top",
 						caretSize: 0
 					}
 				},
@@ -310,8 +317,8 @@
 				{/if}
 			</div>
 			<div class="mainWrapper">
-				<div class='chartWrapper'>
-					<canvas id="chart"/>
+				<div class="chartWrapper">
+					<canvas id="chart" />
 				</div>
 				<div class="selectWrapper">
 					<div class="listSelect">
@@ -342,111 +349,59 @@
 					</div>
 				</div>
 
-				{#if list == 0}
-					<div class="playersListWrapper">
-						<div class="playersList">
+				<div class="playersListWrapper">
+					<div class="playersList">
+						<div class="playerName">
+							<p>Level name</p>
+							{#if $userdata.data.isAdmin}
+								<svg
+									on:click={() => (showAddRecordModal = !showAddRecordModal)}
+									xmlns="http://www.w3.org/2000/svg"
+									height="24"
+									width="24"><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z" /></svg
+								>
+							{/if}
+						</div>
+						<div class="playerPt">
+							<p>Point</p>
+						</div>
+					</div>
+					{#each list == 0 ? dlrec : flrec as item, index}
+						<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 							<div class="playerName">
-								<p>Level name</p>
-								{#if $userdata.data.isAdmin}
-									<svg
-										on:click={() => (showAddRecordModal = !showAddRecordModal)}
-										xmlns="http://www.w3.org/2000/svg"
-										height="24"
-										width="24"><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z" /></svg
-									>
-								{/if}
+								<a href={`/level?id=${item.levelid}`}
+									>{item.levels.name} ({ifMobile(item)}{item.refreshRate}fps) <br />
+									<span id="creatorName">by {item.levels.creator}</span></a
+								>
 							</div>
 							<div class="playerPt">
-								<p>Point</p>
-							</div>
-						</div>
-						{#each dlrec as item, index}
-							<div class="playersList" id={index % 2 ? "" : "highlight2"}>
-								<div class="playerName">
-									<a href={`/level?id=${item.levelid}`}
-										>{item.levels.name} ({ifMobile(item)}{item.refreshRate}fps) <br> <span id='creatorName'>by {item.levels.creator}</span></a
-									>
-								</div>
-								<div class="playerPt">
-									<a href={item.videoLink} id="center"
-										>{item.dlPt} <br id="abcs" />({item.progress}%)</a
-									>
-									{#if $userdata.data.isAdmin}
-										<span
-											on:click={() => {
-												currentRecord = item;
-												showEditRecordModal = !showEditRecordModal;
-											}}
-											><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
-												><path
-													d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"
-												/></svg
-											></span
-										>
-										<span on:click={() => removeLevel(item, index)}
-											><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
-												><path
-													d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z"
-												/></svg
-											></span
-										>
-									{/if}
-								</div>
-							</div>
-						{/each}
-					</div>
-				{/if}
-				{#if list == 1}
-					<div class="playersListWrapper">
-						<div class="playersList">
-							<div class="playerName">
-								<p>Level name</p>
+								<a href={item.videoLink} id="center"
+									>{list == 0 ? item.dlPt : item.flPt} <br id="abcs" />{#if list == 0}({item.progress}%){/if}</a
+								>
 								{#if $userdata.data.isAdmin}
-									<span on:click={() => (showAddRecordModal = !showAddRecordModal)}
+									<span
+										on:click={() => {
+											currentRecord = item;
+											showEditRecordModal = !showEditRecordModal;
+										}}
 										><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
-											><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z" /></svg
+											><path
+												d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"
+											/></svg
+										></span
+									>
+									<span on:click={() => removeLevel(item, index)}
+										><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+											><path
+												d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z"
+											/></svg
 										></span
 									>
 								{/if}
 							</div>
-							<div class="playerPt">
-								<p>Point</p>
-							</div>
 						</div>
-						{#each flrec as item, index}
-							<div class="playersList" id={index % 2 ? "" : "highlight2"}>
-								<div class="playerName">
-									<a href={`/level?id=${item.levelid}`}
-										>{item.levels.name} ({ifMobile(item)}{item.refreshRate}fps)</a
-									><a href={item.videoLink} target="_blank" id="videoLink">(Video Link)</a>
-								</div>
-								<div class="playerPt">
-									<p id="center">{item.flPt}</p>
-									{#if $userdata.data.isAdmin}
-										<span
-											on:click={() => {
-												currentRecord = item;
-												showEditRecordModal = !showEditProfileModal;
-											}}
-											><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
-												><path
-													d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"
-												/></svg
-											></span
-										>
-										<span on:click={() => removeLevel(item, index)}
-											><svg id="forAdmin" xmlns="http://www.w3.org/2000/svg" height="24" width="24"
-												><path
-													d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z"
-												/></svg
-											></span
-										>
-									{/if}
-								</div>
-							</div>
-						{/each}
-					</div>
-				{/if}
+					{/each}
+				</div>
 			</div>
 		</div>
 		{#if id == getID()}
@@ -469,10 +424,10 @@
 {/if}
 
 <style lang="scss">
-	#creatorName{
+	#creatorName {
 		color: var(--color7);
 	}
-	.chartWrapper{
+	.chartWrapper {
 		height: 250px;
 		width: 100%;
 		background-color: var(--color23);
