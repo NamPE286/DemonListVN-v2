@@ -41,15 +41,23 @@
             </ul>
             <li>Rating distribution:</li>
             <ul>
-                <li><Badge rating={1}> Casual: > 0</Badge></li>
-                <li><Badge rating={500}> Novice: >= 500</Badge></li>
-                <li><Badge rating={1000}> Apprentice: >= 1000</Badge></li>
-                <li><Badge rating={1500}> Specialist: >= 1500</Badge></li>
-                <li><Badge rating={2000}> Expert: >= 2000</Badge></li>
-                <li><Badge rating={2500}> Candidate Master: >= 2500</Badge></li>
+                <li><Badge rating={1}> C: > 0</Badge></li>
+                <li><Badge rating={600}> C+: >= 600</Badge></li>
+                <li><Badge rating={800}> B-: >= 800</Badge></li>
+                <li><Badge rating={1000}> B: >= 1000</Badge></li>
+                <li><Badge rating={1200}> B+: >= 1200</Badge></li>
+                <li><Badge rating={1400}> A-: >= 1400</Badge></li>
+                <li><Badge rating={1600}> A: >= 1600</Badge></li>
+                <li><Badge rating={1800}> A+: >= 1800</Badge></li>
+                <li><Badge rating={2000}> S-: >= 2000</Badge></li>
+                <li><Badge rating={2200}> S: >= 2200</Badge></li>
+                <li><Badge rating={2350}> S+: >= 2350</Badge></li>
+                <li><Badge rating={2500}> Expert: >= 2000</Badge></li>
+                <li><Badge rating={2800}> Candidate Master: >= 2500</Badge></li>
                 <li><Badge rating={3000}> Master: >= 3000</Badge></li>
                 <li><Badge rating={3600}> Grandmaster: >= 3600</Badge></li>
-                <li><Badge rating={4000}> Legendary Grandmaster: >= 4000</Badge></li>
+                <li><Badge rating={3900}> Super Grandmaster: >= 3800</Badge></li>
+                <li><Badge rating={4200}> Legendary Grandmaster: >= 4000</Badge></li>
             </ul>
         </ul>
     </div>

@@ -6,10 +6,15 @@
         return `font-size: ${size}px`
     }
     function getTitle(){
-        if(rating >= 4000) return {
+        if(rating >= 4200) return {
             title: 'LGM',
             fullTitle: 'Legendary Grandmaster',
             color:'darkred'
+        }
+        if(rating >= 3900) return {
+            title: 'SGM',
+            fullTitle: 'Super Grandmaster',
+            color:'red'
         }
         if(rating >= 3600) return {
             title: 'GM',
@@ -21,34 +26,69 @@
             fullTitle: 'Master',
             color:'blue'
         }
-        if(rating >= 2500) return {
+        if(rating >= 2800) return {
             title: 'CM',
             fullTitle: 'Candidate Master',
             color:'darkorange'
         }
-        if(rating >= 2000) return {
+        if(rating >= 2500) return {
             title: 'EX',
             fullTitle: 'Expert',
             color:'purple'
         }
-        if(rating >= 1500) return {
-            title: 'SP',
-            fullTitle: 'Specialist',
-            color:'darkcyan'
+        if(rating >= 2350) return {
+            title: 'S+',
+            fullTitle: 'S+',
+            color:'gold'
+        }
+        if(rating >= 2200) return {
+            title: 'S',
+            fullTitle: 'S',
+            color:'gold'
+        }
+        if(rating >= 2000) return {
+            title: 'S-',
+            fullTitle: 'S-',
+            color:'gold'
+        }
+        if(rating >= 1800) return {
+            title: 'A+',
+            fullTitle: 'A+',
+            color:'green'
+        }
+        if(rating >= 1600) return {
+            title: 'A',
+            fullTitle: 'A',
+            color:'green'
+        }
+        if(rating >= 1400) return {
+            title: 'A-',
+            fullTitle: 'A-',
+            color:'green'
+        }
+        if(rating >= 1200) return {
+            title: 'B+',
+            fullTitle: 'B+',
+            color:'#413cde'
         }
         if(rating >= 1000) return {
-            title: 'AP',
-            fullTitle: 'Apprentice',
-            color:'darkgreen'
+            title: 'B',
+            fullTitle: 'B',
+            color:'#413cde'
         }
-        if(rating >= 500) return {
-            title: 'N',
-            fullTitle: 'Novice',
-            color:'green'
+        if(rating >= 800) return {
+            title: 'B-',
+            fullTitle: 'B-',
+            color:'#413cde'
+        }
+        if(rating >= 600) return {
+            title: 'C+',
+            fullTitle: 'C+',
+            color:'gray'
         }
         if(rating > 0) return {
             title: 'C',
-            fullTitle: 'Casual',
+            fullTitle: 'C',
             color:'gray'
         }
         return null
