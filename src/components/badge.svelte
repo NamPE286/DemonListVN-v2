@@ -105,6 +105,7 @@
     .wrapper{
         display: flex;
         align-items: center;
+        color: white;
     }
     .badge{
         user-select: none;
