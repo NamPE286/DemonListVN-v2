@@ -38,7 +38,7 @@
 {/if}
 <Nav />
 {#key $page.url}
-	<div in:fly={{y: 50, duration: 500, delay: 300}}>
+	<div>
 		<slot />
 	</div>
 {/key}
