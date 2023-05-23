@@ -142,8 +142,8 @@
 					{
 						label: "Rating",
 						data: data.ratings,
-						borderWidth: 2,
-						fill: true,
+						borderWidth: 3,
+						fill: false,
 						pointHoverRadius: 10
 					}
 				]
@@ -177,7 +177,8 @@
 						radius: 0
 					}
 				},
-				animation: false
+				animation: false,
+				maintainAspectRatio: false
 			}
 		});
 	}
@@ -310,7 +311,9 @@
 				{/if}
 			</div>
 			<div class="mainWrapper">
-				<canvas id="chart" />
+				<div class='chartWrapper'>
+					<canvas id="chart"/>
+				</div>
 				<div class="selectWrapper">
 					<div class="listSelect">
 						<div class="showRecordFrom">
@@ -467,7 +470,9 @@
 {/if}
 
 <style lang="scss">
-	#chart {
+	.chartWrapper{
+		height: 250px;
+		width: 100%;
 		background-color: var(--color23);
 		padding: 30px;
 		padding-top: 20px;
@@ -743,6 +748,7 @@
 			display: block;
 		}
 		.pageContent {
+			gap: 15px;
 			width: 90%;
 			grid-template-areas:
 				"warn"
