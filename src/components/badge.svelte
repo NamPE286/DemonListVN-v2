@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+	import { onMount } from "svelte";
 
 	export var player: any;
 	export var size = 0;
@@ -132,9 +132,9 @@
 		}
 	}
 	const title = getTitle();
-    onMount(() => {
-        expanded = !JSON.parse(localStorage.getItem('badgeMinimized'))
-    })
+	onMount(() => {
+		expanded = !JSON.parse(localStorage.getItem("badgeMinimized"));
+	});
 </script>
 
 <div
@@ -179,6 +179,16 @@
 				FL25
 			</div>
 		{/if}
+	{/if}
+	{#if !expanded && (overral25() || FL25())}
+		<div
+			class="badge"
+			title={"Click to expand"}
+			style={`
+                ${setTextSize()};
+                background-color: gray;
+            `}
+		>...</div>
 	{/if}
 	<slot />
 </div>
