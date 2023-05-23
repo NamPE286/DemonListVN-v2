@@ -176,8 +176,7 @@
 				{#each records as item, index}
 					<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 						<div class="playerName">
-							
-							<a href={`/player?id=${item.userid}`}><Badge player={item.players}>{item.players.name}</Badge></a>
+							<Badge player={item.players}><a href={`/player?id=${item.userid}`}>{item.players.name}</a></Badge>
 						</div>
 						<div class="playerPt">
 							<a href={item.videoLink} id="center" target="_blank">{item.progress}% ({ifMobile(item)}{item.refreshRate}fps)</a>
@@ -363,12 +362,8 @@
 			align-items: center;
 			font-size: 16px;
 			height: 100%;
-			p {
-				margin-left: 40px;
-			}
-			a {
-				margin-left: 40px;
-			}
+			box-sizing: border-box;
+			padding-inline: 40px;
 		}
 		.playerPt {
 			display: flex;
