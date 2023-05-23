@@ -1,6 +1,7 @@
 <script>
 	import { page } from "$app/stores";
 	import { createClient } from "@supabase/supabase-js";
+	import Chart from "chart.js/auto";
 	import LoadingAnimation from "../components/animations/LoadingAnimation.svelte";
 	import EditProfileModal from "../components/modals/EditProfileModal.svelte";
 	import AddRecordModal from "../components/modals/AddRecordModal.svelte";
@@ -9,6 +10,7 @@
 	import Badge from "../components/badge.svelte";
 	import { fly } from "svelte/transition";
 	import { userdata } from "./stores";
+	import { onMount } from "svelte";
 	var id = $page.url.searchParams.get("id");
 	const supabase = createClient(
 		import.meta.env.VITE_DATABASE_API_URL,
@@ -67,9 +69,29 @@
 		if (sortBy == "flPt" || sortBy == "dlPt") {
 			sortBy = "pt";
 		}
+		createChart(getChartData(dlrec));
 	}
-	$: $page.url.searchParams.get("id"), fetchPlayerData();
-
+	function getChartData(dlrec) {
+		let sorted_records = JSON.parse(JSON.stringify(dlrec));
+		sorted_records.sort((a, b) => {
+			return a.timestamp - b.timestamp;
+		});
+		console.log(sorted_records);
+		const ratings = [],
+			timestamps = [];
+		let maxPt = 0,
+			totalPt = 0;
+		for (const i of sorted_records) {
+			maxPt = Math.max(maxPt, i.dlPt);
+			totalPt += i.dlPt;
+			ratings.push(Math.floor(maxPt + (totalPt * 25) / maxPt));
+			timestamps.push(new Date(i.timestamp).toLocaleDateString("vi-VN"));
+		}
+		return {
+			ratings: ratings,
+			timestamps: timestamps
+		};
+	}
 	function getDiscordTag() {
 		const tag = player.discord;
 		if (tag == null) {
@@ -113,6 +135,47 @@
 		if (item.mobile) return "Mobile ";
 		return "";
 	}
+	function createChart(data) {
+		Chart.defaults.color = 'gray'
+		new Chart("chart", {
+			type: "line",
+			data: {
+				labels: data.timestamps,
+				datasets: [
+					{
+						label: "Rating",
+						data: data.ratings,
+						borderWidth: 2,
+						fill: true
+					}
+				]
+			},
+			options: {
+				responsive: true,
+				scales: {
+					x: {
+						grid: {
+							display: false
+						}
+					},
+					y: {
+						beginAtZero: false,
+						grid: {
+							display: false
+						}
+					}
+				},
+				elements: {
+                    point:{
+                        radius: 1
+                    }
+                },
+			}
+		});
+	}
+	onMount(() => {
+		fetchPlayerData();
+	});
 </script>
 
 <svelte:head>
@@ -233,6 +296,7 @@
 				{/if}
 			</div>
 			<div class="mainWrapper">
+				<canvas id="chart" />
 				<div class="selectWrapper">
 					<div class="listSelect">
 						<div class="showRecordFrom">
@@ -389,6 +453,15 @@
 {/if}
 
 <style lang="scss">
+	#chart {
+		background-color: var(--color23);
+		padding: 30px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		box-sizing: border-box;
+		border-radius: 50px;
+		margin-bottom: 50px;
+	}
 	.selectWrapper {
 		display: flex;
 		gap: 12px;
@@ -647,7 +720,7 @@
 				font-size: 26px;
 			}
 		}
-		.selectWrapper{
+		.selectWrapper {
 			flex-direction: column;
 		}
 	}
