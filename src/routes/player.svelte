@@ -85,8 +85,7 @@
 			maxPt = Math.max(maxPt, i.dlPt);
 			totalPt += i.dlPt;
 			ratings.push(Math.floor(maxPt + (totalPt * 25) / maxPt));
-			console.log(i);
-			timestamps.push(new Date(i.timestamp).toLocaleDateString("vi-VN") + "\n" + i.levels.name);
+			timestamps.push(new Date(i.timestamp).toLocaleDateString("vi-VN") + "\n" + i.levels.name + '\n' + 'by ' + i.levels.creator);
 		}
 		return {
 			ratings: ratings,
@@ -365,7 +364,7 @@
 							<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 								<div class="playerName">
 									<a href={`/level?id=${item.levelid}`}
-										>{item.levels.name} ({ifMobile(item)}{item.refreshRate}fps)</a
+										>{item.levels.name} ({ifMobile(item)}{item.refreshRate}fps) <br> <span id='creatorName'>by {item.levels.creator}</span></a
 									>
 								</div>
 								<div class="playerPt">
@@ -470,6 +469,9 @@
 {/if}
 
 <style lang="scss">
+	#creatorName{
+		color: var(--color7);
+	}
 	.chartWrapper{
 		height: 250px;
 		width: 100%;
@@ -666,9 +668,11 @@
 		flex-direction: column;
 	}
 	.playersList {
-		height: 50px;
+		height: fit-content;
 		display: flex;
 		border-radius: 50px;
+		padding-top: 10px;
+		padding-bottom: 10px;
 		a {
 			color: var(--textColor);
 			text-decoration: none;
@@ -770,9 +774,6 @@
 		}
 		.playerPt {
 			margin-right: 20px;
-		}
-		.playersList {
-			height: 80px;
 		}
 	}
 </style>
