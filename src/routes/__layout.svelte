@@ -1,8 +1,6 @@
 <script lang="ts">
 	import Nav from "../components/Nav.svelte";
-	import Snowfall from "../components/effect/Snowfall.svelte";
 	import { onMount } from "svelte";
-	import { fly } from "svelte/transition";
 	import { page } from '$app/stores'
 	var img;
 	var blur, opacity;
