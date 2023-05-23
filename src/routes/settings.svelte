@@ -26,6 +26,7 @@
 		<SliderPicker name="BG opacity" key="opacity" />
 		<SliderPicker name="BG blur" key="blur" />
 		<SettingToggle name='Show discord widget' key='showDiscordWidget' defaultKey='true'/>
+		<SettingToggle name="Minimize player's badges (click on badge to expand)" key='badgeMinimized' defaultKey='false'/>
 		{#if $userdata.metadata}
 			<span class="submitBtn clickable" id="signIn" on:click={signOut}>
 				<p>Sign Out</p>
