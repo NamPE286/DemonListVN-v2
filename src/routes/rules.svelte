@@ -52,11 +52,11 @@
                 <li><Badge rating={2000}> S-: >= 2000</Badge></li>
                 <li><Badge rating={2200}> S: >= 2200</Badge></li>
                 <li><Badge rating={2350}> S+: >= 2350</Badge></li>
-                <li><Badge rating={2500}> Expert: >= 2000</Badge></li>
-                <li><Badge rating={2800}> Candidate Master: >= 2500</Badge></li>
+                <li><Badge rating={2500}> Expert: >= 2500</Badge></li>
+                <li><Badge rating={2800}> Candidate Master: >= 2800</Badge></li>
                 <li><Badge rating={3000}> Master: >= 3000</Badge></li>
                 <li><Badge rating={3600}> Grandmaster: >= 3600</Badge></li>
-                <li><Badge rating={3900}> Super Grandmaster: >= 3800</Badge></li>
+                <li><Badge rating={3900}> Super Grandmaster: >= 3900</Badge></li>
                 <li><Badge rating={4200}> Legendary Grandmaster: >= 4000</Badge></li>
             </ul>
         </ul>
