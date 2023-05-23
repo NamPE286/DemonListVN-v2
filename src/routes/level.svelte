@@ -177,7 +177,7 @@
 					<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 						<div class="playerName">
 							
-							<a href={`/player?id=${item.userid}`}><Badge rating={item.players.rating}>{item.players.name}</Badge></a>
+							<a href={`/player?id=${item.userid}`}><Badge player={item.players}>{item.players.name}</Badge></a>
 						</div>
 						<div class="playerPt">
 							<a href={item.videoLink} id="center" target="_blank">{item.progress}% ({ifMobile(item)}{item.refreshRate}fps)</a>

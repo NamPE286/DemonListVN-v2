@@ -222,7 +222,7 @@
 						<img src={avatarSrc} alt="" />
 					</div>
 					<div class="playerNameWrapper">
-						<Badge rating={player.rating} size={15}>
+						<Badge player={player} size={15}>
 							<span class="playerName">{player.name}</span>
 						</Badge>
 					</div>

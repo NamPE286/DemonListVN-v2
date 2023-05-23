@@ -47,7 +47,7 @@
 					<p>#{item[`${list}rank`]}</p>
 				{/if}
 			</div>
-			<Badge rating={item.rating}/>
+			<Badge player={item}/>
 			<div class="playerName">
 				<a href={`/player?id=${item.uid}`}>{item.name}</a>
 			</div>
