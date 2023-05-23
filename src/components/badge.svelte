@@ -4,6 +4,7 @@
 	export var player: any;
 	export var size = 0;
 	var expanded = false;
+	var badges = [];
 	function setTextSize() {
 		if (size == 0) return "";
 		return `font-size: ${size}px`;
@@ -116,7 +117,13 @@
 	function overral25() {
 		try {
 			if (!player.overallRank) return false;
-			return player.overallRank <= 25;
+			if (player.overallRank <= 25)
+				badges.push({
+					title: "#25",
+					fullTitle: "Overall #25",
+					color:
+						"#4158D0; background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);"
+				});
 		} catch {
 			console.log("err");
 			return false;
@@ -125,13 +132,20 @@
 	function FL25() {
 		try {
 			if (!player.flrank) return false;
-			return player.flrank <= 25;
+			if (player.flrank <= 25)
+				badges.push({
+					title: "FL25",
+					fullTitle: "Featured List #25",
+					color:
+						"background-color: #0093E9; background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);"
+				});
 		} catch {
 			console.log("err");
 			return false;
 		}
 	}
-	const title = getTitle();
+	if (getTitle()) badges.push(getTitle());
+	overral25(), FL25();
 	onMount(() => {
 		expanded = !JSON.parse(localStorage.getItem("badgeMinimized"));
 	});
@@ -143,44 +157,26 @@
 		expanded = !expanded;
 	}}
 >
-	{#if title}
+	{#if expanded}
+		{#each badges as item, index}
+			<div
+				class="badge"
+				title={item.fullTitle}
+				style={`${setTextSize()}; background-color: ${item.color};`}
+			>
+				{item.title}
+			</div>
+		{/each}
+	{/if}
+	{#if !expanded && badges.length > 0}
 		<div
 			class="badge"
-			title={title.fullTitle}
-			style={`${setTextSize()}; background-color: ${title.color}`}
+			title={badges[0].fullTitle}
+			style={`${setTextSize()}; background-color: ${badges[0].color};`}
 		>
-			{title.title}
+			{badges[0].title}
 		</div>
-	{/if}
-	{#if expanded}
-		{#if overral25()}
-			<div
-				class="badge"
-				title={"Overall #25"}
-				style={`
-                ${setTextSize()};
-                background-color: #4158D0;
-                background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-            `}
-			>
-				#25
-			</div>
-		{/if}
-		{#if FL25()}
-			<div
-				class="badge"
-				title={"Feature List #25"}
-				style={`
-                ${setTextSize()};
-                background-color: #0093E9;
-                background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
-            `}
-			>
-				FL25
-			</div>
-		{/if}
-	{/if}
-	{#if !expanded && (overral25() || FL25())}
+		{#if badges.length > 1}
 		<div
 			class="badge"
 			title={"Click to expand"}
@@ -188,7 +184,10 @@
                 ${setTextSize()};
                 background-color: gray;
             `}
-		>...</div>
+		>
+			...
+		</div>
+		{/if}
 	{/if}
 	<slot />
 </div>
