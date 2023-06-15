@@ -11,6 +11,7 @@
     <div class='rule'>
         <h2>General rules</h2>
         <ul>
+            <li>All levels must have insane or extreme demon at the time of submission.</li>
             <li>Records must reach minimum progress requirement of any level to be accepted.</li>
             <li>Cheats and tools are not allowed except for these:</li>
             <ul>
