@@ -42,6 +42,9 @@
 			<p class="greeting">{greeting}!</p>
 			<p class="time">{time}</p>
 		</div>
+		<div class="warn1">
+			<p>Check out the new <a href='https://challengelistvn.pages.dev/'>Challenge List VN</a>! Made by the creator of Demon List VN.</p>
+		</div>
 		{#if player.uid}
 			{#if player.isHidden}
 				<div class="warn">
@@ -166,6 +169,19 @@
 		margin-inline: auto;
 		margin-bottom: 25px;
 		color: yellow;
+	}
+	.warn1 {
+		width: 100%;
+		background-color: rgb(0, 119, 113);
+		height: fit-content;
+		box-sizing: border-box;
+		padding-inline: 18px;
+		padding-top: 1px;
+		padding-bottom: 1px;
+		border-radius: 20px;
+		margin-inline: auto;
+		margin-bottom: 25px;
+		color: cyan;
 	}
 	#disLarge {
 		height: 400px;
