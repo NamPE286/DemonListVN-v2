@@ -149,13 +149,13 @@
 						bind:value={user.data.discord}
 					/>
 					<select class="sel" bind:value={user.data.province}>
-						<option value={null} disabled selected>Provinces</option>
+						<option value={null} selected>Provinces</option>
 						{#each sortedProvinces as item, index}
 							<option value={item.name}>{item.name}</option>
 						{/each}
 					</select>
 					<select class="sel" bind:value={user.data.city}>
-						<option value={null} disabled selected>City</option>
+						<option value={null} selected>City</option>
 						{#if user.data.province}
 							{#each provinces[user.data.province].cities as item, index}
 								<option value={item}>{item}</option>
