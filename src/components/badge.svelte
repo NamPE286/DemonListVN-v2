@@ -10,17 +10,11 @@
 		return `font-size: ${size}px`;
 	}
 	function getTitle() {
-		if (player.rating >= 4200)
+		if (player.rating >= 4000)
 			return {
 				title: "LGM",
 				fullTitle: "Legendary Grandmaster",
 				color: "darkred"
-			};
-		if (player.rating >= 3900)
-			return {
-				title: "SGM",
-				fullTitle: "Super Grandmaster",
-				color: "red"
 			};
 		if (player.rating >= 3600)
 			return {
@@ -177,16 +171,16 @@
 			{badges[0].title}
 		</div>
 		{#if badges.length > 1}
-		<div
-			class="badge"
-			title={"Click to expand"}
-			style={`
+			<div
+				class="badge"
+				title={"Click to expand"}
+				style={`
                 ${setTextSize()};
                 background-color: gray;
             `}
-		>
-			...
-		</div>
+			>
+				...
+			</div>
 		{/if}
 	{/if}
 	<slot />
