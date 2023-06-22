@@ -3,16 +3,22 @@
 	import { userdata } from "../../routes/stores";
 	import { createClient } from "@supabase/supabase-js";
 	import imageCompression from "browser-image-compression";
+	import { onMount } from "svelte";
 	var user;
 	var user1;
 	var fileinput;
-	var uploadText = 'Upload avatar'
+	var uploadText = "Upload avatar";
+	var provinces
+	var sortedProvinces:any[] = []
 	userdata.subscribe((value) => {
 		user = value;
 		user1 = JSON.parse(JSON.stringify(value));
 	});
 	export var ifShow: boolean;
-	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
+	const supabase = createClient(
+		import.meta.env.VITE_DATABASE_API_URL,
+		import.meta.env.VITE_DATABASE_API_KEY
+	);
 	async function apply() {
 		document.body.style.cursor = "wait";
 		const a = {
@@ -20,11 +26,14 @@
 			youtube: user.data.youtube,
 			facebook: user.data.facebook,
 			discord: user.data.discord,
-			isHidden: user.data.isHidden
+			isHidden: user.data.isHidden,
+			province: user.data.province,
+			city: user.data.city
 		};
+		console.log(a)
 		try {
 			for (const i in a) {
-				if (i != "name" && i != "isHidden") {
+				if (i != "name" && i != "isHidden" && i != 'province' && i != 'city') {
 					var s = a[i].split(" ");
 					var s1 = "";
 					for (const j in s) {
@@ -61,7 +70,7 @@
 			maxWidthOrHeight: 480,
 			useWebWorker: true
 		};
-		uploadText = 'Compressing image...'
+		uploadText = "Compressing image...";
 		imageCompression(image, options).then(async (cImg) => {
 			var { data, error } = await supabase.storage
 				.from("avatars")
@@ -69,13 +78,22 @@
 					cacheControl: "0",
 					upsert: true
 				});
-			if(error) uploadText = 'An error ocurred'
+			if (error) uploadText = "An error ocurred";
 			else {
-				uploadText = 'Avatar uploaded! (refreshing page)'
-				window.location.reload()
+				uploadText = "Avatar uploaded! (refreshing page)";
+				window.location.reload();
 			}
 		});
 	}
+	onMount(() => {
+		fetch(`${import.meta.env.VITE_BACKEND_API_URL}/provinces`)
+			.then((res) => res.json())
+			.then((res) => {
+				provinces = res;
+				sortedProvinces = Object.values(res)
+				sortedProvinces.sort((a, b) => (a.name < b.name ? -1 : 1))
+			});
+	});
 </script>
 
 {#if ifShow}
@@ -130,6 +148,20 @@
 						placeholder="Discord tag"
 						bind:value={user.data.discord}
 					/>
+					<select class="sel" bind:value={user.data.province}>
+						<option value={null} disabled selected>Provinces</option>
+						{#each sortedProvinces as item, index}
+							<option value={item.name}>{item.name}</option>
+						{/each}
+					</select>
+					<select class="sel" bind:value={user.data.city}>
+						<option value={null} disabled selected>City</option>
+						{#if user.data.province}
+							{#each provinces[user.data.province].cities as item, index}
+								<option value={item}>{item}</option>
+							{/each}
+						{/if}
+					</select>
 					{#if !user.data.isHidden}
 						<button
 							class="hideBtn"
@@ -161,7 +193,8 @@
 						on:click={() => {
 							ifShow = !ifShow;
 							cancel();
-						}}>Cancel</span>
+						}}>Cancel</span
+					>
 					<span
 						class="s_button2 s_margin5 s_blue clickable"
 						on:click={() => {
@@ -183,6 +216,20 @@
 		color: var(--textColor);
 		font-size: 15px;
 		font-weight: 600;
+	}
+	.sel {
+		height: 60px;
+		width: calc(100% - 90px);
+		border-radius: 15px;
+		background-color: red;
+		color: var(--textColor);
+		font-size: 15px;
+		font-weight: 600;
+		background-color: var(--color19);
+		border: none;
+		margin-bottom: 10px;
+		box-sizing: border-box;
+		padding: 16px;
 	}
 	.hideBtn1 {
 		height: 60px;
@@ -305,7 +352,6 @@
 		transition: 0.15s;
 	}
 	.s_shadow {
-		
 	}
 	@media screen and (max-width: 1250px) {
 		.submitModal {
