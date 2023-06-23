@@ -292,7 +292,7 @@
 								/></svg
 							>
 							<p>
-								{#if player.city}{player.city}, {/if}{player.province}
+								{#if player.city && player.city != player.province}{player.city}, {/if}{player.province}
 							</p>
 						</div>
 					{/if}
