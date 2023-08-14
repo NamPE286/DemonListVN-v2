@@ -10,6 +10,12 @@
 		return `font-size: ${size}px`;
 	}
 	function getTitle() {
+		if (player.rating >= 4800)
+			return {
+				title: "LIGM",
+				fullTitle: "Legendary Grandmaster",
+				color: "darkred"
+			};
 		if (player.rating >= 4000)
 			return {
 				title: "LGM",
