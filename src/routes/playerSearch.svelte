@@ -37,6 +37,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Player search - Demon List VN</title>
+</svelte:head>
+
 <div class="pageContent">
 	<h1>Player search</h1>
 	<div class="searchWrapper">
