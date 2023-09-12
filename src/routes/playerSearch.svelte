@@ -65,7 +65,7 @@
 		<h4>Total player: {players.length}</h4>
 		{#each players as item, index}
 			<div class="player" style={index % 2 == 1 ? "" : "background-color: var(--color23);"}>
-				<span>#{index + 1}</span>
+				<span>#{index + 1} ({item.overallRank})</span>
 				<div class="avatar">
 					<img
 						src={`https://qdwpenfblwdmhywwszzj.supabase.co/storage/v1/object/public/avatars/${item.uid}.jpg`}
