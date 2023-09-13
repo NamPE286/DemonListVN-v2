@@ -115,6 +115,7 @@
 					videoID={null}
 					levelID={NaN}
 					progress={NaN}
+					unrated={false}
 				/>
 			{/each}
 		{:else}
@@ -127,6 +128,7 @@
 					videoID={item.videoID}
 					levelID={item.id}
 					progress={item.progress}
+					unrated={list == 'dl' ? item.unrated : false}
 				/>
 				{#if index == legacyIndex}
 					<p id="legacyLabel"><span>Legacy List</span></p>

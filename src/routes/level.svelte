@@ -6,7 +6,7 @@
 	import EditRecordModal from "../components/modals/EditRecordModal.svelte";
 	import Badge from "../components/badge.svelte";
 	import EditLevelModal from "../components/modals/EditLevelModal.svelte";
-	import { fly } from "svelte/transition"
+	import { fly } from "svelte/transition";
 	var id = $page.url.searchParams.get("id");
 	var level = null;
 	var title = "";
@@ -16,7 +16,10 @@
 	var showEditProfileModal = false;
 	var showEditRecordModal = false;
 	var showEditLevelModal = false;
-	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
+	const supabase = createClient(
+		import.meta.env.VITE_DATABASE_API_URL,
+		import.meta.env.VITE_DATABASE_API_KEY
+	);
 	$: fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${$page.url.searchParams.get("id")}`)
 		.then((response) => response.json())
 		.then((data) => {
@@ -57,14 +60,17 @@
 </svelte:head>
 
 {#if level}
-	<div class="pageContent" in:fly={{y: 50, duration: 500, delay: 300}}>
+	<div class="pageContent" in:fly={{ y: 50, duration: 500, delay: 300 }}>
 		<div class="thumbnailWidget">
 			<img src={`https://img.youtube.com/vi/${level.videoID}/mqdefault.jpg`} alt="" />
 			<div class="levelInfo">
 				<p class="top">#{level.dlTop ? level.dlTop : level.flTop}</p>
 				<div class="info">
 					<p class="levelName">{level.name}</p>
-					<p class="creator">by {level.creator} - {getPoint()}</p>
+					<p class="creator">
+						by {level.creator} - {getPoint()}
+						{level.unrated ? "(Unrated)" : ""}
+					</p>
 				</div>
 				{#if $userdata.data.isAdmin}
 					<span
@@ -100,7 +106,11 @@
 			<p><b>Minimum Progress: </b><span class="desc">{level.minProgress}%</span></p>
 			<p><b>Difficulty: </b><span class="desc">{level.difficulty}</span></p>
 			<p><b>ID: </b><span class="desc">{id}</span></p>
-			<p><b>LDM: </b><span class="desc">{level.ldm.length == 0 ? level.ldm.join(', ') : 'Unavailable'}</span></p>
+			<p>
+				<b>LDM: </b><span class="desc"
+					>{level.ldm.length == 0 ? level.ldm.join(", ") : "Unavailable"}</span
+				>
+			</p>
 		</div>
 		<div class="additionalInfo">
 			<svg
@@ -176,10 +186,14 @@
 				{#each records as item, index}
 					<div class="playersList" id={index % 2 ? "" : "highlight2"}>
 						<div class="playerName">
-							<Badge player={item.players}><a href={`/player?id=${item.userid}`}>{item.players.name}</a></Badge>
+							<Badge player={item.players}
+								><a href={`/player?id=${item.userid}`}>{item.players.name}</a></Badge
+							>
 						</div>
 						<div class="playerPt">
-							<a href={item.videoLink} id="center" target="_blank">{item.progress}% ({ifMobile(item)}{item.refreshRate}fps)</a>
+							<a href={item.videoLink} id="center" target="_blank"
+								>{item.progress}% ({ifMobile(item)}{item.refreshRate}fps)</a
+							>
 							{#if $userdata.data.isAdmin}
 								<span
 									on:click={() => {
@@ -228,7 +242,7 @@
 {/if}
 
 <style lang="scss">
-	.centerText{
+	.centerText {
 		grid-area: record;
 		display: flex;
 		flex-direction: column;
@@ -285,7 +299,7 @@
 		margin-top: auto;
 		margin-bottom: auto;
 		svg {
-			fill: var(--textColor);	
+			fill: var(--textColor);
 		}
 		p {
 			margin: 0;
@@ -396,7 +410,6 @@
 	}
 
 	@media screen and (max-width: 1450px) {
-
 	}
 	@media screen and (max-width: 1100px) {
 		.pageContent {
