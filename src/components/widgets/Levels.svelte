@@ -6,7 +6,6 @@
 	export var videoID: string;
 	export var levelID: number;
 	export var progress: number;
-	export var unrated: boolean;
 	var isMenuOpen = false
 	function copyID(){
 		const el = document.createElement("textarea");
@@ -30,7 +29,7 @@
 			<p class="top">#{top}</p>
 			<div class="info">
 				<p class="levelName">{name}</p>
-				<p class="creator">by {creator} - {point}pt {unrated ? "(Unrated)" : ''}</p>
+				<p class="creator">by {creator} - {point}pt</p>
 			</div>
 			{#if progress != 100 && progress}	
 				<span>{progress}%</span>
