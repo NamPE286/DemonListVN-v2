@@ -5,6 +5,8 @@
 	export var ifShow: boolean;
 	export var level: any;
 	var prevFL = JSON.parse(JSON.stringify(level.flTop));
+	var fileinput;
+	var uploadText = "Upload song";
 	const supabase = createClient(
 		import.meta.env.VITE_DATABASE_API_URL,
 		import.meta.env.VITE_DATABASE_API_KEY
@@ -19,9 +21,9 @@
 					"Content-Type": "application/json"
 				},
 				body: JSON.stringify({
-					token: supabase.auth.session().access_token,
+					token: supabase.auth.session().access_token
 				})
-			})
+			});
 			alert("Level deleted");
 			window.location.reload();
 		} else {
@@ -44,6 +46,35 @@
 	}
 	function cancel() {
 		ifShow = false;
+	}
+	async function deleteSong() {
+		if (!confirm("Delete song for this level?")) {
+			return;
+		}
+
+		await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${level.id}/song`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				token: supabase.auth.session().access_token
+			})
+		})
+
+		alert("Song deleted");
+		window.location.reload();
+	}
+
+	async function uploadSong(e) {
+		uploadText = "Uploading...";
+		let file = e.target.files[0];
+		var { data, error } = await supabase.storage.from("songs").upload(`/${file.name}`, file, {
+			cacheControl: "0",
+			upsert: true
+		});
+		level.songID = parseInt(file.name.split(".")[0]);
+		await apply();
 	}
 </script>
 
@@ -86,6 +117,20 @@
 						bind:value={level.rating}
 						type="number"
 					/>
+					<div class="song">
+						<button on:click={() => fileinput.click()}>{uploadText}</button>
+						<input
+							style="display:none"
+							type="file"
+							accept=".mp3"
+							on:change={(e) => uploadSong(e)}
+							bind:this={fileinput}
+						/>
+
+						{#if level.songID != null}
+							<button on:click={deleteSong}>Delete song</button>
+						{/if}
+					</div>
 					<input
 						class="s_input"
 						placeholder="Delete level? (type yes to proceed)"
@@ -113,6 +158,18 @@
 {/if}
 
 <style lang="scss">
+	.song {
+		display: flex;
+		gap: 5px;
+		margin-bottom: 5px;
+		button {
+			background-color: var(--color15);
+			height: 30px;
+			padding-inline: 10px;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+	}
 	.dimBg {
 		position: fixed;
 		margin-top: -135px;
