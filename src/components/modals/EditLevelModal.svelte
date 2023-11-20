@@ -9,14 +9,8 @@
 		import.meta.env.VITE_DATABASE_API_URL,
 		import.meta.env.VITE_DATABASE_API_KEY
 	);
-	var ldmString = level.ldm.join(" ");
 	var delLv = "";
 	async function apply() {
-		var temp = ldmString.split(" ");
-		var temp1 = [];
-		for (const i of temp) temp1.push(parseInt(i));
-		level.ldm = temp1;
-		console.log(temp, temp1, level.ldm);
 		level["prevflTop"] = prevFL;
 		if (delLv == "yes") {
 			await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/level/${level.id}`, {
@@ -91,12 +85,6 @@
 						placeholder="Demon List Rating (leave blank for null)"
 						bind:value={level.rating}
 						type="number"
-					/>
-					<input
-						class="s_input"
-						placeholder="LDM (seperated by space)"
-						bind:value={ldmString}
-						type="text"
 					/>
 					<input
 						class="s_input"
