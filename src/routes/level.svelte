@@ -45,6 +45,33 @@
 		records.splice(index, 1);
 		records = records;
 	}
+
+	async function downloadSong(id) {
+		const url = supabase.storage.from("songs").getPublicUrl(`${id}.mp3`).publicURL;
+
+		fetch(url)
+			.then((res) => res.blob())
+			.then((blob) => {
+				const blobUrl = URL.createObjectURL(blob);
+				const link = document.createElement("a");
+
+				link.href = blobUrl;
+				link.download = `${id}.mp3`;
+
+				document.body.appendChild(link);
+
+				link.dispatchEvent(
+					new MouseEvent("click", {
+						bubbles: true,
+						cancelable: true,
+						view: window
+					})
+				);
+
+				document.body.removeChild(link);
+			});
+	}
+
 	function ifMobile(item) {
 		if (item.mobile) return "Mobile ";
 		return "";
@@ -106,7 +133,16 @@
 			<p><b>Minimum Progress: </b><span class="desc">{level.minProgress}%</span></p>
 			<p><b>Difficulty: </b><span class="desc">{level.difficulty}</span></p>
 			<p><b>ID: </b><span class="desc">{id}</span></p>
-			<p><b>Song: </b><span class="desc">{level.songID == null ? "Available on Newgrounds" : level.songID}</span></p>
+			<p>
+				<b>Song: </b><span class="desc">
+					{#if level.songID == null}
+						Available on Newgrounds
+					{/if}
+					{#if level.songID != null}
+						<span id="download" on:click={() => downloadSong(level.songID)}>Download</span>
+					{/if}
+				</span>
+			</p>
 		</div>
 		<div class="additionalInfo">
 			<svg
@@ -239,6 +275,10 @@
 {/if}
 
 <style lang="scss">
+	#download {
+		cursor: pointer;
+		color: #8ab4f8;
+	}
 	.centerText {
 		grid-area: record;
 		display: flex;
