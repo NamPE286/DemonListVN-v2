@@ -60,7 +60,7 @@
 			body: JSON.stringify({
 				token: supabase.auth.session().access_token
 			})
-		})
+		});
 
 		alert("Song deleted");
 		window.location.reload();
@@ -118,15 +118,16 @@
 						type="number"
 					/>
 					<div class="song">
-						<button on:click={() => fileinput.click()}>{uploadText}</button>
-						<input
-							style="display:none"
-							type="file"
-							accept=".mp3"
-							on:change={(e) => uploadSong(e)}
-							bind:this={fileinput}
-						/>
-
+						{#if level.songID == null}
+							<button on:click={() => fileinput.click()}>{uploadText}</button>
+							<input
+								style="display:none"
+								type="file"
+								accept=".mp3"
+								on:change={(e) => uploadSong(e)}
+								bind:this={fileinput}
+							/>
+						{/if}
 						{#if level.songID != null}
 							<button on:click={deleteSong}>Delete song</button>
 						{/if}
