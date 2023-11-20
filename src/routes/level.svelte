@@ -106,11 +106,7 @@
 			<p><b>Minimum Progress: </b><span class="desc">{level.minProgress}%</span></p>
 			<p><b>Difficulty: </b><span class="desc">{level.difficulty}</span></p>
 			<p><b>ID: </b><span class="desc">{id}</span></p>
-			<p>
-				<b>LDM: </b><span class="desc"
-					>{level.ldm.length == 0 ? level.ldm.join(", ") : "Unavailable"}</span
-				>
-			</p>
+			<p><b>Song: </b><span class="desc">{level.songID == null ? "Available on Newgrounds" : level.songID}</span></p>
 		</div>
 		<div class="additionalInfo">
 			<svg
@@ -174,6 +170,7 @@
 			<div class="centerText">No one has beaten this level yet</div>
 		{/if}
 		{#if records.length}
+			<div class="centerText">Total record: {records.length}</div>
 			<div class="playersListWrapper">
 				<div class="playersList">
 					<div class="playerName">
@@ -247,6 +244,7 @@
 		display: flex;
 		flex-direction: column;
 		text-align: center;
+		height: 100px;
 	}
 	#center {
 		text-align: center;
