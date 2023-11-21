@@ -16,6 +16,7 @@
 	var showEditProfileModal = false;
 	var showEditRecordModal = false;
 	var showEditLevelModal = false;
+	var downloading = 0;
 	const supabase = createClient(
 		import.meta.env.VITE_DATABASE_API_URL,
 		import.meta.env.VITE_DATABASE_API_KEY
@@ -47,6 +48,7 @@
 	}
 
 	async function downloadSong(id) {
+		downloading = 1;
 		const url = supabase.storage.from("songs").getPublicUrl(`${id}.mp3`).publicURL;
 
 		fetch(url)
@@ -69,6 +71,7 @@
 				);
 
 				document.body.removeChild(link);
+				downloading = 2;
 			});
 	}
 
@@ -139,7 +142,15 @@
 						Available on Newgrounds
 					{/if}
 					{#if level.songID != null}
-						<span id="download" on:click={() => downloadSong(level.songID)}>Download</span>
+						{#if downloading == 0}
+							<span id="download" on:click={() => downloadSong(level.songID)}>Download</span>
+						{/if}
+						{#if downloading == 1}
+							<span>Retrieving file...</span>
+						{/if}
+						{#if downloading == 2}
+							<span>Downloaded</span>
+						{/if}
 					{/if}
 				</span>
 			</p>
