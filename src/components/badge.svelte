@@ -13,10 +13,10 @@
 		if (player.rating >= 4800)
 			return {
 				title: "LIGM",
-				fullTitle: "Legendary Grandmaster",
+				fullTitle: "Legendary International Grandmaster",
 				color: "darkred"
 			};
-		if (player.rating >= 4000)
+		if (player.rating >= 4200)
 			return {
 				title: "LGM",
 				fullTitle: "Legendary Grandmaster",
