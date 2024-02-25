@@ -11,22 +11,23 @@
     <div class='rule'>
         <h2>General rules</h2>
         <ul>
-            <li>All levels must have insane or extreme demon at the time of submission.</li>
+            <li>Only the players who have Vietnamese citizenship or Vietnamese bloodline can submit records.</li>
+            <li>Records without FPS counter, clicks and raw footage will be rejected immediately.</li>
             <li>Records must reach minimum progress requirement of any level to be accepted.</li>
-            <li>Cheats and tools are not allowed except for these:</li>
-            <ul>
-                <li>FPS bypass (Max 360fps).</li>
-            </ul>
-            <li>Records stolen from other are not accepted.</li>
-            <li>Secret routes or bug routes are not allowed.</li>
-            <li>Record must have sound.</li>
-            <li>Icon trail must be visible.</li>
-            <li>If you use custom LDM version, you have to show LDM level ID in comment when submit. Otherwise, your submission will be rejected immediately.</li>
+            <li>Records using disallowed hacks or secret routes (bypassing the hardest parts of the level), or stolen from others will not be accepted. It is recommended to check <a href="https://docs.google.com/spreadsheets/d/1evE4nXATxRAQWu2Ajs54E6cVUqHBoSid8I7JauJnOzg/edit?usp=sharing">the list of allowed hacks from Pointercrate</a>.</li>
+            <li>Records not showing the in-game endscreen after completing the level will not be accepted.</li>
+            <li>Records should be available on YouTube (public or unlisted).</li>
+            <li>Players are allowed to fix bugs that are caused by varying refresh rates or in-game physics changes.</li>
+            <li>If you use a custom LDM version, you must show the LDM level's ID in the comment section when submitting. Otherwise, your submission will be rejected immediately.</li>
+            <li>If you get banned from the GDVN or CDGDVN facebook group, your record will be rejected until you get unbanned.</li>
         </ul>
-        <h2>Demon List rules</h2>
+        <h2>Demon List rule</h2>
         <ul>
-            <li>You must have Vietnamese citizenship.</li>
-            <li>If you got banned from GDVN or CDGDVN facebook group, your record will be rejected until you got unbanned.</li>
+            <li>All levels must be insane or extreme demons at the time of submission.</li>
+        </ul>
+        <h2>Featured List rule</h2>
+        <ul>
+            <li>All levels must be rated demons, created and uploaded by the Vietnamese (or having at least 50% Vietnamese contribution).</li>
         </ul>
         <h2>Rating</h2>
         <ul>
@@ -57,7 +58,8 @@
                 <li><Badge player={{rating:2800}}> Candidate Master: >= 2800</Badge></li>
                 <li><Badge player={{rating:3000}}> Master: >= 3000</Badge></li>
                 <li><Badge player={{rating:3600}}> Grandmaster: >= 3600</Badge></li>
-                <li><Badge player={{rating:4200}}> Legendary Grandmaster: >= 4000</Badge></li>
+                <li><Badge player={{rating:4200}}> Legendary Grandmaster: >= 4200</Badge></li>
+                <li><Badge player={{rating:4800}}> Legendary International Grandmaster: >= 4800</Badge></li>
             </ul>
         </ul>
     </div>
