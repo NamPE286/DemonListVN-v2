@@ -9,12 +9,10 @@
 		videoID: null,
 		minProgress: null,
 		flTop: null,
-		dlTop: null,
+		rating: null,
 		ldm: []
 	}
 	var ldmString = ''
-	var prevFL = JSON.parse(JSON.stringify(level.flTop))
-	var prevDL = JSON.parse(JSON.stringify(level.dlTop))
 	const supabase = createClient(import.meta.env.VITE_DATABASE_API_URL, import.meta.env.VITE_DATABASE_API_KEY);
 	async function apply(){
 		var temp = ldmString.split(' ')
@@ -33,7 +31,7 @@
 		})
 			.then((res) => {
 				if(res.ok){
-					alert('Level updated')
+					alert('Level added')
 					window.location.reload()
 				}
 				else alert('An error occured')
@@ -68,7 +66,7 @@
 				<input class="s_input" placeholder="Video ID" bind:value={level.videoID}/>
 				<input class="s_input" placeholder="Minimum Progress" bind:value={level.minProgress} type='number'/>
 				<input class="s_input" placeholder="Featured List Top (leave blank for null)" bind:value={level.flTop} type='number'/>
-				<input class="s_input" placeholder="Demon List Top (leave blank for null)" bind:value={level.dlTop} type='number'/>
+				<input class="s_input" placeholder="Demon List Rating (leave blank for null)" bind:value={level.rating} type='number'/>
 				<input class="s_input" placeholder="LDM (seperated by space)" bind:value={ldmString} type='text'/>
 			</div>
 			<div class="s_flexrow buttonWrapper" style="justify-content: flex-end;">
@@ -182,9 +180,7 @@
 		background-color: var(--color4);
 		transition: 0.15s;
 	}
-	.s_shadow {
-		
-	}
+
 	@media screen and (max-width: 1250px) {
 		.submitModal {
 			width: 65%;
