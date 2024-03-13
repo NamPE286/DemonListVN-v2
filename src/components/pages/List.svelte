@@ -10,11 +10,11 @@
 	export var desc: string;
 	var listOption = 0;
 	var levels = [];
-	var levelsFetched = false
+	var levelsFetched = false;
 	var showAddLevelModal = false;
 	var showFilterBox = false;
 	var legacyIndex: number;
-	var isFilered = false
+	var isFilered = false;
 	if (list == "dl") legacyIndex = -1;
 	else legacyIndex = 74;
 	var filter = {
@@ -24,7 +24,7 @@
 		maxPt: 10000,
 		hideBeatenLevels: false
 	};
-	function resetFilter(){
+	function resetFilter() {
 		filter = {
 			minTop: 0,
 			maxTop: 1000,
@@ -33,31 +33,33 @@
 			hideBeatenLevels: false
 		};
 	}
-	function getFilter(){
-		if(isFilered) return encodeURI(JSON.stringify(filter))
-		return ''
+	function getFilter() {
+		if (isFilered) return encodeURI(JSON.stringify(filter));
+		return "";
 	}
 	function fetchData(count = 0) {
 		if (count == 0) {
 			levels = [];
-			levelsFetched = false
+			levelsFetched = false;
 		}
 		if (count == 2) {
 			fetch(`${import.meta.env.VITE_BACKEND_API_URL}/levels/${list}/page/1/0/${getFilter()}`)
 				.then((response) => response.json())
 				.then((data) => {
 					levels = data;
-					levelsFetched = true
+					levelsFetched = true;
 				});
 		}
 		try {
 			fetch(
-				`${import.meta.env.VITE_BACKEND_API_URL}/levels/${list}/page/1/${$userdata.metadata.id}/${getFilter()}`
+				`${import.meta.env.VITE_BACKEND_API_URL}/levels/${list}/page/1/${
+					$userdata.metadata.id
+				}/${getFilter()}`
 			)
 				.then((response) => response.json())
 				.then((data) => {
 					levels = data;
-					levelsFetched = true
+					levelsFetched = true;
 				});
 		} catch {
 			setTimeout(() => fetchData(count + 1), 50);
@@ -157,7 +159,7 @@
 					<svg
 						class="clickable"
 						on:click={() => {
-							isFilered = true
+							isFilered = true;
 							fetchData();
 						}}
 						xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +170,7 @@
 					<svg
 						class="clickable"
 						on:click={() => {
-							resetFilter()
+							resetFilter();
 						}}
 						xmlns="http://www.w3.org/2000/svg"
 						height="24"
@@ -195,24 +197,26 @@
 	{/if}
 	<div class="listSwitcherWrapper" in:fly={{ y: 200, duration: 500, delay: 800 }}>
 		<div class="listSwitcher">
-			<span
-				class="listSwitcherItem clickable"
-				id={listOption == 0 ? "highlight" : ""}
-				on:click={() => {
-					listOption = 0;
-				}}
-			>
-				<span>Level listing</span>
-			</span>
-			<span
-				class="listSwitcherItem clickable"
-				id={listOption == 1 ? "highlight" : ""}
-				on:click={() => {
-					listOption = 1;
-				}}
-			>
-				<span>Top players</span>
-			</span>
+			{#if list == "fl"}
+				<span
+					class="listSwitcherItem clickable"
+					id={listOption == 0 ? "highlight" : ""}
+					on:click={() => {
+						listOption = 0;
+					}}
+				>
+					<span>Level listing</span>
+				</span>
+				<span
+					class="listSwitcherItem clickable"
+					id={listOption == 1 ? "highlight" : ""}
+					on:click={() => {
+						listOption = 1;
+					}}
+				>
+					<span>Top players</span>
+				</span>
+			{/if}
 			{#if listOption == 0}
 				<span
 					class="listSwitcherItem clickable"
