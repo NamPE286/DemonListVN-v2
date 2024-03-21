@@ -300,7 +300,7 @@
 				<div class="statWidget">
 					<span class="statTitle">Stats</span><br />
 					<span>Rating: {player.rating} (#{player.overallRank})</span><br />
-					<span>Demon List: {player.totalDLpt} (#{player.dlrank})</span><br />
+					<span>Total Demon List point: {player.totalDLpt}</span><br />
 					<span>Featured List: {player.totalFLpt} (#{player.flrank})</span><br />
 				</div>
 				{#if id == getID()}
