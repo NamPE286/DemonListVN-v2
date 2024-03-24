@@ -33,6 +33,9 @@
 		<a href="/admin/mergeAccount">Merge Account</a><br>
 		<span>Misc.:</span>
 		<a href="/admin/sendNotification">Notification</a><br>
+		<span>Access token:</span>
+		<input readonly value={supabase.auth.session().access_token}>
+		
 	</div>
 {/if}
 
